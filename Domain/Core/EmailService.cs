@@ -5,7 +5,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace BusinessLayer.Core
+namespace Domain.Core
 {
     public class EmailService : IDisposable
     {
@@ -25,17 +25,17 @@ namespace BusinessLayer.Core
             };
         }
 
-        public void SendApplication(Application application, string applicationHtml, Stream applicationPdf)
+        public void SendApplication(Application application, Stream toAttach)
         {
             var subject = $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}";
             var body = $"Attached is the application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}";
-            var attachment = new Attachment(applicationPdf, $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} {application}.pdf");
+            var attachment = new Attachment(toAttach, $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} {application}.pdf");
             var preferredReplyTo = application.PersonalInfo.Email;
 
             SendEmail(subject, body, attachment, preferredReplyTo);
         }
 
-        public void SendMaintenanceRequest(MaintenanceRequest maintenanceRequest, string applicationHtml, Stream maintenanceRequestPdf)
+        public void SendMaintenanceRequest(MaintenanceRequest maintenanceRequest, Stream toAttach)
         {
             var subject = $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}";
 
@@ -47,7 +47,7 @@ namespace BusinessLayer.Core
             bodyBuilder.AppendLine(maintenanceRequest.Description);
             var body = bodyBuilder.ToString();
 
-            var attachment = new Attachment(maintenanceRequestPdf, $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request.pdf");
+            var attachment = new Attachment(toAttach, $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request.pdf");
             var preferredReplyTo = maintenanceRequest.Email;
 
             SendEmail(subject, body, attachment, preferredReplyTo);

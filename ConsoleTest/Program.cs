@@ -1,5 +1,5 @@
-﻿using BusinessLayer.Core;
-using Corely.Helpers;
+﻿using Corely.Helpers;
+using Domain.Core;
 using SelectPdf;
 using System;
 using System.IO;

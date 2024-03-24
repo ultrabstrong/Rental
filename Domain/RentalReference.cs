@@ -1,11 +1,11 @@
-﻿using BusinessLayer.Enums;
-using BusinessLayer.Validation;
+﻿using Domain.Enums;
+using Domain.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
 using rm = Resources.BusinessLayer.Application;
 using vrm = Resources.BusinessLayer.ApplicationValidation;
 
-namespace BusinessLayer
+namespace Domain
 {
     public class RentalReference
     {

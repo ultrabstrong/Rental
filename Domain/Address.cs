@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using rm = Resources.BusinessLayer.Application;
 
-namespace BusinessLayer
+namespace Domain
 {
     public class Address
     {

@@ -1,5 +1,5 @@
 ﻿using ApartmentWeb.SiteConfiguration;
-using BusinessLayer.Core;
+using Domain.Core;
 using Corely.Core;
 using Corely.Data.Serialization;
 using Corely.Extensions;

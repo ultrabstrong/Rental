@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace BusinessLayer.Validation
+namespace Domain.Validation
 {
     public class RangeIfEnumAttribute : ValidationAttribute, IClientValidatable
     {

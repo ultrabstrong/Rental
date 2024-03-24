@@ -2,7 +2,7 @@
 using rm = Resources.BusinessLayer.MaintenanceRequest;
 using vrm = Resources.BusinessLayer.MaintenanceValidation;
 
-namespace BusinessLayer
+namespace Domain
 {
     public class MaintenanceRequest
     {

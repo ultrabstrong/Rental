@@ -2,7 +2,7 @@
 using rm = Resources.BusinessLayer.Application;
 using vrm = Resources.BusinessLayer.ApplicationValidation;
 
-namespace BusinessLayer
+namespace Domain
 {
     public class PersonalInfo
     {

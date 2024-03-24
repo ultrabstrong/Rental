@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using rm = Resources.BusinessLayer.Application;
 
-namespace BusinessLayer.Enums
+namespace Domain.Enums
 {
     public enum Yes
     {

@@ -1,5 +1,5 @@
-﻿using BusinessLayer.Core;
-using Corely.Core;
+﻿using Corely.Core;
+using Domain.Core;
 
 namespace ApartmentWeb.SiteConfiguration
 {

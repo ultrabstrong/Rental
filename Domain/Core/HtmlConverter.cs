@@ -1,11 +1,11 @@
 ﻿using SelectPdf;
 using System;
 
-namespace BusinessLayer.Core
+namespace Domain.Core
 {
     public static class HtmlConverter
     {
-        public static byte[] ToPDF(string html, string author, string title, string subject)
+        public static byte[] ToPdf(string html, string author, string title, string subject)
         {
             HtmlToPdf converter = new HtmlToPdf();
             converter.Options.PdfPageSize = PdfPageSize.A4;

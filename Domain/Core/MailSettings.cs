@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BusinessLayer.Core
+namespace Domain.Core
 {
     [Serializable]
     public class MailSettings
