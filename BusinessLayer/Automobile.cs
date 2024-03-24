@@ -1,24 +1,13 @@
-﻿using rm = Resources.BusinessLayer.Application;
-using vrm = Resources.BusinessLayer.ApplicationValidation;
-using System.ComponentModel.DataAnnotations;
-using BusinessLayer.Enums;
+﻿using BusinessLayer.Enums;
 using BusinessLayer.Validation;
+using System.ComponentModel.DataAnnotations;
+using rm = Resources.BusinessLayer.Application;
+using vrm = Resources.BusinessLayer.ApplicationValidation;
 
 namespace BusinessLayer
 {
-    public class Automobile 
+    public class Automobile
     {
-
-        #region Constructor
-        public Automobile()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
         public string DisplayName { get; set; }
 
         public bool AllowElectiveRequire { get; set; }
@@ -51,6 +40,5 @@ namespace BusinessLayer
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.AUTO_COLOR), typeof(vrm))]
         public string Color { get; set; }
 
-        #endregion
     }
 }

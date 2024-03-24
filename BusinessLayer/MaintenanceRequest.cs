@@ -6,14 +6,6 @@ namespace BusinessLayer
 {
     public class MaintenanceRequest
     {
-        #region Constructor
-
-        public MaintenanceRequest() { }
-
-        #endregion
-
-        #region Properties
-
         [Display(Name = nameof(rm.MAINTENANCE_RENTAL_ADDRESS), ResourceType = typeof(rm))]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.MAINTENANCE_RENTAL_ADDRESS), ErrorMessageResourceType = typeof(vrm))]
         public string RentalAddress { get; set; }
@@ -37,6 +29,5 @@ namespace BusinessLayer
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.MAINTENANCE_DESCRIPTION), ErrorMessageResourceType = typeof(vrm))]
         public string Description { get; set; }
 
-        #endregion
     }
 }

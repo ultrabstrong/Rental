@@ -9,17 +9,6 @@ namespace BusinessLayer
 {
     public class RentalReference
     {
-        #region Constructor
-
-        public RentalReference()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
         public string DisplayName { get; set; }
 
         public bool AllowElectiveRequire { get; set; }
@@ -44,7 +33,7 @@ namespace BusinessLayer
         [Display(Name = nameof(rm.RENTREF_START), ResourceType = typeof(rm))]
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_START), typeof(vrm))]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime? Start { get; set; } 
+        public DateTime? Start { get; set; }
 
         [Display(Name = nameof(rm.RENTREF_END), ResourceType = typeof(rm))]
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_END), typeof(vrm))]
@@ -55,6 +44,5 @@ namespace BusinessLayer
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_MOVING_REASON), typeof(vrm))]
         public string ReasonForMoving { get; set; }
 
-        #endregion
     }
 }

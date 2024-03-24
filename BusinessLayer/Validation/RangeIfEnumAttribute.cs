@@ -1,59 +1,30 @@
-﻿using BusinessLayer.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace BusinessLayer.Validation
 {
     public class RangeIfEnumAttribute : ValidationAttribute, IClientValidatable
     {
-        /// <summary>
-        /// Instance name
-        /// </summary>
         public string InstanceName { get; set; }
-        /// <summary>
-        /// Dependant Property Name
-        /// </summary>
+
         private string CheckIfName { get; set; }
-        /// <summary>
-        /// Type of enum for int conversion
-        /// </summary>
+
         private Type EnumType { get; set; }
-        /// <summary>
-        /// Dependant Property Expected Value
-        /// </summary>
+
         private int CheckIfValue { get; set; }
-        /// <summary>
-        /// Minimum value
-        /// </summary>
+
         private decimal? MinValue { get; set; } = null;
-        /// <summary>
-        /// Maximum value
-        /// </summary>
+
         private decimal? MaxValue { get; set; } = null;
-        /// <summary>
-        /// Decimal place accuracy. 0 means whole numbers
-        /// </summary>
+
         private short Accuracy { get; set; }
-        
-        /// <summary>
-        /// Constructor with error
-        /// </summary>
-        /// <param name="minval"></param>
-        /// <param name="maxval"></param>
-        /// <param name="accuracy"></param>
-        /// <param name="checkIfName"></param>
-        /// <param name="checkIfValue"></param>
-        /// <param name="errorName"></param>
-        /// <param name="errorType"></param>
+
         public RangeIfEnumAttribute(string minval, short accuracy, string maxval, string checkIfName, object checkIfValue, string errorName, Type errorType)
         {
             MinValue = decimal.Round(Convert.ToDecimal(minval), accuracy);
-            Accuracy = accuracy; 
+            Accuracy = accuracy;
             MaxValue = decimal.Round(Convert.ToDecimal(maxval), accuracy);
             CheckIfName = checkIfName;
             EnumType = checkIfValue.GetType();
@@ -62,16 +33,6 @@ namespace BusinessLayer.Validation
             ErrorMessageResourceType = errorType;
         }
 
-        /// <summary>
-        /// Constructor with error
-        /// </summary>
-        /// <param name="minval"></param>
-        /// <param name="maxval"></param>
-        /// <param name="accuracy"></param>
-        /// <param name="checkIfName"></param>
-        /// <param name="checkIfValue"></param>
-        /// <param name="errorName"></param>
-        /// <param name="errorType"></param>
         public RangeIfEnumAttribute(string minval, short accuracy, string checkIfName, object checkIfValue, string errorName, Type errorType)
         {
             MinValue = decimal.Round(Convert.ToDecimal(minval), accuracy);
@@ -84,16 +45,6 @@ namespace BusinessLayer.Validation
             ErrorMessageResourceType = errorType;
         }
 
-        /// <summary>
-        /// Constructor with error
-        /// </summary>
-        /// <param name="minval"></param>
-        /// <param name="maxval"></param>
-        /// <param name="accuracy"></param>
-        /// <param name="checkIfName"></param>
-        /// <param name="checkIfValue"></param>
-        /// <param name="errorName"></param>
-        /// <param name="errorType"></param>
         public RangeIfEnumAttribute(short accuracy, string maxval, string checkIfName, object checkIfValue, string errorName, Type errorType)
         {
             MinValue = null;
@@ -106,12 +57,6 @@ namespace BusinessLayer.Validation
             ErrorMessageResourceType = errorType;
         }
 
-        /// <summary>
-        /// Check validity
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
         protected override ValidationResult IsValid(object value, ValidationContext context)
         {
             var dependentValue = context.ObjectInstance.GetType().GetProperty(CheckIfName).GetValue(context.ObjectInstance, null);
@@ -128,12 +73,6 @@ namespace BusinessLayer.Validation
             return ValidationResult.Success;
         }
 
-        /// <summary>
-        /// Define client validation settings
-        /// </summary>
-        /// <param name="metadata"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
             var rule = new ModelClientValidationRule

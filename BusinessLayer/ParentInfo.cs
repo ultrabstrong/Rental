@@ -1,25 +1,15 @@
-﻿using rm = Resources.BusinessLayer.Application;
-using vrm = Resources.BusinessLayer.ApplicationValidation;
-using System.ComponentModel.DataAnnotations;
-using BusinessLayer.Enums;
+﻿using BusinessLayer.Enums;
 using BusinessLayer.Validation;
+using System.ComponentModel.DataAnnotations;
+using rm = Resources.BusinessLayer.Application;
+using vrm = Resources.BusinessLayer.ApplicationValidation;
+
 namespace BusinessLayer
 {
     public class ParentInfo
     {
-        #region Constructor
-
-        public ParentInfo()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
         public string DisplayName { get; set; }
-        
+
         [Display(Name = nameof(rm.APP_PARENTS_PAY), ResourceType = typeof(rm))]
         [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_PARENTS_PAY), ErrorMessageResourceType = typeof(vrm))]
         public YesNo ElectiveRequireValue { get; set; }
@@ -42,7 +32,5 @@ namespace BusinessLayer
 
         [Display(Name = nameof(rm.PARENT_ADDRESS), ResourceType = typeof(rm))]
         public Address Address { get; set; } = new Address();
-
-        #endregion
     }
 }

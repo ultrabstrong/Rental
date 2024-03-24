@@ -1,24 +1,13 @@
-﻿using rm = Resources.BusinessLayer.Application;
-using vrm = Resources.BusinessLayer.ApplicationValidation;
-using System.ComponentModel.DataAnnotations;
-using BusinessLayer.Enums;
+﻿using BusinessLayer.Enums;
 using BusinessLayer.Validation;
+using System.ComponentModel.DataAnnotations;
+using rm = Resources.BusinessLayer.Application;
+using vrm = Resources.BusinessLayer.ApplicationValidation;
 
 namespace BusinessLayer
 {
     public class PersonalReference
     {
-        #region Constructor
-
-        public PersonalReference()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
         public string DisplayName { get; set; }
 
         public bool AllowElectiveRequire { get; set; }
@@ -40,7 +29,6 @@ namespace BusinessLayer
         [Display(Name = nameof(rm.REF_PHONE), ResourceType = typeof(rm))]
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.REF_NAME), typeof(vrm))]
         public string PhoneNum { get; set; }
-        
-        #endregion
+
     }
 }

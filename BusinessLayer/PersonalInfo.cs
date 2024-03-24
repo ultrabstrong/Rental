@@ -1,22 +1,11 @@
-﻿using rm = Resources.BusinessLayer.Application;
+﻿using System.ComponentModel.DataAnnotations;
+using rm = Resources.BusinessLayer.Application;
 using vrm = Resources.BusinessLayer.ApplicationValidation;
-using System.ComponentModel.DataAnnotations;
 
 namespace BusinessLayer
 {
     public class PersonalInfo
     {
-        #region Constructor
-
-        public PersonalInfo()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
         public string DisplayName { get; set; }
 
         public bool AllowElectiveRequire { get; set; }
@@ -55,6 +44,5 @@ namespace BusinessLayer
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_EMAIL), ErrorMessageResourceType = typeof(vrm))]
         public string Email { get; set; }
 
-        #endregion
     }
 }

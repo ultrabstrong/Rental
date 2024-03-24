@@ -1,24 +1,10 @@
-﻿using rm = Resources.BusinessLayer.Application;
-using vrm = Resources.BusinessLayer.ApplicationValidation;
-using System.ComponentModel.DataAnnotations;
-using BusinessLayer.Validation;
-using BusinessLayer.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using rm = Resources.BusinessLayer.Application;
 
 namespace BusinessLayer
 {
     public class Address
     {
-        #region Constructor
-
-        public Address()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
         [Display(Name = nameof(rm.ADDRESS_STREET), ResourceType = typeof(rm))]
         //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_STREET), ErrorMessageResourceType = typeof(vrm))]
         public string Street { get; set; }
@@ -35,6 +21,5 @@ namespace BusinessLayer
         //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_ZIP), ErrorMessageResourceType = typeof(vrm))]
         public string Zip { get; set; }
 
-        #endregion
     }
 }

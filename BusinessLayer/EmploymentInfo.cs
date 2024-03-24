@@ -1,27 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BusinessLayer.Enums;
+﻿using BusinessLayer.Enums;
+using BusinessLayer.Validation;
+using System.ComponentModel.DataAnnotations;
 using rm = Resources.BusinessLayer.Application;
 using vrm = Resources.BusinessLayer.ApplicationValidation;
-using System.ComponentModel.DataAnnotations;
-using BusinessLayer.Validation;
 
 namespace BusinessLayer
 {
     public class EmploymentInfo
     {
-        #region Constructor
-
-        public EmploymentInfo()
-        {
-
-        }
-
-        #endregion
-
-        #region Properties
-
         public string DisplayName { get; set; }
 
         public bool AllowElectiveRequire { get; set; }
@@ -64,8 +50,6 @@ namespace BusinessLayer
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_HOURS), typeof(vrm))]
         [RangeIfEnum("1", 0, nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_HOURS), typeof(vrm))]
         public int HoursPerWeek { get; set; }
-
-        #endregion
 
     }
 }

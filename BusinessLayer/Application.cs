@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using BusinessLayer.Enums;
+﻿using BusinessLayer.Enums;
+using BusinessLayer.Validation;
+using System.ComponentModel.DataAnnotations;
 using rm = Resources.BusinessLayer.Application;
 using vrm = Resources.BusinessLayer.ApplicationValidation;
-using System.ComponentModel.DataAnnotations;
-using BusinessLayer.Validation;
 
 namespace BusinessLayer
 {
@@ -48,7 +47,7 @@ namespace BusinessLayer
             AllowElectiveRequire = true,
             ElectiveRequireDisplay = rm.APP_HAS_JOB
         };
-        
+
         /// <summary>
         /// Secondary Employment (if selected)
         /// </summary>
@@ -142,7 +141,7 @@ namespace BusinessLayer
             DisplayName = rm.APP_PERSONAL_REF_2,
             AllowElectiveRequire = true,
             ElectiveRequireValue = YesNo.No,
-            ElectiveRequireDisplay = rm.APP_ADD_PERSONAL_REF 
+            ElectiveRequireDisplay = rm.APP_ADD_PERSONAL_REF
         };
         /// <summary>
         /// Anticipated duration of stay
@@ -274,7 +273,7 @@ namespace BusinessLayer
         [Display(Name = nameof(rm.APP_COLLEGE_GRADUATE), ResourceType = typeof(rm))]
         [DataType(DataType.MultilineText)]
         [RequireIfEnum(nameof(AttendCollege), YesNo.Yes, nameof(vrm.APP_COLLEGE_GRADUATE), typeof(vrm))]
-        public string PlanToGraduate { get; set;}
+        public string PlanToGraduate { get; set; }
 
         /// <summary>
         /// ? Need reasonable accommodation
