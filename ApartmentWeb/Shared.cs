@@ -1,4 +1,4 @@
-﻿using ApartmentWeb.SiteConfiguration;
+﻿using ApartmentWeb.Models;
 using Domain.Core;
 using Serilog;
 using System;

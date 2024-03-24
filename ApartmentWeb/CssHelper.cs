@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.UI.WebControls;
 
-namespace ApartmentWeb.Controllers
+namespace ApartmentWeb
 {
     public static class CssHelper
     {

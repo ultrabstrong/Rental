@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApartmentWeb.SiteConfiguration
+namespace ApartmentWeb.Models
 {
     [Serializable]
     public class SiteConfig
