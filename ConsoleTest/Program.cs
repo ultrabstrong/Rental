@@ -2,12 +2,10 @@
 using Corely.Helpers;
 using SelectPdf;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ConsoleTest
 {
@@ -27,7 +25,7 @@ namespace ConsoleTest
         {
             try
             {
-                TestAirTable().GetAwaiter();
+
             }
             catch (Exception ex)
             {
@@ -35,42 +33,6 @@ namespace ConsoleTest
             }
             Console.WriteLine("Program finished. Press any key to exit");
             Console.ReadKey();
-        }
-
-        public class Application
-        {
-            public string name { get; set; }
-            public string notes { get; set; }
-
-            public List<AirtableApiClient.AirtableAttachment> applicationpdf { get; set; }
-        }
-
-        static async Task TestAirTable()
-        {
-            AirtableApiClient.AirtableBase baseClient = new AirtableApiClient.AirtableBase("key1", "key2");
-
-            AirtableApiClient.Fields fields = new AirtableApiClient.Fields();
-
-            fields.AddField("name", "appTest");
-
-
-            string apptext = File.ReadAllText(DownloadsLoc + "app.pdf");
-            apptext = Corely.Data.Encoding.Base64String.Base64Encode(apptext);
-            fields.AddField("notes", apptext);
-
-            var res = await baseClient.CreateRecord("applications", fields);
-
-            var record = await baseClient.RetrieveRecord<Application>("applications", "appTest");
-            apptext = Corely.Data.Encoding.Base64String.Base64Decode(record.Record.Fields.notes);
-            File.WriteAllText(apptext, DownloadsLoc + "app2.pdf");
-
-            /*
-            var records = await baseClient.ListRecords<Application>("applications");
-            foreach (var r in records.Records)
-            {
-                Console.WriteLine($"{r.Fields.name} - {r.Fields.notes}");
-            }
-            */
         }
 
         static void TestEmailRegex()
