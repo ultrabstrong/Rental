@@ -1,4 +1,5 @@
-﻿@using rm = Resources.Website.Home;
+﻿@using ApartmentWeb.Controllers
+@using rm = Resources.Website.Home;
 @{
     ViewBag.Title = rm.TENANTINFO;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +7,7 @@
 <!-- Navigation bar -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">W
+        <li class="breadcrumb-item">
             @Html.ActionLink(rm.HOME, nameof(HomeController.Index), HomeController.Name)
         </li>
         <li class="breadcrumb-item active" aria-current="page">@rm.TENANTINFO</li>
@@ -171,11 +172,11 @@
             </div>
             <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
                 <ul class="list-group">
-                    @foreach (NamedValue nv in Shared.Configuration.SiteDetails.TenantInfoDocs)
+                    @foreach (ApartmentWeb.SiteConfiguration.TenantInfoDoc nv in Shared.Configuration.SiteDetails.TenantInfoDocs)
                     {
                         <li class="list-group-item list-group-item-action">
-                            <a class="col-@ViewBag.colsize-12" href="~/data/@nv.Value" download="@nv.Value">
-                                @nv.Name<span class="badge bg-primary p-1 ms-2">@nv.Value</span>
+                            <a class="col-@ViewBag.colsize-12" href="~/data/@nv.FileName" download="@nv.FileName">
+                                @nv.DisplayName<span class="badge bg-primary p-1 ms-2">@nv.FileName</span>
                             </a>
                         </li>
                     }

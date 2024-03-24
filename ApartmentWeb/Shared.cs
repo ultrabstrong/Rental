@@ -1,47 +1,37 @@
 ﻿using ApartmentWeb.SiteConfiguration;
-using Corely.Core;
-using Corely.Data.Serialization;
-using Corely.Extensions;
-using Corely.Logging;
 using Domain.Core;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Web;
+using System.Xml.Serialization;
 using rm = Resources.Website.Logs;
 
 namespace ApartmentWeb
 {
     public static class Shared
     {
-        private static readonly string _datadir = $"{HttpContext.Current.Server.MapPath("~")}/data/";
-        private static readonly string _logdir = $"{HttpContext.Current.Server.MapPath("~")}/logs/";
-        private static readonly string _configfile = $"{HttpContext.Current.Server.MapPath("~")}/data/serviceconfig.xml";
+        private static readonly string _dataDir = $"{HttpContext.Current.Server.MapPath("~")}/data/";
+        private static readonly string _configFile = $"{HttpContext.Current.Server.MapPath("~")}/data/serviceconfig.xml";
 
         private static object ConfigLock { get; set; } = new object();
 
         static Shared()
         {
-            if (!Directory.Exists(_datadir))
+            if (!Directory.Exists(_dataDir))
             {
-                Directory.CreateDirectory(_datadir);
-            }
-            if (!Directory.Exists(_logdir))
-            {
-                Directory.CreateDirectory(_logdir);
+                Directory.CreateDirectory(_dataDir);
             }
 
-            Logger = new FileLogger("WebApp", _logdir, "LogFile");
-            Logger.FileLogManagementPolicy.DeleteDaysOld = 90;
             try
             {
-                if (!File.Exists(_configfile))
+                if (!File.Exists(_configFile))
                 {
                     Configuration = new SiteConfig()
                     {
-                        LogLevel = LogLevel.WARN.GetLogLevelName(),
                         SiteDetails = new SiteDetails()
                         {
                             CompanyName = "CompanyName",
@@ -60,10 +50,10 @@ namespace ApartmentWeb
                             ShowDownloadApplication = true,
                             TenantInfoShowTrash = false,
                             TenantInfoPostOfficeAddress = "PostOfficeAddress",
-                            TenantInfoDocs = new NamedValues(new Dictionary<string, string>()
+                            TenantInfoDocs = new List<TenantInfoDoc>()
                             {
-                                { "DisplayName", "FileName" }
-                            })
+                                new TenantInfoDoc() {DisplayName = "DisplayName", FileName = "FileName" }
+                            }
                         }
                     };
 
@@ -76,11 +66,9 @@ namespace ApartmentWeb
             }
             catch (Exception ex)
             {
-                Logger.WriteLog(rm.failGetSvcConfig, ex, LogLevel.ERROR);
+                Log.Logger.Error(rm.failGetSvcConfig, ex);
             }
         }
-
-        public static FileLogger Logger { get; set; }
 
         public static SiteConfig Configuration { get; set; }
 
@@ -90,25 +78,10 @@ namespace ApartmentWeb
         {
             lock (ConfigLock)
             {
-                Configuration = XmlSerializer.DeSerializeFromFile<SiteConfig>(_configfile);
-
-                if (Configuration != null)
+                var xmlSerializer = new XmlSerializer(typeof(SiteConfig));
+                using (var fs = new FileStream(_configFile, FileMode.Open, FileAccess.Read))
                 {
-                    try
-                    {
-                        // Set log level if it is not already set
-                        if (string.IsNullOrWhiteSpace(Configuration.LogLevel))
-                        {
-                            Configuration.LogLevel = LogLevel.WARN.ToString();
-                            SaveConfiguration();
-                        }
-
-                        Logger.LogLevel = Configuration.LogLevel.TryParseLogLevel();
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLog(rm.failSetLogLevel, ex, LogLevel.ERROR);
-                    }
+                    Configuration = (SiteConfig)xmlSerializer.Deserialize(fs);
                 }
             }
         }
@@ -117,7 +90,11 @@ namespace ApartmentWeb
         {
             lock (ConfigLock)
             {
-                XmlSerializer.SerializeToFile(Configuration, _configfile);
+                var xmlSerializer = new XmlSerializer(typeof(SiteConfig));
+                using (var fs = new FileStream(_configFile, FileMode.Create, FileAccess.Write))
+                {
+                    xmlSerializer.Serialize(fs, Configuration);
+                }
             }
         }
     }

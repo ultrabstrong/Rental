@@ -1,6 +1,6 @@
-﻿using Corely.Logging;
-using Domain;
+﻿using Domain;
 using Domain.Core;
+using Serilog;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -39,14 +39,14 @@ namespace ApartmentWeb.Controllers
                 return View(nameof(MaintenanceRequest), maintenanceRequest);
             }
 
-            Shared.Logger.WriteLog(logrm.creatingViewHtml, "", LogLevel.DEBUG);
+            Log.Logger.Debug(logrm.creatingViewHtml);
             var html = RenderRazorViewToString(nameof(this.MaintenanceRequest), maintenanceRequest);
             Task.Run(() =>
             {
                 try
                 {
                     // Create PDF of application
-                    Shared.Logger.WriteLog(logrm.convertingHtmlToPDF, "", LogLevel.DEBUG);
+                    Log.Logger.Debug(logrm.convertingHtmlToPDF);
                     var pdf = HtmlConverter.ToPdf(html,
                         Shared.Configuration.SiteDetails.CompanyName,
                         $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
@@ -55,17 +55,17 @@ namespace ApartmentWeb.Controllers
                     OutputSamplesIfDebug(html, pdf);
 
                     // Send maintenance request in email
-                    Shared.Logger.WriteLog(logrm.sendingMaintEmail, "", LogLevel.DEBUG);
+                    Log.Logger.Debug(logrm.sendingMaintEmail);
                     using (var pdfstream = new MemoryStream(pdf))
                     using (var emailService = new EmailService(Shared.Configuration.SiteDetails.MailSettings))
                     {
                         emailService.SendMaintenanceRequest(maintenanceRequest, pdfstream);
                     }
-                    Shared.Logger.WriteLog(logrm.finishedSendingMaintEmail, "", LogLevel.DEBUG);
+                    Log.Logger.Debug(logrm.finishedSendingMaintEmail);
                 }
                 catch (Exception ex)
                 {
-                    Shared.Logger.WriteLog(logrm.failSubmitMaintReq, ex, LogLevel.ERROR);
+                    Log.Logger.Error(ex, logrm.failSubmitMaintReq);
                 }
             });
             ViewBag.maintsubmitted = "yes";
@@ -84,14 +84,14 @@ namespace ApartmentWeb.Controllers
                 return View(nameof(Apply), application);
             }
 
-            Shared.Logger.WriteLog(logrm.creatingViewHtml, "", LogLevel.DEBUG);
+            Log.Logger.Debug(logrm.creatingViewHtml);
             var html = RenderRazorViewToString(nameof(this.Apply), application);
             Task.Run(() =>
             {
                 try
                 {
                     // Create PDF of application
-                    Shared.Logger.WriteLog(logrm.convertingHtmlToPDF, "", LogLevel.DEBUG);
+                    Log.Logger.Debug(logrm.convertingHtmlToPDF);
                     var pdf = HtmlConverter.ToPdf(html,
                         Shared.Configuration.SiteDetails.CompanyName,
                         $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
@@ -100,17 +100,17 @@ namespace ApartmentWeb.Controllers
                     OutputSamplesIfDebug(html, pdf);
 
                     // Send application in email
-                    Shared.Logger.WriteLog(logrm.sendingEmail, "", LogLevel.DEBUG);
+                    Log.Logger.Debug(logrm.sendingEmail);
                     using (MemoryStream pdfstream = new MemoryStream(pdf))
                     using (var emailService = new EmailService(Shared.Configuration.SiteDetails.MailSettings))
                     {
                         emailService.SendApplication(application, pdfstream);
                     }
-                    Shared.Logger.WriteLog(logrm.finishedSendingEmail, "", LogLevel.DEBUG);
+                    Log.Logger.Debug(logrm.finishedSendingEmail);
                 }
                 catch (Exception ex)
                 {
-                    Shared.Logger.WriteLog(logrm.failSubmitApp, ex, LogLevel.ERROR);
+                    Log.Logger.Error(ex, logrm.failSubmitApp);
                 }
             });
             ViewBag.submitted = "yes";
@@ -134,10 +134,11 @@ namespace ApartmentWeb.Controllers
         private void OutputSamplesIfDebug(string html, byte[] pdf)
         {
 #if DEBUG
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             // Output sample PDF and HTML for debugging
-            System.IO.File.WriteAllText($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\sample.html", html);
-            if (System.IO.File.Exists($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\sample.pdf")) { System.IO.File.Delete($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\sample.pdf"); }
-            using (FileStream fs = new FileStream($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\sample.pdf", FileMode.Create, FileAccess.ReadWrite))
+            System.IO.File.WriteAllText($@"{desktop}\sample.html", html);
+            if (System.IO.File.Exists($@"{desktop}\sample.pdf")) { System.IO.File.Delete($@"{desktop}\sample.pdf"); }
+            using (FileStream fs = new FileStream($@"{desktop}\sample.pdf", FileMode.Create, FileAccess.ReadWrite))
             {
                 fs.Write(pdf, 0, pdf.Length);
                 fs.Flush();

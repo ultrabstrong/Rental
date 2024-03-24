@@ -1,5 +1,5 @@
-﻿using Corely.Core;
-using Domain.Core;
+﻿using Domain.Core;
+using System.Collections.Generic;
 
 namespace ApartmentWeb.SiteConfiguration
 {
@@ -21,7 +21,7 @@ namespace ApartmentWeb.SiteConfiguration
 
         public string TenantInfoPostOfficeAddress { get; set; }
 
-        public NamedValues TenantInfoDocs { get; set; }
+        public List<TenantInfoDoc> TenantInfoDocs { get; set; }
 
         public MailSettings MailSettings { get; set; }
 
