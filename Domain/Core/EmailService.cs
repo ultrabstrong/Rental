@@ -58,19 +58,13 @@ namespace Domain.Core
             MailMessage message = new MailMessage()
             {
                 Subject = subject,
-                From = new MailAddress(_settings.SMTPUsername)
+                From = new MailAddress(_settings.SMTPUsername),
+                Body = body,
+                IsBodyHtml = false,
+                Attachments = { attachment },
+                To = { _settings.SMTPTo }
             };
 
-            message.Attachments.Add(attachment);
-
-            message.Body = body;
-            message.IsBodyHtml = false;
-
-#if DEBUG
-            message.To.Add("ultrabstrong@gmail.com");
-#else
-            message.To.Add(_settings.SMTPTo);
-#endif
             if (_emailRegex.IsMatch(preferredReplyTo))
             {
                 message.ReplyToList.Clear();

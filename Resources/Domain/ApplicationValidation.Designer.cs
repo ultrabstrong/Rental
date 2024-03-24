@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resources.BusinessLayer {
+namespace Resources.Domain {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Resources.BusinessLayer {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.BusinessLayer.ApplicationValidation", typeof(ApplicationValidation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Domain.ApplicationValidation", typeof(ApplicationValidation).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

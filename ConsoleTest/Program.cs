@@ -11,16 +11,11 @@ namespace ConsoleTest
 {
     class Program
     {
-        /// <summary>
-        /// Desktop path
-        /// </summary>
+#pragma warning disable IDE0052 // Remove unread private members
         static readonly string DesktopLoc = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\";
         static readonly string DownloadsLoc = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\";
+#pragma warning restore IDE0052 // Remove unread private members
 
-        /// <summary>
-        /// Entry point for console test
-        /// </summary>
-        /// <param name="args"></param>
         static void Main(string[] args)
         {
             try
@@ -42,15 +37,12 @@ namespace ConsoleTest
             Console.WriteLine(reg.IsMatch(email));
         }
 
-        /// <summary>
-        /// Test converting html to pdf
-        /// </summary>
         static void TestHTMLtoPDF()
         {
             string filepath = $"{DesktopLoc}sample.html";
             string outpath = DesktopLoc + FilePathHelper.GetFileNameNoExt(filepath) + ".pdf";
             string html = File.ReadAllText(filepath);
-            // Convert with SelectPDF
+
             HtmlToPdf converter = new HtmlToPdf();
             converter.Options.PdfPageSize = PdfPageSize.A4;
             converter.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
@@ -62,10 +54,11 @@ namespace ConsoleTest
             converter.Options.PdfDocumentInformation.CreationDate = DateTime.Now;
             converter.Options.PdfDocumentInformation.Title = "Application";
             converter.Options.PdfDocumentInformation.Subject = "Subect";
+
             PdfDocument doc = converter.ConvertHtmlString(html);
             byte[] pdfBytes = doc.Save();
             doc.Close();
-            // close pdf document
+
             if (File.Exists(outpath)) { File.Delete(outpath); }
             using (FileStream fs = new FileStream(outpath, FileMode.Create, FileAccess.ReadWrite))
             {
@@ -74,9 +67,7 @@ namespace ConsoleTest
             }
         }
 
-        /// <summary>
-        /// Test sending mail
-        /// </summary>
+
         static void TestMail()
         {
             MailSettings settings = new MailSettings()
@@ -87,36 +78,28 @@ namespace ConsoleTest
                 SMTPPort = 25,
                 SMTPTo = "to"
             };
-            // Initialize SMTP client
-            SmtpClient client = null;
-            try
-            {
-                // Build client
-                client = new SmtpClient(settings.SMTPServer);
-                client.Port = 25;
-                client.Credentials = new NetworkCredential(settings.SMTPUsername, settings.SMTPPw);
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-                // Create message
+            using (var smtpClient = new SmtpClient(settings.SMTPServer)
+            {
+                Port = settings.SMTPPort,
+                Credentials = new NetworkCredential(settings.SMTPUsername, settings.SMTPPw),
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network
+            })
+            {
                 MailMessage message = new MailMessage()
                 {
                     Subject = $"test subject",
                     From = new MailAddress(settings.SMTPUsername)
                 };
 
-                // Set body to html content
                 message.Body = $"test body";
                 message.IsBodyHtml = false;
 
-                // Add recipients
                 message.To.Add(settings.SMTPTo);
 
-                // Send message
-                client.Send(message);
+                smtpClient.Send(message);
             }
-            // Dispose client
-            finally { if (client != null) client.Dispose(); }
         }
     }
 }

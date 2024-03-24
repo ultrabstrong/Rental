@@ -1,8 +1,8 @@
 ﻿using Domain.Enums;
 using Domain.Validation;
 using System.ComponentModel.DataAnnotations;
-using rm = Resources.BusinessLayer.Application;
-using vrm = Resources.BusinessLayer.ApplicationValidation;
+using rm = Resources.Domain.Application;
+using vrm = Resources.Domain.ApplicationValidation;
 
 namespace Domain
 {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resources.BusinessLayer {
+namespace Resources.Domain {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Resources.BusinessLayer {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MaintenanceValidation {
+    public class MaintenanceRequest {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MaintenanceValidation() {
+        internal MaintenanceRequest() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources.BusinessLayer {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.BusinessLayer.MaintenanceValidation", typeof(MaintenanceValidation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Domain.MaintenanceRequest", typeof(MaintenanceRequest).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Resources.BusinessLayer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Please provide a brief summary of the maintenance needed.
         /// </summary>
         public static string MAINTENANCE_DESCRIPTION {
             get {
@@ -70,7 +70,7 @@ namespace Resources.BusinessLayer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string MAINTENANCE_EMAIL {
             get {
@@ -79,7 +79,7 @@ namespace Resources.BusinessLayer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string MAINTENANCE_FIRSTNAME {
             get {
@@ -88,7 +88,7 @@ namespace Resources.BusinessLayer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string MAINTENANCE_LASTNAME {
             get {
@@ -97,7 +97,7 @@ namespace Resources.BusinessLayer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Phone #.
         /// </summary>
         public static string MAINTENANCE_PHONE {
             get {
@@ -106,7 +106,7 @@ namespace Resources.BusinessLayer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Rental Address.
         /// </summary>
         public static string MAINTENANCE_RENTAL_ADDRESS {
             get {

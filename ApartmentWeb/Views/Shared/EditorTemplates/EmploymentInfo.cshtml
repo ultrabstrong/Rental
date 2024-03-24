@@ -1,14 +1,14 @@
-﻿@model BusinessLayer.EmploymentInfo
+﻿@model Domain.EmploymentInfo
 <div class="mt-2 avoid-break">
     <!-- Consider Other Income -->
     <div class="row d-flex align-items-center @(Model.AllowElectiveRequire ? "" : "d-none")">
         @Html.Label(Model.ElectiveRequireDisplay, htmlAttributes: new { @class = "h6 col-auto" })
         <div class="col-@ViewBag.colsize-1 ">
-            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(BusinessLayer.EmploymentInfo), @class = "yesno_visible_toggle form-control" })
+            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(Domain.EmploymentInfo), @class = "yesno_visible_toggle form-control" })
         </div>
         @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "col-auto text-danger " })
     </div>
-    <div id="@nameof(BusinessLayer.EmploymentInfo)" @(Model.ElectiveRequireValue == BusinessLayer.Enums.YesNo.Yes ? "" : "style=display:none;") class="container border rounded bg-light p-2 mt-2">
+    <div id="@nameof(Domain.EmploymentInfo)" @(Model.ElectiveRequireValue == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container border rounded bg-light p-2 mt-2">
         <p>@Html.Label(Model.DisplayName)</p>
         <div class="row d-flex align-items-center">
             <!-- Permenant Position -->

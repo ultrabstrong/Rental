@@ -1,15 +1,15 @@
-﻿@model BusinessLayer.RentalReference
+﻿@model Domain.RentalReference
 @using rm = Resources.Website.Application
 <div class="mt-2 avoid-break">
     <!-- Add rental reference -->
     <div class="row d-flex align-items-center @(Model.AllowElectiveRequire ? "" : "d-none") ">
         @Html.Label(Model?.ElectiveRequireDisplay ?? "", htmlAttributes: new { @class = "h6 col-auto" })
         <div class="col-@ViewBag.colsize-1 ">
-            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(BusinessLayer.RentalReference), @class = "yesno_visible_toggle form-control" })
+            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(Domain.RentalReference), @class = "yesno_visible_toggle form-control" })
         </div>
         @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "col-auto col-form-label text-danger " })
     </div>
-    <div id="@nameof(BusinessLayer.RentalReference)" @(Model.ElectiveRequireValue == BusinessLayer.Enums.YesNo.Yes ? "" : "style=display:none;") class="container border rounded bg-light p-2 mt-2">
+    <div id="@nameof(Domain.RentalReference)" @(Model.ElectiveRequireValue == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container border rounded bg-light p-2 mt-2">
         <p>@Html.Label(Model.DisplayName)</p>
         <div class="row @(Model.AllowElectiveRequire ? "d-none" : "")">
             <!-- Address -->

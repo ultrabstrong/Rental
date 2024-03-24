@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using rm = Resources.BusinessLayer.MaintenanceRequest;
-using vrm = Resources.BusinessLayer.MaintenanceValidation;
+using rm = Resources.Domain.MaintenanceRequest;
+using vrm = Resources.Domain.MaintenanceValidation;
 
 namespace Domain
 {

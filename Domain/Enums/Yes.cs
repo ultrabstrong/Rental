@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using rm = Resources.BusinessLayer.Application;
+using rm = Resources.Domain.Application;
 
 namespace Domain.Enums
 {
