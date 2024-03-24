@@ -1,6 +1,4 @@
-﻿@using ApartmentWeb.Controllers
-@using Corely.Core;
-@using rm = Resources.Website.Home;
+﻿@using rm = Resources.Website.Home;
 @{
     ViewBag.Title = rm.TENANTINFO;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +6,7 @@
 <!-- Navigation bar -->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
+        <li class="breadcrumb-item">W
             @Html.ActionLink(rm.HOME, nameof(HomeController.Index), HomeController.Name)
         </li>
         <li class="breadcrumb-item active" aria-current="page">@rm.TENANTINFO</li>

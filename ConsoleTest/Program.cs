@@ -1,5 +1,4 @@
-﻿using Corely.Helpers;
-using Domain.Core;
+﻿using Domain.Core;
 using SelectPdf;
 using System;
 using System.IO;
@@ -40,7 +39,7 @@ namespace ConsoleTest
         static void TestHTMLtoPDF()
         {
             string filepath = $"{DesktopLoc}sample.html";
-            string outpath = DesktopLoc + FilePathHelper.GetFileNameNoExt(filepath) + ".pdf";
+            string outpath = $"{DesktopLoc}sample.pdf";
             string html = File.ReadAllText(filepath);
 
             HtmlToPdf converter = new HtmlToPdf();
