@@ -10,6 +10,7 @@ namespace ApartmentWeb.Controllers
 {
     public static class CssHelper
     {
+        // This is used to embad CSS into the web pages so that it can be used in the PDF
         public static IHtmlString EmbedCss(this HtmlHelper htmlHelper, string path)
         {
             try

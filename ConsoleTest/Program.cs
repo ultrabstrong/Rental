@@ -15,7 +15,7 @@ namespace ConsoleTest
         static readonly string DownloadsLoc = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\";
 #pragma warning restore IDE0052 // Remove unread private members
 
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
@@ -86,16 +86,14 @@ namespace ConsoleTest
                 DeliveryMethod = SmtpDeliveryMethod.Network
             })
             {
-                MailMessage message = new MailMessage()
+                MailMessage message = new MailMessage
                 {
                     Subject = $"test subject",
-                    From = new MailAddress(settings.SMTPUsername)
+                    From = new MailAddress(settings.SMTPUsername),
+                    Body = $"test body",
+                    IsBodyHtml = false,
+                    To = { settings.SMTPTo }
                 };
-
-                message.Body = $"test body";
-                message.IsBodyHtml = false;
-
-                message.To.Add(settings.SMTPTo);
 
                 smtpClient.Send(message);
             }
