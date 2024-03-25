@@ -19,7 +19,7 @@ namespace ConsoleTest
         {
             try
             {
-
+                TestMail();
             }
             catch (Exception ex)
             {
@@ -71,11 +71,11 @@ namespace ConsoleTest
         {
             MailSettings settings = new MailSettings()
             {
-                SMTPServer = "server",
-                SMTPUsername = "username",
-                SMTPPw = "pw",
-                SMTPPort = 25,
-                SMTPTo = "to"
+                SMTPServer = "sm13.internetmailserver.net",
+                SMTPUsername = "Application@apexpropertiesmt.com",
+                SMTPPw = "Tr3a7forU!",
+                SMTPPort = 587,
+                SMTPTo = "ultrabstrong@gmail.com"
             };
 
             using (var smtpClient = new SmtpClient(settings.SMTPServer)

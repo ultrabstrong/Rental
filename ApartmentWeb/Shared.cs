@@ -1,4 +1,4 @@
-﻿using ApartmentWeb.Models;
+﻿using ApartmentWeb.Models.Site;
 using Domain.Core;
 using Serilog;
 using System;
@@ -30,30 +30,27 @@ namespace ApartmentWeb
             {
                 if (!File.Exists(_configFile))
                 {
-                    Configuration = new SiteConfig()
+                    Configuration = new SiteDetails()
                     {
-                        SiteDetails = new SiteDetails()
+                        CompanyName = "CompanyName",
+                        CompanyShortName = "CompanyShortName",
+                        EmailAddress = "EmailAddress",
+                        PhoneNumber = "PhoneNumber",
+                        Address = "Address",
+                        MailSettings = new MailSettings()
                         {
-                            CompanyName = "CompanyName",
-                            CompanyShortName = "CompanyShortName",
-                            EmailAddress = "EmailAddress",
-                            PhoneNumber = "PhoneNumber",
-                            Address = "Address",
-                            MailSettings = new MailSettings()
-                            {
-                                SMTPServer = "SMTPServer",
-                                SMTPUsername = "SMTPUsername",
-                                SMTPPw = "SMTPPw",
-                                SMTPPort = 0,
-                                SMTPTo = "SMTPTo"
-                            },
-                            ShowDownloadApplication = true,
-                            TenantInfoShowTrash = false,
-                            TenantInfoPostOfficeAddress = "PostOfficeAddress",
-                            TenantInfoDocs = new List<TenantInfoDoc>()
-                            {
-                                new TenantInfoDoc() {DisplayName = "DisplayName", FileName = "FileName" }
-                            }
+                            SMTPServer = "SMTPServer",
+                            SMTPUsername = "SMTPUsername",
+                            SMTPPw = "SMTPPw",
+                            SMTPPort = 0,
+                            SMTPTo = "SMTPTo"
+                        },
+                        ShowDownloadApplication = true,
+                        TenantInfoShowTrash = false,
+                        TenantInfoPostOfficeAddress = "PostOfficeAddress",
+                        TenantInfoDocs = new List<TenantInfoDoc>()
+                        {
+                            new TenantInfoDoc() {DisplayName = "DisplayName", FileName = "FileName" }
                         }
                     };
 
@@ -70,7 +67,7 @@ namespace ApartmentWeb
             }
         }
 
-        public static SiteConfig Configuration { get; set; }
+        public static SiteDetails Configuration { get; set; }
 
         public static string Version => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
 
@@ -78,10 +75,10 @@ namespace ApartmentWeb
         {
             lock (ConfigLock)
             {
-                var xmlSerializer = new XmlSerializer(typeof(SiteConfig));
+                var xmlSerializer = new XmlSerializer(typeof(SiteDetails));
                 using (var fs = new FileStream(_configFile, FileMode.Open, FileAccess.Read))
                 {
-                    Configuration = (SiteConfig)xmlSerializer.Deserialize(fs);
+                    Configuration = (SiteDetails)xmlSerializer.Deserialize(fs);
                 }
             }
         }
@@ -90,7 +87,7 @@ namespace ApartmentWeb
         {
             lock (ConfigLock)
             {
-                var xmlSerializer = new XmlSerializer(typeof(SiteConfig));
+                var xmlSerializer = new XmlSerializer(typeof(SiteDetails));
                 using (var fs = new FileStream(_configFile, FileMode.Create, FileAccess.Write))
                 {
                     xmlSerializer.Serialize(fs, Configuration);

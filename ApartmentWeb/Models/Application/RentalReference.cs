@@ -1,11 +1,11 @@
-﻿using Domain.Enums;
-using Domain.Validation;
+﻿using ApartmentWeb.Validation;
+using Domain.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 using rm = Resources.Domain.Application;
 using vrm = Resources.Domain.ApplicationValidation;
 
-namespace Domain
+namespace ApartmentWeb.Models.Application
 {
     public class RentalReference
     {

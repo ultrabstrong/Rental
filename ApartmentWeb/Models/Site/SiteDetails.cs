@@ -1,7 +1,7 @@
 ﻿using Domain.Core;
 using System.Collections.Generic;
 
-namespace ApartmentWeb.Models
+namespace ApartmentWeb.Models.Site
 {
     public class SiteDetails
     {

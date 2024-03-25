@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Domain.Validation
+namespace ApartmentWeb.Validation
 {
     public class RangeIfEnumAttribute : ValidationAttribute, IClientValidatable
     {

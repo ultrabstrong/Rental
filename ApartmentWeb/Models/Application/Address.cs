@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using rm = Resources.Domain.Application;
 
-namespace Domain
+namespace ApartmentWeb.Models.Application
 {
     public class Address
     {

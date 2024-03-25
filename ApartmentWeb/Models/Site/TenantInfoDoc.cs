@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApartmentWeb.Models
+namespace ApartmentWeb.Models.Site
 {
     [Serializable]
     public class TenantInfoDoc

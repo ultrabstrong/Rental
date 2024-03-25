@@ -79,26 +79,18 @@
     <Compile Include="..\CommonAssemblyFileVersion.cs">
       <Link>Properties\CommonAssemblyFileVersion.cs</Link>
     </Compile>
-    <Compile Include="Address.cs" />
-    <Compile Include="Automobile.cs" />
     <Compile Include="Core\EmailService.cs" />
-    <Compile Include="Core\MailSettings.cs" />
-    <Compile Include="EmploymentInfo.cs" />
+    <Compile Include="Core\IEmailService.cs" />
+    <Compile Include="Models\EmailRequest.cs" />
+    <Compile Include="Models\IEmailRequestBuilder.cs" />
+    <Compile Include="Models\MailSettings.cs" />
     <Compile Include="Enums\HowOften.cs" />
     <Compile Include="Enums\WageType.cs" />
     <Compile Include="Enums\Yes.cs" />
     <Compile Include="Enums\YesNo.cs" />
     <Compile Include="Enums\YesSomeNo.cs" />
-    <Compile Include="MaintenanceRequest.cs" />
-    <Compile Include="ParentInfo.cs" />
-    <Compile Include="Application.cs" />
     <Compile Include="Core\HtmlConverter.cs" />
-    <Compile Include="PersonalInfo.cs" />
-    <Compile Include="PersonalReference.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RentalReference.cs" />
-    <Compile Include="Validation\RangeIfEnumAttribute.cs" />
-    <Compile Include="Validation\RequireIfEnumAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">

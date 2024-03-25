@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using ApartmentWeb.Models.Application;
+using ApartmentWeb.Models.Maintenance;
 using Domain.Core;
 using Serilog;
 using System;
@@ -48,7 +49,7 @@ namespace ApartmentWeb.Controllers
                     // Create PDF of application
                     Log.Logger.Debug(logrm.convertingHtmlToPDF);
                     var pdf = HtmlConverter.ToPdf(html,
-                        Shared.Configuration.SiteDetails.CompanyName,
+                        Shared.Configuration.CompanyName,
                         $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
                         $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
 
@@ -56,10 +57,10 @@ namespace ApartmentWeb.Controllers
 
                     // Send maintenance request in email
                     Log.Logger.Debug(logrm.sendingMaintEmail);
-                    using (var pdfstream = new MemoryStream(pdf))
-                    using (var emailService = new EmailService(Shared.Configuration.SiteDetails.MailSettings))
+                    using (var pdfStream = new MemoryStream(pdf))
+                    using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                     {
-                        emailService.SendMaintenanceRequest(maintenanceRequest, pdfstream);
+                        emailService.SendEmail(maintenanceRequest, pdfStream);
                     }
                     Log.Logger.Debug(logrm.finishedSendingMaintEmail);
                 }
@@ -93,7 +94,7 @@ namespace ApartmentWeb.Controllers
                     // Create PDF of application
                     Log.Logger.Debug(logrm.convertingHtmlToPDF);
                     var pdf = HtmlConverter.ToPdf(html,
-                        Shared.Configuration.SiteDetails.CompanyName,
+                        Shared.Configuration.CompanyName,
                         $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
                         $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
 
@@ -101,10 +102,10 @@ namespace ApartmentWeb.Controllers
 
                     // Send application in email
                     Log.Logger.Debug(logrm.sendingEmail);
-                    using (MemoryStream pdfstream = new MemoryStream(pdf))
-                    using (var emailService = new EmailService(Shared.Configuration.SiteDetails.MailSettings))
+                    using (MemoryStream pdfStream = new MemoryStream(pdf))
+                    using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                     {
-                        emailService.SendApplication(application, pdfstream);
+                        emailService.SendEmail(application, pdfStream);
                     }
                     Log.Logger.Debug(logrm.finishedSendingEmail);
                 }

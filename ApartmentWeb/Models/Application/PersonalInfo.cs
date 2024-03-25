@@ -2,7 +2,7 @@
 using rm = Resources.Domain.Application;
 using vrm = Resources.Domain.ApplicationValidation;
 
-namespace Domain
+namespace ApartmentWeb.Models.Application
 {
     public class PersonalInfo
     {
