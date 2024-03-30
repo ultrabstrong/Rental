@@ -28,7 +28,7 @@ namespace Domain.Core
         public void SendEmail(IEmailRequestBuilder emailRequestBuilder, Stream toAttach)
         {
             var emailRequest = emailRequestBuilder.BuildEmailRequest();
-            var attachment = new Attachment(emailRequest.ToAttach, emailRequest.AttachmentName);
+            var attachment = new Attachment(toAttach, emailRequest.AttachmentName);
 
             MailMessage message = new MailMessage()
             {
