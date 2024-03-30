@@ -26,7 +26,7 @@
 <!-- Landing page header -->
 <div class="jumbotron">
     <div class="row">
-        <h1 class="col-md-6">@Shared.Configuration.SiteDetails.CompanyName</h1>
+        <h1 class="col-md-6">@Shared.Configuration.CompanyName</h1>
         <p class="col-md-6 mt-3">@rm.INDEX_JUMBO_DESC</p>
     </div>
 </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="card-footer d-flex">
                 <a href="@Url.Action(nameof(HomeController.Apply), HomeController.Name)" class="btn btn-primary">@rm.INDEX_APPLY_LINK</a>
-                @if (Shared.Configuration.SiteDetails.ShowDownloadApplication)
+                @if (Shared.Configuration.ShowDownloadApplication)
                 {
                     <a href="@Url.Action(nameof(HomeController.DownloadApplication), HomeController.Name)" class="btn btn-primary ms-auto">@rm.INDEX_APPLY_OFFLINE_LINK</a>
                 }

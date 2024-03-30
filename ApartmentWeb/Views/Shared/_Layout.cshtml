@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@Shared.Configuration.SiteDetails.CompanyShortName - @ViewBag.Title</title>
+    <title>@Shared.Configuration.CompanyShortName - @ViewBag.Title</title>
     <link rel="icon" type="image/x-icon" href="~/Images/webicon.ico" />
     <!-- Include styles -->
     @if (ViewBag.inlinecss != null)
@@ -28,7 +28,7 @@
     <header class="navbar navbar-dark bg-dark">
         <div class="container">
             @Html.ActionLink(
-           Shared.Configuration.SiteDetails.CompanyName,
+           Shared.Configuration.CompanyName,
            nameof(HomeController.Index),
            HomeController.Name,
            new { area = "" }, new { @class = "navbar-brand" })
@@ -42,7 +42,7 @@
     <!-- Footer -->
     <footer class="footer navbar">
         <div class="container">
-            <div class="text-muted">&copy; @DateTime.Now.Year @Shared.Configuration.SiteDetails.CompanyName</div>
+            <div class="text-muted">&copy; @DateTime.Now.Year @Shared.Configuration.CompanyName</div>
             <div class="text-muted float-right">@Resources.Website.Global.VERSION @Shared.Version</div>
         </div>
     </footer>

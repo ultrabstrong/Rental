@@ -34,7 +34,7 @@
                             <h5 class="card-title">Northwestern Energy</h5>
                             <p class="card-text">
                                 888-467-2669<br />
-                                <a href="www.northwesternenergy.com" class="card-text">www.northwesternenergy.com</a>
+                                <a href="https://www.northwesternenergy.com" class="card-text" target="_blank">www.northwesternenergy.com</a>
                             </p>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                             <h5 class="card-title">Charter Spectrum</h5>
                             <p class="card-text">
                                 888-406-7063<br />
-                                <a href="www.spectrum.com" class="card-text">www.spectrum.com</a>
+                                <a href="https://www.spectrum.com" class="card-text" target="_blank">www.spectrum.com</a>
                             </p>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                                @Html.Raw(Html.Encode(@Shared.Configuration.SiteDetails.TenantInfoPostOfficeAddress).Replace("\n", "<br />"))<br />
+                                @Html.Raw(Html.Encode(@Shared.Configuration.TenantInfoPostOfficeAddress).Replace("\n", "<br />"))<br />
                             </p>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <h5 class="card-title">Northwestern Energy</h5>
                             <p class="card-text">
                                 888-467-2669<br />
-                                <a href="www.northwesternenergy.com" class="card-text">www.northwesternenergy.com</a>
+                                <a href="https://www.northwesternenergy.com" class="card-text" target="_blank">www.northwesternenergy.com</a>
                             </p>
                         </div>
                     </div>
@@ -94,12 +94,12 @@
                             <h5 class="card-title">Bozeman Chronicle</h5>
                             <p class="card-text">
                                 406-587-4506<br />
-                                <a href="www.bozemandailychronicle.com" class="card-text">www.bozemandailychronicle.com</a>
+                                <a href="https://www.bozemandailychronicle.com" class="card-text" target="_blank">www.bozemandailychronicle.com</a>
                             </p>
                         </div>
                     </div>
                 </div>
-                @if (Shared.Configuration.SiteDetails.TenantInfoShowTrash)
+                @if (Shared.Configuration.TenantInfoShowTrash)
                 {
                     <!-- Trash -->
                     <div class="col-sm my-2">
@@ -111,7 +111,7 @@
                                 <h5 class="card-title">Republic Services</h5>
                                 <p class="card-text">
                                     406-586-0606<br />
-                                    <a href="https://www.republicservices.com/" class="card-text">www.republicservices.com/</a>
+                                    <a href="https://www.republicservices.com/" class="card-text" target="_blank">www.republicservices.com/</a>
                                 </p>
                             </div>
                         </div>
@@ -154,14 +154,14 @@
                 <div class="col-sm-5">
                     <p class="m-0">
                         Contact us directly for maintenance<br />
-                        Send written requests to @Shared.Configuration.SiteDetails.Address<br />
-                        In event of an emergency maintenance request, call @Shared.Configuration.SiteDetails.PhoneNumber
+                        Send written requests to @Shared.Configuration.Address<br />
+                        In event of an emergency maintenance request, call @Shared.Configuration.PhoneNumber
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    @if (Shared.Configuration.SiteDetails.TenantInfoDocs != null && Shared.Configuration.SiteDetails.TenantInfoDocs.Count > 0)
+    @if (Shared.Configuration.TenantInfoDocs != null && Shared.Configuration.TenantInfoDocs.Count > 0)
     {
         <div class="accordion-item mt-3 border rounded">
             <!-- Documents Header -->
@@ -172,11 +172,11 @@
             </div>
             <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
                 <ul class="list-group">
-                    @foreach (ApartmentWeb.SiteConfiguration.TenantInfoDoc nv in Shared.Configuration.SiteDetails.TenantInfoDocs)
+                    @foreach (ApartmentWeb.Models.Site.TenantInfoDoc tid in Shared.Configuration.TenantInfoDocs)
                     {
                         <li class="list-group-item list-group-item-action">
-                            <a class="col-@ViewBag.colsize-12" href="~/data/@nv.FileName" download="@nv.FileName">
-                                @nv.DisplayName<span class="badge bg-primary p-1 ms-2">@nv.FileName</span>
+                            <a class="col-@ViewBag.colsize-12" href="~/data/@tid.FileName" download="@tid.FileName">
+                                @tid.DisplayName<span class="badge bg-primary p-1 ms-2">@tid.FileName</span>
                             </a>
                         </li>
                     }
