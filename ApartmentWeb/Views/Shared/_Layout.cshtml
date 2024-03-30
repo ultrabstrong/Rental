@@ -1,4 +1,5 @@
 ﻿@using ApartmentWeb.Controllers;
+@using rm = Resources.Website.Global
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,7 @@
     <footer class="footer navbar">
         <div class="container">
             <div class="text-muted">&copy; @DateTime.Now.Year @Shared.Configuration.CompanyName</div>
-            <div class="text-muted float-right">@Resources.Website.Global.VERSION @Shared.Version</div>
+            <div class="text-muted float-right">@rm.VERSION @Shared.Version</div>
         </div>
     </footer>
 </body>

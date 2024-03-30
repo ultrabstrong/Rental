@@ -1,9 +1,9 @@
-﻿using ApartmentWeb.Validation;
-using Domain.Enums;
+﻿using ApartmentWeb.Enums;
+using ApartmentWeb.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
-using rm = Resources.Domain.Application;
-using vrm = Resources.Domain.ApplicationValidation;
+using rm = Resources.WebsiteModels.Application;
+using vrm = Resources.WebsiteModels.ApplicationValidation;
 
 namespace ApartmentWeb.Models.Application
 {

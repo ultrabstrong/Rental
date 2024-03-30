@@ -53,23 +53,23 @@
     <Compile Include="..\CommonAssemblyFileVersion.cs">
       <Link>Properties\CommonAssemblyFileVersion.cs</Link>
     </Compile>
-    <Compile Include="Domain\MaintenanceValidation.Designer.cs">
+    <Compile Include="WebsiteModels\MaintenanceValidation.Designer.cs">
       <DependentUpon>MaintenanceValidation.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Domain\MaintenanceRequest.Designer.cs">
+    <Compile Include="WebsiteModels\MaintenanceRequest.Designer.cs">
       <DependentUpon>MaintenanceRequest.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Domain\ApplicationValidation.Designer.cs">
+    <Compile Include="WebsiteModels\ApplicationValidation.Designer.cs">
       <DependentUpon>ApplicationValidation.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\Application.Designer.cs">
+    <Compile Include="WebsiteModels\Application.Designer.cs">
       <DependentUpon>Application.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,19 +101,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Domain\MaintenanceValidation.resx">
+    <EmbeddedResource Include="WebsiteModels\MaintenanceValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MaintenanceValidation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\MaintenanceRequest.resx">
+    <EmbeddedResource Include="WebsiteModels\MaintenanceRequest.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MaintenanceRequest.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\ApplicationValidation.resx">
+    <EmbeddedResource Include="WebsiteModels\ApplicationValidation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ApplicationValidation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Application.resx">
+    <EmbeddedResource Include="WebsiteModels\Application.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.cs</LastGenOutput>
     </EmbeddedResource>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resources.Domain {
+namespace Resources.WebsiteModels {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Resources.Domain {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ApplicationValidation {
+    public class Application {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ApplicationValidation() {
+        internal Application() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources.Domain {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Domain.ApplicationValidation", typeof(ApplicationValidation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.WebsiteModels.Application", typeof(Application).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City Required.
+        ///   Looks up a localized string similar to City.
         /// </summary>
         public static string ADDRESS_CITY {
             get {
@@ -70,7 +70,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to State Required.
+        ///   Looks up a localized string similar to State.
         /// </summary>
         public static string ADDRESS_STATE {
             get {
@@ -79,7 +79,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Street Required.
+        ///   Looks up a localized string similar to Street.
         /// </summary>
         public static string ADDRESS_STREET {
             get {
@@ -88,7 +88,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zip Required.
+        ///   Looks up a localized string similar to Zip.
         /// </summary>
         public static string ADDRESS_ZIP {
             get {
@@ -97,7 +97,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Is there a request for reasonable accommodation?.
         /// </summary>
         public static string APP_ACCOMMODATION {
             get {
@@ -106,7 +106,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description Required.
+        ///   Looks up a localized string similar to Please explain.
         /// </summary>
         public static string APP_ACCOMMODATION_DESCRIBE {
             get {
@@ -124,7 +124,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add another reference.
+        ///   Looks up a localized string similar to Add rental history.
         /// </summary>
         public static string APP_ADD_RENT_REF {
             get {
@@ -133,7 +133,16 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Additional comments for property manager.
+        /// </summary>
+        public static string APP_ADDITIONAL_COMMENTS {
+            get {
+                return ResourceManager.GetString("APP_ADDITIONAL_COMMENTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How long do you anticipate leasing this dwelling?.
         /// </summary>
         public static string APP_ANTICIPATED_DURATION {
             get {
@@ -142,7 +151,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Do you currently attend college?.
         /// </summary>
         public static string APP_ATTEND_COLLEGE {
             get {
@@ -151,7 +160,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Required.
+        ///   Looks up a localized string similar to What kind of vehicle do you own?.
         /// </summary>
         public static string APP_AUTOMOBILE {
             get {
@@ -160,7 +169,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Do you agree to the following?.
         /// </summary>
         public static string APP_CERT_AND_AUTH {
             get {
@@ -169,7 +178,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Graduation Date Required.
+        ///   Looks up a localized string similar to When do you plan to graduate?.
         /// </summary>
         public static string APP_COLLEGE_GRADUATE {
             get {
@@ -178,7 +187,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Years Attended Required.
+        ///   Looks up a localized string similar to How many years have you attended?.
         /// </summary>
         public static string APP_COLLEGE_YEARS {
             get {
@@ -187,7 +196,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Is there another source of income you would like considered?.
         /// </summary>
         public static string APP_CONSIDER_OTHER_INCOME {
             get {
@@ -196,7 +205,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Explanation Required.
+        ///   Looks up a localized string similar to Please explain.
         /// </summary>
         public static string APP_CRIMINAL_RECORD {
             get {
@@ -205,7 +214,16 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Two year&apos;s rental references preferred. Please list your actual landlord, property manager, or RA..
+        /// </summary>
+        public static string APP_CURRENT_RESIDENCE {
+            get {
+                return ResourceManager.GetString("APP_CURRENT_RESIDENCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do any of the people that will be residing in this unit drink alcohol?.
         /// </summary>
         public static string APP_DRINKERS {
             get {
@@ -214,7 +232,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to How many individuals drink?.
         /// </summary>
         public static string APP_DRINKERS_COUNT {
             get {
@@ -223,7 +241,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to How Often.
         /// </summary>
         public static string APP_DRINKERS_HOWOFTEN {
             get {
@@ -232,7 +250,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Explanation Required.
+        ///   Looks up a localized string similar to Please explain.
         /// </summary>
         public static string APP_EVICTED_EXPLAIN {
             get {
@@ -241,7 +259,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Do you have an automobile?.
         /// </summary>
         public static string APP_HAS_AUTO {
             get {
@@ -250,7 +268,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Has anyone applying ever had their lease agreement terminated or been evicted?.
         /// </summary>
         public static string APP_HAS_BEEN_EVICTED {
             get {
@@ -259,7 +277,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Does anyone applying for this apartment have a criminal record?.
         /// </summary>
         public static string APP_HAS_CRIMINAL_RECORD {
             get {
@@ -268,7 +286,16 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Do you have a job?.
+        /// </summary>
+        public static string APP_HAS_JOB {
+            get {
+                return ResourceManager.GetString("APP_HAS_JOB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you have a second job?.
         /// </summary>
         public static string APP_HAS_SECOND_JOB {
             get {
@@ -277,7 +304,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Do any applicants have or anticipate obtaining a Medical Marijuana Caregiver or Patient card designation?.
         /// </summary>
         public static string APP_MARIJUANA {
             get {
@@ -286,7 +313,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Will there be any animals, birds, reptiles, insects, fish, or other non-human life forms living on or in the premises?.
         /// </summary>
         public static string APP_NON_HUMAN {
             get {
@@ -295,7 +322,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description Required.
+        ///   Looks up a localized string similar to List and describe each of them.
         /// </summary>
         public static string APP_NON_HUMAN_DESCRIBE {
             get {
@@ -304,7 +331,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Who else from your group is applying for this location?.
         /// </summary>
         public static string APP_OTHER_APPLICANTS {
             get {
@@ -313,7 +340,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Explanation Required.
+        ///   Looks up a localized string similar to Please explain:.
         /// </summary>
         public static string APP_OTHER_INCOME {
             get {
@@ -322,7 +349,16 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Parent Information.
+        /// </summary>
+        public static string APP_PARENT_INFO {
+            get {
+                return ResourceManager.GetString("APP_PARENT_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do your parents pay some or all of your rent?.
         /// </summary>
         public static string APP_PARENTS_PAY {
             get {
@@ -331,7 +367,34 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Tell us about you.
+        /// </summary>
+        public static string APP_PERSONAL_INFO {
+            get {
+                return ResourceManager.GetString("APP_PERSONAL_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal reference #1.
+        /// </summary>
+        public static string APP_PERSONAL_REF_1 {
+            get {
+                return ResourceManager.GetString("APP_PERSONAL_REF_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal reference #2.
+        /// </summary>
+        public static string APP_PERSONAL_REF_2 {
+            get {
+                return ResourceManager.GetString("APP_PERSONAL_REF_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Will there be any pets living on or in the premesis?.
         /// </summary>
         public static string APP_PETS {
             get {
@@ -340,7 +403,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description Required.
+        ///   Looks up a localized string similar to List and describe each pet.
         /// </summary>
         public static string APP_PETS_DESCRIBE {
             get {
@@ -349,7 +412,16 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rental Reference #2.
+        ///   Looks up a localized string similar to Tell us about your job.
+        /// </summary>
+        public static string APP_PRIMARY_EMPLOYMENT {
+            get {
+                return ResourceManager.GetString("APP_PRIMARY_EMPLOYMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous Rental.
         /// </summary>
         public static string APP_RENT_REF_1 {
             get {
@@ -367,7 +439,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Rental Address.
         /// </summary>
         public static string APP_RENTAL_ADDRESS {
             get {
@@ -376,7 +448,16 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Tell us about your second job.
+        /// </summary>
+        public static string APP_SECOND_EMPLOYMENT {
+            get {
+                return ResourceManager.GetString("APP_SECOND_EMPLOYMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do any of the people that will be residing in this unit smoke anything?.
         /// </summary>
         public static string APP_SMOKERS {
             get {
@@ -385,7 +466,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to How many individuals smoke?.
         /// </summary>
         public static string APP_SMOKERS_COUNT {
             get {
@@ -394,7 +475,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color Required.
+        ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string AUTO_COLOR {
             get {
@@ -403,7 +484,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Plate # Required.
+        ///   Looks up a localized string similar to License Plate #.
         /// </summary>
         public static string AUTO_LICENSE_NUM {
             get {
@@ -412,7 +493,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make Required.
+        ///   Looks up a localized string similar to Make.
         /// </summary>
         public static string AUTO_MAKE {
             get {
@@ -421,7 +502,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Model Required.
+        ///   Looks up a localized string similar to Model.
         /// </summary>
         public static string AUTO_MODEL {
             get {
@@ -430,7 +511,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to State Required.
+        ///   Looks up a localized string similar to State.
         /// </summary>
         public static string AUTO_STATE {
             get {
@@ -439,7 +520,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year Required.
+        ///   Looks up a localized string similar to Year.
         /// </summary>
         public static string AUTO_YEAR {
             get {
@@ -448,7 +529,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Required.
+        ///   Looks up a localized string similar to Company.
         /// </summary>
         public static string EMPLOY_COMPANY {
             get {
@@ -457,7 +538,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name Required.
+        ///   Looks up a localized string similar to Contact Name.
         /// </summary>
         public static string EMPLOY_CONTACT {
             get {
@@ -466,7 +547,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hours Required.
+        ///   Looks up a localized string similar to How many hours do you work each week?.
         /// </summary>
         public static string EMPLOY_HOURS {
             get {
@@ -475,7 +556,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Length of employment.
         /// </summary>
         public static string EMPLOY_LENGTH {
             get {
@@ -484,7 +565,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Is this a permanent position.
         /// </summary>
         public static string EMPLOY_PERMENANT {
             get {
@@ -493,7 +574,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone # Required.
+        ///   Looks up a localized string similar to Contact Phone #.
         /// </summary>
         public static string EMPLOY_PHONE {
             get {
@@ -502,7 +583,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wage Required.
+        ///   Looks up a localized string similar to Wage earned.
         /// </summary>
         public static string EMPLOY_WAGE {
             get {
@@ -511,7 +592,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to Salary or hourly wage?.
         /// </summary>
         public static string EMPLOY_WAGE_TYPE {
             get {
@@ -520,7 +601,34 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hourly Wage Required.
+        ///   Looks up a localized string similar to Frequently.
+        /// </summary>
+        public static string ENUM_HOWOFTEN_FREQUENT {
+            get {
+                return ResourceManager.GetString("ENUM_HOWOFTEN_FREQUENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderately.
+        /// </summary>
+        public static string ENUM_HOWOFTEN_MODERATE {
+            get {
+                return ResourceManager.GetString("ENUM_HOWOFTEN_MODERATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occasionally.
+        /// </summary>
+        public static string ENUM_HOWOFTEN_OCCASIONAL {
+            get {
+                return ResourceManager.GetString("ENUM_HOWOFTEN_OCCASIONAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hourly.
         /// </summary>
         public static string ENUM_WAGE_HOURLY {
             get {
@@ -529,7 +637,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary Wage Required.
+        ///   Looks up a localized string similar to Salary.
         /// </summary>
         public static string ENUM_WAGE_SALARY {
             get {
@@ -565,7 +673,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address Required.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string PARENT_ADDRESS {
             get {
@@ -574,7 +682,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Name Required.
+        ///   Looks up a localized string similar to First name.
         /// </summary>
         public static string PARENT_FIRSTNAME {
             get {
@@ -583,7 +691,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Name Required.
+        ///   Looks up a localized string similar to Last name.
         /// </summary>
         public static string PARENT_LASTNAME {
             get {
@@ -592,7 +700,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Middle Name Required.
+        ///   Looks up a localized string similar to Middle name.
         /// </summary>
         public static string PARENT_MIDDLENAME {
             get {
@@ -601,7 +709,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone # Required.
+        ///   Looks up a localized string similar to Phone #.
         /// </summary>
         public static string PARENT_PHONENUM {
             get {
@@ -610,7 +718,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to License # Required.
+        ///   Looks up a localized string similar to Driver license #.
         /// </summary>
         public static string PERSONAL_DL_NUM {
             get {
@@ -619,7 +727,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to State Required.
+        ///   Looks up a localized string similar to State of issue.
         /// </summary>
         public static string PERSONAL_DL_STATE {
             get {
@@ -628,7 +736,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email Required.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string PERSONAL_EMAIL {
             get {
@@ -637,7 +745,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Name Required.
+        ///   Looks up a localized string similar to First name.
         /// </summary>
         public static string PERSONAL_FIRSTNAME {
             get {
@@ -646,7 +754,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Name Required.
+        ///   Looks up a localized string similar to Last name.
         /// </summary>
         public static string PERSONAL_LASTNAME {
             get {
@@ -655,7 +763,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Middle Name Required.
+        ///   Looks up a localized string similar to Middle name.
         /// </summary>
         public static string PERSONAL_MIDDLENAME {
             get {
@@ -664,7 +772,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone # Required.
+        ///   Looks up a localized string similar to Phone #.
         /// </summary>
         public static string PERSONAL_PHONENUM {
             get {
@@ -673,7 +781,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SSN Required.
+        ///   Looks up a localized string similar to SSN.
         /// </summary>
         public static string PERSONAL_SSN {
             get {
@@ -682,7 +790,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name Required.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string REF_NAME {
             get {
@@ -691,7 +799,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone # Required.
+        ///   Looks up a localized string similar to Phone #.
         /// </summary>
         public static string REF_PHONE {
             get {
@@ -700,7 +808,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Relationship Required.
+        ///   Looks up a localized string similar to Relationship.
         /// </summary>
         public static string REF_RELATION {
             get {
@@ -709,7 +817,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address Required.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string RENTREF_ADDRESS {
             get {
@@ -718,7 +826,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to To.
         /// </summary>
         public static string RENTREF_END {
             get {
@@ -727,7 +835,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reason Required.
+        ///   Looks up a localized string similar to Reason for moving.
         /// </summary>
         public static string RENTREF_MOVING_REASON {
             get {
@@ -736,7 +844,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name Required.
+        ///   Looks up a localized string similar to Landlord name.
         /// </summary>
         public static string RENTREF_NAME {
             get {
@@ -745,7 +853,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone # Required.
+        ///   Looks up a localized string similar to Landlord phone #.
         /// </summary>
         public static string RENTREF_PHONE {
             get {
@@ -754,7 +862,7 @@ namespace Resources.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Required.
+        ///   Looks up a localized string similar to From.
         /// </summary>
         public static string RENTREF_START {
             get {

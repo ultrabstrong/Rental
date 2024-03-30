@@ -84,11 +84,6 @@
     <Compile Include="Models\EmailRequest.cs" />
     <Compile Include="Models\IEmailRequestBuilder.cs" />
     <Compile Include="Models\MailSettings.cs" />
-    <Compile Include="Enums\HowOften.cs" />
-    <Compile Include="Enums\WageType.cs" />
-    <Compile Include="Enums\Yes.cs" />
-    <Compile Include="Enums\YesNo.cs" />
-    <Compile Include="Enums\YesSomeNo.cs" />
     <Compile Include="Core\HtmlConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

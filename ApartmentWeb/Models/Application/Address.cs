@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using rm = Resources.Domain.Application;
+using rm = Resources.WebsiteModels.Application;
 
 namespace ApartmentWeb.Models.Application
 {

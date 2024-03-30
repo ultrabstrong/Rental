@@ -161,6 +161,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="CssHelper.cs" />
+    <Compile Include="Enums\HowOften.cs" />
+    <Compile Include="Enums\WageType.cs" />
+    <Compile Include="Enums\Yes.cs" />
+    <Compile Include="Enums\YesNo.cs" />
+    <Compile Include="Enums\YesSomeNo.cs" />
     <Compile Include="Models\Application\Address.cs" />
     <Compile Include="Models\Application\Application.cs" />
     <Compile Include="Models\Application\Automobile.cs" />

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using rm = Resources.Domain.Application;
+using rm = Resources.WebsiteModels.Application;
 
-namespace Domain.Enums
+namespace ApartmentWeb.Enums
 {
     public enum WageType
     {

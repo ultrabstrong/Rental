@@ -1,14 +1,16 @@
-﻿@model Domain.PersonalReference
+﻿@using ApartmentWeb.Enums;
+@using ApartmentWeb.Models.Application;
+@model PersonalReference
 <div class="mt-2 avoid-break">
     <!-- Add personal reference -->
     <div class="row d-flex align-items-center @(Model.AllowElectiveRequire ? "" : "d-none") ">
         @Html.Label(Model.ElectiveRequireDisplay, htmlAttributes: new { @class = "h6 col-auto" })
         <div class="col-@ViewBag.colsize-1 ">
-            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(Domain.PersonalReference), @class = "yesno_visible_toggle form-control" })
+            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(PersonalReference), @class = "yesno_visible_toggle form-control" })
         </div>
         @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "col-auto col-form-label text-danger " })
     </div>
-    <div id="@nameof(Domain.PersonalReference)" @(Model.ElectiveRequireValue == Domain.Enums.YesNo.Yes ? "" : "style=display:none;")  class="container border rounded bg-light p-2 mt-2">
+    <div id="@nameof(PersonalReference)" @(Model.ElectiveRequireValue == YesNo.Yes ? "" : "style=display:none;") class="container border rounded bg-light p-2 mt-2">
         <p>@Html.Label(Model.DisplayName)</p>
         <div class="row ">
             <!-- Name -->

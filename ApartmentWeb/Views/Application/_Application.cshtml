@@ -1,5 +1,7 @@
-﻿@model Domain.Application
-@using ApartmentWeb.Controllers
+﻿@using ApartmentWeb.Controllers
+@using ApartmentWeb.Models.Application;
+@using ApartmentWeb.Enums;
+@model Application
 @using rm = Resources.Website.Application;
 @{
     ViewBag.colsize = "sm";
@@ -44,7 +46,7 @@
             @Html.ValidationMessageFor(model => model.ConsiderOtherIncome, "", new { @class = "col-auto text-danger" })
         </div>
         <!-- Other Income Explain -->
-        <div id="@nameof(Model.OtherIncomeExplain)" @(Model.ConsiderOtherIncome == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container">
+        <div id="@nameof(Model.OtherIncomeExplain)" @(Model.ConsiderOtherIncome == YesNo.Yes ? "" : "style=display:none;") class="container">
             @Html.LabelFor(model => model.OtherIncomeExplain)
             @Html.EditorFor(model => model.OtherIncomeExplain, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.OtherIncomeExplain, "", new { @class = "text-danger" })
@@ -79,7 +81,7 @@
             @Html.ValidationMessageFor(model => model.HasCriminalRecord, "", new { @class = "col-auto text-danger" })
         </div>
         <!-- Criminal Record Explain -->
-        <div id="@nameof(Model.HasCriminalRecord)" @(Model.HasCriminalRecord == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container">
+        <div id="@nameof(Model.HasCriminalRecord)" @(Model.HasCriminalRecord == YesNo.Yes ? "" : "style=display:none;") class="container">
             @Html.LabelFor(model => model.ExplainCriminalRecord)
             @Html.EditorFor(model => model.ExplainCriminalRecord, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ExplainCriminalRecord, "", new { @class = "text-danger" })
@@ -95,7 +97,7 @@
             @Html.ValidationMessageFor(model => model.HasBeenEvicted, "", new { @class = "col-auto text-danger" })
         </div>
         <!-- Evicted Explain -->
-        <div id="@nameof(Model.HasBeenEvicted)" @(Model.HasBeenEvicted == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container">
+        <div id="@nameof(Model.HasBeenEvicted)" @(Model.HasBeenEvicted == YesNo.Yes ? "" : "style=display:none;") class="container">
             @Html.LabelFor(model => model.ExplainBeenEvicted)
             @Html.EditorFor(model => model.ExplainBeenEvicted, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ExplainBeenEvicted, "", new { @class = "text-danger" })
@@ -116,7 +118,7 @@
             @Html.EnumDropDownListFor(model => model.Smokers, "-", new { @visibletogglefor = nameof(Model.Smokers), @class = "yesno_visible_toggle form-control" })
         </div>
         <!-- Smokers Count -->
-        <div id="@nameof(Model.Smokers)" @(Model.Smokers == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
+        <div id="@nameof(Model.Smokers)" @(Model.Smokers == YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
             @Html.LabelFor(model => model.SmokersCount, htmlAttributes: new { @class = $"col-auto" })
             <div class="col-@ViewBag.colsize-2">
                 @Html.EditorFor(model => model.SmokersCount, new { htmlAttributes = new { @class = "form-control" } })
@@ -132,7 +134,7 @@
             @Html.EnumDropDownListFor(model => model.Drinkers, "-", new { @visibletogglefor = nameof(Model.Drinkers), @class = "yesno_visible_toggle form-control" })
         </div>
         <!-- Drinkers How Often -->
-        <div id="@nameof(Model.Drinkers)" @(Model.Drinkers == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
+        <div id="@nameof(Model.Drinkers)" @(Model.Drinkers == YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
             @Html.LabelFor(model => model.HowOftenDrink, htmlAttributes: new { @class = $"col-auto" })
             <div class="col-@ViewBag.colsize-7">
                 @Html.EnumDropDownListFor(model => model.HowOftenDrink, "-", new { @visibletogglefor = nameof(Model.Drinkers), @class = "yesno_visible_toggle form-control" })
@@ -151,7 +153,7 @@
             @Html.ValidationMessageFor(model => model.AnyPets, "", new { @class = "col-auto text-danger " })
         </div>
         <!-- Describe Pets -->
-        <div id="@nameof(Model.AnyPets)" @(Model.AnyPets == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container">
+        <div id="@nameof(Model.AnyPets)" @(Model.AnyPets == YesNo.Yes ? "" : "style=display:none;") class="container">
             @Html.LabelFor(model => model.DescribePets)
             @Html.EditorFor(model => model.DescribePets, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DescribePets, "", new { @class = "text-danger" })
@@ -167,7 +169,7 @@
             @Html.ValidationMessageFor(model => model.AnyNonHuman, "", new { @class = "col-auto text-danger " })
         </div>
         <!-- Describe Non Human -->
-        <div id="@nameof(Model.AnyNonHuman)" @(Model.AnyNonHuman == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container">
+        <div id="@nameof(Model.AnyNonHuman)" @(Model.AnyNonHuman == YesNo.Yes ? "" : "style=display:none;") class="container">
             @Html.LabelFor(model => model.DescribeNonHuman)
             @Html.EditorFor(model => model.DescribeNonHuman, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DescribeNonHuman, "", new { @class = "text-danger" })
@@ -180,7 +182,7 @@
             <div class="col-@ViewBag.colsize-1">
                 @Html.EnumDropDownListFor(model => model.AttendCollege, "-", new { @visibletogglefor = nameof(Model.AttendCollege), @class = "yesno_visible_toggle form-control" })
             </div>
-            <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
+            <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
                 @Html.LabelFor(model => model.CollegeYearsAttended, htmlAttributes: new { @class = "col-auto" })
                 <div class="col-@ViewBag.colsize-2">
                     @Html.EditorFor(model => model.CollegeYearsAttended, new { htmlAttributes = new { @class = "form-control" } })
@@ -190,7 +192,7 @@
             @Html.ValidationMessageFor(model => model.AttendCollege, "", new { @class = "col-auto text-danger " })
         </div>
         <!-- College Information -->
-        <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container mt-2">
+        <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == YesNo.Yes ? "" : "style=display:none;") class="container mt-2">
             @Html.LabelFor(model => model.PlanToGraduate)
             @Html.EditorFor(model => model.PlanToGraduate, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.PlanToGraduate, "", new { @class = "text-danger" })
@@ -206,7 +208,7 @@
             @Html.ValidationMessageFor(model => model.NeedReasonableAccommodation, "", new { @class = "col-auto text-danger" })
         </div>
         <!-- Describe Reasonable Accommodation -->
-        <div id="@nameof(Model.NeedReasonableAccommodation)" @(Model.NeedReasonableAccommodation == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container">
+        <div id="@nameof(Model.NeedReasonableAccommodation)" @(Model.NeedReasonableAccommodation == YesNo.Yes ? "" : "style=display:none;") class="container">
             @Html.LabelFor(model => model.DescribeReasonableAccommodation)
             @Html.EditorFor(model => model.DescribeReasonableAccommodation, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DescribeReasonableAccommodation, "", new { @class = "text-danger" })

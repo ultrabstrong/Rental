@@ -1,8 +1,8 @@
 ﻿using Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using rm = Resources.Domain.MaintenanceRequest;
-using vrm = Resources.Domain.MaintenanceValidation;
+using rm = Resources.WebsiteModels.MaintenanceRequest;
+using vrm = Resources.WebsiteModels.MaintenanceValidation;
 
 namespace ApartmentWeb.Models.Maintenance
 {

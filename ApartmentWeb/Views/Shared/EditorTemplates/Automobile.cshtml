@@ -1,14 +1,16 @@
-﻿@model Domain.Automobile
+﻿@using ApartmentWeb.Enums;
+@using ApartmentWeb.Models.Application;
+@model Automobile
 <div class="mt-2 avoid-break">
     <!-- Has An Automobile -->
     <div class="row d-flex align-items-center @(Model.AllowElectiveRequire ? "" : "d-none")">
         @Html.LabelFor(model => model.ElectiveRequireValue, htmlAttributes: new { @class = "h6 col-auto " })
         <div class="col-@ViewBag.colsize-1 ">
-            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(Domain.Automobile), @class = "yesno_visible_toggle form-control" })
+            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(Automobile), @class = "yesno_visible_toggle form-control" })
         </div>
         @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "col-auto col-form-label text-danger " })
     </div>
-    <div id="@nameof(Domain.Automobile)" @(Model.ElectiveRequireValue == Domain.Enums.YesNo.Yes ? "" : "style=display:none;") class="container border rounded bg-light p-2 mt-2">
+    <div id="@nameof(Automobile)" @(Model.ElectiveRequireValue == YesNo.Yes ? "" : "style=display:none;") class="container border rounded bg-light p-2 mt-2">
         <p>@Html.Label(Model.DisplayName)</p>
         <div class="row ">
             <!-- Make -->

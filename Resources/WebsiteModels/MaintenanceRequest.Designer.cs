@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resources.Domain {
+namespace Resources.WebsiteModels {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Resources.Domain {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Domain.MaintenanceRequest", typeof(MaintenanceRequest).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.WebsiteModels.MaintenanceRequest", typeof(MaintenanceRequest).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
