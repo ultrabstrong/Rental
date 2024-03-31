@@ -241,48 +241,43 @@
     }
 }
 <script>
-    $(document).ready(function () {
-        $('#application-form').submit(function (e) {
+    $(document).ready(() => {
+        $('#application-form').submit(async (e) => {
             e.preventDefault();
-            var formData = $(this).serialize();
+            if (!$(e.target).valid()) {
+                return;
+            }
+            var formData = $(e.target).serialize();
 
-            showStatusModal("Sending Application", "Sending application email...")
-            .then(function () {
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action(nameof(HomeController.SubmitApplication), HomeController.Name)',
-                    data: formData,
-                    success: function(response) {
-                        hideStatusModal();
-                        if (response.hasValidationErrors) {
-                            $("#application-form").valid();
-                        }
-                        else {
-                            showNotificationModal("Application sent", "Your application has been sent");
-                            $('#notificationModal').one('hidden.bs.modal', function () {
-                                window.location.href = response.redirectUrl;
-                            });
-                        }
-                    },
-                    error: function () {
-                        hideStatusModal();
-                        showNotificationModal("Error sending application", "An error occurred sending the application. Please use the 'Apply Offline' option on the homepage. We apologize for the inconvenience");
-                    }
-                });
+            await showStatusModal("Sending Application", "Sending application email...");
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action(nameof(HomeController.SubmitApplication), HomeController.Name)',
+                data: formData
+            }).done(async (response) => {
+                await hideStatusModal();
+                if (response.hasValidationErrors) { return; }
+                if (response.isSuccess) {
+                    showNotificationModal("Application sent", "Your application has been sent");
+                    $('#notificationModal').one('hidden.bs.modal', () => {
+                        window.location.href = response.redirectUrl;
+                    });
+                }
+                else { showSubmitError(); }
+            }).fail(async () => {
+                await hideStatusModal();
+                showSubmitError();
             });
         });
-    });
-</script>
-
-<!-- Datepicker script for date editor -->
-<script type="text/javascript">
-    $(document).ready(function () {
+        function showSubmitError() {
+            showNotificationModal("Error sending application", "An error occurred while sending the application. Please use the 'Apply Offline' option on the homepage. We apologize for the inconvenience");
+        }
+        // Datepicker script for date editor
         $('input[type=datetime]').datepicker({
             dateFormat: "m/dd/yy",
             changeMonth: true,
             changeYear: true,
             yearRange: "-10:+1"
         });
-
     });
 </script>

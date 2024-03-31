@@ -86,35 +86,36 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#application-form').submit(function (e) {
+    $(document).ready(() => {
+        $('#application-form').submit(async (e) => {
             e.preventDefault();
-            var formData = $(this).serialize();
+            if (!$(e.target).valid()) {
+               return;
+            }
+            var formData = $(e.target).serialize();
 
-            showStatusModal("Sending Maintenance Request", "Sending maintenance request email...")
-            .then(function () {
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name)',
-                    data: formData,
-                    success: function(response) {
-                        hideStatusModal();
-                        if (response.hasValidationErrors) {
-                            $("#application-form").valid();
-                        }
-                        else {
-                            showNotificationModal("Maintenance request sent", "Your maintenance request has been sent");
-                            $('#notificationModal').one('hidden.bs.modal', function () {
-                                window.location.href = response.redirectUrl;
-                            });
-                        }
-                    },
-                    error: function () {
-                        hideStatusModal();
-                        showNotificationModal("Error sending maintenance request", "An error occurred sending the maintenance request. Please send directly to @Shared.Configuration.EmailAddress. We apologize for the inconvenience");
-                    }
-                });
+            await showStatusModal("Sending Maintenance Request", "Sending maintenance request email...");
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name)',
+                data: formData
+            }).done(async (response) => {
+                await hideStatusModal();
+                if (response.hasValidationErrors) { return; }
+                if (response.isSuccess) {
+                    showNotificationModal("Maintenance request sent", "Your maintenance request has been sent");
+                    $('#notificationModal').one('hidden.bs.modal', () => {
+                        window.location.href = response.redirectUrl;
+                    });
+                }
+                else { showSubmitError(); }
+            }).fail(async () => {
+                await hideStatusModal();
+                showSubmitError();
             });
         });
+        function showSubmitError() {
+            showNotificationModal("Error sending maintenance request", "An error occurred while sending the maintenance request. Please send directly to @Shared.Configuration.EmailAddress. We apologize for the inconvenience");
+        }
     });
 </script>
