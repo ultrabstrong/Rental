@@ -6,7 +6,6 @@ using Serilog;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using logrm = Resources.Website.Logs;
 using rm = Resources.Website.Home;
@@ -30,7 +29,7 @@ namespace ApartmentWeb.Controllers
         public ActionResult MaintenanceRequest() => View(new MaintenanceRequest());
 
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SubmitApplication(Application application)
+        public ActionResult SubmitApplication(Application application)
         {
             try
             {
@@ -52,13 +51,11 @@ namespace ApartmentWeb.Controllers
                     $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
                     $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
 
-                OutputSamplesIfDebug(html, pdf);
-
                 Log.Logger.Debug(logrm.sendingEmail);
                 using (MemoryStream pdfStream = new MemoryStream(pdf))
                 using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                 {
-                    await emailService.SendEmailAsync(application, pdfStream);
+                    emailService.SendEmail(application, pdfStream);
                 }
                 Log.Logger.Debug(logrm.finishedSendingEmail);
             }
@@ -72,7 +69,7 @@ namespace ApartmentWeb.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SubmitMaintenanceRequest(MaintenanceRequest maintenanceRequest)
+        public ActionResult SubmitMaintenanceRequest(MaintenanceRequest maintenanceRequest)
         {
             try
             {
@@ -94,13 +91,11 @@ namespace ApartmentWeb.Controllers
                     $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
                     $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
 
-                OutputSamplesIfDebug(html, pdf);
-
                 Log.Logger.Debug(logrm.sendingMaintEmail);
                 using (var pdfStream = new MemoryStream(pdf))
                 using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                 {
-                    await emailService.SendEmailAsync(maintenanceRequest, pdfStream);
+                    emailService.SendEmail(maintenanceRequest, pdfStream);
                 }
                 Log.Logger.Debug(logrm.finishedSendingMaintEmail);
             }
@@ -125,22 +120,6 @@ namespace ApartmentWeb.Controllers
                 viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
                 return sw.GetStringBuilder().ToString();
             }
-        }
-
-        private void OutputSamplesIfDebug(string html, byte[] pdf)
-        {
-#if DEBUG
-            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-            System.IO.File.WriteAllText($@"{desktop}\sample.html", html);
-
-            if (System.IO.File.Exists($@"{desktop}\sample.pdf")) { System.IO.File.Delete($@"{desktop}\sample.pdf"); }
-            using (FileStream fs = new FileStream($@"{desktop}\sample.pdf", FileMode.Create, FileAccess.ReadWrite))
-            {
-                fs.Write(pdf, 0, pdf.Length);
-                fs.Flush();
-            }
-#endif
         }
 
         public ActionResult ReloadConfig()
