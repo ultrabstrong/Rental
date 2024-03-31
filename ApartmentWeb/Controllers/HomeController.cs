@@ -29,93 +29,84 @@ namespace ApartmentWeb.Controllers
 
 
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitMaintenanceRequest(MaintenanceRequest maintenanceRequest)
+        public async Task<ActionResult> SubmitMaintenanceRequest(MaintenanceRequest maintenanceRequest)
         {
             if (!ModelState.IsValid)
             {
                 // Uncomment to view errors
                 // List<KeyValuePair<string, ModelState>> Errors = ModelState.Where(m => m.Value.Errors.Count > 0).ToList();
-
-                ViewBag.Errors = true;
-                return View(nameof(MaintenanceRequest), maintenanceRequest);
+                return Json(new { hasValidationErrors = true });
             }
 
             Log.Logger.Debug(logrm.creatingViewHtml);
             var html = RenderRazorViewToString(nameof(this.MaintenanceRequest), maintenanceRequest);
-            Task.Run(() =>
+
+            try
             {
-                try
-                {
-                    // Create PDF of application
-                    Log.Logger.Debug(logrm.convertingHtmlToPDF);
-                    var pdf = HtmlConverter.ToPdf(html,
-                        Shared.Configuration.CompanyName,
-                        $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
-                        $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
+                // Create PDF of application
+                Log.Logger.Debug(logrm.convertingHtmlToPDF);
+                var pdf = HtmlConverter.ToPdf(html,
+                    Shared.Configuration.CompanyName,
+                    $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
+                    $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
 
-                    OutputSamplesIfDebug(html, pdf);
+                OutputSamplesIfDebug(html, pdf);
 
-                    // Send maintenance request in email
-                    Log.Logger.Debug(logrm.sendingMaintEmail);
-                    using (var pdfStream = new MemoryStream(pdf))
-                    using (var emailService = new EmailService(Shared.Configuration.MailSettings))
-                    {
-                        emailService.SendEmail(maintenanceRequest, pdfStream);
-                    }
-                    Log.Logger.Debug(logrm.finishedSendingMaintEmail);
-                }
-                catch (Exception ex)
+                // Send maintenance request in email
+                Log.Logger.Debug(logrm.sendingMaintEmail);
+                using (var pdfStream = new MemoryStream(pdf))
+                using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                 {
-                    Log.Logger.Error(ex, logrm.failSubmitMaintReq);
+                    await emailService.SendEmailAsync(maintenanceRequest, pdfStream);
                 }
-            });
-            ViewBag.maintsubmitted = "yes";
-            return View(nameof(this.Index));
+                Log.Logger.Debug(logrm.finishedSendingMaintEmail);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex, logrm.failSubmitMaintReq);
+            }
+
+            return Json(new { success = true, redirectUrl = Url.Action(nameof(Index), Name) });
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitApplication(Application application)
+        public async Task<ActionResult> SubmitApplication(Application application)
         {
             if (!ModelState.IsValid)
             {
                 // Uncomment to view errors
                 // List<KeyValuePair<string, ModelState>> Errors = ModelState.Where(m => m.Value.Errors.Count > 0).ToList();
-
-                ViewBag.Errors = true;
-                return View(nameof(Apply), application);
+                return Json(new { hasValidationErrors = true });
             }
 
             Log.Logger.Debug(logrm.creatingViewHtml);
             var html = RenderRazorViewToString(nameof(this.Apply), application);
-            Task.Run(() =>
+            try
             {
-                try
-                {
-                    // Create PDF of application
-                    Log.Logger.Debug(logrm.convertingHtmlToPDF);
-                    var pdf = HtmlConverter.ToPdf(html,
-                        Shared.Configuration.CompanyName,
-                        $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
-                        $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
+                // Create PDF of application
+                Log.Logger.Debug(logrm.convertingHtmlToPDF);
+                var pdf = HtmlConverter.ToPdf(html,
+                    Shared.Configuration.CompanyName,
+                    $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
+                    $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
 
-                    OutputSamplesIfDebug(html, pdf);
+                OutputSamplesIfDebug(html, pdf);
 
-                    // Send application in email
-                    Log.Logger.Debug(logrm.sendingEmail);
-                    using (MemoryStream pdfStream = new MemoryStream(pdf))
-                    using (var emailService = new EmailService(Shared.Configuration.MailSettings))
-                    {
-                        emailService.SendEmail(application, pdfStream);
-                    }
-                    Log.Logger.Debug(logrm.finishedSendingEmail);
-                }
-                catch (Exception ex)
+                // Send application in email
+                Log.Logger.Debug(logrm.sendingEmail);
+                using (MemoryStream pdfStream = new MemoryStream(pdf))
+                using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                 {
-                    Log.Logger.Error(ex, logrm.failSubmitApp);
+                    await emailService.SendEmailAsync(application, pdfStream);
                 }
-            });
-            ViewBag.submitted = "yes";
-            return View(nameof(this.Index));
+                Log.Logger.Debug(logrm.finishedSendingEmail);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex, logrm.failSubmitApp);
+            }
+
+            return Json(new { success = true, redirectUrl = Url.Action(nameof(Index), Name) });
         }
 
         private string RenderRazorViewToString(string viewName, object model)

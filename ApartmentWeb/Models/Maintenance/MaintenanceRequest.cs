@@ -34,7 +34,7 @@ namespace ApartmentWeb.Models.Maintenance
         public EmailRequest BuildEmailRequest()
         {
             var bodyBuilder = new StringBuilder();
-            bodyBuilder.AppendLine($"Attached is the maintenance request from {FirstName}   {LastName}  for  {RentalAddress}");
+            bodyBuilder.AppendLine($"Attached is the maintenance request from {FirstName} {LastName} for {RentalAddress}");
             bodyBuilder.AppendLine($"Email: {(string.IsNullOrWhiteSpace(Email) ? "Not provided" : Email)}");
             bodyBuilder.AppendLine($"Phone: {(string.IsNullOrWhiteSpace(Phone) ? "Not provided" : Phone)}");
             bodyBuilder.AppendLine();

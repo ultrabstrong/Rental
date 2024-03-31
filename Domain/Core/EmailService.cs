@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Domain.Core
 {
@@ -25,7 +26,7 @@ namespace Domain.Core
             };
         }
 
-        public void SendEmail(IEmailRequestBuilder emailRequestBuilder, Stream toAttach)
+        public async Task SendEmailAsync(IEmailRequestBuilder emailRequestBuilder, Stream toAttach)
         {
             var emailRequest = emailRequestBuilder.BuildEmailRequest();
             var attachment = new Attachment(toAttach, emailRequest.AttachmentName);
@@ -46,7 +47,7 @@ namespace Domain.Core
                 message.ReplyToList.Add(emailRequest.PreferredReplyTo);
             }
 
-            _smtpClient.Send(message);
+            await _smtpClient.SendMailAsync(message);
         }
 
         public void Dispose()

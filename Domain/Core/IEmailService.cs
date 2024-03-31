@@ -1,10 +1,11 @@
 ﻿using Domain.Models;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Domain.Core
 {
     public interface IEmailService
     {
-        void SendEmail(IEmailRequestBuilder emailRequestBuilder, Stream toAttach);
+        Task SendEmailAsync(IEmailRequestBuilder emailRequestBuilder, Stream toAttach);
     }
 }

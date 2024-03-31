@@ -24,7 +24,7 @@
     </div>
     <!-- Maintenance Body -->
     <div class="card-body row">
-        @using (Html.BeginForm(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name, FormMethod.Post, new { @id = "application_form" }))
+        @using (Html.BeginForm(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name, FormMethod.Post, new { @id = "application-form" }))
         {
             @Html.AntiForgeryToken()
             <!-- Display errors -->
@@ -85,13 +85,36 @@
         }
     </div>
 </div>
-@if (ViewBag.Errors == true)
-{
-    <!-- Validate if returned from server with errors -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#application_form").valid();
-        });
-    </script>
-}
+<script>
+    $(document).ready(function () {
+        $('#application-form').submit(function (e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
 
+            showStatusModal("Sending Maintenance Request", "Sending maintenance request email...")
+            .then(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name)',
+                    data: formData,
+                    success: function(response) {
+                        hideStatusModal();
+                        if (response.hasValidationErrors) {
+                            $("#application-form").valid();
+                        }
+                        else {
+                            showNotificationModal("Maintenance request sent", "Your maintenance request has been sent");
+                            $('#notificationModal').one('hidden.bs.modal', function () {
+                                window.location.href = response.redirectUrl;
+                            });
+                        }
+                    },
+                    error: function () {
+                        hideStatusModal();
+                        showNotificationModal("Error sending maintenance request", "An error occurred sending the maintenance request. Please send directly to @Shared.Configuration.EmailAddress. We apologize for the inconvenience");
+                    }
+                });
+            });
+        });
+    });
+</script>

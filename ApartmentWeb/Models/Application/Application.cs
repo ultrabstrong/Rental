@@ -201,7 +201,7 @@ namespace ApartmentWeb.Models.Application
         {
             return new EmailRequest()
             {
-                Subject = $"Application for {RentalAddress} from {PersonalInfo.FirstName} {PersonalInfo.LastName}; Co-Applicants : {OtherApplicants}",
+                Subject = $"Application for {RentalAddress} from {PersonalInfo.FirstName} {PersonalInfo.LastName}; Co-Applicants: {OtherApplicants}",
                 Body = $"Attached is the application for {RentalAddress} from {PersonalInfo.FirstName} {PersonalInfo.LastName}",
                 AttachmentName = $"{PersonalInfo.FirstName} {PersonalInfo.LastName} Application.pdf",
                 PreferredReplyTo = PersonalInfo.Email

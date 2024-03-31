@@ -3,26 +3,6 @@
 @{
     ViewBag.Title = rm.HOME;
 }
-<!-- Application submitted modal -->
-@if (ViewBag.submitted != null)
-{
-<script>
-        $(document).ready(function () {
-            showModal("Application submitted", "Your application has been submitted and is under review");
-        });
-</script>
-    ViewBag.submitted = null;
-}
-<!-- Mainenance request submitted modal-->
-@if (ViewBag.maintsubmitted != null)
-{
-    <script>
-        $(document).ready(function () {
-            showModal("Maintenance request submitted", "Your maintenance request has been submitted");
-        });
-    </script>
-    ViewBag.maintsubmitted = null;
-}
 <!-- Landing page header -->
 <div class="jumbotron">
     <div class="row">
