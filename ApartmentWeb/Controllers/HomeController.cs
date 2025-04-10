@@ -18,16 +18,22 @@ namespace ApartmentWeb.Controllers
 
         public ActionResult Index() => View();
 
+        [HttpGet, Route("DownloadApplication")]
         public ActionResult DownloadApplication() => View();
 
+        [HttpGet, Route("TenantInfo")]
         public ActionResult TenantInfo() => View();
 
+        [HttpGet, Route("ContactUs")]
         public ActionResult ContactUs() => View();
 
+        [HttpGet, Route("Apply")]
         public ActionResult Apply() => View(new Application());
 
+        [HttpGet, Route("MaintenanceRequest")]
         public ActionResult MaintenanceRequest() => View(new MaintenanceRequest());
 
+        [HttpPost, Route("SubmitApplication")]
         [ValidateAntiForgeryToken]
         public ActionResult SubmitApplication(Application application)
         {
@@ -68,6 +74,7 @@ namespace ApartmentWeb.Controllers
             return Json(new SubmitResponse { isSuccess = true, redirectUrl = Url.Action(nameof(Index), Name) });
         }
 
+        [HttpPost, Route("SubmitMaintenanceRequest")]
         [ValidateAntiForgeryToken]
         public ActionResult SubmitMaintenanceRequest(MaintenanceRequest maintenanceRequest)
         {

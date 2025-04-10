@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using ApartmentWeb.Filters;
+using System.Web.Mvc;
 
 namespace ApartmentWeb
 {
@@ -7,6 +8,7 @@ namespace ApartmentWeb
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new SecurityHeadersAttribute());
         }
     }
 }
