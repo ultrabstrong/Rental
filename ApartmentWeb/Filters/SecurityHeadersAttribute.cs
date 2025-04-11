@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ApartmentWeb.Filters
 {
@@ -11,9 +9,7 @@ namespace ApartmentWeb.Filters
             var response = filterContext.HttpContext.Response;
 
             // No-cache headers
-            response.Cache.SetCacheability(HttpCacheability.NoCache);
-            response.Cache.SetNoStore();
-            response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+            response.AppendHeader("Cache-Control", "no-cache, no-store, must-revalidate, private, max-age=0");
             response.AppendHeader("Pragma", "no-cache");
             response.AppendHeader("Expires", "-1");
 

@@ -105,6 +105,7 @@
                 if (response.isSuccess) {
                     showNotificationModal("Maintenance request sent", "Your maintenance request has been sent");
                     $('#notificationModal').one('hidden.bs.modal', () => {
+                        $('#application-form')[0].reset();
                         window.location.href = response.redirectUrl;
                     });
                 }
