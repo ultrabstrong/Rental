@@ -33,6 +33,12 @@ namespace ApartmentWeb.Controllers
         [HttpGet, Route("MaintenanceRequest")]
         public ActionResult MaintenanceRequest() => View(new MaintenanceRequest());
 
+        [HttpGet, Route("Privacy")]
+        public ActionResult Privacy() => View();
+
+        [HttpGet, Route("Terms")]
+        public ActionResult Terms() => View();
+
         [HttpPost, Route("SubmitApplication")]
         [ValidateAntiForgeryToken]
         public ActionResult SubmitApplication(Application application)

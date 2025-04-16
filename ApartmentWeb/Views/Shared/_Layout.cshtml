@@ -44,7 +44,11 @@
     <!-- Footer -->
     <footer class="footer navbar">
         <div class="container">
-            <div class="text-muted">&copy; @DateTime.Now.Year @Shared.Configuration.CompanyName</div>
+            <div class="text-muted">&copy; @DateTime.Now.Year @Shared.Configuration.CompanyName - All Rights Reserved</div>
+            <div class="text-muted">
+                @Html.ActionLink("Privacy Policy", nameof(HomeController.Privacy), HomeController.Name, null, new { @class = "text-muted text-decoration-underline" }) |
+                @Html.ActionLink("Terms of Use", nameof(HomeController.Terms), HomeController.Name, null, new { @class = "text-muted text-decoration-underline" })
+            </div>
             <div class="text-muted float-right">@rm.VERSION @Shared.Version</div>
         </div>
     </footer>
