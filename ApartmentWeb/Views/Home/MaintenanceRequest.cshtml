@@ -1,5 +1,4 @@
-﻿
-@using ApartmentWeb.Controllers
+﻿@using ApartmentWeb.Controllers
 @using ApartmentWeb.Models.Maintenance
 @model MaintenanceRequest
 @using rm = Resources.Website.Home;
@@ -8,83 +7,101 @@
     ViewBag.Title = rm.MAINTENANCE_REQUEST;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- Navigation bar -->
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            @Html.ActionLink(rm.HOME, nameof(HomeController.Index), HomeController.Name)
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">@rm.MAINTENANCE_REQUEST</li>
-    </ol>
-</nav>
-<!-- Maintenance Header -->
-<div class="card col-8 offset-2">
-    <div class="card-header">
-        <h5>@rm.MAINTENANCE_REQUEST</h5>
-    </div>
-    <!-- Maintenance Body -->
-    <div class="card-body row">
-        @using (Html.BeginForm(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name, FormMethod.Post, new { @id = "application-form" }))
-        {
-            @Html.AntiForgeryToken()
-            <!-- Display errors -->
-            if (ViewBag.Errors == true)
-            {
-                @Html.Label(rm.RESOLVE_ERRORS, htmlAttributes: new { @class = "h6 col-auto mt-2" })
-                @Html.ValidationSummary(false)
-                ViewBag.Errors = false;
-            }
-            <!-- Rental Address -->
-            <div>
-                @Html.LabelFor(model => model.RentalAddress)
-                @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger" })
-            </div>
-            <div class="row mt-1">
-                <!-- First Name -->
-                <div class="col-@ViewBag.colsize-6">
-                    @Html.LabelFor(model => model.FirstName)
-                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                </div>
-                <!-- Last Name -->
-                <div class="col-@ViewBag.colsize-6">
-                    @Html.LabelFor(model => model.LastName)
-                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="row mt-1">
-                <!-- Email -->
-                <div class="col-@ViewBag.colsize-6">
-                    @Html.LabelFor(model => model.Email)
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+<div class="container px-0 mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Maintenance Request Card -->
+            <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                <!-- Maintenance Header -->
+                <div class="card-header bg-light-teal p-4 border-0">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-tools fs-2 text-teal me-3"></i>
+                        <h3 class="mb-0 text-navy">@rm.MAINTENANCE_REQUEST</h3>
+                    </div>
                 </div>
-                <!-- Phone -->
-                <div class="col-@ViewBag.colsize-6">
-                    @Html.LabelFor(model => model.Phone)
-                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                
+                <!-- Maintenance Body -->
+                <div class="card-body p-4 p-lg-5">
+                    @using (Html.BeginForm(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        
+                        <!-- Display errors -->
+                        if (ViewBag.Errors == true)
+                        {
+                            <div class="alert alert-danger mb-4">
+                                <h6 class="mb-2">@rm.RESOLVE_ERRORS</h6>
+                                @Html.ValidationSummary(false)
+                            </div>
+                            ViewBag.Errors = false;
+                        }
+                        
+                        <!-- Rental Address -->
+                        <div class="mb-4">
+                            @Html.LabelFor(model => model.RentalAddress, new { @class = "form-label fw-bold text-navy" })
+                            @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your rental address" } })
+                            @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger mt-1" })
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <!-- First Name -->
+                            <div class="col-md-6 mb-md-0 mb-4">
+                                @Html.LabelFor(model => model.FirstName, new { @class = "form-label fw-bold text-navy" })
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your first name" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger mt-1" })
+                            </div>
+                            
+                            <!-- Last Name -->
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-bold text-navy" })
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your last name" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger mt-1" })
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <!-- Email -->
+                            <div class="col-md-6 mb-md-0 mb-4">
+                                @Html.LabelFor(model => model.Email, new { @class = "form-label fw-bold text-navy" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your email address" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger mt-1" })
+                            </div>
+                            
+                            <!-- Phone -->
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Phone, new { @class = "form-label fw-bold text-navy" })
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your phone number" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger mt-1" })
+                            </div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="mb-4">
+                            @Html.LabelFor(model => model.Description, new { @class = "form-label fw-bold text-navy" })
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control form-control-lg", rows = "5", placeholder = "Please describe your maintenance issue in detail" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger mt-1" })
+                        </div>
+                        
+                        <!-- Submit button -->
+                        if (ViewBag.inlinecss == null)
+                        {
+                            <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto mt-5">
+                                <button type="submit" class="btn btn-custom-teal btn-lg py-3">Submit Request</button>
+                            </div>
+                        }
+                    }
+                    
+                    <!-- Brief note -->
+                    <div class="text-center text-muted mt-4">
+                        <p class="mb-0 small">For emergency maintenance issues, please call us directly at <span class="fw-bold">@Shared.Configuration.PhoneNumber</span></p>
+                    </div>
                 </div>
             </div>
-            <!-- Description -->
-            <div class="mt-1">
-                @Html.LabelFor(model => model.Description)
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-            <!-- Submit button -->
-            if (ViewBag.inlinecss == null)
-            {
-                <div class="row">
-                    <input type="submit" value="Submit" class="btn btn-success offset-@ViewBag.colsize-5 mt-3 mb-2 col-@ViewBag.colsize-2" />
-                </div>
-            }
-        }
+        </div>
     </div>
 </div>
+
 <script>
     $(document).ready(() => {
         $('#application-form').submit(async (e) => {

@@ -3,10 +3,6 @@
     min-height: 100%;
 }
 
-body {
-    margin-bottom: 40px; /* Margin bottom by footer height */
-}
-
 .footer {
     position: absolute;
     bottom: 0;
@@ -28,4 +24,111 @@ body {
 
 .avoid-break {
     page-break-inside: avoid;
+}
+
+/* Custom color scheme for modern look */
+.hero-gradient {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%) !important;
+}
+
+.bg-light-blue {
+    background-color: #ebf5fb !important;
+}
+
+.bg-light-teal {
+    background-color: #e8f8f5 !important;
+}
+
+.bg-light-yellow {
+    background-color: #fef9e7 !important;
+}
+
+.bg-light-gray {
+    background-color: #eaeded !important;
+}
+
+.text-navy {
+    color: #2c3e50 !important;
+}
+
+.text-blue {
+    color: #3498db !important;
+}
+
+.text-teal {
+    color: #1abc9c !important;
+}
+
+.text-amber {
+    color: #f39c12 !important;
+}
+
+.text-gray {
+    color: #7f8c8d !important;
+}
+
+.text-red {
+    color: #e74c3c !important;
+}
+
+.bg-blue {
+    background-color: #3498db !important;
+}
+
+.bg-teal {
+    background-color: #1abc9c !important;
+}
+
+.btn-custom-blue {
+    background-color: #3498db !important;
+    color: white !important;
+}
+
+.btn-custom-blue:hover {
+    background-color: #2980b9 !important;
+}
+
+.btn-custom-teal {
+    background-color: #1abc9c !important;
+    color: white !important;
+}
+
+.btn-custom-teal:hover {
+    background-color: #16a085 !important;
+}
+
+.btn-outline-blue {
+    border: 1px solid #3498db !important;
+    color: #3498db !important;
+}
+
+.btn-outline-blue:hover {
+    background-color: #3498db10 !important;
+}
+
+.btn-outline-teal {
+    border: 1px solid #1abc9c !important;
+    color: #1abc9c !important;
+}
+
+.btn-outline-teal:hover {
+    background-color: #1abc9c10 !important;
+}
+
+.btn-outline-amber {
+    border: 1px solid #f39c12 !important;
+    color: #f39c12 !important;
+}
+
+.btn-outline-amber:hover {
+    background-color: #f39c1210 !important;
+}
+
+.btn-outline-gray {
+    border: 1px solid #7f8c8d !important;
+    color: #7f8c8d !important;
+}
+
+.btn-outline-gray:hover {
+    background-color: #7f8c8d10 !important;
 }

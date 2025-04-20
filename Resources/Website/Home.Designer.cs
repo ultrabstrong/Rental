@@ -106,7 +106,7 @@ namespace Resources.Website {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Call or text us at: .
+        ///   Looks up a localized string similar to Call or text .
         /// </summary>
         public static string CONTACTUS_INFO_DESC1 {
             get {
@@ -115,7 +115,7 @@ namespace Resources.Website {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email us at: .
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string CONTACTUS_INFO_DESC2 {
             get {
@@ -124,7 +124,7 @@ namespace Resources.Website {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Our mailing address is: .
+        ///   Looks up a localized string similar to Mailing address.
         /// </summary>
         public static string CONTACTUS_INFO_DESC3 {
             get {
@@ -196,7 +196,7 @@ namespace Resources.Website {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View contact info.
+        ///   Looks up a localized string similar to Contact info.
         /// </summary>
         public static string INDEX_CONTACTUS_LINK {
             get {

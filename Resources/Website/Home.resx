@@ -133,13 +133,13 @@
     <value>Business Hours</value>
   </data>
   <data name="CONTACTUS_INFO_DESC1" xml:space="preserve">
-    <value>Call or text us at: </value>
+    <value>Call or text </value>
   </data>
   <data name="CONTACTUS_INFO_DESC2" xml:space="preserve">
-    <value>Email us at: </value>
+    <value>Email</value>
   </data>
   <data name="CONTACTUS_INFO_DESC3" xml:space="preserve">
-    <value>Our mailing address is: </value>
+    <value>Mailing address</value>
   </data>
   <data name="CONTACTUS_INFO_HEAD" xml:space="preserve">
     <value>Contact Information</value>
@@ -163,7 +163,7 @@
     <value>Email, call, or text us with any questions. We are happy to help!</value>
   </data>
   <data name="INDEX_CONTACTUS_LINK" xml:space="preserve">
-    <value>View contact info</value>
+    <value>Contact info</value>
   </data>
   <data name="INDEX_JUMBO_DESC" xml:space="preserve">
     <value>Committed to providing quality housing for quality people.</value>
