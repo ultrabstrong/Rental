@@ -57,45 +57,40 @@
             <!-- Application card -->
             <div class="card shadow">
                 <div class="card-header-blue border-0">
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center justify-content-center mt-2">
                         <i class="bi bi-file-earmark-pdf fs-2 text-primary me-3"></i>
-                        <h3 class="mb-0 mt-2 text-navy">@rm.APPLY</h3>
+                        <h3 class="mb-0 text-navy">Rental Application Form</h3>
                     </div>
                 </div>
-                <div class="card-body p-4 p-lg-5">
-                    <!-- Download button section -->
-                    <div class="text-center mb-5">
-                        <div class="mb-4">
-                            <img src="~/Images/pdf_icon.png" alt="PDF Document" class="img-fluid" style="max-height: 80px;" onerror="this.style.display='none'">
-                        </div>
-                        <h4 class="mb-4 text-navy">Rental Application Form</h4>
-                        <a href="~/data/application.pdf" download="application.pdf" class="btn btn-primary download-btn">
-                            <i class="bi bi-download me-2"></i>@rm.APPLY_CLICKTODOWNLOAD
-                        </a>
-                    </div>
-                    
+                <div class="card-body p-4 p-lg-4 pt-3">
                     <!-- Instructions section -->
                     <div class="instruction-box">
                         <h5 class="fw-bold text-navy mb-3">@rm.APPLY_INSTRUCTIONS</h5>
                         <ol class="ps-3">
-                            <li class="mb-2">Download the application using the button above</li>
+                            <li class="mb-2">Download the application using the button below</li>
                             <li class="mb-2">Open the PDF file with a PDF reader such as Adobe Acrobat</li>
                             <li class="mb-2">Fill out all required fields in the application form</li>
                             <li class="mb-2">Save the completed application to your computer</li>
                             <li class="mb-2">Email the saved application to us at the address below</li>
                         </ol>
                         <div class="alert alert-warning mt-3 mb-0" style="border-radius: 0;">
-                            <div class="d-flex">
+                            <div class="d-flex align-items-center">
                                 <i class="bi bi-exclamation-triangle fs-4 me-2"></i>
                                 <p class="mb-0"><strong>Important:</strong> @rm.APPLY_DONTFORGETSAVE</p>
                             </div>
+                        </div>
+                        
+                        <!-- Download button moved below warning -->
+                        <div class="text-center mt-4">
+                            <a href="~/data/application.pdf" download="application.pdf" class="btn btn-primary download-btn">
+                                <i class="bi bi-download me-2"></i>@rm.APPLY_CLICKTODOWNLOAD
+                            </a>
                         </div>
                     </div>
                     
                     <!-- Email submission section -->
                     <div class="text-center p-4 bg-light mt-4" style="border-radius: 0;">
-                        <h5 class="mb-3 text-navy">Submit Your Application</h5>
-                        <p class="mb-2">@rm.APPLY_EMAILTO</p>
+                        <h5 class="mb-2">@rm.APPLY_EMAILTO</h5>
                         <a href="mailto:@Shared.Configuration?.EmailAddress" class="email-link fs-5">
                             <i class="bi bi-envelope me-2"></i>@Shared.Configuration.EmailAddress
                         </a>
