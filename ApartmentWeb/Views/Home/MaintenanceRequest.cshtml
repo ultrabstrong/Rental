@@ -13,10 +13,10 @@
             <!-- Maintenance Request Card -->
             <div class="card border-0 shadow overflow-hidden">
                 <!-- Maintenance Header -->
-                <div class="card-header bg-light-teal p-4 border-0">
+                <div class="card-header bg-success-subtle p-4 border-0">
                     <div class="d-flex align-items-center">
-                        <i class="bi bi-tools fs-2 text-teal me-3"></i>
-                        <h3 class="mb-0 text-navy">Maintenance Request</h3>
+                        <i class="bi bi-tools fs-2 text-success me-3"></i>
+                        <h3 class="mb-0 text-dark">Maintenance Request</h3>
                     </div>
                 </div>
                 
@@ -38,7 +38,7 @@
                         
                         <!-- Rental Address -->
                         <div class="mb-4">
-                            @Html.LabelFor(model => model.RentalAddress, new { @class = "form-label fw-bold text-navy" })
+                            @Html.LabelFor(model => model.RentalAddress, new { @class = "form-label fw-bold text-dark" })
                             @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your rental address" } })
                             @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger mt-1" })
                         </div>
@@ -46,14 +46,14 @@
                         <div class="row mb-4">
                             <!-- First Name -->
                             <div class="col-md-6 mb-md-0 mb-4">
-                                @Html.LabelFor(model => model.FirstName, new { @class = "form-label fw-bold text-navy" })
+                                @Html.LabelFor(model => model.FirstName, new { @class = "form-label fw-bold text-dark" })
                                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your first name" } })
                                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger mt-1" })
                             </div>
                             
                             <!-- Last Name -->
                             <div class="col-md-6">
-                                @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-bold text-navy" })
+                                @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-bold text-dark" })
                                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your last name" } })
                                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger mt-1" })
                             </div>
@@ -62,14 +62,14 @@
                         <div class="row mb-4">
                             <!-- Email -->
                             <div class="col-md-6 mb-md-0 mb-4">
-                                @Html.LabelFor(model => model.Email, new { @class = "form-label fw-bold text-navy" })
+                                @Html.LabelFor(model => model.Email, new { @class = "form-label fw-bold text-dark" })
                                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your email address" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger mt-1" })
                             </div>
                             
                             <!-- Phone -->
                             <div class="col-md-6">
-                                @Html.LabelFor(model => model.Phone, new { @class = "form-label fw-bold text-navy" })
+                                @Html.LabelFor(model => model.Phone, new { @class = "form-label fw-bold text-dark" })
                                 @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter your phone number" } })
                                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger mt-1" })
                             </div>
@@ -77,7 +77,7 @@
                         
                         <!-- Description -->
                         <div class="mb-4">
-                            @Html.LabelFor(model => model.Description, new { @class = "form-label fw-bold text-navy" })
+                            @Html.LabelFor(model => model.Description, new { @class = "form-label fw-bold text-dark" })
                             @Html.TextAreaFor(model => model.Description, new { @class = "form-control form-control-lg", rows = "5", placeholder = "Please describe your maintenance issue in detail" })
                             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger mt-1" })
                         </div>
@@ -86,7 +86,7 @@
                         if (ViewBag.inlinecss == null)
                         {
                             <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto mt-5">
-                                <button type="submit" class="btn btn-custom-teal btn-lg py-3">Submit Request</button>
+                                <button type="submit" class="btn btn-success btn-lg py-3">Submit Request</button>
                             </div>
                         }
                     }
