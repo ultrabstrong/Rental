@@ -17,13 +17,14 @@
     }
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<!-- Include scripts -->
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/modal")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
 <body class="d-flex flex-column min-vh-100">
+    <!-- Include scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modal")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
     <!-- Header -->
     <header class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
