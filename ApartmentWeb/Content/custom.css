@@ -3,15 +3,6 @@
  */
 
 /* 
- * Custom jumbotron styling with background image
- */
-.jumbotron {
-    padding: 1.25rem 0rem 8rem 1.25rem !important;
-    background-image: url("../Images/header.jpg");
-    background-size: cover;
-}
-
-/* 
  * PDF-specific style
  */
 .avoid-break {
