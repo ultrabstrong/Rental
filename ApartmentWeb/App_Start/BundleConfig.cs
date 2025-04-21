@@ -31,6 +31,7 @@ namespace ApartmentWeb
             // Bootstrap STYLE
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-icons.css",
                       "~/Content/custom.css",
                       "~/Content/themes/base/jquery-ui.min.css"));
             // Home SCRIPT
