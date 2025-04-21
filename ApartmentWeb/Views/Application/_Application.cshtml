@@ -2,7 +2,6 @@
 @using ApartmentWeb.Models.Application;
 @using ApartmentWeb.Enums;
 @model Application
-@using rm = Resources.Website.Application;
 @{
     ViewBag.colsize = "sm";
 }
@@ -12,7 +11,7 @@
     <!-- Display errors -->
     if (ViewBag.Errors == true)
     {
-        @Html.Label(rm.APP_RESOLVE_ERRORS, htmlAttributes: new { @class = "h6 col-auto mt-2" })
+        @Html.Label("Please resolve the following errors", htmlAttributes: new { @class = "h6 col-auto mt-2" })
         @Html.ValidationSummary(false)
         ViewBag.Errors = false;
     }
@@ -55,7 +54,7 @@
     <!-- Automobile -->
     @Html.EditorFor(model => model.Automobile)
     <!-- Current Rental -->
-    @Html.Label(rm.CURRENT_ADDRESS, htmlAttributes: new { @class = "h6 col-auto mt-2" })
+    @Html.Label("Current Address", htmlAttributes: new { @class = "h6 col-auto mt-2" })
     @Html.EditorFor(model => model.CurrentRental)
     <!-- Prior rental reference 1 -->
     @Html.EditorFor(model => model.PriorRentRef1)
@@ -220,7 +219,7 @@
     </div>
     <!-- Certification And Authorization -->
     <div class="avoid-break">
-        @Html.Label(rm.APP_CERT_AND_AUTH, htmlAttributes: new { @class = $"h5 col-{ViewBag.colsize}-12 mt-4 text-center" })
+        @Html.Label("Certification And Authorization", htmlAttributes: new { @class = $"h5 col-{ViewBag.colsize}-12 mt-4 text-center" })
         <div id="@nameof(Model.CertificationAndAuthorization)" class="row align-items-center offset-@ViewBag.colsize-1 mt-2">
             @Html.LabelFor(model => model.CertificationAndAuthorization, htmlAttributes: new { @class = "h6 col-auto" })
             <div class="col-@ViewBag.colsize-1">
@@ -229,7 +228,7 @@
             @Html.ValidationMessageFor(model => model.CertificationAndAuthorization, "", new { @class = "col-auto text-danger" })
         </div>
         <div class="container">
-            <p class="offset-@ViewBag.colsize-1 col-@ViewBag.colsize-10 align-self-center">@rm.APP_CERT_AND_AUTH_DESC</p>
+            <p class="offset-@ViewBag.colsize-1 col-@ViewBag.colsize-10 align-self-center">I (we) certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
         </div>
     </div>
     <!-- Submit button -->

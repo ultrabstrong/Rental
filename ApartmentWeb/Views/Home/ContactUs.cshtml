@@ -1,7 +1,6 @@
 ﻿@using ApartmentWeb.Controllers
-@using rm = Resources.Website.Home
 @{
-    ViewBag.Title = rm.CONTACTUS;
+    ViewBag.Title = "Contact Us";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,7 +16,7 @@
                 <div class="card-body p-0">
                     <div class="p-4 bg-light-blue text-center">
                         <i class="bi bi-building fs-1 mb-3 text-blue"></i>
-                        <h3 class="card-title mb-0 text-navy">@rm.CONTACTUS</h3>
+                        <h3 class="card-title mb-0 text-navy">Contact Us</h3>
                     </div>
                     <div class="p-4">
                         <!-- Phone -->
@@ -26,7 +25,7 @@
                                 <i class="bi bi-telephone-fill text-blue fs-3"></i>
                             </div>
                             <div>
-                                <h5 class="fw-bold mb-1 text-navy">@rm.CONTACTUS_INFO_DESC1</h5>
+                                <h5 class="fw-bold mb-1 text-navy">Call or text</h5>
                                 <p class="fs-5 mb-0">@Shared.Configuration.PhoneNumber</p>
                             </div>
                         </div>
@@ -37,7 +36,7 @@
                                 <i class="bi bi-envelope-fill text-blue fs-3"></i>
                             </div>
                             <div>
-                                <h5 class="fw-bold mb-1 text-navy">@rm.CONTACTUS_INFO_DESC2</h5>
+                                <h5 class="fw-bold mb-1 text-navy">Email</h5>
                                 <a href="mailto:@Shared.Configuration?.EmailAddress" class="fs-5 text-blue text-decoration-none">@Shared.Configuration.EmailAddress</a>
                             </div>
                         </div>
@@ -48,7 +47,7 @@
                                 <i class="bi bi-geo-alt-fill text-blue fs-3"></i>
                             </div>
                             <div>
-                                <h5 class="fw-bold mb-1 text-navy">@rm.CONTACTUS_INFO_DESC3</h5>
+                                <h5 class="fw-bold mb-1 text-navy">Mailing address</h5>
                                 <p class="fs-5 mb-0">@Shared.Configuration.Address</p>
                             </div>
                         </div>

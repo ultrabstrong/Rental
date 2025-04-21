@@ -1,36 +1,26 @@
 ﻿@using ApartmentWeb.Controllers
-@using rm = Resources.Website.Home
 @{
-    ViewBag.Title = rm.HOME;
+    ViewBag.Title = "Home";
 }
 
 @section BelowNavbar {
     <img src="~/Images/header.jpg" alt="Apartment Building" />
 }
 
-<!-- Hero section with overlay -->
-<div class="position-relative rounded-3 mb-5 shadow overflow-hidden">
-    <div class="hero-gradient" style="height: 240px;"></div>
-    <div class="container position-absolute top-50 start-50 translate-middle text-center text-white">
-        <h1 class="display-4 fw-bold mb-3">@Shared.Configuration.CompanyName</h1>
-        <p class="lead mb-0 px-md-5 mx-md-5">@rm.INDEX_JUMBO_DESC</p>
-    </div>
-</div>
-
-<div class="container px-0">
+<div class="container px-0 mt-4">
     <!-- Main feature section -->
     <div class="row g-0 rounded-3 shadow mb-5 overflow-hidden">
         <div class="col-md-6 p-5 d-flex flex-column justify-content-center bg-light">
-            <h2 class="display-6 fw-bold mb-3 text-navy">@rm.APPLY</h2>
-            <p class="lead mb-4">@rm.INDEX_APPLY_DESC</p>
+            <h2 class="display-6 fw-bold mb-3 text-navy">Apply</h2>
+            <p class="lead mb-4">Fill our online application from your computer or mobile device</p>
             <div class="d-flex flex-wrap gap-3 align-items-center">
                 <a href="@Url.Action(nameof(HomeController.Apply), HomeController.Name)" class="btn btn-lg btn-custom-blue d-flex align-items-center justify-content-center">
-                    @rm.INDEX_APPLY_LINK
+                    Apply now
                 </a>
                 @if (Shared.Configuration.ShowDownloadApplication)
                 {
                     <a href="@Url.Action(nameof(HomeController.DownloadApplication), HomeController.Name)" class="btn btn-lg btn-outline-blue d-flex align-items-center justify-content-center">
-                        @rm.INDEX_APPLY_OFFLINE_LINK
+                        Apply offline
                     </a>
                 }
             </div>
@@ -66,13 +56,13 @@
                     <div class="d-flex flex-column h-100">
                         <div class="p-4 text-center bg-light-teal">
                             <i class="bi bi-info-circle-fill fs-1 mb-3 text-teal"></i>
-                            <h3 class="card-title mb-0 text-navy">@rm.TENANTINFO</h3>
+                            <h3 class="card-title mb-0 text-navy">Tenant Info</h3>
                         </div>
                         <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <p class="flex-grow-1">@rm.INDEX_TENANTINFO_DESC</p>
+                            <p class="flex-grow-1">Find information about utilities, maintenance requests, and other services.</p>
                             <div class="text-end mt-3">
                                 <a href="@Url.Action(nameof(HomeController.TenantInfo), HomeController.Name)" class="btn btn-outline-teal">
-                                    @rm.INDEX_TENANTINFO_LINK <i class="bi bi-arrow-right ms-2"></i>
+                                    View tenant info <i class="bi bi-arrow-right ms-2"></i>
                                 </a>
                             </div>
                         </div>
@@ -88,7 +78,7 @@
                     <div class="d-flex flex-column h-100">
                         <div class="p-4 text-center bg-light-teal">
                             <i class="bi bi-tools fs-1 mb-3 text-teal"></i>
-                            <h3 class="card-title mb-0 text-navy">@rm.MAINTENANCE_REQUEST</h3>
+                            <h3 class="card-title mb-0 text-navy">Maintenance Request</h3>
                         </div>
                         <div class="p-4 flex-grow-1 d-flex flex-column">
                             <p class="flex-grow-1">Request repairs or maintenance for your apartment quickly and easily.</p>
@@ -110,13 +100,13 @@
                     <div class="d-flex flex-column h-100">
                         <div class="p-4 text-center bg-light-teal">
                             <i class="bi bi-chat-dots-fill fs-1 mb-3 text-teal"></i>
-                            <h3 class="card-title mb-0 text-navy">@rm.CONTACTUS</h3>
+                            <h3 class="card-title mb-0 text-navy">Contact Us</h3>
                         </div>
                         <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <p class="flex-grow-1">@rm.INDEX_CONTACTUS_DESC</p>
+                            <p class="flex-grow-1">Email, call, or text us with any questions. We are happy to help!</p>
                             <div class="text-end mt-3">
                                 <a href="@Url.Action(nameof(HomeController.ContactUs), HomeController.Name)" class="btn btn-outline-teal">
-                                    @rm.INDEX_CONTACTUS_LINK <i class="bi bi-arrow-right ms-2"></i>
+                                    Contact info <i class="bi bi-arrow-right ms-2"></i>
                                 </a>
                             </div>
                         </div>

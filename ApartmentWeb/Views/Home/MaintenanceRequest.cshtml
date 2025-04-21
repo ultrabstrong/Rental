@@ -1,10 +1,9 @@
 ﻿@using ApartmentWeb.Controllers
 @using ApartmentWeb.Models.Maintenance
 @model MaintenanceRequest
-@using rm = Resources.Website.Home;
 @{
     ViewBag.colsize = "sm";
-    ViewBag.Title = rm.MAINTENANCE_REQUEST;
+    ViewBag.Title = "Maintenance Request";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,7 +16,7 @@
                 <div class="card-header bg-light-teal p-4 border-0">
                     <div class="d-flex align-items-center">
                         <i class="bi bi-tools fs-2 text-teal me-3"></i>
-                        <h3 class="mb-0 text-navy">@rm.MAINTENANCE_REQUEST</h3>
+                        <h3 class="mb-0 text-navy">Maintenance Request</h3>
                     </div>
                 </div>
                 
@@ -31,7 +30,7 @@
                         if (ViewBag.Errors == true)
                         {
                             <div class="alert alert-danger mb-4">
-                                <h6 class="mb-2">@rm.RESOLVE_ERRORS</h6>
+                                <h6 class="mb-2">Please resolve the following errors</h6>
                                 @Html.ValidationSummary(false)
                             </div>
                             ViewBag.Errors = false;
