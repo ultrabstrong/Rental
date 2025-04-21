@@ -54,6 +54,8 @@
         </div>
     </header>
     
+    @RenderSection("BelowNavbar", required: false)
+    
     <!-- Main -->
     <main role="main" class="container flex-grow-0">
         @RenderBody()
@@ -127,8 +129,8 @@
                 <div class="col-md-6 text-md-end">
                     <p class="small mb-0">
                         @Html.ActionLink("Privacy Policy", nameof(HomeController.Privacy), HomeController.Name, null, new { @class = "text-decoration-none text-white" }) |
-                        @Html.ActionLink("Terms of Use", nameof(HomeController.Terms), HomeController.Name, null, new { @class = "text-decoration-none text-white" })
-                        <span class="text-muted">@rm.VERSION @Shared.Version</span>
+                        @Html.ActionLink("Terms of Use", nameof(HomeController.Terms), HomeController.Name, null, new { @class = "text-decoration-none text-white" }) |
+                        <span class="text-white">@Shared.Version</span>
                     </p>
                 </div>
             </div>

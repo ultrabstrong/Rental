@@ -1,25 +1,106 @@
-﻿
-@using ApartmentWeb.Controllers
+﻿@using ApartmentWeb.Controllers
 @using rm = Resources.Website.DownloadApplication
 @{
     ViewBag.Title = rm.APPLY;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- Application card -->
-<div class="col-sm my-3">
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">@rm.APPLY</h5>
-        </div>
-        <div class="card-body row">
-            <div class="col-md-12 text-center mt-3 mb-3">
-                <a href="~/data/application.pdf" download="application.pdf" class="btn btn-primary">@rm.APPLY_CLICKTODOWNLOAD</a>
-            </div>
-            <div class="col-md-12 text-center mt-3 mb-3">
-                <h5>@rm.APPLY_INSTRUCTIONS</h5>
-                <h4>@rm.APPLY_DONTFORGETSAVE</h4>
-            </div>
-            <div class="col-md-12 text-center mt-3 mb-3">
-                <p>@rm.APPLY_EMAILTO <a href="mailto:@Shared.Configuration?.EmailAddress">@Shared.Configuration.EmailAddress</a></p>
+
+<style>
+    .download-card {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+        border: 1px solid #e9ecef !important;
+        border-radius: 0 !important;
+    }
+    
+    .card-header-blue {
+        background-color: #e6f1ff !important;
+        border-bottom: 3px solid #0d6efd !important;
+        padding: 1.25rem !important;
+    }
+    
+    .download-btn {
+        border-radius: 0 !important;
+        padding: 0.8rem 2.5rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    
+    .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+    
+    .instruction-box {
+        padding: 1.5rem;
+        background-color: #f8f9fa;
+        border-left: 4px solid #0d6efd;
+        margin: 1.5rem 0;
+    }
+    
+    .email-link {
+        color: #0d6efd;
+        text-decoration: none;
+        border-bottom: 1px dashed #0d6efd;
+        transition: all 0.2s ease;
+    }
+    
+    .email-link:hover {
+        border-bottom: 1px solid #0d6efd;
+    }
+</style>
+
+<div class="container px-0 mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Application card -->
+            <div class="card shadow">
+                <div class="card-header-blue border-0">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-file-earmark-pdf fs-2 text-primary me-3"></i>
+                        <h3 class="mb-0 mt-2 text-navy">@rm.APPLY</h3>
+                    </div>
+                </div>
+                <div class="card-body p-4 p-lg-5">
+                    <!-- Download button section -->
+                    <div class="text-center mb-5">
+                        <div class="mb-4">
+                            <img src="~/Images/pdf_icon.png" alt="PDF Document" class="img-fluid" style="max-height: 80px;" onerror="this.style.display='none'">
+                        </div>
+                        <h4 class="mb-4 text-navy">Rental Application Form</h4>
+                        <a href="~/data/application.pdf" download="application.pdf" class="btn btn-primary download-btn">
+                            <i class="bi bi-download me-2"></i>@rm.APPLY_CLICKTODOWNLOAD
+                        </a>
+                    </div>
+                    
+                    <!-- Instructions section -->
+                    <div class="instruction-box">
+                        <h5 class="fw-bold text-navy mb-3">@rm.APPLY_INSTRUCTIONS</h5>
+                        <ol class="ps-3">
+                            <li class="mb-2">Download the application using the button above</li>
+                            <li class="mb-2">Open the PDF file with a PDF reader such as Adobe Acrobat</li>
+                            <li class="mb-2">Fill out all required fields in the application form</li>
+                            <li class="mb-2">Save the completed application to your computer</li>
+                            <li class="mb-2">Email the saved application to us at the address below</li>
+                        </ol>
+                        <div class="alert alert-warning mt-3 mb-0" style="border-radius: 0;">
+                            <div class="d-flex">
+                                <i class="bi bi-exclamation-triangle fs-4 me-2"></i>
+                                <p class="mb-0"><strong>Important:</strong> @rm.APPLY_DONTFORGETSAVE</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email submission section -->
+                    <div class="text-center p-4 bg-light mt-4" style="border-radius: 0;">
+                        <h5 class="mb-3 text-navy">Submit Your Application</h5>
+                        <p class="mb-2">@rm.APPLY_EMAILTO</p>
+                        <a href="mailto:@Shared.Configuration?.EmailAddress" class="email-link fs-5">
+                            <i class="bi bi-envelope me-2"></i>@Shared.Configuration.EmailAddress
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
