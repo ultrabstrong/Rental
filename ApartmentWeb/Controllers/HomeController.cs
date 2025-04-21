@@ -7,8 +7,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using logrm = Resources.Website.Logs;
-using rm = Resources.Website.Home;
 
 namespace ApartmentWeb.Controllers
 {
@@ -54,26 +52,26 @@ namespace ApartmentWeb.Controllers
                     return Json(new SubmitResponse { isSuccess = false, hasValidationErrors = true });
                 }
 
-                Log.Logger.Debug(logrm.creatingViewHtml);
+                Log.Logger.Debug("Creating view HTML");
                 var html = RenderRazorViewToString(nameof(this.Apply), application);
 
-                Log.Logger.Debug(logrm.convertingHtmlToPDF);
+                Log.Logger.Debug("Converting HTML to PDF");
                 var pdf = HtmlConverter.ToPdf(html,
                     Shared.Configuration.CompanyName,
                     $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
                     $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
 
-                Log.Logger.Debug(logrm.sendingEmail);
+                Log.Logger.Debug("Sending email");
                 using (MemoryStream pdfStream = new MemoryStream(pdf))
                 using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                 {
                     emailService.SendEmail(application, pdfStream);
                 }
-                Log.Logger.Debug(logrm.finishedSendingEmail);
+                Log.Logger.Debug("Finished sending email");
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, logrm.failSubmitApp);
+                Log.Logger.Error(ex, "Failed to submit application");
                 return Json(new SubmitResponse() { isSuccess = false });
             }
 
@@ -95,26 +93,26 @@ namespace ApartmentWeb.Controllers
                     return Json(new SubmitResponse { isSuccess = false, hasValidationErrors = true });
                 }
 
-                Log.Logger.Debug(logrm.creatingViewHtml);
+                Log.Logger.Debug("Creating view HTML");
                 var html = RenderRazorViewToString(nameof(this.MaintenanceRequest), maintenanceRequest);
 
-                Log.Logger.Debug(logrm.convertingHtmlToPDF);
+                Log.Logger.Debug("Converting HTML to PDF");
                 var pdf = HtmlConverter.ToPdf(html,
                     Shared.Configuration.CompanyName,
                     $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
                     $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
 
-                Log.Logger.Debug(logrm.sendingMaintEmail);
+                Log.Logger.Debug("Sending maintenance email");
                 using (var pdfStream = new MemoryStream(pdf))
                 using (var emailService = new EmailService(Shared.Configuration.MailSettings))
                 {
                     emailService.SendEmail(maintenanceRequest, pdfStream);
                 }
-                Log.Logger.Debug(logrm.finishedSendingMaintEmail);
+                Log.Logger.Debug("Finished sending maintenance email");
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, logrm.failSubmitMaintReq);
+                Log.Logger.Error(ex, "Failed to submit maintenance request");
                 return Json(new SubmitResponse() { isSuccess = false });
             }
 
@@ -138,7 +136,7 @@ namespace ApartmentWeb.Controllers
         public ActionResult ReloadConfig()
         {
             Shared.LoadConfiguration();
-            return Content(rm.HOME_CONFIG_RELOADED);
+            return Content("Configuration has been reloaded");
         }
     }
 }

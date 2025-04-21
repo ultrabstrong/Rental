@@ -535,10 +535,6 @@
       <Project>{f9b906fb-3672-4312-aeb4-41fcce66097c}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Resources\Resources.csproj">
-      <Project>{5c96e402-be19-4080-af93-21f5709ad18d}</Project>
-      <Name>Resources</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

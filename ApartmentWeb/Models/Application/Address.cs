@@ -1,25 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
 
 namespace ApartmentWeb.Models.Application
 {
     public class Address
     {
-        [Display(Name = nameof(rm.ADDRESS_STREET), ResourceType = typeof(rm))]
+        [Display(Name = "Street")]
         //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_STREET), ErrorMessageResourceType = typeof(vrm))]
         public string Street { get; set; }
 
-        [Display(Name = nameof(rm.ADDRESS_CITY), ResourceType = typeof(rm))]
+        [Display(Name = "City")]
         //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_CITY), ErrorMessageResourceType = typeof(vrm))]
         public string City { get; set; }
 
-        [Display(Name = nameof(rm.ADDRESS_STATE), ResourceType = typeof(rm))]
+        [Display(Name = "State")]
         //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_STATE), ErrorMessageResourceType = typeof(vrm))]
         public string State { get; set; }
 
-        [Display(Name = nameof(rm.ADDRESS_ZIP), ResourceType = typeof(rm))]
+        [Display(Name = "Zip")]
         //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_ZIP), ErrorMessageResourceType = typeof(vrm))]
         public string Zip { get; set; }
-
     }
 }

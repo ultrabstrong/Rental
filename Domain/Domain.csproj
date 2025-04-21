@@ -88,12 +88,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Resources\Resources.csproj">
-      <Project>{5c96e402-be19-4080-af93-21f5709ad18d}</Project>
-      <Name>Resources</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

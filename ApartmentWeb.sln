@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentWeb", "ApartmentWe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{F9B906FB-3672-4312-AEB4-41FCCE66097C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{5C96E402-BE19-4080-AF93-21F5709AD18D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonVersion", "CommonVersion", "{FF0C56D2-C279-4148-967B-691EF91C55FA}"
 	ProjectSection(SolutionItems) = preProject
 		CommonAssemblyFileVersion.cs = CommonAssemblyFileVersion.cs
@@ -30,10 +28,6 @@ Global
 		{F9B906FB-3672-4312-AEB4-41FCCE66097C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9B906FB-3672-4312-AEB4-41FCCE66097C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9B906FB-3672-4312-AEB4-41FCCE66097C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C96E402-BE19-4080-AF93-21F5709AD18D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C96E402-BE19-4080-AF93-21F5709AD18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C96E402-BE19-4080-AF93-21F5709AD18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C96E402-BE19-4080-AF93-21F5709AD18D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{58B6A762-C8B0-44AF-911D-802D854783E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58B6A762-C8B0-44AF-911D-802D854783E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58B6A762-C8B0-44AF-911D-802D854783E0}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -2,8 +2,6 @@
 using ApartmentWeb.Validation;
 using Domain.Models;
 using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
-using vrm = Resources.WebsiteModels.ApplicationValidation;
 
 namespace ApartmentWeb.Models.Application
 {
@@ -14,186 +12,186 @@ namespace ApartmentWeb.Models.Application
 
         }
 
-        [Display(Name = nameof(rm.APP_RENTAL_ADDRESS), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.APP_RENTAL_ADDRESS), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Rental Address")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the rental address")]
         public string RentalAddress { get; set; }
 
-        [Display(Name = nameof(rm.APP_OTHER_APPLICANTS), ResourceType = typeof(rm))]
+        [Display(Name = "Who else from your group is applying for this location?")]
         public string OtherApplicants { get; set; }
 
-        [Display(Name = nameof(rm.APP_PERSONAL_INFO), ResourceType = typeof(rm))]
+        [Display(Name = "Tell us about you")]
         public PersonalInfo PersonalInfo { get; set; } = new PersonalInfo();
 
         public EmploymentInfo PrimaryEmployment { get; set; } = new EmploymentInfo()
         {
-            DisplayName = rm.APP_PRIMARY_EMPLOYMENT,
+            DisplayName = "Tell us about your job",
             AllowElectiveRequire = true,
-            ElectiveRequireDisplay = rm.APP_HAS_JOB
+            ElectiveRequireDisplay = "Do you have a job?"
         };
 
         public EmploymentInfo SecondaryEmployment { get; set; } = new EmploymentInfo()
         {
-            DisplayName = rm.APP_SECOND_EMPLOYMENT,
+            DisplayName = "Tell us about your second job",
             AllowElectiveRequire = true,
-            ElectiveRequireDisplay = rm.APP_HAS_SECOND_JOB
+            ElectiveRequireDisplay = "Do you have a second job?"
         };
 
         public ParentInfo ParentInfo { get; set; } = new ParentInfo()
         {
-            DisplayName = rm.APP_PARENT_INFO
+            DisplayName = "Parent Information"
         };
 
-        [Display(Name = nameof(rm.APP_CONSIDER_OTHER_INCOME), ResourceType = typeof(rm))]
+        [Display(Name = "Is there another source of income you would like considered?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_CONSIDER_OTHER_INCOME), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if you have other sources of income")]
         public YesNo ConsiderOtherIncome { get; set; }
 
-        [Display(Name = nameof(rm.APP_OTHER_INCOME), ResourceType = typeof(rm))]
+        [Display(Name = "Please explain:")]
         [DataType(DataType.MultilineText)]
-        [RequireIfEnum(nameof(ConsiderOtherIncome), YesNo.Yes, nameof(vrm.APP_OTHER_INCOME), typeof(vrm))]
+        [RequireIfEnum(nameof(ConsiderOtherIncome), YesNo.Yes, "Please explain your other sources of income", null)]
         public string OtherIncomeExplain { get; set; }
 
         public Automobile Automobile { get; set; } = new Automobile()
         {
-            DisplayName = rm.APP_AUTOMOBILE,
+            DisplayName = "What kind of vehicle do you own?",
             AllowElectiveRequire = true
         };
 
         public RentalReference CurrentRental { get; set; } = new RentalReference()
         {
-            DisplayName = rm.APP_CURRENT_RESIDENCE,
+            DisplayName = "Two year's rental references preferred. Please list your actual landlord, property manager, or RA.",
             ElectiveRequireValue = YesNo.Yes
         };
 
         public RentalReference PriorRentRef1 { get; set; } = new RentalReference()
         {
-            DisplayName = rm.APP_RENT_REF_1,
+            DisplayName = "Previous Rental",
             AllowElectiveRequire = true,
             ElectiveRequireValue = YesNo.No,
-            ElectiveRequireDisplay = rm.APP_ADD_RENT_REF
+            ElectiveRequireDisplay = "Add rental history"
         };
 
         public RentalReference PriorRentRef2 { get; set; } = new RentalReference()
         {
-            DisplayName = rm.APP_RENT_REF_2,
+            DisplayName = "Rental Reference #3",
             AllowElectiveRequire = true,
             ElectiveRequireValue = YesNo.No,
-            ElectiveRequireDisplay = rm.APP_ADD_RENT_REF
+            ElectiveRequireDisplay = "Add rental history"
         };
 
         public PersonalReference PersonalReference1 = new PersonalReference()
         {
-            DisplayName = rm.APP_PERSONAL_REF_1,
+            DisplayName = "Personal reference #1",
             AllowElectiveRequire = true,
             ElectiveRequireValue = YesNo.No,
-            ElectiveRequireDisplay = rm.APP_ADD_PERSONAL_REF
+            ElectiveRequireDisplay = "Add personal reference"
         };
 
         public PersonalReference PersonalReference2 = new PersonalReference()
         {
-            DisplayName = rm.APP_PERSONAL_REF_2,
+            DisplayName = "Personal reference #2",
             AllowElectiveRequire = true,
             ElectiveRequireValue = YesNo.No,
-            ElectiveRequireDisplay = rm.APP_ADD_PERSONAL_REF
+            ElectiveRequireDisplay = "Add personal reference"
         };
 
-        [Display(Name = nameof(rm.APP_ANTICIPATED_DURATION), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.APP_ANTICIPATED_DURATION), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "How long do you anticipate leasing this dwelling?")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please indicate your anticipated length of stay")]
         public string AnticipatedDuration { get; set; }
 
-        [Display(Name = nameof(rm.APP_HAS_CRIMINAL_RECORD), ResourceType = typeof(rm))]
+        [Display(Name = "Does anyone applying for this apartment have a criminal record?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_HAS_CRIMINAL_RECORD), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if anyone applying has a criminal record")]
         public YesNo HasCriminalRecord { get; set; }
 
-        [Display(Name = nameof(rm.APP_CRIMINAL_RECORD), ResourceType = typeof(rm))]
+        [Display(Name = "Please explain")]
         [DataType(DataType.MultilineText)]
-        [RequireIfEnum(nameof(HasCriminalRecord), YesNo.Yes, nameof(vrm.APP_CRIMINAL_RECORD), typeof(vrm))]
+        [RequireIfEnum(nameof(HasCriminalRecord), YesNo.Yes, "Please explain the criminal record", null)]
         public string ExplainCriminalRecord { get; set; }
 
-        [Display(Name = nameof(rm.APP_HAS_BEEN_EVICTED), ResourceType = typeof(rm))]
+        [Display(Name = "Has anyone applying ever had their lease agreement terminated or been evicted?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_HAS_BEEN_EVICTED), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if anyone applying has been evicted")]
         public YesNo HasBeenEvicted { get; set; }
 
-        [Display(Name = nameof(rm.APP_EVICTED_EXPLAIN), ResourceType = typeof(rm))]
+        [Display(Name = "Please explain")]
         [DataType(DataType.MultilineText)]
-        [RequireIfEnum(nameof(HasBeenEvicted), YesNo.Yes, nameof(vrm.APP_EVICTED_EXPLAIN), typeof(vrm))]
+        [RequireIfEnum(nameof(HasBeenEvicted), YesNo.Yes, "Please explain the eviction", null)]
         public string ExplainBeenEvicted { get; set; }
 
-        [Display(Name = nameof(rm.APP_MARIJUANA), ResourceType = typeof(rm))]
+        [Display(Name = "Do any applicants have or anticipate obtaining a Medical Marijuana Caregiver or Patient card designation?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_MARIJUANA), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if any applicants have or anticipate obtaining a Medical Marijuana card")]
         public YesNo MarijuanaCard { get; set; }
 
-        [Display(Name = nameof(rm.APP_SMOKERS), ResourceType = typeof(rm))]
+        [Display(Name = "Do any of the people that will be residing in this unit smoke anything?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_SMOKERS), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if any residents smoke")]
         public YesNo Smokers { get; set; }
 
-        [Display(Name = nameof(rm.APP_SMOKERS_COUNT), ResourceType = typeof(rm))]
-        [RangeIfEnum("1", 0, "5", nameof(Smokers), YesNo.Yes, nameof(vrm.APP_SMOKERS_COUNT), typeof(vrm))]
+        [Display(Name = "How many individuals smoke?")]
+        [RangeIfEnum("1", 0, "5", nameof(Smokers), YesNo.Yes, "Please enter the number of smokers", null)]
         public int SmokersCount { get; set; }
 
-        [Display(Name = nameof(rm.APP_DRINKERS), ResourceType = typeof(rm))]
+        [Display(Name = "Do any of the people that will be residing in this unit drink alcohol?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_DRINKERS), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if any residents drink alcohol")]
         public YesNo Drinkers { get; set; }
 
-        [Display(Name = nameof(rm.APP_DRINKERS_HOWOFTEN), ResourceType = typeof(rm))]
-        [RangeIfEnum("1", 0, "3", nameof(Drinkers), YesNo.Yes, nameof(vrm.APP_DRINKERS_HOWOFTEN), typeof(vrm))]
+        [Display(Name = "How Often")]
+        [RangeIfEnum("1", 0, "3", nameof(Drinkers), YesNo.Yes, "Please indicate how often residents drink", null)]
         public HowOften HowOftenDrink { get; set; }
 
-        [Display(Name = nameof(rm.APP_PETS), ResourceType = typeof(rm))]
+        [Display(Name = "Will there be any pets living on or in the premesis?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_PETS), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if there will be any pets")]
         public YesNo AnyPets { get; set; }
 
-        [Display(Name = nameof(rm.APP_PETS_DESCRIBE), ResourceType = typeof(rm))]
+        [Display(Name = "List and describe each pet")]
         [DataType(DataType.MultilineText)]
-        [RequireIfEnum(nameof(AnyPets), YesNo.Yes, nameof(vrm.APP_PETS_DESCRIBE), typeof(vrm))]
+        [RequireIfEnum(nameof(AnyPets), YesNo.Yes, "Please provide details about your pets", null)]
         public string DescribePets { get; set; }
 
-        [Display(Name = nameof(rm.APP_NON_HUMAN), ResourceType = typeof(rm))]
+        [Display(Name = "Will there be any animals, birds, reptiles, insects, fish, or other non-human life forms living on or in the premises?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_NON_HUMAN), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if there will be any non-human life forms")]
         public YesNo AnyNonHuman { get; set; }
 
-        [Display(Name = nameof(rm.APP_NON_HUMAN_DESCRIBE), ResourceType = typeof(rm))]
+        [Display(Name = "List and describe each of them")]
         [DataType(DataType.MultilineText)]
-        [RequireIfEnum(nameof(AnyNonHuman), YesNo.Yes, nameof(vrm.APP_NON_HUMAN_DESCRIBE), typeof(vrm))]
+        [RequireIfEnum(nameof(AnyNonHuman), YesNo.Yes, "Please provide details about the non-human life forms", null)]
         public string DescribeNonHuman { get; set; }
 
-        [Display(Name = nameof(rm.APP_ATTEND_COLLEGE), ResourceType = typeof(rm))]
+        [Display(Name = "Do you currently attend college?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_ATTEND_COLLEGE), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if you attend college")]
         public YesNo AttendCollege { get; set; }
 
-        [Display(Name = nameof(rm.APP_COLLEGE_YEARS), ResourceType = typeof(rm))]
-        [RangeIfEnum("0.1", 1, "20.0", nameof(AttendCollege), YesNo.Yes, nameof(vrm.APP_COLLEGE_YEARS), typeof(vrm))]
+        [Display(Name = "How many years have you attended?")]
+        [RangeIfEnum("0.1", 1, "20.0", nameof(AttendCollege), YesNo.Yes, "Please enter how many years you've attended college", null)]
         public int CollegeYearsAttended { get; set; }
 
-        [Display(Name = nameof(rm.APP_COLLEGE_GRADUATE), ResourceType = typeof(rm))]
+        [Display(Name = "When do you plan to graduate?")]
         [DataType(DataType.MultilineText)]
-        [RequireIfEnum(nameof(AttendCollege), YesNo.Yes, nameof(vrm.APP_COLLEGE_GRADUATE), typeof(vrm))]
+        [RequireIfEnum(nameof(AttendCollege), YesNo.Yes, "Please indicate when you plan to graduate", null)]
         public string PlanToGraduate { get; set; }
 
-        [Display(Name = nameof(rm.APP_ACCOMMODATION), ResourceType = typeof(rm))]
+        [Display(Name = "Is there a request for reasonable accommodation?")]
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_ACCOMMODATION), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if you need reasonable accommodation")]
         public YesNo NeedReasonableAccommodation { get; set; }
 
-        [Display(Name = nameof(rm.APP_ACCOMMODATION_DESCRIBE), ResourceType = typeof(rm))]
+        [Display(Name = "Please explain")]
         [DataType(DataType.MultilineText)]
-        [RequireIfEnum(nameof(NeedReasonableAccommodation), YesNo.Yes, nameof(vrm.APP_ACCOMMODATION_DESCRIBE), typeof(vrm))]
+        [RequireIfEnum(nameof(NeedReasonableAccommodation), YesNo.Yes, "Please explain your accommodation needs", null)]
         public string DescribeReasonableAccommodation { get; set; }
 
-        [Display(Name = nameof(rm.APP_CERT_AND_AUTH), ResourceType = typeof(rm))]
+        [Display(Name = "Do you agree to the following?")]
         [EnumDataType(typeof(Yes))]
-        [Range(1, 1, ErrorMessageResourceName = nameof(vrm.APP_CERT_AND_AUTH), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 1, ErrorMessage = "You must agree to the terms and conditions")]
         public Yes CertificationAndAuthorization { get; set; }
 
-        [Display(Name = nameof(rm.APP_ADDITIONAL_COMMENTS), ResourceType = typeof(rm))]
+        [Display(Name = "Additional comments for property manager")]
         [DataType(DataType.MultilineText)]
         public string AdditionalComments { get; set; }
 

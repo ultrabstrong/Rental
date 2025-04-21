@@ -1,8 +1,6 @@
 ﻿using ApartmentWeb.Enums;
 using ApartmentWeb.Validation;
 using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
-using vrm = Resources.WebsiteModels.ApplicationValidation;
 
 namespace ApartmentWeb.Models.Application
 {
@@ -14,42 +12,41 @@ namespace ApartmentWeb.Models.Application
 
         public string ElectiveRequireDisplay { get; set; }
 
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_HAS_SECOND_JOB), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if you have a job")]
         public YesNo ElectiveRequireValue { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_COMPANY), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_COMPANY), typeof(vrm))]
+        [Display(Name = "Company")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the company name", null)]
         public string Company { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_CONTACT), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_CONTACT), typeof(vrm))]
+        [Display(Name = "Contact Name")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the contact name", null)]
         public string ContactName { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_PHONE), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_PHONE), typeof(vrm))]
+        [Display(Name = "Contact Phone #")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the contact phone number", null)]
         public string ContactPhone { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_LENGTH), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_LENGTH), typeof(vrm))]
+        [Display(Name = "Length of employment")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your length of employment", null)]
         public string EmploymentLength { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_PERMENANT), ResourceType = typeof(rm))]
-        [RangeIfEnum("1", 0, "2", nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_PERMENANT), typeof(vrm))]
+        [Display(Name = "Is this a permanent position")]
+        [RangeIfEnum("1", 0, "2", nameof(ElectiveRequireValue), YesNo.Yes, "Please indicate if this is a permanent position", null)]
         public YesNo IsPermenant { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_WAGE_TYPE), ResourceType = typeof(rm))]
-        [RangeIfEnum("1", 0, "2", nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_WAGE_TYPE), typeof(vrm))]
+        [Display(Name = "Salary or hourly wage?")]
+        [RangeIfEnum("1", 0, "2", nameof(ElectiveRequireValue), YesNo.Yes, "Please select salary or hourly wage", null)]
         public WageType WageType { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_WAGE), ResourceType = typeof(rm))]
-        [RangeIfEnum("0.01", 2, nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_WAGE), typeof(vrm))]
+        [Display(Name = "Wage earned")]
+        [RangeIfEnum("0.01", 2, nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a wage greater than 0", null)]
         [DataType(DataType.Currency)]
         public double Wage { get; set; }
 
-        [Display(Name = nameof(rm.EMPLOY_HOURS), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_HOURS), typeof(vrm))]
-        [RangeIfEnum("1", 0, nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.EMPLOY_HOURS), typeof(vrm))]
+        [Display(Name = "How many hours do you work each week?")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your hours per week", null)]
+        [RangeIfEnum("1", 0, nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a number of hours greater than 0", null)]
         public int HoursPerWeek { get; set; }
-
     }
 }

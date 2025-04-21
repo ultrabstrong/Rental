@@ -1,8 +1,6 @@
 ﻿using ApartmentWeb.Enums;
 using ApartmentWeb.Validation;
 using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
-using vrm = Resources.WebsiteModels.ApplicationValidation;
 
 namespace ApartmentWeb.Models.Application
 {
@@ -12,33 +10,32 @@ namespace ApartmentWeb.Models.Application
 
         public bool AllowElectiveRequire { get; set; }
 
-        [Display(Name = nameof(rm.APP_HAS_AUTO), ResourceType = typeof(rm))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_HAS_AUTO), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Do you have an automobile?")]
+        [Range(1, 2, ErrorMessage = "Please indicate whether you have an automobile")]
         public YesNo ElectiveRequireValue { get; set; }
 
-        [Display(Name = nameof(rm.AUTO_MAKE), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.AUTO_MAKE), typeof(vrm))]
+        [Display(Name = "Make")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the make of your vehicle", null)]
         public string Make { get; set; }
 
-        [Display(Name = nameof(rm.AUTO_MODEL), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.AUTO_MODEL), typeof(vrm))]
+        [Display(Name = "Model")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the model of your vehicle", null)]
         public string Model { get; set; }
 
-        [Display(Name = nameof(rm.AUTO_YEAR), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.AUTO_YEAR), typeof(vrm))]
+        [Display(Name = "Year")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the year of your vehicle", null)]
         public string Year { get; set; }
 
-        [Display(Name = nameof(rm.AUTO_STATE), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.AUTO_STATE), typeof(vrm))]
+        [Display(Name = "State")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the registration state of your vehicle", null)]
         public string State { get; set; }
 
-        [Display(Name = nameof(rm.AUTO_LICENSE_NUM), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.AUTO_LICENSE_NUM), typeof(vrm))]
+        [Display(Name = "License Plate #")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the license plate number of your vehicle", null)]
         public string LicenseNum { get; set; }
 
-        [Display(Name = nameof(rm.AUTO_COLOR), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.AUTO_COLOR), typeof(vrm))]
+        [Display(Name = "Color")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the color of your vehicle", null)]
         public string Color { get; set; }
-
     }
 }

@@ -1,34 +1,32 @@
 ﻿using Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using rm = Resources.WebsiteModels.MaintenanceRequest;
-using vrm = Resources.WebsiteModels.MaintenanceValidation;
 
 namespace ApartmentWeb.Models.Maintenance
 {
     public class MaintenanceRequest : IEmailRequestBuilder
     {
-        [Display(Name = nameof(rm.MAINTENANCE_RENTAL_ADDRESS), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.MAINTENANCE_RENTAL_ADDRESS), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Rental Address")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the rental address")]
         public string RentalAddress { get; set; }
 
-        [Display(Name = nameof(rm.MAINTENANCE_FIRSTNAME), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.MAINTENANCE_FIRSTNAME), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "First Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your first name")]
         public string FirstName { get; set; }
 
-        [Display(Name = nameof(rm.MAINTENANCE_LASTNAME), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.MAINTENANCE_LASTNAME), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Last Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your last name")]
         public string LastName { get; set; }
 
-        [Display(Name = nameof(rm.MAINTENANCE_EMAIL), ResourceType = typeof(rm))]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Display(Name = nameof(rm.MAINTENANCE_PHONE), ResourceType = typeof(rm))]
+        [Display(Name = "Phone #")]
         public string Phone { get; set; }
 
-        [Display(Name = nameof(rm.MAINTENANCE_DESCRIPTION), ResourceType = typeof(rm))]
+        [Display(Name = "Please provide a brief summary of the maintenance needed")]
         [DataType(DataType.MultilineText)]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.MAINTENANCE_DESCRIPTION), ErrorMessageResourceType = typeof(vrm))]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide a description of the maintenance needed")]
         public string Description { get; set; }
 
         public EmailRequest BuildEmailRequest()

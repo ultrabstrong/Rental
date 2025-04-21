@@ -19,8 +19,15 @@ namespace ApartmentWeb.Validation
 
         public RequireIfEnumAttribute(string checkIfName, object checkIfValue, string errorName, Type errorType) : this(checkIfName, checkIfValue)
         {
-            ErrorMessageResourceName = errorName;
-            ErrorMessageResourceType = errorType;
+            if (errorType != null)
+            {
+                ErrorMessageResourceName = errorName;
+                ErrorMessageResourceType = errorType;
+            }
+            else
+            {
+                ErrorMessage = errorName; // Use direct error message when type is null
+            }
         }
 
         public RequireIfEnumAttribute(string checkIfName, object checkIfValue)
@@ -49,7 +56,7 @@ namespace ApartmentWeb.Validation
         {
             var rule = new ModelClientValidationRule
             {
-                ErrorMessage = ErrorMessageString,
+                ErrorMessage = ErrorMessage ?? ErrorMessageString,
                 ValidationType = nameof(RequireIfEnumAttribute).Replace(nameof(Attribute), "").ToLower()
             };
             rule.ValidationParameters[nameof(CheckIfName).ToLower()] = CheckIfName;

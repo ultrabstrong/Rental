@@ -2,8 +2,6 @@
 using ApartmentWeb.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
-using vrm = Resources.WebsiteModels.ApplicationValidation;
 
 namespace ApartmentWeb.Models.Application
 {
@@ -15,34 +13,33 @@ namespace ApartmentWeb.Models.Application
 
         public string ElectiveRequireDisplay { get; set; }
 
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_ADD_RENT_REF), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if you want to add a rental reference")]
         public YesNo ElectiveRequireValue { get; set; }
 
-        [Display(Name = nameof(rm.RENTREF_ADDRESS), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_ADDRESS), typeof(vrm))]
+        [Display(Name = "Address")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the address", null)]
         public Address Address { get; set; } = new Address();
 
-        [Display(Name = nameof(rm.RENTREF_NAME), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_NAME), typeof(vrm))]
+        [Display(Name = "Landlord name")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's name", null)]
         public string LandlordName { get; set; }
 
-        [Display(Name = nameof(rm.RENTREF_PHONE), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_PHONE), typeof(vrm))]
+        [Display(Name = "Landlord phone #")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's phone number", null)]
         public string LandlordPhoneNum { get; set; }
 
-        [Display(Name = nameof(rm.RENTREF_START), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_START), typeof(vrm))]
+        [Display(Name = "From")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the start date", null)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? Start { get; set; }
 
-        [Display(Name = nameof(rm.RENTREF_END), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_END), typeof(vrm))]
+        [Display(Name = "To")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the end date", null)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? End { get; set; }
 
-        [Display(Name = nameof(rm.RENTREF_MOVING_REASON), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.RENTREF_MOVING_REASON), typeof(vrm))]
+        [Display(Name = "Reason for moving")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your reason for moving", null)]
         public string ReasonForMoving { get; set; }
-
     }
 }

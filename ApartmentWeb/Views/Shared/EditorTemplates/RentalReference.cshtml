@@ -1,7 +1,7 @@
 ﻿@using ApartmentWeb.Enums;
 @using ApartmentWeb.Models.Application;
 @model RentalReference
-@using rm = Resources.Website.Application
+
 <div class="mt-2 avoid-break">
     <!-- Add rental reference -->
     <div class="row d-flex align-items-center @(Model.AllowElectiveRequire ? "" : "d-none") ">
@@ -25,7 +25,7 @@
             <div class="form-group col-@ViewBag.colsize-8">
                 @Html.LabelFor(model => model.LandlordName)
                 @if (!Model.AllowElectiveRequire)
-                {@Html.Label($" ( {rm.IF_APPLICABLE} )")}
+                {@Html.Label($" ( If applicable )")}
                 @Html.EditorFor(model => model.LandlordName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LandlordName, "", new { @class = "text-danger" })
             </div>
@@ -33,7 +33,7 @@
             <div class="form-group col-@ViewBag.colsize-4">
                 @Html.LabelFor(model => model.LandlordPhoneNum)
                 @if (!Model.AllowElectiveRequire)
-                {@Html.Label($" ( {rm.IF_APPLICABLE} )")}
+                {@Html.Label($" ( If applicable )")}
                 @Html.EditorFor(model => model.LandlordPhoneNum, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LandlordPhoneNum, "", new { @class = "text-danger" })
             </div>

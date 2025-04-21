@@ -29,8 +29,16 @@ namespace ApartmentWeb.Validation
             CheckIfName = checkIfName;
             EnumType = checkIfValue.GetType();
             CheckIfValue = (int)checkIfValue;
-            ErrorMessageResourceName = errorName;
-            ErrorMessageResourceType = errorType;
+            
+            if (errorType != null)
+            {
+                ErrorMessageResourceName = errorName;
+                ErrorMessageResourceType = errorType;
+            }
+            else
+            {
+                ErrorMessage = errorName; // Use direct error message when type is null
+            }
         }
 
         public RangeIfEnumAttribute(string minval, short accuracy, string checkIfName, object checkIfValue, string errorName, Type errorType)
@@ -41,8 +49,16 @@ namespace ApartmentWeb.Validation
             CheckIfName = checkIfName;
             EnumType = checkIfValue.GetType();
             CheckIfValue = (int)checkIfValue;
-            ErrorMessageResourceName = errorName;
-            ErrorMessageResourceType = errorType;
+            
+            if (errorType != null)
+            {
+                ErrorMessageResourceName = errorName;
+                ErrorMessageResourceType = errorType;
+            }
+            else
+            {
+                ErrorMessage = errorName; // Use direct error message when type is null
+            }
         }
 
         public RangeIfEnumAttribute(short accuracy, string maxval, string checkIfName, object checkIfValue, string errorName, Type errorType)
@@ -53,8 +69,16 @@ namespace ApartmentWeb.Validation
             CheckIfName = checkIfName;
             EnumType = checkIfValue.GetType();
             CheckIfValue = (int)checkIfValue;
-            ErrorMessageResourceName = errorName;
-            ErrorMessageResourceType = errorType;
+            
+            if (errorType != null)
+            {
+                ErrorMessageResourceName = errorName;
+                ErrorMessageResourceType = errorType;
+            }
+            else
+            {
+                ErrorMessage = errorName; // Use direct error message when type is null
+            }
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext context)
@@ -77,7 +101,7 @@ namespace ApartmentWeb.Validation
         {
             var rule = new ModelClientValidationRule
             {
-                ErrorMessage = ErrorMessageString,
+                ErrorMessage = ErrorMessage ?? ErrorMessageString,
                 ValidationType = nameof(RangeIfEnumAttribute).Replace(nameof(Attribute), "").ToLower()
             };
             rule.ValidationParameters[nameof(MinValue).ToLower()] = MinValue;

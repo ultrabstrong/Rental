@@ -8,7 +8,6 @@ using System.IO;
 using System.Reflection;
 using System.Web;
 using System.Xml.Serialization;
-using rm = Resources.Website.Logs;
 
 namespace ApartmentWeb
 {
@@ -63,7 +62,7 @@ namespace ApartmentWeb
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(rm.failGetSvcConfig, ex);
+                Log.Logger.Error("Failed to get service configuration", ex);
             }
         }
 

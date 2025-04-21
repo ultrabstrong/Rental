@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
-using vrm = Resources.WebsiteModels.ApplicationValidation;
 
 namespace ApartmentWeb.Models.Application
 {
@@ -12,37 +10,35 @@ namespace ApartmentWeb.Models.Application
 
         public string ElectiveRequireDisplay { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_FIRSTNAME), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_FIRSTNAME), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "First name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your first name")]
         public string FirstName { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_MIDDLENAME), ResourceType = typeof(rm))]
-        //[Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_MIDDLENAME), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Middle name")]
         public string MiddleName { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_LASTNAME), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_LASTNAME), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Last name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your last name")]
         public string LastName { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_PHONENUM), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_PHONENUM), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Phone #")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your phone number")]
         public string PhoneNum { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_SSN), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_SSN), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "SSN")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your SSN")]
         public string SSN { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_DL_NUM), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_DL_NUM), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Driver license #")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your driver license number")]
         public string DriverLicense { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_DL_STATE), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_DL_STATE), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "State of issue")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the state that issued your driver license")]
         public string DriverLicenseStateOfIssue { get; set; }
 
-        [Display(Name = nameof(rm.PERSONAL_EMAIL), ResourceType = typeof(rm))]
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = nameof(vrm.PERSONAL_EMAIL), ErrorMessageResourceType = typeof(vrm))]
+        [Display(Name = "Email")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your email address")]
         public string Email { get; set; }
-
     }
 }

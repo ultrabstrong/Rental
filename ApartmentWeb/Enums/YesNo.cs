@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
 
 namespace ApartmentWeb.Enums
 {
     public enum YesNo
     {
-        [Display(Name = nameof(rm.ENUM_YESNO_NO), ResourceType = typeof(rm))]
+        [Display(Name = "No")]
         No = 1,
-        [Display(Name = nameof(rm.ENUM_YESNO_YES), ResourceType = typeof(rm))]
+        [Display(Name = "Yes")]
         Yes = 2
     }
 }

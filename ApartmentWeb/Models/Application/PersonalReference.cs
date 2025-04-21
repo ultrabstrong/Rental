@@ -1,8 +1,6 @@
 ﻿using ApartmentWeb.Enums;
 using ApartmentWeb.Validation;
 using System.ComponentModel.DataAnnotations;
-using rm = Resources.WebsiteModels.Application;
-using vrm = Resources.WebsiteModels.ApplicationValidation;
 
 namespace ApartmentWeb.Models.Application
 {
@@ -15,20 +13,19 @@ namespace ApartmentWeb.Models.Application
         public string ElectiveRequireDisplay { get; set; }
 
         [EnumDataType(typeof(YesNo))]
-        [Range(1, 2, ErrorMessageResourceName = nameof(vrm.APP_ADD_PERSONAL_REF), ErrorMessageResourceType = typeof(vrm))]
+        [Range(1, 2, ErrorMessage = "Please indicate if you want to add a personal reference")]
         public YesNo ElectiveRequireValue { get; set; }
 
-        [Display(Name = nameof(rm.REF_NAME), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.REF_NAME), typeof(vrm))]
+        [Display(Name = "Name")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's name", null)]
         public string Name { get; set; }
 
-        [Display(Name = nameof(rm.REF_RELATION), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.REF_NAME), typeof(vrm))]
+        [Display(Name = "Relationship")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your relationship to this reference", null)]
         public string Relationship { get; set; }
 
-        [Display(Name = nameof(rm.REF_PHONE), ResourceType = typeof(rm))]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, nameof(vrm.REF_NAME), typeof(vrm))]
+        [Display(Name = "Phone #")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's phone number", null)]
         public string PhoneNum { get; set; }
-
     }
 }
