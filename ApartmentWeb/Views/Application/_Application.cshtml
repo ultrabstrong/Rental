@@ -5,240 +5,437 @@
 @{
     ViewBag.colsize = "sm";
 }
-@using (Html.BeginForm(nameof(HomeController.SubmitApplication), HomeController.Name, FormMethod.Post, new { @id = "application-form" }))
-{
-    @Html.AntiForgeryToken()
-    <!-- Display errors -->
-    if (ViewBag.Errors == true)
-    {
-        @Html.Label("Please resolve the following errors", htmlAttributes: new { @class = "h6 col-auto mt-2" })
-        @Html.ValidationSummary(false)
-        ViewBag.Errors = false;
-    }
-    <!-- Rental Address -->
-    <div>
-        @Html.LabelFor(model => model.RentalAddress)
-        @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger" })
-    </div>
-    <!-- Other Applicant -->
-    <div>
-        @Html.LabelFor(model => model.OtherApplicants)
-        @Html.EditorFor(model => model.OtherApplicants, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.OtherApplicants, "", new { @class = "text-danger" })
-    </div>
-    <!-- Personal Info -->
-    @Html.EditorFor(model => model.PersonalInfo)
-    <!-- Primary Employment -->
-    @Html.EditorFor(model => model.PrimaryEmployment)
-    <!-- Secondary Employment -->
-    @Html.EditorFor(model => model.SecondaryEmployment)
-    <!-- Parent Info -->
-    @Html.EditorFor(model => model.ParentInfo)
-    <!-- Consider Other Income -->
-    <div class="avoid-break">
-        <div class="row d-flex align-items-center mt-2">
-            @Html.LabelFor(model => model.ConsiderOtherIncome, htmlAttributes: new { @class = "h6 col-auto" })
-            <div class="col-@ViewBag.colsize-1 ">
-                @Html.EnumDropDownListFor(model => model.ConsiderOtherIncome, "-", new { @visibletogglefor = nameof(Model.OtherIncomeExplain), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.ConsiderOtherIncome, "", new { @class = "col-auto text-danger" })
-        </div>
-        <!-- Other Income Explain -->
-        <div id="@nameof(Model.OtherIncomeExplain)" @(Model.ConsiderOtherIncome == YesNo.Yes ? "" : "style=display:none;") class="container">
-            @Html.LabelFor(model => model.OtherIncomeExplain)
-            @Html.EditorFor(model => model.OtherIncomeExplain, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.OtherIncomeExplain, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <!-- Automobile -->
-    @Html.EditorFor(model => model.Automobile)
-    <!-- Current Rental -->
-    @Html.Label("Current Address", htmlAttributes: new { @class = "h6 col-auto mt-2" })
-    @Html.EditorFor(model => model.CurrentRental)
-    <!-- Prior rental reference 1 -->
-    @Html.EditorFor(model => model.PriorRentRef1)
-    <!-- Personal Reference 1 -->
-    @Html.EditorFor(model => model.PersonalReference1)
-    <!-- Personal Reference 2 -->
-    @Html.EditorFor(model => model.PersonalReference2)
-    <!-- Anticipated Duration -->
-    <div class="row d-flex align-items-center mt-2">
-        @Html.LabelFor(model => model.AnticipatedDuration, htmlAttributes: new { @class = "col-auto" })
-        <div class="col-@ViewBag.colsize-2">
-            @Html.EditorFor(model => model.AnticipatedDuration, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-        @Html.ValidationMessageFor(model => model.AnticipatedDuration, "", new { @class = "col-auto text-danger" })
-    </div>
-    <!-- Has Criminal Record -->
-    <div class="avoid-break">
-        <div class="row d-flex align-items-center mt-2">
-            @Html.LabelFor(model => model.HasCriminalRecord, htmlAttributes: new { @class = "col-auto" })
-            <div class="col-@ViewBag.colsize-1">
-                @Html.EnumDropDownListFor(model => model.HasCriminalRecord, "-", new { @visibletogglefor = nameof(Model.HasCriminalRecord), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.HasCriminalRecord, "", new { @class = "col-auto text-danger" })
-        </div>
-        <!-- Criminal Record Explain -->
-        <div id="@nameof(Model.HasCriminalRecord)" @(Model.HasCriminalRecord == YesNo.Yes ? "" : "style=display:none;") class="container">
-            @Html.LabelFor(model => model.ExplainCriminalRecord)
-            @Html.EditorFor(model => model.ExplainCriminalRecord, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ExplainCriminalRecord, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <!-- Has Been Evicted -->
-    <div class="avoid-break">
-        <div class="row d-flex align-items-center mt-2">
-            @Html.LabelFor(model => model.HasBeenEvicted, htmlAttributes: new { @class = "col-auto" })
-            <div class="col-@ViewBag.colsize-1">
-                @Html.EnumDropDownListFor(model => model.HasBeenEvicted, "-", new { @visibletogglefor = nameof(Model.HasBeenEvicted), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.HasBeenEvicted, "", new { @class = "col-auto text-danger" })
-        </div>
-        <!-- Evicted Explain -->
-        <div id="@nameof(Model.HasBeenEvicted)" @(Model.HasBeenEvicted == YesNo.Yes ? "" : "style=display:none;") class="container">
-            @Html.LabelFor(model => model.ExplainBeenEvicted)
-            @Html.EditorFor(model => model.ExplainBeenEvicted, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ExplainBeenEvicted, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <!-- Marijuana Card -->
-    <div class="row d-flex align-items-center mt-2">
-        @Html.LabelFor(model => model.MarijuanaCard, htmlAttributes: new { @class = "col-auto" })
-        <div class="col-@ViewBag.colsize-1 ">
-            @Html.EnumDropDownListFor(model => model.MarijuanaCard, "-", new { @class = "form-control" })
-        </div>
-        @Html.ValidationMessageFor(model => model.MarijuanaCard, "", new { @class = "col-auto text-danger " })
-    </div>
-    <!-- Has Smokers -->
-    <div class="row align-items-center mt-2 avoid-break">
-        @Html.LabelFor(model => model.Smokers, htmlAttributes: new { @class = "col-auto" })
-        <div class="col-@ViewBag.colsize-1">
-            @Html.EnumDropDownListFor(model => model.Smokers, "-", new { @visibletogglefor = nameof(Model.Smokers), @class = "yesno_visible_toggle form-control" })
-        </div>
-        <!-- Smokers Count -->
-        <div id="@nameof(Model.Smokers)" @(Model.Smokers == YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
-            @Html.LabelFor(model => model.SmokersCount, htmlAttributes: new { @class = $"col-auto" })
-            <div class="col-@ViewBag.colsize-2">
-                @Html.EditorFor(model => model.SmokersCount, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-            @Html.ValidationMessageFor(model => model.SmokersCount, "", new { @class = "col-auto text-danger " })
-        </div>
-        @Html.ValidationMessageFor(model => model.Smokers, "", new { @class = "col-auto text-danger " })
-    </div>
-    <!-- Has Drinkers -->
-    <div class="row d-flex align-items-center mt-2 avoid-break">
-        @Html.LabelFor(model => model.Drinkers, htmlAttributes: new { @class = "col-auto" })
-        <div class="col-@ViewBag.colsize-1 ">
-            @Html.EnumDropDownListFor(model => model.Drinkers, "-", new { @visibletogglefor = nameof(Model.Drinkers), @class = "yesno_visible_toggle form-control" })
-        </div>
-        <!-- Drinkers How Often -->
-        <div id="@nameof(Model.Drinkers)" @(Model.Drinkers == YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
-            @Html.LabelFor(model => model.HowOftenDrink, htmlAttributes: new { @class = $"col-auto" })
-            <div class="col-@ViewBag.colsize-7">
-                @Html.EnumDropDownListFor(model => model.HowOftenDrink, "-", new { @visibletogglefor = nameof(Model.Drinkers), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.HowOftenDrink, "", new { @class = "col-auto text-danger" })
-        </div>
-        @Html.ValidationMessageFor(model => model.Drinkers, "", new { @class = "col-auto text-danger " })
-    </div>
-    <!-- Has Pets -->
-    <div class="avoid-break">
-        <div class="row d-flex align-items-center mt-2">
-            @Html.LabelFor(model => model.AnyPets, htmlAttributes: new { @class = "col-auto" })
-            <div class="col-@ViewBag.colsize-1">
-                @Html.EnumDropDownListFor(model => model.AnyPets, "-", new { @visibletogglefor = nameof(Model.AnyPets), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.AnyPets, "", new { @class = "col-auto text-danger " })
-        </div>
-        <!-- Describe Pets -->
-        <div id="@nameof(Model.AnyPets)" @(Model.AnyPets == YesNo.Yes ? "" : "style=display:none;") class="container">
-            @Html.LabelFor(model => model.DescribePets)
-            @Html.EditorFor(model => model.DescribePets, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DescribePets, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <!-- Any Non Human -->
-    <div class="avoid-break">
-        <div class="row d-flex align-items-center mt-2">
-            @Html.LabelFor(model => model.AnyNonHuman, htmlAttributes: new { @class = "col-auto" })
-            <div class="col-@ViewBag.colsize-1">
-                @Html.EnumDropDownListFor(model => model.AnyNonHuman, "-", new { @visibletogglefor = nameof(Model.AnyNonHuman), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.AnyNonHuman, "", new { @class = "col-auto text-danger " })
-        </div>
-        <!-- Describe Non Human -->
-        <div id="@nameof(Model.AnyNonHuman)" @(Model.AnyNonHuman == YesNo.Yes ? "" : "style=display:none;") class="container">
-            @Html.LabelFor(model => model.DescribeNonHuman)
-            @Html.EditorFor(model => model.DescribeNonHuman, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DescribeNonHuman, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <!-- Attend College -->
-    <div class="avoid-break">
-        <div class="row d-flex align-items-center mt-2">
-            @Html.LabelFor(model => model.AttendCollege, htmlAttributes: new { @class = "col-auto" })
-            <div class="col-@ViewBag.colsize-1">
-                @Html.EnumDropDownListFor(model => model.AttendCollege, "-", new { @visibletogglefor = nameof(Model.AttendCollege), @class = "yesno_visible_toggle form-control" })
-            </div>
-            <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == YesNo.Yes ? "" : "style=display:none;") class="row col-auto align-items-center">
-                @Html.LabelFor(model => model.CollegeYearsAttended, htmlAttributes: new { @class = "col-auto" })
-                <div class="col-@ViewBag.colsize-2">
-                    @Html.EditorFor(model => model.CollegeYearsAttended, new { htmlAttributes = new { @class = "form-control" } })
+
+<div class="container px-0 mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Application Form Card -->
+            <div class="card border-0 shadow overflow-hidden">
+                <!-- Application Header -->
+                <div class="card-header bg-primary-subtle p-4 border-0">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-file-text fs-2 text-primary me-3"></i>
+                        <h3 class="mb-0 text-dark">Rental Application</h3>
+                    </div>
                 </div>
-                @Html.ValidationMessageFor(model => model.CollegeYearsAttended, "", new { @class = "col-auto text-danger" })
+                
+                <!-- Application Body -->
+                <div class="card-body p-4 p-lg-5">
+                    @using (Html.BeginForm(nameof(HomeController.SubmitApplication), HomeController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        
+                        <!-- Display errors -->
+                        if (ViewBag.Errors == true)
+                        {
+                            <div class="alert alert-danger mb-4">
+                                <h6 class="mb-2">Please resolve the following errors</h6>
+                                @Html.ValidationSummary(false)
+                            </div>
+                            ViewBag.Errors = false;
+                        }
+                        
+                        <!-- Rental Address -->
+                        <div class="mb-4">
+                            @Html.LabelFor(model => model.RentalAddress, new { @class = "form-label fw-bold text-dark" })
+                            @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter the rental address" } })
+                            @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger mt-1" })
+                        </div>
+
+                        <!-- Other Applicant -->
+                        <div class="mb-4">
+                            @Html.LabelFor(model => model.OtherApplicants, new { @class = "form-label fw-bold text-dark" })
+                            @Html.EditorFor(model => model.OtherApplicants, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter other applicants (if any)" } })
+                            @Html.ValidationMessageFor(model => model.OtherApplicants, "", new { @class = "text-danger mt-1" })
+                        </div>
+                        
+                        <!-- Personal Info Section -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Personal Information</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                @Html.EditorFor(model => model.PersonalInfo)
+                            </div>
+                        </div>
+                        
+                        <!-- Current Rental - Moved up between Personal Info and Primary Employment -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Current Address</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                @Html.EditorFor(model => model.CurrentRental)
+                            </div>
+                        </div>
+                        
+                        <!-- Employment Sections -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Primary Employment</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                @Html.EditorFor(model => model.PrimaryEmployment)
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Secondary Employment (if applicable)</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                @Html.EditorFor(model => model.SecondaryEmployment)
+                            </div>
+                        </div>
+                        
+                        <!-- Parent Info -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Parent Information</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                @Html.EditorFor(model => model.ParentInfo)
+                            </div>
+                        </div>
+                        
+                        <!-- Automobile -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Automobile Information</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                @Html.EditorFor(model => model.Automobile)
+                            </div>
+                        </div>
+                        
+                        <!-- Prior rental reference 1 -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Prior Rental Reference</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                @Html.EditorFor(model => model.PriorRentRef1)
+                            </div>
+                        </div>
+                        
+                        <!-- Personal References -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Personal References</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                <!-- Personal Reference 1 -->
+                                <div class="mb-4">
+                                    <h5 class="mb-3">Reference #1</h5>
+                                    @Html.EditorFor(model => model.PersonalReference1)
+                                </div>
+                                
+                                <!-- Personal Reference 2 -->
+                                <div>
+                                    <h5 class="mb-3">Reference #2</h5>
+                                    @Html.EditorFor(model => model.PersonalReference2)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Information Card -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0">Additional Information</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                <!-- Anticipated Duration -->
+                                <div class="row mb-4 align-items-center">
+                                    @Html.LabelFor(model => model.AnticipatedDuration, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.AnticipatedDuration, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                                        @Html.ValidationMessageFor(model => model.AnticipatedDuration, "", new { @class = "text-danger mt-1" })
+                                    </div>
+                                </div>
+                                
+                                <!-- Has Criminal Record - Grouped with visual cues -->
+                                <div class="mb-4 criminal-record-section">
+                                    <!-- Criminal Record question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.HasCriminalRecord, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.HasCriminalRecord, "-", new { @visibletogglefor = nameof(Model.HasCriminalRecord), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.HasCriminalRecord, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Criminal Record description field (indented and visually connected) -->
+                                    <div id="@nameof(Model.HasCriminalRecord)" @(Model.HasCriminalRecord == YesNo.Yes ? "" : "style=display:none;") class="criminal-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.ExplainCriminalRecord, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.ExplainCriminalRecord, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please provide details about your criminal record" } })
+                                            @Html.ValidationMessageFor(model => model.ExplainCriminalRecord, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Has Been Evicted - Grouped with visual cues -->
+                                <div class="mb-4 eviction-section">
+                                    <!-- Eviction question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.HasBeenEvicted, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.HasBeenEvicted, "-", new { @visibletogglefor = nameof(Model.HasBeenEvicted), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.HasBeenEvicted, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Eviction description field (indented and visually connected) -->
+                                    <div id="@nameof(Model.HasBeenEvicted)" @(Model.HasBeenEvicted == YesNo.Yes ? "" : "style=display:none;") class="eviction-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.ExplainBeenEvicted, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.ExplainBeenEvicted, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please provide details about your eviction" } })
+                                            @Html.ValidationMessageFor(model => model.ExplainBeenEvicted, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Marijuana Card -->
+                                <div class="row mb-4 align-items-center">
+                                    @Html.LabelFor(model => model.MarijuanaCard, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                    <div class="col-md-6">
+                                        @Html.EnumDropDownListFor(model => model.MarijuanaCard, "-", new { @class = "form-control form-control-lg" })
+                                        @Html.ValidationMessageFor(model => model.MarijuanaCard, "", new { @class = "text-danger mt-1" })
+                                    </div>
+                                </div>
+                                
+                                <!-- Has Smokers - Grouped with visual cues -->
+                                <div class="mb-4 smokers-section">
+                                    <!-- Smokers question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.Smokers, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.Smokers, "-", new { @visibletogglefor = nameof(Model.Smokers), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.Smokers, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Smokers count field (indented and visually connected) -->
+                                    <div id="@nameof(Model.Smokers)" @(Model.Smokers == YesNo.Yes ? "" : "style=display:none;") class="smokers-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.SmokersCount, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.SmokersCount, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter number of smokers" } })
+                                            @Html.ValidationMessageFor(model => model.SmokersCount, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Has Drinkers - Grouped with visual cues -->
+                                <div class="mb-4 drinkers-section">
+                                    <!-- Drinkers question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.Drinkers, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.Drinkers, "-", new { @visibletogglefor = nameof(Model.Drinkers), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.Drinkers, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- How Often Drink field (indented and visually connected) -->
+                                    <div id="@nameof(Model.Drinkers)" @(Model.Drinkers == YesNo.Yes ? "" : "style=display:none;") class="drinkers-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.HowOftenDrink, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EnumDropDownListFor(model => model.HowOftenDrink, "-", new { @class = "form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.HowOftenDrink, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Has Pets - Grouped with visual cues -->
+                                <div class="mb-4 pet-section">
+                                    <!-- Pet question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.AnyPets, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.AnyPets, "-", new { @visibletogglefor = nameof(Model.AnyPets), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.AnyPets, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pet description field (indented and visually connected) -->
+                                    <div id="@nameof(Model.AnyPets)" @(Model.AnyPets == YesNo.Yes ? "" : "style=display:none;") class="pet-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.DescribePets, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.DescribePets, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please list and describe each pet (type, breed, age, size, etc.)" } })
+                                            @Html.ValidationMessageFor(model => model.DescribePets, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Any Non Human - Grouped with visual cues -->
+                                <div class="mb-4 non-human-section">
+                                    <!-- Non Human question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.AnyNonHuman, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.AnyNonHuman, "-", new { @visibletogglefor = nameof(Model.AnyNonHuman), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.AnyNonHuman, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Non Human description field (indented and visually connected) -->
+                                    <div id="@nameof(Model.AnyNonHuman)" @(Model.AnyNonHuman == YesNo.Yes ? "" : "style=display:none;") class="non-human-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.DescribeNonHuman, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.DescribeNonHuman, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please describe the non-human entity" } })
+                                            @Html.ValidationMessageFor(model => model.DescribeNonHuman, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Attend College - Grouped with visual cues -->
+                                <div class="mb-4 college-section">
+                                    <!-- College question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.AttendCollege, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.AttendCollege, "-", new { @visibletogglefor = nameof(Model.AttendCollege), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.AttendCollege, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- College details (indented and visually connected) -->
+                                    <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == YesNo.Yes ? "" : "style=display:none;") class="college-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.CollegeYearsAttended, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.CollegeYearsAttended, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter years attended" } })
+                                            @Html.ValidationMessageFor(model => model.CollegeYearsAttended, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                        
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.PlanToGraduate, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.PlanToGraduate, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please provide your graduation plans" } })
+                                            @Html.ValidationMessageFor(model => model.PlanToGraduate, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Need Reasonable Accommodation - Grouped with visual cues -->
+                                <div class="mb-4 accommodation-section">
+                                    <!-- Accommodation question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.NeedReasonableAccommodation, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.NeedReasonableAccommodation, "-", new { @visibletogglefor = nameof(Model.NeedReasonableAccommodation), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.NeedReasonableAccommodation, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Accommodation description field (indented and visually connected) -->
+                                    <div id="@nameof(Model.NeedReasonableAccommodation)" @(Model.NeedReasonableAccommodation == YesNo.Yes ? "" : "style=display:none;") class="accommodation-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.DescribeReasonableAccommodation, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.DescribeReasonableAccommodation, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please describe needed accommodations" } })
+                                            @Html.ValidationMessageFor(model => model.DescribeReasonableAccommodation, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Consider Other Income - Grouped with visual cues -->
+                                <!-- Moved to Additional Information section -->
+                                <div class="other-income-section">
+                                    <!-- Other Income question header -->
+                                    <div class="row mb-3 align-items-center">
+                                        @Html.LabelFor(model => model.ConsiderOtherIncome, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                        <div class="col-md-6">
+                                            @Html.EnumDropDownListFor(model => model.ConsiderOtherIncome, "-", new { @visibletogglefor = nameof(Model.OtherIncomeExplain), @class = "yesno_visible_toggle form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(model => model.ConsiderOtherIncome, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Other Income description field (indented and visually connected) -->
+                                    <div id="@nameof(Model.OtherIncomeExplain)" @(Model.ConsiderOtherIncome == YesNo.Yes ? "" : "style=display:none;") class="other-income-details ms-4 ps-3 border-start border-primary">
+                                        <div class="mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                                @Html.LabelFor(model => model.OtherIncomeExplain, new { @class = "form-label fw-bold mb-0 text-dark" })
+                                            </div>
+                                            @Html.EditorFor(model => model.OtherIncomeExplain, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please explain your other sources of income" } })
+                                            @Html.ValidationMessageFor(model => model.OtherIncomeExplain, "", new { @class = "text-danger mt-1" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Additional Comments -->
+                                <div class="mb-4">
+                                    @Html.LabelFor(model => model.AdditionalComments, new { @class = "form-label fw-bold text-dark" })
+                                    @Html.TextAreaFor(model => model.AdditionalComments, new { @class = "form-control form-control-lg", rows = "4", placeholder = "Add any additional information here" })
+                                    @Html.ValidationMessageFor(model => model.AdditionalComments, "", new { @class = "text-danger mt-1" })
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Certification And Authorization -->
+                        <div class="card mb-5">
+                            <div class="card-header bg-light py-3">
+                                <h5 class="mb-0 text-center">Certification And Authorization</h5>
+                            </div>
+                            <div class="card-body pt-4">
+                                <div class="row mb-4 align-items-center">
+                                    @Html.LabelFor(model => model.CertificationAndAuthorization, new { @class = "col-md-6 form-label fw-bold text-dark" })
+                                    <div class="col-md-6">
+                                        @Html.EnumDropDownListFor(model => model.CertificationAndAuthorization, "-", new { @class = "form-control form-control-lg" })
+                                        @Html.ValidationMessageFor(model => model.CertificationAndAuthorization, "", new { @class = "text-danger mt-1" })
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <p>I (we) certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit button -->
+                        if (ViewBag.inlinecss == null)
+                        {
+                            <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto">
+                                <button type="submit" class="btn btn-primary btn-lg py-3">Submit Application</button>
+                            </div>
+                        }
+                    }
+                    
+                    <!-- Brief note -->
+                    <div class="text-center text-muted mt-4">
+                        <p class="mb-0 small">If you have any questions about this application, please <a href="@Url.Action(nameof(HomeController.ContactUs), HomeController.Name)" class="text-primary">contact us</a>.</p>
+                    </div>
+                </div>
             </div>
-            @Html.ValidationMessageFor(model => model.AttendCollege, "", new { @class = "col-auto text-danger " })
-        </div>
-        <!-- College Information -->
-        <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == YesNo.Yes ? "" : "style=display:none;") class="container mt-2">
-            @Html.LabelFor(model => model.PlanToGraduate)
-            @Html.EditorFor(model => model.PlanToGraduate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PlanToGraduate, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="avoid-break">
-        <!-- Need Reasonable Accommodation -->
-        <div class="row d-flex align-items-center mt-2">
-            @Html.LabelFor(model => model.NeedReasonableAccommodation, htmlAttributes: new { @class = "col-auto" })
-            <div class="col-@ViewBag.colsize-1">
-                @Html.EnumDropDownListFor(model => model.NeedReasonableAccommodation, "-", new { @visibletogglefor = nameof(Model.NeedReasonableAccommodation), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.NeedReasonableAccommodation, "", new { @class = "col-auto text-danger" })
-        </div>
-        <!-- Describe Reasonable Accommodation -->
-        <div id="@nameof(Model.NeedReasonableAccommodation)" @(Model.NeedReasonableAccommodation == YesNo.Yes ? "" : "style=display:none;") class="container">
-            @Html.LabelFor(model => model.DescribeReasonableAccommodation)
-            @Html.EditorFor(model => model.DescribeReasonableAccommodation, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DescribeReasonableAccommodation, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="avoid-break mt-4">
-        @Html.LabelFor(model => model.AdditionalComments)
-        @Html.EditorFor(model => model.AdditionalComments, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-    <!-- Certification And Authorization -->
-    <div class="avoid-break">
-        @Html.Label("Certification And Authorization", htmlAttributes: new { @class = $"h5 col-{ViewBag.colsize}-12 mt-4 text-center" })
-        <div id="@nameof(Model.CertificationAndAuthorization)" class="row align-items-center offset-@ViewBag.colsize-1 mt-2">
-            @Html.LabelFor(model => model.CertificationAndAuthorization, htmlAttributes: new { @class = "h6 col-auto" })
-            <div class="col-@ViewBag.colsize-1">
-                @Html.EnumDropDownListFor(model => model.CertificationAndAuthorization, "-", new { @visibletogglefor = nameof(Model.CertificationAndAuthorization), @class = "yesno_visible_toggle form-control" })
-            </div>
-            @Html.ValidationMessageFor(model => model.CertificationAndAuthorization, "", new { @class = "col-auto text-danger" })
-        </div>
-        <div class="container">
-            <p class="offset-@ViewBag.colsize-1 col-@ViewBag.colsize-10 align-self-center">I (we) certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
-        </div>
-    </div>
-    <!-- Submit button -->
-    if (ViewBag.inlinecss == null)
-    {
-        <div class="row">
-            <input type="submit" value="Submit" class="btn btn-success offset-@ViewBag.colsize-5 mt-2 mb-4 col-@ViewBag.colsize-2" />
-        </div>
-    }
-}
+</div>
+
 <script>
     $(document).ready(() => {
         $('#application-form').submit(async (e) => {
