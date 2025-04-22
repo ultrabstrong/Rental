@@ -14,7 +14,7 @@ namespace ApartmentWeb.Filters
             response.AppendHeader("Expires", "-1");
 
             // Security headers
-            response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self';");
+            response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';");
             response.Headers.Add("X-Content-Type-Options", "nosniff");
             response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
             response.Headers.Add("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
