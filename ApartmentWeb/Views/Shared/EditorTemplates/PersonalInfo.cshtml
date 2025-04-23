@@ -44,7 +44,7 @@
         <!-- SSN -->
         <div class="col-md-4">
             @Html.LabelFor(model => model.SSN, new { @class = "form-label fw-bold text-dark" })
-            @Html.EditorFor(model => model.SSN, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter SSN" } })
+            @Html.EditorFor(model => model.SSN, new { htmlAttributes = new { @class = "form-control form-control-lg ssn-mask", placeholder = "Enter SSN" } }) @* Add ssn-mask class *@
             @Html.ValidationMessageFor(model => model.SSN, "", new { @class = "text-danger mt-1" })
         </div>
     </div>
