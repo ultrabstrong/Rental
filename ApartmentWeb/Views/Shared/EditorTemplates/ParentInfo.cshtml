@@ -37,7 +37,7 @@
             <!-- Phone Num -->
             <div class="col-md-3">
                 @Html.LabelFor(model => model.PhoneNum, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.PhoneNum, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter phone number" } })
+                @Html.EditorFor(model => model.PhoneNum, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask", placeholder = "Enter phone number" } })
                 @Html.ValidationMessageFor(model => model.PhoneNum, "", new { @class = "text-danger mt-1" })
             </div>
         </div>

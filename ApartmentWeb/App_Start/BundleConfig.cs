@@ -23,6 +23,7 @@ namespace ApartmentWeb
                         "~/Scripts/custom/requireif*",
                         "~/Scripts/custom/visibletoggle*",
                         "~/Scripts/custom/validationErrorStyle*",
+                        "~/Scripts/custom/phone-masking.js", // Add phone masking script
                         "~/Scripts/jquery-ui-{version}.js"));
             // Bootstrap SCRIPT
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(

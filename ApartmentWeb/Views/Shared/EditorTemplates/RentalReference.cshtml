@@ -36,7 +36,7 @@
                 @Html.LabelFor(model => model.LandlordPhoneNum, new { @class = "form-label fw-bold text-dark" })
                 @if (!Model.AllowElectiveRequire)
                 {<span class="text-muted ms-1">(If applicable)</span>}
-                @Html.EditorFor(model => model.LandlordPhoneNum, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter phone number" } })
+                @Html.EditorFor(model => model.LandlordPhoneNum, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask", placeholder = "Enter phone number" } }) 
                 @Html.ValidationMessageFor(model => model.LandlordPhoneNum, "", new { @class = "text-danger mt-1" })
             </div>
         </div>
