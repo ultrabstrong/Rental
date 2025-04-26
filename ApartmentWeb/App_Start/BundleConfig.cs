@@ -25,6 +25,7 @@ namespace ApartmentWeb
                         "~/Scripts/custom/validationErrorStyle*",
                         "~/Scripts/custom/phone-masking.js",
                         "~/Scripts/custom/ssn-masking.js", 
+                        "~/Scripts/custom/state-selection.js",
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/custom/datepicker-config.js")); 
             // Bootstrap SCRIPT

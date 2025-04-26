@@ -39,7 +39,9 @@
             <!-- State -->
             <div class="col-md-4 mb-3 mb-md-0">
                 @Html.LabelFor(model => model.State, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter state" } })
+                <select id="State" name="State" class="form-control form-control-lg usa-states-dropdown">
+                    <option value="" disabled selected>Select State</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger mt-1" })
             </div>
             
