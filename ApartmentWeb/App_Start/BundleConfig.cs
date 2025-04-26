@@ -24,8 +24,9 @@ namespace ApartmentWeb
                         "~/Scripts/custom/visibletoggle*",
                         "~/Scripts/custom/validationErrorStyle*",
                         "~/Scripts/custom/phone-masking.js",
-                        "~/Scripts/custom/ssn-masking.js", // Add SSN masking script
-                        "~/Scripts/jquery-ui-{version}.js"));
+                        "~/Scripts/custom/ssn-masking.js", 
+                        "~/Scripts/jquery-ui-{version}.js",
+                        "~/Scripts/custom/datepicker-config.js")); 
             // Bootstrap SCRIPT
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/umd/popper.min.js",
