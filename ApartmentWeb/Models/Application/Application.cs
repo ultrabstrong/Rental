@@ -67,7 +67,6 @@ namespace ApartmentWeb.Models.Application
         {
             DisplayName = "Previous Rental",
             AllowElectiveRequire = true,
-            ElectiveRequireValue = YesNo.No,
             ElectiveRequireDisplay = "Add rental history"
         };
 
@@ -75,7 +74,6 @@ namespace ApartmentWeb.Models.Application
         {
             DisplayName = "Rental Reference #3",
             AllowElectiveRequire = true,
-            ElectiveRequireValue = YesNo.No,
             ElectiveRequireDisplay = "Add rental history"
         };
 
@@ -83,7 +81,6 @@ namespace ApartmentWeb.Models.Application
         {
             DisplayName = "Personal reference #1",
             AllowElectiveRequire = true,
-            ElectiveRequireValue = YesNo.No,
             ElectiveRequireDisplay = "Add personal reference"
         };
 
@@ -91,7 +88,6 @@ namespace ApartmentWeb.Models.Application
         {
             DisplayName = "Personal reference #2",
             AllowElectiveRequire = true,
-            ElectiveRequireValue = YesNo.No,
             ElectiveRequireDisplay = "Add personal reference"
         };
 
