@@ -16,21 +16,21 @@
             <!-- Make -->
             <div class="col-md-4 mb-3 mb-md-0">
                 @Html.LabelFor(model => model.Make, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter make" } })
+                @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                 @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger mt-1" })
             </div>
             
             <!-- Model -->
             <div class="col-md-4 mb-3 mb-md-0">
                 @Html.LabelFor(model => model.Model, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter model" } })
+                @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                 @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger mt-1" })
             </div>
             
             <!-- Year -->
             <div class="col-md-4">
                 @Html.LabelFor(model => model.Year, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control form-control-lg", maxlength = "4", type = "text", pattern = "[0-9]{4}", placeholder = "YYYY", oninput = "this.value = this.value.replace(/[^0-9]/g, '').substring(0, 4)" } })
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control form-control-lg", maxlength = "4", type = "text", pattern = "[0-9]{4}", oninput = "this.value = this.value.replace(/[^0-9]/g, '').substring(0, 4)" } })
                 @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger mt-1" })
             </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="col-md-4 mb-3 mb-md-0">
                 @Html.LabelFor(model => model.State, new { @class = "form-label fw-bold text-dark" })
                 <select id="State" name="State" class="form-control form-control-lg usa-states-dropdown">
-                    <option value="" disabled selected>Select State</option>
+                    <option value="" disabled selected>-</option>
                 </select>
                 @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger mt-1" })
             </div>
@@ -48,14 +48,14 @@
             <!-- License Num -->
             <div class="col-md-4 mb-3 mb-md-0">
                 @Html.LabelFor(model => model.LicenseNum, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.LicenseNum, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter license number" } })
+                @Html.EditorFor(model => model.LicenseNum, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                 @Html.ValidationMessageFor(model => model.LicenseNum, "", new { @class = "text-danger mt-1" })
             </div>
             
             <!-- Color -->
             <div class="col-md-4">
                 @Html.LabelFor(model => model.Color, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter color" } })
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger mt-1" })
             </div>
         </div>

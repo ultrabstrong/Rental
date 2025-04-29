@@ -5,14 +5,14 @@
     <!-- Street -->
     <div class="col-md-6 mb-3 mb-md-0">
         @Html.LabelFor(model => model.Street, new { @class = "form-label fw-bold text-dark" })
-        @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter street address" } })
+        @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
         @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger mt-1" })
     </div>
     
     <!-- City -->
     <div class="col-md-6 mb-3 mb-md-0">
         @Html.LabelFor(model => model.City, new { @class = "form-label fw-bold text-dark" })
-        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter city" } })
+        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
         @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger mt-1" })
     </div>
 </div>
@@ -24,7 +24,7 @@
         <select id="@ViewData.TemplateInfo.GetFullHtmlFieldName("State")" 
                 name="@ViewData.TemplateInfo.GetFullHtmlFieldName("State")" 
                 class="form-control form-control-lg usa-states-dropdown">
-            <option value="" disabled selected>Select State</option>
+            <option value="" disabled selected>-</option>
         </select>
         @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger mt-1" })
     </div>
@@ -32,7 +32,7 @@
     <!-- Zip -->
     <div class="col-md-6">
         @Html.LabelFor(model => model.Zip, new { @class = "form-label fw-bold text-dark" })
-        @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter ZIP code" } })
+        @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
         @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger mt-1" })
     </div>
 </div>

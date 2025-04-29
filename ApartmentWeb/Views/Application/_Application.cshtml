@@ -38,14 +38,14 @@
                         <!-- Rental Address -->
                         <div class="mb-4">
                             @Html.LabelFor(model => model.RentalAddress, new { @class = "form-label fw-bold text-dark" })
-                            @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter the rental address" } })
+                            @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                             @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger mt-1" })
                         </div>
 
                         <!-- Other Applicant -->
                         <div class="mb-4">
                             @Html.LabelFor(model => model.OtherApplicants, new { @class = "form-label fw-bold text-dark" })
-                            @Html.EditorFor(model => model.OtherApplicants, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter other applicants (if any)" } })
+                            @Html.EditorFor(model => model.OtherApplicants, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                             @Html.ValidationMessageFor(model => model.OtherApplicants, "", new { @class = "text-danger mt-1" })
                         </div>
                         
@@ -171,7 +171,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.ExplainCriminalRecord, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.ExplainCriminalRecord, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please provide details about your criminal record" } })
+                                            @Html.EditorFor(model => model.ExplainCriminalRecord, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.ExplainCriminalRecord, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.ExplainBeenEvicted, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.ExplainBeenEvicted, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please provide details about your eviction" } })
+                                            @Html.EditorFor(model => model.ExplainBeenEvicted, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.ExplainBeenEvicted, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.SmokersCount, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.SmokersCount, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter number of smokers" } })
+                                            @Html.EditorFor(model => model.SmokersCount, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.SmokersCount, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.DescribePets, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.DescribePets, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please list and describe each pet (type, breed, age, size, etc.)" } })
+                                            @Html.EditorFor(model => model.DescribePets, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.DescribePets, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -300,7 +300,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.DescribeNonHuman, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.DescribeNonHuman, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please describe the non-human entity" } })
+                                            @Html.EditorFor(model => model.DescribeNonHuman, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.DescribeNonHuman, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -324,7 +324,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.CollegeYearsAttended, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.CollegeYearsAttended, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter years attended" } })
+                                            @Html.EditorFor(model => model.CollegeYearsAttended, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.CollegeYearsAttended, "", new { @class = "text-danger mt-1" })
                                         </div>
                                         
@@ -333,7 +333,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.PlanToGraduate, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.PlanToGraduate, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please provide your graduation plans" } })
+                                            @Html.EditorFor(model => model.PlanToGraduate, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.PlanToGraduate, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -357,7 +357,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.DescribeReasonableAccommodation, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.DescribeReasonableAccommodation, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please describe needed accommodations" } })
+                                            @Html.EditorFor(model => model.DescribeReasonableAccommodation, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.DescribeReasonableAccommodation, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -382,7 +382,7 @@
                                                 <i class="bi bi-arrow-return-right text-primary me-2"></i>
                                                 @Html.LabelFor(model => model.OtherIncomeExplain, new { @class = "form-label fw-bold mb-0 text-dark" })
                                             </div>
-                                            @Html.EditorFor(model => model.OtherIncomeExplain, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Please explain your other sources of income" } })
+                                            @Html.EditorFor(model => model.OtherIncomeExplain, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                             @Html.ValidationMessageFor(model => model.OtherIncomeExplain, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@
                                 <!-- Additional Comments -->
                                 <div class="mb-4">
                                     @Html.LabelFor(model => model.AdditionalComments, new { @class = "form-label fw-bold text-dark" })
-                                    @Html.TextAreaFor(model => model.AdditionalComments, new { @class = "form-control form-control-lg", rows = "4", placeholder = "Add any additional information here" })
+                                    @Html.TextAreaFor(model => model.AdditionalComments, new { @class = "form-control form-control-lg", rows = "4" })
                                     @Html.ValidationMessageFor(model => model.AdditionalComments, "", new { @class = "text-danger mt-1" })
                                 </div>
                             </div>

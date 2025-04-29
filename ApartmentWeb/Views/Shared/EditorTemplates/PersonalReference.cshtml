@@ -16,21 +16,21 @@
             <!-- Name -->
             <div class="col-md-4 mb-3 mb-md-0">
                 @Html.LabelFor(model => model.Name, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter reference name" } })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger mt-1" })
             </div>
             
             <!-- Relationship -->
             <div class="col-md-4 mb-3 mb-md-0">
                 @Html.LabelFor(model => model.Relationship, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.Relationship, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Enter relationship" } })
+                @Html.EditorFor(model => model.Relationship, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                 @Html.ValidationMessageFor(model => model.Relationship, "", new { @class = "text-danger mt-1" })
             </div>
             
             <!-- Phone Number -->
             <div class="col-md-4">
                 @Html.LabelFor(model => model.PhoneNum, new { @class = "form-label fw-bold text-dark" })
-                @Html.EditorFor(model => model.PhoneNum, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask", placeholder = "Enter phone number" } }) 
+                @Html.EditorFor(model => model.PhoneNum, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask" } }) 
                 @Html.ValidationMessageFor(model => model.PhoneNum, "", new { @class = "text-danger mt-1" })
             </div>
         </div>
