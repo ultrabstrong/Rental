@@ -27,7 +27,7 @@ namespace ApartmentWeb.Models.Application
         public string Year { get; set; }
 
         [Display(Name = "State")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the registration state of your vehicle", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please select the registration state of your vehicle", null)]
         public string State { get; set; }
 
         [Display(Name = "License Plate #")]

@@ -5,19 +5,19 @@ namespace ApartmentWeb.Models.Application
     public class Address
     {
         [Display(Name = "Street")]
-        //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_STREET), ErrorMessageResourceType = typeof(vrm))]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a street")]
         public string Street { get; set; }
 
         [Display(Name = "City")]
-        //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_CITY), ErrorMessageResourceType = typeof(vrm))]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a city")]
         public string City { get; set; }
 
         [Display(Name = "State")]
-        //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_STATE), ErrorMessageResourceType = typeof(vrm))]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please select a state")]
         public string State { get; set; }
 
         [Display(Name = "Zip")]
-        //[RequiredIf("ElectiveRequireValue", YesNo.Yes, ErrorMessageResourceName = nameof(vrm.ADDRESS_ZIP), ErrorMessageResourceType = typeof(vrm))]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a zip code")]
         public string Zip { get; set; }
     }
 }

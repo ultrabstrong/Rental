@@ -1,4 +1,5 @@
-﻿using ApartmentWeb.Models;
+﻿using ApartmentWeb.Helpers;
+using ApartmentWeb.Models;
 using ApartmentWeb.Models.Application;
 using ApartmentWeb.Models.Maintenance;
 using Domain.Core;
@@ -26,7 +27,11 @@ namespace ApartmentWeb.Controllers
         public ActionResult ContactUs() => View();
 
         [HttpGet, Route("Apply")]
-        public ActionResult Apply() => View(new Application());
+        public ActionResult Apply()
+        {
+            this.AddUSStatesToViewBag();
+            return View(new Application());
+        }
 
         [HttpGet, Route("MaintenanceRequest")]
         public ActionResult MaintenanceRequest() => View(new MaintenanceRequest());
@@ -49,6 +54,7 @@ namespace ApartmentWeb.Controllers
                         .Where(m => m.Value.Errors.Any())
                         .Select(m => $"{m.Key} {string.Join(",", m.Value.Errors.Select(e => e.ErrorMessage))}");
                     Log.Logger.Information("Application validation errors: {@Errors}", errors);
+                    this.AddUSStatesToViewBag();
                     return Json(new SubmitResponse { isSuccess = false, hasValidationErrors = true });
                 }
 
@@ -125,6 +131,10 @@ namespace ApartmentWeb.Controllers
             using (var sw = new StringWriter())
             {
                 ViewBag.inlinecss = "Yes";
+                if (viewName == nameof(Apply))
+                {
+                    this.AddUSStatesToViewBag();
+                }
                 ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
                 ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
                 viewResult.View.Render(viewContext, sw);

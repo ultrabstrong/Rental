@@ -1,4 +1,5 @@
 ﻿@using ApartmentWeb.Models.Application;
+@using ApartmentWeb.Enums;
 @model PersonalInfo
 <div class="personal-info-section">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -38,9 +39,7 @@
         <!-- DL State -->
         <div class="col-md-4 mb-3 mb-md-0">
             @Html.LabelFor(model => model.DriverLicenseStateOfIssue, new { @class = "form-label fw-bold text-dark" })
-            <select id="DriverLicenseStateOfIssue" name="DriverLicenseStateOfIssue" class="form-control form-control-lg usa-states-dropdown">
-                <option value="" disabled selected>-</option>
-            </select>
+            @Html.DropDownListFor(model => model.DriverLicenseStateOfIssue, (IEnumerable<SelectListItem>)ViewBag.USStates, new { @class = "form-control form-control-lg" })
             @Html.ValidationMessageFor(model => model.DriverLicenseStateOfIssue, "", new { @class = "text-danger mt-1" })
         </div>
         
