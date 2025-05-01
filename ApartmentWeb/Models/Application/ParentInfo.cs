@@ -27,7 +27,20 @@ namespace ApartmentWeb.Models.Application
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your parent's phone number", null)]
         public string PhoneNum { get; set; }
 
-        [Display(Name = "Address")]
-        public Address Address { get; set; } = new Address();
+        [Display(Name = "Street")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a street", null)]
+        public string Street { get; set; }
+
+        [Display(Name = "City")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a city", null)]
+        public string City { get; set; }
+
+        [Display(Name = "State")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a state", null)]
+        public string State { get; set; }
+
+        [Display(Name = "Zip")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a zip code", null)]
+        public string Zip { get; set; }
     }
 }

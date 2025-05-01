@@ -174,7 +174,6 @@
     <Compile Include="Enums\YesSomeNo.cs" />
     <Compile Include="Filters\SecurityHeadersAttribute.cs" />
     <Compile Include="Helpers\ControllerExtensions.cs" />
-    <Compile Include="Models\Application\Address.cs" />
     <Compile Include="Models\Application\Application.cs" />
     <Compile Include="Models\Application\Automobile.cs" />
     <Compile Include="Models\Application\EmploymentInfo.cs" />
@@ -499,7 +498,6 @@
     <Content Include="Views\Shared\EditorTemplates\ParentInfo.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PersonalInfo.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmploymentInfo.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Address.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Automobile.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\RentalReference.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PersonalReference.cshtml" />

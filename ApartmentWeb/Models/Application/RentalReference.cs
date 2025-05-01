@@ -16,9 +16,21 @@ namespace ApartmentWeb.Models.Application
         [Range(1, 2, ErrorMessage = "Please indicate if you want to add a rental reference")]
         public YesNo ElectiveRequireValue { get; set; }
 
-        [Display(Name = "Address")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the address", null)]
-        public Address Address { get; set; } = new Address();
+        [Display(Name = "Street")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a street", null)]
+        public string Street { get; set; }
+
+        [Display(Name = "City")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a city", null)]
+        public string City { get; set; }
+
+        [Display(Name = "State")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a state", null)]
+        public string State { get; set; }
+
+        [Display(Name = "Zip")]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a zip code", null)]
+        public string Zip { get; set; }
 
         [Display(Name = "Landlord name")]
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's name", null)]
