@@ -145,11 +145,16 @@
                             </div>
                             <div class="card-body pt-4">
                                 <!-- Anticipated Duration -->
-                                <div class="row mb-4 align-items-center">
-                                    @Html.LabelFor(model => model.AnticipatedDuration, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.AnticipatedDuration, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
-                                        @Html.ValidationMessageFor(model => model.AnticipatedDuration, "", new { @class = "text-danger mt-1" })
+                                <div class="row mb-4">
+                                    @Html.LabelFor(model => model.AnticipatedDuration, new { @class = "col-md-12 form-label fw-bold text-dark" })
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-arrow-return-right text-primary me-2"></i>
+                                            @Html.EditorFor(model => model.AnticipatedDuration, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                                        </div>
+                                        <div class="ps-4">
+                                            @Html.ValidationMessageFor(model => model.AnticipatedDuration, "", new { @class = "text-danger mt-1 d-block" })
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -157,10 +162,12 @@
                                 <div class="mb-4 criminal-record-section">
                                     <!-- Criminal Record question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.HasCriminalRecord, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.HasCriminalRecord, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.HasCriminalRecord, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.HasCriminalRecord, "-", new { @visibletogglefor = nameof(Model.HasCriminalRecord), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.HasCriminalRecord, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -181,10 +188,12 @@
                                 <div class="mb-4 eviction-section">
                                     <!-- Eviction question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.HasBeenEvicted, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.HasBeenEvicted, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.HasBeenEvicted, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.HasBeenEvicted, "-", new { @visibletogglefor = nameof(Model.HasBeenEvicted), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.HasBeenEvicted, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -203,10 +212,12 @@
                                 
                                 <!-- Marijuana Card -->
                                 <div class="row mb-4 align-items-center">
-                                    @Html.LabelFor(model => model.MarijuanaCard, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                    <div class="col-md-6">
+                                    <div class="col-md-9">
+                                        @Html.LabelFor(model => model.MarijuanaCard, new { @class = "form-label fw-bold text-dark" })
+                                        @Html.ValidationMessageFor(model => model.MarijuanaCard, "", new { @class = "text-danger d-block mt-1" })
+                                    </div>
+                                    <div class="col-md-3">
                                         @Html.EnumDropDownListFor(model => model.MarijuanaCard, "-", new { @class = "form-control form-control-lg" })
-                                        @Html.ValidationMessageFor(model => model.MarijuanaCard, "", new { @class = "text-danger mt-1" })
                                     </div>
                                 </div>
                                 
@@ -214,10 +225,12 @@
                                 <div class="mb-4 smokers-section">
                                     <!-- Smokers question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.Smokers, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.Smokers, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.Smokers, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.Smokers, "-", new { @visibletogglefor = nameof(Model.Smokers), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.Smokers, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -238,10 +251,12 @@
                                 <div class="mb-4 drinkers-section">
                                     <!-- Drinkers question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.Drinkers, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.Drinkers, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.Drinkers, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.Drinkers, "-", new { @visibletogglefor = nameof(Model.Drinkers), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.Drinkers, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -262,10 +277,12 @@
                                 <div class="mb-4 pet-section">
                                     <!-- Pet question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.AnyPets, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.AnyPets, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.AnyPets, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.AnyPets, "-", new { @visibletogglefor = nameof(Model.AnyPets), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.AnyPets, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -286,10 +303,12 @@
                                 <div class="mb-4 non-human-section">
                                     <!-- Non Human question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.AnyNonHuman, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.AnyNonHuman, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.AnyNonHuman, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.AnyNonHuman, "-", new { @visibletogglefor = nameof(Model.AnyNonHuman), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.AnyNonHuman, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -310,10 +329,12 @@
                                 <div class="mb-4 college-section">
                                     <!-- College question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.AttendCollege, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.AttendCollege, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.AttendCollege, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.AttendCollege, "-", new { @visibletogglefor = nameof(Model.AttendCollege), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.AttendCollege, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -343,10 +364,12 @@
                                 <div class="mb-4 accommodation-section">
                                     <!-- Accommodation question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.NeedReasonableAccommodation, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.NeedReasonableAccommodation, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.NeedReasonableAccommodation, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.NeedReasonableAccommodation, "-", new { @visibletogglefor = nameof(Model.NeedReasonableAccommodation), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.NeedReasonableAccommodation, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
@@ -368,10 +391,12 @@
                                 <div class="other-income-section">
                                     <!-- Other Income question header -->
                                     <div class="row mb-3 align-items-center">
-                                        @Html.LabelFor(model => model.ConsiderOtherIncome, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
+                                            @Html.LabelFor(model => model.ConsiderOtherIncome, new { @class = "form-label fw-bold text-dark" })
+                                            @Html.ValidationMessageFor(model => model.ConsiderOtherIncome, "", new { @class = "text-danger d-block mt-1" })
+                                        </div>
+                                        <div class="col-md-3">
                                             @Html.EnumDropDownListFor(model => model.ConsiderOtherIncome, "-", new { @visibletogglefor = nameof(Model.OtherIncomeExplain), @class = "yesno_visible_toggle form-control form-control-lg" })
-                                            @Html.ValidationMessageFor(model => model.ConsiderOtherIncome, "", new { @class = "text-danger mt-1" })
                                         </div>
                                     </div>
                                     
