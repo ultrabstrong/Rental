@@ -481,7 +481,7 @@
                 if (response.isSuccess) {
                     showNotificationModal("Application sent", "Your application has been sent");
                     $('#notificationModal').one('hidden.bs.modal', () => {
-                        $('#application-form')[0].reset();
+                        //$('#application-form')[0].reset();
                         window.location.href = response.redirectUrl;
                     });
                 }

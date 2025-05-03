@@ -12,7 +12,6 @@ namespace ApartmentWeb.Models.Application
 
         public string ElectiveRequireDisplay { get; set; }
 
-        [EnumDataType(typeof(YesNo))]
         [Range(1, 2, ErrorMessage = "Please indicate if you want to add a personal reference")]
         public YesNo ElectiveRequireValue { get; set; }
 

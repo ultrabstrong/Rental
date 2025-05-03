@@ -77,14 +77,14 @@ namespace ApartmentWeb.Models.Application
             ElectiveRequireDisplay = "Add rental history"
         };
 
-        public PersonalReference PersonalReference1 = new PersonalReference()
+        public PersonalReference PersonalReference1 { get; set; } = new PersonalReference()
         {
             DisplayName = "Personal reference #1",
             AllowElectiveRequire = true,
             ElectiveRequireDisplay = "Add personal reference"
         };
 
-        public PersonalReference PersonalReference2 = new PersonalReference()
+        public PersonalReference PersonalReference2 { get; set; } = new PersonalReference()
         {
             DisplayName = "Personal reference #2",
             AllowElectiveRequire = true,
