@@ -107,6 +107,8 @@ namespace ApartmentWeb.Controllers
                 }
 
                 Log.Logger.Debug("Creating view HTML");
+                // Set ViewBag.IsPdf to true for PDF rendering
+                ViewBag.IsPdf = true;
                 var html = RenderRazorViewToString(nameof(this.MaintenanceRequest), maintenanceRequest);
 
                 Log.Logger.Debug("Converting HTML to PDF");

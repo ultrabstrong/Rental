@@ -487,6 +487,7 @@
                 if (response.isSuccess) {
                     showNotificationModal("Application sent", "Your application has been sent");
                     $('#notificationModal').one('hidden.bs.modal', () => {
+                        // Clear form so data doesn't Display when back button clicked
                         $('#application-form')[0].reset();
                         window.location.href = response.redirectUrl;
                     });
