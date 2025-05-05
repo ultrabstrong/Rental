@@ -465,6 +465,15 @@
             if (!$(e.target).valid()) {
                 return;
             }
+            
+            // Restore real SSN values before form submission
+            const ssnInputs = document.querySelectorAll('input.ssn-mask');
+            ssnInputs.forEach(input => {
+                if (input.dataset.realSsn) {
+                    input.value = input.dataset.realSsn;
+                }
+            });
+            
             var formData = $(e.target).serialize();
 
             await showStatusModal("Sending Application", "Sending application email...");
