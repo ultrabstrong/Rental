@@ -30,7 +30,12 @@ namespace ApartmentWeb.Controllers
         public ActionResult Apply()
         {
             this.AddUSStatesToViewBag();
+#if DEBUG
+            //return View(Shared.TestApplication); // Uncomment to have prefilled form
             return View(new Application());
+#else
+            return View(new Application());
+#endif
         }
 
         [HttpGet, Route("MaintenanceRequest")]
@@ -58,8 +63,10 @@ namespace ApartmentWeb.Controllers
                     return Json(new SubmitResponse { isSuccess = false, hasValidationErrors = true });
                 }
 
-                Log.Logger.Debug("Creating view HTML");
-                var html = RenderRazorViewToString(nameof(this.Apply), application);
+                Log.Logger.Debug("Creating PDF view HTML");
+                // Set ViewBag.IsPdf to true for PDF rendering
+                ViewBag.IsPdf = true;
+                var html = RenderRazorViewToString(nameof(Apply), application);
 
                 Log.Logger.Debug("Converting HTML to PDF");
                 var pdf = HtmlConverter.ToPdf(html,

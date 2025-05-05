@@ -6,4 +6,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial("~/Views/Application/_Application.cshtml", Model)
+@if (ViewBag.IsPdf == true)
+{
+    @Html.Partial("~/Views/Application/_ApplicationPdf.cshtml", Model)
+}
+else
+{
+    @Html.Partial("~/Views/Application/_Application.cshtml", Model)
+}

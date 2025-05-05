@@ -42,7 +42,7 @@ namespace ApartmentWeb.Models.Application
         [Display(Name = "Wage earned")]
         [RangeIfEnum("0.01", 2, nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a wage greater than 0", null)]
         [DataType(DataType.Currency)]
-        public double Wage { get; set; }
+        public decimal Wage { get; set; }
 
         [Display(Name = "How many hours do you work each week?")]
         [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your hours per week", null)]
