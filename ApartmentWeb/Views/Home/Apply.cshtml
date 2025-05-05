@@ -6,8 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (ViewBag.IsPdf == true)
+@if (ViewBag.IsPdf != true)
 {
+    Layout = null; // Both are needed to ensure layout is disabled    
     @Html.Partial("~/Views/Application/_ApplicationPdf.cshtml", Model)
 }
 else

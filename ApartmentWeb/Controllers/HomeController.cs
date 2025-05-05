@@ -31,8 +31,8 @@ namespace ApartmentWeb.Controllers
         {
             this.AddUSStatesToViewBag();
 #if DEBUG
-            //return View(Shared.TestApplication); // Uncomment to have prefilled form
-            return View(new Application());
+            return View(Shared.TestApplication); // Uncomment to have prefilled form
+            //return View(new Application());
 #else
             return View(new Application());
 #endif
@@ -137,7 +137,6 @@ namespace ApartmentWeb.Controllers
             ViewData.Model = model;
             using (var sw = new StringWriter())
             {
-                ViewBag.inlinecss = "Yes";
                 if (viewName == nameof(Apply))
                 {
                     this.AddUSStatesToViewBag();

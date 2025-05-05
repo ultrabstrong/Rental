@@ -155,6 +155,7 @@ namespace ApartmentWeb
                 State = "OR",
                 Zip = "97214",
                 Start = new DateTime(2021, 5, 1),
+                End = DateTime.Now,
                 LandlordName = "Green Property Management",
                 LandlordPhoneNum = "(503) 555-4321",
                 ReasonForMoving = "Seeking a larger apartment with more amenities and closer to work."

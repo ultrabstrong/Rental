@@ -1,28 +1,23 @@
 @using ApartmentWeb.Controllers
-@using ApartmentWeb.Models.Application;
-@using ApartmentWeb.Enums;
+@using ApartmentWeb.Models.Application
+@using ApartmentWeb.Enums
 @model Application
-@{
-    Layout = null; // No layout for PDF template
-}
-
-@Html.EmbedCss("~/Content/css") <!-- Include embedded CSS for PDF -->
 
 <div class="container pdf-container">
     <!-- PDF Header with Logo and Title -->
-    <div class="text-center mb-4 pb-3 border-bottom">
+    <div class="text-center mb-4 border-bottom">
         <h2>Rental Application</h2>
-        <p class="text-muted fst-italic">@DateTime.Now.ToShortDateString()</p>
+        <p>@DateTime.Now.ToShortDateString()</p>
     </div>
 
     <!-- Basic Application Info -->
     <div class="mb-4 avoid-break">
         <div class="row">
             <div class="col-12">
-                <p>@Html.DisplayNameFor(m => m.RentalAddress)</p>
+                <h3>@Html.DisplayNameFor(m => m.RentalAddress)</h3>
                 <span class="answer-box">@Model.RentalAddress</span>
 
-                <p>Co-applicants</p>
+                <h3>Co-applicants</h3>
                 <span class="answer-box">@Model.OtherApplicants</span>
             </div>
         </div>
@@ -30,7 +25,7 @@
 
     <!-- Personal Information Section -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Applicant Information</h3>
         </div>
         <div class="row">
@@ -65,7 +60,7 @@
 
     <!-- Current Address Section -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Current Address</h3>
         </div>
         <div class="row">
@@ -96,14 +91,14 @@
         <div class="row">
             <div class="col-12">
                 <p>@Html.DisplayNameFor(m => m.CurrentRental.ReasonForMoving)</p>
-                <div class="answer-box-block">@Model.CurrentRental.ReasonForMoving</div>
+                <div class="answer-box">@Model.CurrentRental.ReasonForMoving</div>
             </div>
         </div>
     </div>
 
     <!-- Primary Employment Section -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Primary Employment</h3>
         </div>
         <div class="row">
@@ -147,7 +142,7 @@
 
     <!-- Secondary Employment Section -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Secondary Employment</h3>
         </div>        
         @if (Model.SecondaryEmployment.ElectiveRequireValue == YesNo.Yes)
@@ -193,7 +188,7 @@
 
     <!-- Parent Info -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Parent Information</h3>
         </div>        
         @if (Model.ParentInfo.ElectiveRequireValue == YesNo.Yes)
@@ -223,7 +218,7 @@
 
     <!-- Automobile -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">@Model.Automobile.DisplayName</h3>
         </div>
         @if (Model.Automobile.ElectiveRequireValue == YesNo.Yes)
@@ -253,7 +248,7 @@
 
     <!-- Prior rental reference -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">@Model.PriorRentRef1.DisplayName</h3>
         </div>
         <div class="row">
@@ -276,7 +271,7 @@
                 <div class="row">
                     <div class="col-12">
                         <p>@Html.DisplayNameFor(m => m.PriorRentRef1.ReasonForMoving)</p>
-                        <div class="answer-box-block">@Model.PriorRentRef1.ReasonForMoving</div>
+                        <div class="answer-box">@Model.PriorRentRef1.ReasonForMoving</div>
                     </div>
                 </div>
             }
@@ -294,13 +289,13 @@
 
     <!-- Personal References -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Personal References</h3>
         </div>
         
         <!-- Reference #1 -->
         <div class="mb-3">
-            <h4 class="mb-2 pb-1 border-bottom">@Model.PersonalReference1.DisplayName</h4>
+            <h4 class="mb-3 border-bottom">@Model.PersonalReference1.DisplayName</h4>
             @if (Model.PersonalReference1.ElectiveRequireValue == YesNo.Yes)
             {
                 <div class="row">
@@ -323,7 +318,7 @@
         
         <!-- Reference #2 -->
         <div>
-            <h4 class="mb-2 pb-1 border-bottom">@Model.PersonalReference2.DisplayName</h4>
+            <h4 class="mb-3 border-bottom">@Model.PersonalReference2.DisplayName</h4>
             @if (Model.PersonalReference2.ElectiveRequireValue == YesNo.Yes)
             {
                 <div class="row">
@@ -347,66 +342,66 @@
 
     <!-- Additional Information -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Additional Information</h3>
         </div>
         
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-12">
                 <p>@Html.DisplayNameFor(m => m.AnticipatedDuration) <span class="answer-box">@Model.AnticipatedDuration</span></p>
                 <p>@Html.DisplayNameFor(m => m.HasCriminalRecord) <span class="answer-box">@Model.HasCriminalRecord</span></p>
                 @if (Model.HasCriminalRecord == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.ExplainCriminalRecord) <span class="answer-box">@Model.ExplainCriminalRecord</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.ExplainCriminalRecord) <span class="answer-box">@Model.ExplainCriminalRecord</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.HasBeenEvicted) <span class="answer-box">@Model.HasBeenEvicted</span></p>
                 @if (Model.HasBeenEvicted == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.ExplainBeenEvicted) <span class="answer-box">@Model.ExplainBeenEvicted</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.ExplainBeenEvicted) <span class="answer-box">@Model.ExplainBeenEvicted</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.MarijuanaCard) <span class="answer-box">@Model.MarijuanaCard</span></p>
                 <p>@Html.DisplayNameFor(m => m.Smokers) <span class="answer-box">@Model.Smokers</span></p>
                 @if (Model.Smokers == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.SmokersCount) <span class="answer-box">@Model.SmokersCount</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.SmokersCount) <span class="answer-box">@Model.SmokersCount</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.Drinkers) <span class="answer-box">@Model.Drinkers</span></p>
                 @if (Model.Drinkers == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.HowOftenDrink) <span class="answer-box">@Model.HowOftenDrink</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.HowOftenDrink) <span class="answer-box">@Model.HowOftenDrink</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.AnyPets) <span class="answer-box">@Model.AnyPets</span></p>
                 @if (Model.AnyPets == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.DescribePets) <span class="answer-box">@Model.DescribePets</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.DescribePets) <span class="answer-box">@Model.DescribePets</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.AnyNonHuman) <span class="answer-box">@Model.AnyNonHuman</span></p>
                 @if (Model.AnyNonHuman == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.DescribeNonHuman) <span class="answer-box">@Model.DescribeNonHuman</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.DescribeNonHuman) <span class="answer-box">@Model.DescribeNonHuman</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.AttendCollege) <span class="answer-box">@Model.AttendCollege</span></p>
                 @if (Model.AttendCollege == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.CollegeYearsAttended) <span class="answer-box">@Model.CollegeYearsAttended</span></p>
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.PlanToGraduate) <span class="answer-box">@Model.PlanToGraduate</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.CollegeYearsAttended) <span class="answer-box">@Model.CollegeYearsAttended</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.PlanToGraduate) <span class="answer-box">@Model.PlanToGraduate</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.NeedReasonableAccommodation) <span class="answer-box">@Model.NeedReasonableAccommodation</span></p>
                 @if (Model.NeedReasonableAccommodation == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.DescribeReasonableAccommodation) <span class="answer-box">@Model.DescribeReasonableAccommodation</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.DescribeReasonableAccommodation) <span class="answer-box">@Model.DescribeReasonableAccommodation</span></p>
                 }
                 <p>@Html.DisplayNameFor(m => m.ConsiderOtherIncome) <span class="answer-box">@Model.ConsiderOtherIncome</span></p>
                 @if (Model.ConsiderOtherIncome == YesNo.Yes)
                 {
-                    <p class="elective-answer border-start border-2 border-primary">@Html.DisplayNameFor(m => m.OtherIncomeExplain) <span class="answer-box">@Model.OtherIncomeExplain</span></p>
+                    <p class="elective-answer border-start-small">@Html.DisplayNameFor(m => m.OtherIncomeExplain) <span class="answer-box">@Model.OtherIncomeExplain</span></p>
                 }
             </div>
         </div>
         
-        <div class="row mt-3">
+        <div class="row">
             <div class="col-12">
-                <h4 class="mb-2 pb-1 border-bottom">@Html.DisplayNameFor(m => m.AdditionalComments)</h4>
+                <h4 class="mb-3 border-bottom">@Html.DisplayNameFor(m => m.AdditionalComments)</h4>
                 <p>@Model.AdditionalComments</p>
             </div>
         </div>
@@ -414,7 +409,7 @@
 
     <!-- Certification -->
     <div class="mb-4 avoid-break">
-        <div class="bg-light p-2 mb-3 border-start border-4 border-primary">
+        <div class="bg-light p-2 mb-3 border-start">
             <h3 class="m-0">Certification and Authorization</h3>
         </div>
         <div class="row">
@@ -455,45 +450,37 @@
     }
     
     .col-12 {
-        width: 100%;
+        
         padding: 0 10px;
     }
     
     /* Header styling */
     .bg-light {
-        background-color: #f8f9fa !important;
+        background-color: #f8f9fa;
         padding: 8px;
         margin-bottom: 15px;
     }
     
     .border-start {
-        border-left: 4px solid #0d6efd !important;
+        border-left: 4px solid #0d6efd;
+    }
+
+    .border-start-small {
+        border-left: 2px solid #0d6efd;
     }
     
     .border-bottom {
-        border-bottom: 1px solid #dee2e6 !important;
+        border-bottom: 1px solid #dee2e6;
     }
     
-    h3 {
-        font-size: 14pt;
+    h3, h4 {
         margin: 0;
-        font-weight: bold;
-    }
-    
-    h4 {
-        font-size: 12pt;
-        margin: 0 0 8px 0;
         font-weight: bold;
     }
     
     /* Text styling */
     p {
         margin: 6px 0;
-        font-size: 12pt;
-    }
-    
-    strong {
-        font-weight: bold;
         font-size: 12pt;
     }
     
@@ -507,26 +494,8 @@
         margin-top: 4px;
         margin-bottom: 10px;
         min-width: 60px;
-        min-height: 33.33px;
+        min-height: 24px;
         font-size: 12pt;
-    }
-    
-    /* For longer answers */
-    .answer-box-block {
-        display: block;
-        background-color: #f5f5f5;
-        border: 1px solid #000;
-        border-radius: 4px;
-        padding: 8px 10px;
-        margin-top: 6px;
-        margin-bottom: 12px;
-        min-height: 28px;
-        font-size: 12pt;
-    }
-    
-    /* Show empty answer block boxes with minimum height */
-    .answer-box-block:empty {
-        min-height: 28px;
     }
     
     .elective-answer {
@@ -538,60 +507,12 @@
         text-align: center;
     }
     
-    .mb-2 {
-        margin-bottom: 8px !important;
-    }
-    
     .mb-3 {
-        margin-bottom: 12px !important;
+        margin-bottom: 12px;
     }
     
     .mb-4 {
-        margin-bottom: 16px !important;
+        margin-bottom: 16px;
     }
     
-    .pb-3 {
-        padding-bottom: 12px !important;
-    }
-    
-    .mt-3 {
-        margin-top: 12px !important;
-    }
-    
-    .border-primary {
-        border-color: #0d6efd !important;
-    }
-    
-    .border-4 {
-        border-width: 4px !important;
-    }
-    
-    .border-2 {
-        border-width: 2px !important;
-    }
-    
-    .text-muted {
-        color: #6c757d !important;
-        font-style: italic;
-    }
-    
-    .fst-italic {
-        font-style: italic;
-    }
-    
-    /* Container layout */
-    .container {
-        width: 100%;
-        max-width: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    /* Ensure proper margins and spacing for printing */
-    @@media print {
-        body {
-            margin: 0;
-            padding: 0;
-        }
-    }
 </style>

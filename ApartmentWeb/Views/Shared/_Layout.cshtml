@@ -6,15 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Shared.Configuration.CompanyShortName - @ViewBag.Title</title>
     <link rel="icon" type="image/x-icon" href="~/Images/webicon.ico" />
-    <!-- Include styles -->
-    @if (ViewBag.inlinecss != null)
-    {
-        @Html.EmbedCss("~/Content/css")
-    }
-    else
-    {
-        @Styles.Render("~/Content/css")
-    }
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -141,8 +133,3 @@
 
 </body>
 </html>
-<!-- Clear inlinecss viewbag -->
-@if (ViewBag.inlinecss != null)
-{
-    ViewBag.inlinecss = null;
-}
