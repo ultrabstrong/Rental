@@ -176,22 +176,6 @@ namespace ApartmentWeb
                 LandlordPhoneNum = "(503) 555-9876",
                 ReasonForMoving = "Relocated to Portland for work opportunities."
             },
-            PriorRentRef2 = new RentalReference
-            {
-                DisplayName = "Rental Reference #3",
-                AllowElectiveRequire = true,
-                ElectiveRequireDisplay = "Add rental history",
-                ElectiveRequireValue = YesNo.Yes,
-                Street = "123 College Ave",
-                City = "Eugene",
-                State = "OR",
-                Zip = "97403",
-                Start = new DateTime(2016, 9, 1),
-                End = new DateTime(2018, 5, 31),
-                LandlordName = "University Heights Apartments",
-                LandlordPhoneNum = "(541) 555-4242",
-                ReasonForMoving = "Graduated from college and moved to Salem for first job."
-            },
             PersonalReference1 = new PersonalReference
             {
                 DisplayName = "Personal reference #1",

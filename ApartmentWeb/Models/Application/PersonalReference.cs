@@ -16,15 +16,15 @@ namespace ApartmentWeb.Models.Application
         public YesNo ElectiveRequireValue { get; set; }
 
         [Display(Name = "Name")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's name", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's name")]
         public string Name { get; set; }
 
         [Display(Name = "Relationship")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your relationship to this reference", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your relationship to this reference")]
         public string Relationship { get; set; }
 
         [Display(Name = "Phone #")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's phone number", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's phone number")]
         public string PhoneNum { get; set; }
     }
 }

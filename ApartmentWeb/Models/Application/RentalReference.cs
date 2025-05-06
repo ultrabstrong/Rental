@@ -17,41 +17,41 @@ namespace ApartmentWeb.Models.Application
         public YesNo ElectiveRequireValue { get; set; }
 
         [Display(Name = "Street")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a street", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a street")]
         public string Street { get; set; }
 
         [Display(Name = "City")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a city", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a city")]
         public string City { get; set; }
 
         [Display(Name = "State")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a state", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a state")]
         public string State { get; set; }
 
         [Display(Name = "Zip")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a zip code", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a zip code")]
         public string Zip { get; set; }
 
         [Display(Name = "Landlord name")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's name", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's name")]
         public string LandlordName { get; set; }
 
         [Display(Name = "Landlord phone #")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's phone number", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's phone number")]
         public string LandlordPhoneNum { get; set; }
 
         [Display(Name = "From")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the start date", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the start date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? Start { get; set; }
 
         [Display(Name = "To")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the end date", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the end date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? End { get; set; }
 
         [Display(Name = "Reason for moving")]
-        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your reason for moving", null)]
+        [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your reason for moving")]
         public string ReasonForMoving { get; set; }
     }
 }

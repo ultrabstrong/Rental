@@ -25,7 +25,7 @@
                     @using (Html.BeginForm(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
                     {
                         @Html.AntiForgeryToken()
-                        
+
                         <!-- Display errors -->
                         if (ViewBag.Errors == true)
                         {
@@ -35,14 +35,14 @@
                             </div>
                             ViewBag.Errors = false;
                         }
-                        
+
                         <!-- Rental Address -->
                         <div class="mb-4">
                             @Html.LabelFor(model => model.RentalAddress, new { @class = "form-label fw-bold text-dark" })
                             @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                             @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger mt-1" })
                         </div>
-                        
+
                         <div class="row mb-4">
                             <!-- First Name -->
                             <div class="col-md-6 mb-md-0 mb-4">
@@ -50,7 +50,7 @@
                                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger mt-1" })
                             </div>
-                            
+
                             <!-- Last Name -->
                             <div class="col-md-6">
                                 @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-bold text-dark" })
@@ -66,29 +66,29 @@
                                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger mt-1" })
                             </div>
-                            
+
                             <!-- Phone -->
                             <div class="col-md-6">
                                 @Html.LabelFor(model => model.Phone, new { @class = "form-label fw-bold text-dark" })
-                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask" } }) 
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask" } })
                                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger mt-1" })
                             </div>
                         </div>
-                        
+
                         <!-- Description -->
                         <div class="mb-4">
                             @Html.LabelFor(model => model.Description, new { @class = "form-label fw-bold text-dark" })
                             @Html.TextAreaFor(model => model.Description, new { @class = "form-control form-control-lg", rows = "5" })
                             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger mt-1" })
                         </div>
-                        
+
                         <!-- Submit button -->
                         <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto mt-5">
                             <button type="submit" class="btn btn-success btn-lg py-3">Submit Request</button>
                         </div>
                     }
-                    
-                    <!-- Brief note -->
+
+                    <!-- Contact us note -->
                     <div class="text-center text-muted mt-4">
                         <p class="mb-0 small">For emergency maintenance issues, please call us directly at <span class="fw-bold">@Shared.Configuration.PhoneNumber</span></p>
                     </div>
@@ -118,6 +118,7 @@
                 if (response.isSuccess) {
                     showNotificationModal("Maintenance request sent", "Your maintenance request has been sent");
                     $('#notificationModal').one('hidden.bs.modal', () => {
+                        // Clear form so data doesn't display when back button clicked
                         $('#application-form')[0].reset();
                         window.location.href = response.redirectUrl;
                     });

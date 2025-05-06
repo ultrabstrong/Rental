@@ -17,17 +17,10 @@ namespace ApartmentWeb.Validation
 
         private readonly RequiredAttribute _innerAttribute;
 
-        public RequireIfEnumAttribute(string checkIfName, object checkIfValue, string errorName, Type errorType) : this(checkIfName, checkIfValue)
+        public RequireIfEnumAttribute(string checkIfName, object checkIfValue, string errorMessage)
+            : this(checkIfName, checkIfValue)
         {
-            if (errorType != null)
-            {
-                ErrorMessageResourceName = errorName;
-                ErrorMessageResourceType = errorType;
-            }
-            else
-            {
-                ErrorMessage = errorName; // Use direct error message when type is null
-            }
+            ErrorMessage = errorMessage;
         }
 
         public RequireIfEnumAttribute(string checkIfName, object checkIfValue)

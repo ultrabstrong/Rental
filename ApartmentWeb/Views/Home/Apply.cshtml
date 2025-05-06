@@ -61,7 +61,7 @@
                             </div>
                         </div>
 
-                        <!-- Current Rental - Moved up between Personal Info and Primary Employment -->
+                        <!-- Current Rental -->
                         <div class="card mb-4">
                             <div class="card-header bg-light py-3">
                                 <h5 class="mb-0">Current Address</h5>
@@ -160,9 +160,8 @@
                                     </div>
                                 </div>
 
-                                <!-- Has Criminal Record - Grouped with visual cues -->
+                                <!-- Has Criminal Record -->
                                 <div class="mb-4 criminal-record-section">
-                                    <!-- Criminal Record question header -->
                                     <div class="row mb-3 align-items-center">
                                         <div class="col-md-9">
                                             @Html.LabelFor(model => model.HasCriminalRecord, new { @class = "form-label fw-bold text-dark" })
@@ -173,7 +172,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Criminal Record description field (indented and visually connected) -->
                                     <div id="@nameof(Model.HasCriminalRecord)" @(Model.HasCriminalRecord == YesNo.Yes ? "" : "style=display:none;") class="criminal-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -186,7 +184,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Has Been Evicted - Grouped with visual cues -->
+                                <!-- Has Been Evicted -->
                                 <div class="mb-4 eviction-section">
                                     <!-- Eviction question header -->
                                     <div class="row mb-3 align-items-center">
@@ -199,7 +197,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Eviction description field (indented and visually connected) -->
+                                    <!-- Eviction -->
                                     <div id="@nameof(Model.HasBeenEvicted)" @(Model.HasBeenEvicted == YesNo.Yes ? "" : "style=display:none;") class="eviction-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -223,7 +221,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Has Smokers - Grouped with visual cues -->
+                                <!-- Has Smokers -->
                                 <div class="mb-4 smokers-section">
                                     <!-- Smokers question header -->
                                     <div class="row mb-3 align-items-center">
@@ -236,7 +234,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Smokers count field (indented and visually connected) -->
+                                    <!-- Smokers count field -->
                                     <div id="@nameof(Model.Smokers)" @(Model.Smokers == YesNo.Yes ? "" : "style=display:none;") class="smokers-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -249,7 +247,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Has Drinkers - Grouped with visual cues -->
+                                <!-- Has Drinkers -->
                                 <div class="mb-4 drinkers-section">
                                     <!-- Drinkers question header -->
                                     <div class="row mb-3 align-items-center">
@@ -262,7 +260,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- How Often Drink field (indented and visually connected) -->
+                                    <!-- How Often Drink field -->
                                     <div id="@nameof(Model.Drinkers)" @(Model.Drinkers == YesNo.Yes ? "" : "style=display:none;") class="drinkers-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -275,7 +273,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Has Pets - Grouped with visual cues -->
+                                <!-- Has Pets -->
                                 <div class="mb-4 pet-section">
                                     <!-- Pet question header -->
                                     <div class="row mb-3 align-items-center">
@@ -288,7 +286,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Pet description field (indented and visually connected) -->
+                                    <!-- Pet -->
                                     <div id="@nameof(Model.AnyPets)" @(Model.AnyPets == YesNo.Yes ? "" : "style=display:none;") class="pet-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -301,7 +299,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Any Non Human - Grouped with visual cues -->
+                                <!-- Any Non Human -->
                                 <div class="mb-4 non-human-section">
                                     <!-- Non Human question header -->
                                     <div class="row mb-3 align-items-center">
@@ -314,7 +312,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Non Human description field (indented and visually connected) -->
+                                    <!-- Non Human -->
                                     <div id="@nameof(Model.AnyNonHuman)" @(Model.AnyNonHuman == YesNo.Yes ? "" : "style=display:none;") class="non-human-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -327,9 +325,8 @@
                                     </div>
                                 </div>
 
-                                <!-- Attend College - Grouped with visual cues -->
+                                <!-- Attend College -->
                                 <div class="mb-4 college-section">
-                                    <!-- College question header -->
                                     <div class="row mb-3 align-items-center">
                                         <div class="col-md-9">
                                             @Html.LabelFor(model => model.AttendCollege, new { @class = "form-label fw-bold text-dark" })
@@ -340,7 +337,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- College details (indented and visually connected) -->
                                     <div id="@nameof(Model.AttendCollege)" @(Model.AttendCollege == YesNo.Yes ? "" : "style=display:none;") class="college-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-3">
                                             <div class="d-flex align-items-center mb-2">
@@ -362,9 +358,8 @@
                                     </div>
                                 </div>
 
-                                <!-- Need Reasonable Accommodation - Grouped with visual cues -->
+                                <!-- Need Reasonable Accommodation -->
                                 <div class="mb-4 accommodation-section">
-                                    <!-- Accommodation question header -->
                                     <div class="row mb-3 align-items-center">
                                         <div class="col-md-9">
                                             @Html.LabelFor(model => model.NeedReasonableAccommodation, new { @class = "form-label fw-bold text-dark" })
@@ -375,7 +370,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Accommodation description field (indented and visually connected) -->
+                                    <!-- Accommodation Description -->
                                     <div id="@nameof(Model.NeedReasonableAccommodation)" @(Model.NeedReasonableAccommodation == YesNo.Yes ? "" : "style=display:none;") class="accommodation-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -388,10 +383,8 @@
                                     </div>
                                 </div>
 
-                                <!-- Consider Other Income - Grouped with visual cues -->
-                                <!-- Moved to Additional Information section -->
+                                <!-- Consider Other Income -->
                                 <div class="other-income-section">
-                                    <!-- Other Income question header -->
                                     <div class="row mb-3 align-items-center">
                                         <div class="col-md-9">
                                             @Html.LabelFor(model => model.ConsiderOtherIncome, new { @class = "form-label fw-bold text-dark" })
@@ -402,7 +395,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Other Income description field (indented and visually connected) -->
+                                    <!-- Other Income -->
                                     <div id="@nameof(Model.OtherIncomeExplain)" @(Model.ConsiderOtherIncome == YesNo.Yes ? "" : "style=display:none;") class="other-income-details ms-4 ps-3 border-start border-primary">
                                         <div class="mb-2">
                                             <div class="d-flex align-items-center mb-2">
@@ -450,7 +443,7 @@
                         </div>
                     }
 
-                    <!-- Brief note -->
+                    <!-- Contact us note -->
                     <div class="text-center text-muted mt-4">
                         <p class="mb-0 small">If you have any questions about this application, please <a href="@Url.Action(nameof(HomeController.ContactUs), HomeController.Name)" class="text-primary">contact us</a>.</p>
                     </div>
@@ -478,7 +471,7 @@
 
             var formData = $(e.target).serialize();
 
-            await showStatusModal("Sending Application", "Sending application email...");
+            await showStatusModal("Sending Application", "Sending your application for review...");
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action(nameof(HomeController.SubmitApplication), HomeController.Name)',
@@ -489,7 +482,7 @@
                 if (response.isSuccess) {
                     showNotificationModal("Application sent", "Your application has been sent");
                     $('#notificationModal').one('hidden.bs.modal', () => {
-                        // Clear form so data doesn't Display when back button clicked
+                        // Clear form so data doesn't display when back button clicked
                         $('#application-form')[0].reset();
                         window.location.href = response.redirectUrl;
                     });

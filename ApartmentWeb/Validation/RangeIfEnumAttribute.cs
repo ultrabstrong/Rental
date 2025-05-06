@@ -21,64 +21,32 @@ namespace ApartmentWeb.Validation
 
         private short Accuracy { get; set; }
 
-        public RangeIfEnumAttribute(string minval, short accuracy, string maxval, string checkIfName, object checkIfValue, string errorName, Type errorType)
+        public RangeIfEnumAttribute(string minval, short accuracy, string maxval, string checkIfName, object checkIfValue, string errorMessage)
+            : this(accuracy, checkIfName, checkIfValue, errorMessage)
         {
-            MinValue = decimal.Round(Convert.ToDecimal(minval), accuracy);
-            Accuracy = accuracy;
             MaxValue = decimal.Round(Convert.ToDecimal(maxval), accuracy);
-            CheckIfName = checkIfName;
-            EnumType = checkIfValue.GetType();
-            CheckIfValue = (int)checkIfValue;
-            
-            if (errorType != null)
-            {
-                ErrorMessageResourceName = errorName;
-                ErrorMessageResourceType = errorType;
-            }
-            else
-            {
-                ErrorMessage = errorName; // Use direct error message when type is null
-            }
+            MinValue = decimal.Round(Convert.ToDecimal(minval), accuracy);
         }
 
-        public RangeIfEnumAttribute(string minval, short accuracy, string checkIfName, object checkIfValue, string errorName, Type errorType)
+        public RangeIfEnumAttribute(string minval, short accuracy, string checkIfName, object checkIfValue, string errorMessage)
+            : this(accuracy, checkIfName, checkIfValue, errorMessage)
         {
             MinValue = decimal.Round(Convert.ToDecimal(minval), accuracy);
-            Accuracy = accuracy;
-            MaxValue = null;
-            CheckIfName = checkIfName;
-            EnumType = checkIfValue.GetType();
-            CheckIfValue = (int)checkIfValue;
-            
-            if (errorType != null)
-            {
-                ErrorMessageResourceName = errorName;
-                ErrorMessageResourceType = errorType;
-            }
-            else
-            {
-                ErrorMessage = errorName; // Use direct error message when type is null
-            }
         }
 
-        public RangeIfEnumAttribute(short accuracy, string maxval, string checkIfName, object checkIfValue, string errorName, Type errorType)
+        public RangeIfEnumAttribute(short accuracy, string maxval, string checkIfName, object checkIfValue, string errorMessage)
+            : this(accuracy, checkIfName, checkIfValue, errorMessage)
         {
-            MinValue = null;
-            Accuracy = accuracy;
             MaxValue = decimal.Round(Convert.ToDecimal(maxval), accuracy);
+        }
+
+        private RangeIfEnumAttribute(short accuracy, string checkIfName, object checkIfValue, string errorMessage)
+        {
+            Accuracy = accuracy;
             CheckIfName = checkIfName;
             EnumType = checkIfValue.GetType();
             CheckIfValue = (int)checkIfValue;
-            
-            if (errorType != null)
-            {
-                ErrorMessageResourceName = errorName;
-                ErrorMessageResourceType = errorType;
-            }
-            else
-            {
-                ErrorMessage = errorName; // Use direct error message when type is null
-            }
+            ErrorMessage = errorMessage;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext context)
