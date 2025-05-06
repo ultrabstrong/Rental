@@ -67,23 +67,26 @@
             <div class="col-6">
                 <p>@Html.DisplayNameFor(m => m.CurrentRental.Street)</p>
                 <span class="answer-box">@Model.CurrentRental.Street</span>
-                
-                <p>@Html.DisplayNameFor(m => m.CurrentRental.City)</p>
-                <span class="answer-box">@Model.CurrentRental.City</span>
-                
+
                 <p>@Html.DisplayNameFor(m => m.CurrentRental.State)</p>
                 <span class="answer-box">@Model.CurrentRental.State</span>
-                
-                <p>@Html.DisplayNameFor(m => m.CurrentRental.Zip)</p>
-                <span class="answer-box">@Model.CurrentRental.Zip</span>
-            </div>
-            <div class="col-6">
+
                 <p>@Html.DisplayNameFor(m => m.CurrentRental.Start)</p>
                 <span class="answer-box">@(Model.CurrentRental.Start?.ToShortDateString() ?? "")</span>
-                
+
                 <p>@Html.DisplayNameFor(m => m.CurrentRental.LandlordName)</p>
                 <span class="answer-box">@Model.CurrentRental.LandlordName</span>
-                
+            </div>
+            <div class="col-6">
+                <p>@Html.DisplayNameFor(m => m.CurrentRental.City)</p>
+                <span class="answer-box">@Model.CurrentRental.City</span>
+
+                <p>@Html.DisplayNameFor(m => m.CurrentRental.Zip)</p>
+                <span class="answer-box">@Model.CurrentRental.Zip</span>
+
+                <p> @Html.DisplayNameFor(m => m.CurrentRental.End)</p>
+                <span class="answer-box">@(Model.CurrentRental.End?.ToShortDateString() ?? "")</span>
+
                 <p>@Html.DisplayNameFor(m => m.CurrentRental.LandlordPhoneNum)</p>
                 <span class="answer-box">@Model.CurrentRental.LandlordPhoneNum</span>
             </div>
@@ -107,28 +110,28 @@
                 <div class="col-6">
                     <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.Company)</p>
                     <span class="answer-box">@Model.PrimaryEmployment.Company</span>
-                    
-                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.ContactPhone)</p>
-                    <span class="answer-box">@Model.PrimaryEmployment.ContactPhone</span>
-                    
-                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.ContactName)</p>
-                    <span class="answer-box">@Model.PrimaryEmployment.ContactName</span>
-                    
-                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.IsPermenant)</p>
-                    <span class="answer-box">@Model.PrimaryEmployment.IsPermenant</span>
-                </div>
-                <div class="col-6">
+
                     <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.EmploymentLength)</p>
                     <span class="answer-box">@Model.PrimaryEmployment.EmploymentLength</span>
-                    
+
                     <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.WageType)</p>
                     <span class="answer-box">@Model.PrimaryEmployment.WageType</span>
-                    
-                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.Wage)</p>
-                    <span class="answer-box">$@Model.PrimaryEmployment.Wage</span>
-                    
+
+                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.ContactName)</p>
+                    <span class="answer-box">@Model.PrimaryEmployment.ContactName</span>
+                </div>
+                <div class="col-6">
+                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.IsPermenant)</p>
+                    <span class="answer-box">@Model.PrimaryEmployment.IsPermenant</span>
+
                     <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.HoursPerWeek)</p>
                     <span class="answer-box">@Model.PrimaryEmployment.HoursPerWeek</span>
+
+                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.Wage)</p>
+                    <span class="answer-box">$@Model.PrimaryEmployment.Wage</span>
+
+                    <p>@Html.DisplayNameFor(m => m.PrimaryEmployment.ContactPhone)</p>
+                    <span class="answer-box">@Model.PrimaryEmployment.ContactPhone</span>
                 </div>
             }
             else
@@ -151,28 +154,28 @@
                 <div class="col-6">
                     <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.Company)</p>
                     <span class="answer-box">@Model.SecondaryEmployment.Company</span>
-                    
-                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.ContactPhone)</p>
-                    <span class="answer-box">@Model.SecondaryEmployment.ContactPhone</span>
-                    
-                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.ContactName)</p>
-                    <span class="answer-box">@Model.SecondaryEmployment.ContactName</span>
-                    
-                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.IsPermenant)</p>
-                    <span class="answer-box">@Model.SecondaryEmployment.IsPermenant</span>
-                </div>
-                <div class="col-6">
+
                     <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.EmploymentLength)</p>
                     <span class="answer-box">@Model.SecondaryEmployment.EmploymentLength</span>
-                    
+
                     <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.WageType)</p>
                     <span class="answer-box">@Model.SecondaryEmployment.WageType</span>
                     
-                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.Wage)</p>
-                    <span class="answer-box">$@Model.SecondaryEmployment.Wage</span>
-                    
+                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.ContactName)</p>
+                    <span class="answer-box">@Model.SecondaryEmployment.ContactName</span>
+                </div>
+                <div class="col-6">
+                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.IsPermenant)</p>
+                    <span class="answer-box">@Model.SecondaryEmployment.IsPermenant</span>
+
                     <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.HoursPerWeek)</p>
                     <span class="answer-box">@Model.SecondaryEmployment.HoursPerWeek</span>
+
+                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.Wage)</p>
+                    <span class="answer-box">$@Model.SecondaryEmployment.Wage</span>
+
+                    <p>@Html.DisplayNameFor(m => m.SecondaryEmployment.ContactPhone)</p>
+                    <span class="answer-box">@Model.SecondaryEmployment.ContactPhone</span>
                 </div>
             </div>
         }
@@ -196,12 +199,12 @@
             <div class="row">
                 <div class="col-6">
                     <p>Parent Name <span class="answer-box">@Model.ParentInfo.FirstName @Model.ParentInfo.MiddleName @Model.ParentInfo.LastName</span></p>
-                    <p>@Html.DisplayNameFor(m => m.ParentInfo.PhoneNum) <span class="answer-box">@Model.ParentInfo.PhoneNum</span></p>
                     <p>@Html.DisplayNameFor(m => m.ParentInfo.Street) <span class="answer-box">@Model.ParentInfo.Street</span></p>
+                    <p>@Html.DisplayNameFor(m => m.ParentInfo.State) <span class="answer-box">@Model.ParentInfo.State</span></p>
                 </div>
                 <div class="col-6">
+                    <p>@Html.DisplayNameFor(m => m.ParentInfo.PhoneNum) <span class="answer-box">@Model.ParentInfo.PhoneNum</span></p>
                     <p>@Html.DisplayNameFor(m => m.ParentInfo.City) <span class="answer-box">@Model.ParentInfo.City</span></p>
-                    <p>@Html.DisplayNameFor(m => m.ParentInfo.State) <span class="answer-box">@Model.ParentInfo.State</span></p>
                     <p>@Html.DisplayNameFor(m => m.ParentInfo.Zip) <span class="answer-box">@Model.ParentInfo.Zip</span></p>
                 </div>
             </div>
@@ -226,13 +229,13 @@
             <div class="row">
                 <div class="col-6">
                     <p>@Html.DisplayNameFor(m => m.Automobile.Make) <span class="answer-box">@Model.Automobile.Make</span></p>
-                    <p>@Html.DisplayNameFor(m => m.Automobile.Model) <span class="answer-box">@Model.Automobile.Model</span></p>
-                    <p>@Html.DisplayNameFor(m => m.Automobile.Year) <span class="answer-box">@Model.Automobile.Year</span></p>
+                    <p>@Html.DisplayNameFor(m => m.Automobile.Color) <span class="answer-box">@Model.Automobile.Color</span></p>
+                    <p>@Html.DisplayNameFor(m => m.Automobile.LicenseNum) <span class="answer-box">@Model.Automobile.LicenseNum</span></p>
                 </div>
                 <div class="col-6">
+                    <p>@Html.DisplayNameFor(m => m.Automobile.Model) <span class="answer-box">@Model.Automobile.Model</span></p>
+                    <p>@Html.DisplayNameFor(m => m.Automobile.Year) <span class="answer-box">@Model.Automobile.Year</span></p>
                     <p>@Html.DisplayNameFor(m => m.Automobile.State) <span class="answer-box">@Model.Automobile.State</span></p>
-                    <p>@Html.DisplayNameFor(m => m.Automobile.LicenseNum) <span class="answer-box">@Model.Automobile.LicenseNum</span></p>
-                    <p>@Html.DisplayNameFor(m => m.Automobile.Color) <span class="answer-box">@Model.Automobile.Color</span></p>
                 </div>
             </div>
         }
@@ -257,14 +260,14 @@
                 <div class="row">
                     <div class="col-6">
                         <p>@Html.DisplayNameFor(m => m.PriorRentRef1.Street) <span class="answer-box">@Model.PriorRentRef1.Street</span></p>
-                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.City) <span class="answer-box">@Model.PriorRentRef1.City</span></p>
                         <p>@Html.DisplayNameFor(m => m.PriorRentRef1.State) <span class="answer-box">@Model.PriorRentRef1.State</span></p>
-                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.Zip) <span class="answer-box">@Model.PriorRentRef1.Zip</span></p>
+                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.Start) <span class="answer-box">@(Model.PriorRentRef1.Start?.ToShortDateString() ?? "")</span></p>
+                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.LandlordName) <span class="answer-box">@Model.PriorRentRef1.LandlordName</span></p>
                     </div>
                     <div class="col-6">
-                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.Start) <span class="answer-box">@(Model.PriorRentRef1.Start?.ToShortDateString() ?? "")</span></p>
+                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.City) <span class="answer-box">@Model.PriorRentRef1.City</span></p>
+                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.Zip) <span class="answer-box">@Model.PriorRentRef1.Zip</span></p>
                         <p>@Html.DisplayNameFor(m => m.PriorRentRef1.End) <span class="answer-box">@(Model.PriorRentRef1.End?.ToShortDateString() ?? "")</span></p>
-                        <p>@Html.DisplayNameFor(m => m.PriorRentRef1.LandlordName) <span class="answer-box">@Model.PriorRentRef1.LandlordName</span></p>
                         <p>@Html.DisplayNameFor(m => m.PriorRentRef1.LandlordPhoneNum) <span class="answer-box">@Model.PriorRentRef1.LandlordPhoneNum</span></p>
                     </div>
                 </div>                
@@ -301,8 +304,8 @@
                 <div class="row">
                     <div class="col-12">
                         <p>@Html.DisplayNameFor(m => m.PersonalReference1.Name) <span class="answer-box">@Model.PersonalReference1.Name</span></p>
-                        <p>@Html.DisplayNameFor(m => m.PersonalReference1.PhoneNum) <span class="answer-box">@Model.PersonalReference1.PhoneNum</span></p>
                         <p>@Html.DisplayNameFor(m => m.PersonalReference1.Relationship) <span class="answer-box">@Model.PersonalReference1.Relationship</span></p>
+                        <p>@Html.DisplayNameFor(m => m.PersonalReference1.PhoneNum) <span class="answer-box">@Model.PersonalReference1.PhoneNum</span></p>
                     </div>
                 </div>
             }
@@ -324,8 +327,8 @@
                 <div class="row">
                     <div class="col-12">
                         <p>@Html.DisplayNameFor(m => m.PersonalReference2.Name) <span class="answer-box">@Model.PersonalReference2.Name</span></p>
-                        <p>@Html.DisplayNameFor(m => m.PersonalReference2.PhoneNum) <span class="answer-box">@Model.PersonalReference2.PhoneNum</span></p>
                         <p>@Html.DisplayNameFor(m => m.PersonalReference2.Relationship) <span class="answer-box">@Model.PersonalReference2.Relationship</span></p>
+                        <p>@Html.DisplayNameFor(m => m.PersonalReference2.PhoneNum) <span class="answer-box">@Model.PersonalReference2.PhoneNum</span></p>
                     </div>
                 </div>
             }
@@ -402,7 +405,7 @@
         <div class="row">
             <div class="col-12">
                 <h4 class="mb-3 border-bottom">@Html.DisplayNameFor(m => m.AdditionalComments)</h4>
-                <p>@Model.AdditionalComments</p>
+                <p class="answer-box">@Model.AdditionalComments</p>
             </div>
         </div>
     </div>
@@ -415,7 +418,7 @@
         <div class="row">
             <div class="col-12">
                 <p>I (we) certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
-                <p>@Html.DisplayNameFor(m => m.CertificationAndAuthorization): @Model.CertificationAndAuthorization</p>
+                <p>@Html.DisplayNameFor(m => m.CertificationAndAuthorization) <span class="answer-box">@Model.CertificationAndAuthorization</span></p>
             </div>
         </div>
     </div>

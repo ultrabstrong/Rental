@@ -172,7 +172,7 @@
     <Compile Include="Enums\YesNo.cs" />
     <Compile Include="Enums\YesSomeNo.cs" />
     <Compile Include="Filters\SecurityHeadersAttribute.cs" />
-    <Compile Include="Helpers\ControllerExtensions.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Models\Application\Application.cs" />
     <Compile Include="Models\Application\Automobile.cs" />
     <Compile Include="Models\Application\EmploymentInfo.cs" />
@@ -493,7 +493,6 @@
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\TenantInfo.cshtml" />
     <Content Include="Views\Home\Apply.cshtml" />
-    <Content Include="Views\Application\_Application.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ParentInfo.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PersonalInfo.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmploymentInfo.cshtml" />
@@ -515,7 +514,7 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
     <Content Include="Views\Shared\_StatusModal.cshtml" />
-    <Content Include="Views\Application\_ApplicationPdf.cshtml" />
+    <Content Include="Views\Home\ApplicationPdf.cshtml" />
     <Content Include="Views\Home\MaintenanceRequestPdf.cshtml" />
   </ItemGroup>
   <ItemGroup>

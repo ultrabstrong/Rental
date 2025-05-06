@@ -1,4 +1,4 @@
-﻿using ApartmentWeb.Helpers;
+﻿using ApartmentWeb.Extensions;
 using ApartmentWeb.Models;
 using ApartmentWeb.Models.Application;
 using ApartmentWeb.Models.Maintenance;
@@ -31,8 +31,8 @@ namespace ApartmentWeb.Controllers
         {
             this.AddUSStatesToViewBag();
 #if DEBUG
-            return View(Shared.TestApplication); // Uncomment to have prefilled form
-            //return View(new Application());
+            //return View(Shared.TestApplication); // Uncomment to use prefilled form
+            return View(new Application());
 #else
             return View(new Application());
 #endif
@@ -64,9 +64,8 @@ namespace ApartmentWeb.Controllers
                 }
 
                 Log.Logger.Debug("Creating PDF view HTML");
-                // Set ViewBag.IsPdf to true for PDF rendering
-                ViewBag.IsPdf = true;
-                var html = RenderRazorViewToString(nameof(Apply), application);
+
+                var html = RenderRazorViewToString("~/Views/Home/ApplicationPdf.cshtml", application);
 
                 Log.Logger.Debug("Converting HTML to PDF");
                 var pdf = HtmlConverter.ToPdf(html,
@@ -107,7 +106,7 @@ namespace ApartmentWeb.Controllers
                 }
 
                 Log.Logger.Debug("Creating view HTML");
-                var html = RenderMaintenanceRequestPdf(maintenanceRequest);
+                var html = RenderRazorViewToString("~/Views/Home/MaintenanceRequestPdf.cshtml", maintenanceRequest);
 
                 Log.Logger.Debug("Converting HTML to PDF");
                 var pdf = HtmlConverter.ToPdf(html,
@@ -147,28 +146,6 @@ namespace ApartmentWeb.Controllers
                 viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
                 return sw.GetStringBuilder().ToString();
             }
-        }
-
-        /// <summary>
-        /// Renders the maintenance request PDF view directly
-        /// </summary>
-        private string RenderMaintenanceRequestPdf(MaintenanceRequest maintenanceRequest)
-        {
-            ViewData.Model = maintenanceRequest;
-            using (var sw = new StringWriter())
-            {
-                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "~/Views/Home/MaintenanceRequestPdf.cshtml");
-                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
-                viewResult.View.Render(viewContext, sw);
-                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
-                return sw.GetStringBuilder().ToString();
-            }
-        }
-
-        public ActionResult ReloadConfig()
-        {
-            Shared.LoadConfiguration();
-            return Content("Configuration has been reloaded");
         }
     }
 }

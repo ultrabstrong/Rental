@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace ApartmentWeb.Helpers
+namespace ApartmentWeb.Extensions
 {
     public static class ControllerExtensions
     {
