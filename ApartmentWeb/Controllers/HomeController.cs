@@ -107,9 +107,7 @@ namespace ApartmentWeb.Controllers
                 }
 
                 Log.Logger.Debug("Creating view HTML");
-                // Set ViewBag.IsPdf to true for PDF rendering
-                ViewBag.IsPdf = true;
-                var html = RenderRazorViewToString(nameof(this.MaintenanceRequest), maintenanceRequest);
+                var html = RenderMaintenanceRequestPdf(maintenanceRequest);
 
                 Log.Logger.Debug("Converting HTML to PDF");
                 var pdf = HtmlConverter.ToPdf(html,
@@ -144,6 +142,22 @@ namespace ApartmentWeb.Controllers
                     this.AddUSStatesToViewBag();
                 }
                 ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+
+        /// <summary>
+        /// Renders the maintenance request PDF view directly
+        /// </summary>
+        private string RenderMaintenanceRequestPdf(MaintenanceRequest maintenanceRequest)
+        {
+            ViewData.Model = maintenanceRequest;
+            using (var sw = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, "~/Views/Home/MaintenanceRequestPdf.cshtml");
                 ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
                 viewResult.View.Render(viewContext, sw);
                 viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
