@@ -11,7 +11,7 @@ $.validator.unobtrusive.adapters.add('rangeifenum', ['minvalue', 'maxvalue', 'ch
 
 $(document).ready(function () {
 
-    // RequireIfEnum vlaidation handler
+    // RequireIfEnum validation handler
     $.validator.addMethod('requireifenum', function (value, element, parameters) {
         // Get the check if value
         var checkifvalue = parameters.checkifvalue;
@@ -29,7 +29,7 @@ $(document).ready(function () {
         // If input value is not check if value
         return true;
     });
-    // RangeIfEnum vlaidation handler
+    // RangeIfEnum validation handler
     $.validator.addMethod('rangeifenum', function (value, element, parameters) {
         // Get the check if value
         var checkifvalue = parameters.checkifvalue;
