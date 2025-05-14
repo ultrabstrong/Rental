@@ -3,6 +3,11 @@ $.validator.unobtrusive.adapters.add('requireifenum', ['checkifname', 'checkifva
     options.rules['requireifenum'] = options.params;
     options.messages['requireifenum'] = options.message;
 });
+// Add RequireIfEnumEnabled definition
+$.validator.unobtrusive.adapters.add('requireifenumenabled', ['checkifname', 'checkifvalue', 'ischeckenabled'], function (options) {
+    options.rules['requireifenumenabled'] = options.params;
+    options.messages['requireifenumenabled'] = options.message;
+});
 // Add RangeIfEnum definition
 $.validator.unobtrusive.adapters.add('rangeifenum', ['minvalue', 'maxvalue', 'checkifname', 'checkifvalue'], function (options) {
     options.rules['rangeifenum'] = options.params;
@@ -10,7 +15,6 @@ $.validator.unobtrusive.adapters.add('rangeifenum', ['minvalue', 'maxvalue', 'ch
 });
 
 $(document).ready(function () {
-
     // RequireIfEnum validation handler
     $.validator.addMethod('requireifenum', function (value, element, parameters) {
         // Get the check if value
@@ -25,6 +29,30 @@ $(document).ready(function () {
             // Validate element
             var isValid = $.validator.methods.required.call(this, value, element, parameters);
             return isValid;
+        }
+        // If input value is not check if value
+        return true;
+    });
+    // RequireIfEnumEnabled validation handler
+    $.validator.addMethod('requireifenumenabled', function (value, element, parameters) {
+        // Get the check if enabled value
+        var ischeckenabled = parameters.ischeckenabled;
+        ischeckenabled = (ischeckenabled == null ? false : ischeckenabled);
+        if (ischeckenabled) {
+
+            // Get the check if value
+            var checkifvalue = parameters.checkifvalue;
+            checkifvalue = (checkifvalue == null ? '' : checkifvalue).toString();
+            // Get relative element name for child models
+            var childinstancename = element.id.substring(0, element.id.indexOf('_') + 1);
+            // Get input vlaue
+            var actualvalue = $("#" + childinstancename + parameters.checkifname).val();
+            // If input value is check if value
+            if ($.trim(checkifvalue).toLowerCase() === $.trim(actualvalue).toLocaleLowerCase()) {
+                // Validate element
+                var isValid = $.validator.methods.required.call(this, value, element, parameters);
+                return isValid;
+            }
         }
         // If input value is not check if value
         return true;

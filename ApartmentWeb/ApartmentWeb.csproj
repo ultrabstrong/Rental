@@ -192,6 +192,7 @@
     <Compile Include="Models\Site\TenantInfoDoc.cs" />
     <Compile Include="Validation\RangeIfEnumAttribute.cs" />
     <Compile Include="Validation\RequireIfEnumAttribute.cs" />
+    <Compile Include="Validation\RequireIfEnumEnabledAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-select.css" />

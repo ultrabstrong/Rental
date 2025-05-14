@@ -33,13 +33,11 @@ namespace ApartmentWeb.Models.Application
         public string Zip { get; set; }
 
         [Display(Name = "Landlord name")]
-        // Todo : Make a new attribute that uses ElectiveRequireValue and AllowElectiveRequire. Requires changes to `requireif.js`
-        //[RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's name")]
+        [RequireIfEnumEnabled(nameof(ElectiveRequireValue), YesNo.Yes, nameof(AllowElectiveRequire), "Please enter the landlord's name")]
         public string LandlordName { get; set; }
 
         [Display(Name = "Landlord phone #")]
-        // Todo : Make a new attribute that uses ElectiveRequireValue and AllowElectiveRequire. Requires changes to `requireif.js`
-        //[RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the landlord's phone number")]
+        [RequireIfEnumEnabled(nameof(ElectiveRequireValue), YesNo.Yes, nameof(AllowElectiveRequire), "Please enter the landlord's phone number")]
         public string LandlordPhoneNum { get; set; }
 
         [Display(Name = "From")]
