@@ -6,7 +6,7 @@
     <div class="row align-items-center mb-3 @(Model.AllowElectiveRequire ? "" : "d-none")">
         @Html.Label(Model.ElectiveRequireDisplay, new { @class = "col-md-6 form-label fw-bold text-dark" })
         <div class="col-md-6">
-            @Html.DropDownListFor(model => model.ElectiveRequireValue, new SelectList(Enum.GetValues(typeof(YesNo)).Cast<YesNo>().Select(v => new { Value = (int)v, Text = v.ToString() }), "Value", "Text", Model.ElectiveRequireValue), "-", new { @visibletogglefor = nameof(PersonalReference), @class = "yesno_visible_toggle form-control form-control-lg" })
+            @Html.EnumDropDownListFor(model => model.ElectiveRequireValue, "-", new { @visibletogglefor = nameof(PersonalReference), @class = "yesno_visible_toggle form-control form-control-lg" })
             @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "text-danger mt-1" })
         </div>
     </div>

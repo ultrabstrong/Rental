@@ -11,7 +11,7 @@ namespace ApartmentWeb.Models.Application
         public bool AllowElectiveRequire { get; set; }
 
         [Display(Name = "Do you have an automobile?")]
-        [Range(1, 2, ErrorMessage = "Please indicate whether you have an automobile")]
+        [Range(1, 2, ErrorMessage = "Please indicate if you have an automobile")]
         public YesNo ElectiveRequireValue { get; set; }
 
         [Display(Name = "Make")]
