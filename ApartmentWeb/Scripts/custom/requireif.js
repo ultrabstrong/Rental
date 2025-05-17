@@ -37,7 +37,7 @@ $(document).ready(function () {
     $.validator.addMethod('requireifenumenabled', function (value, element, parameters) {
         // Get the check if enabled value
         var ischeckenabled = parameters.ischeckenabled;
-        ischeckenabled = (ischeckenabled == null ? false : ischeckenabled);
+        ischeckenabled = (ischeckenabled != null && ischeckenabled.toString().toLowerCase() === 'true');
         if (ischeckenabled) {
 
             // Get the check if value
