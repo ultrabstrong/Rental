@@ -16,6 +16,17 @@
     background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%) !important;
 }
 
+.navbar-toggler .navbar-toggler-icon {
+    background-image: none; 
+}
+
+.navbar-toggler .navbar-toggler-icon .bi-list {
+    font-size: 1.5em;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
 /* 
  * Datepicker styling - Override jQuery UI styles
  */
