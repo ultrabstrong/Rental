@@ -51,7 +51,7 @@
     @RenderSection("BelowNavbar", required: false)
     
     <!-- Main -->
-    <main role="main" class="container flex-grow-0">
+    <main role="main" class="container d-flex flex-column flex-grow-1">
         @RenderBody()
         @{Html.RenderPartial("_NotificationModal");}
         @{Html.RenderPartial("_StatusModal");}

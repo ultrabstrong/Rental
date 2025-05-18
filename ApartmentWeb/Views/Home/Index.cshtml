@@ -13,15 +13,19 @@
         <div class="col-md-6 p-5 d-flex flex-column justify-content-center bg-light">
             <h2 class="display-6 fw-bold mb-3 text-dark">Apply</h2>
             <p class="lead mb-4">Fill our online application from your computer or mobile device</p>
-            <div class="d-flex flex-wrap gap-3 align-items-center">
-                <a href="@Url.Action(nameof(HomeController.Apply), HomeController.Name)" class="btn btn-lg btn-primary d-flex align-items-center justify-content-center">
-                    Apply now
-                </a>
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-lg-auto">
+                    <a href="@Url.Action(nameof(HomeController.Apply), HomeController.Name)" class="btn btn-lg btn-primary d-flex align-items-center justify-content-center d-block">
+                        Apply now
+                    </a>
+                </div>
                 @if (Shared.Configuration.ShowDownloadApplication)
                 {
-                    <a href="@Url.Action(nameof(HomeController.DownloadApplication), HomeController.Name)" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center">
-                        Apply offline
-                    </a>
+                    <div class="col-12 col-lg-auto">
+                        <a href="@Url.Action(nameof(HomeController.DownloadApplication), HomeController.Name)" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center d-block">
+                            Apply offline
+                        </a>
+                    </div>
                 }
             </div>
         </div>
@@ -59,7 +63,7 @@
                 <div class="p-4 d-flex flex-column">
                     <p class="flex-grow-1">Find information about utilities, maintenance requests, and other services.</p>
                     <div class="text-end mt-3">
-                        <a href="@Url.Action(nameof(HomeController.TenantInfo), HomeController.Name)" class="btn btn-outline-success">
+                        <a href="@Url.Action(nameof(HomeController.TenantInfo), HomeController.Name)" class="btn btn-outline-success d-block w-100">
                             View tenant info <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     </div>
@@ -77,7 +81,7 @@
                 <div class="p-4 d-flex flex-column">
                     <p class="flex-grow-1">Request repairs or maintenance for your apartment quickly and easily.</p>
                     <div class="text-end mt-3">
-                        <a href="@Url.Action(nameof(HomeController.MaintenanceRequest), HomeController.Name)" class="btn btn-outline-success">
+                        <a href="@Url.Action(nameof(HomeController.MaintenanceRequest), HomeController.Name)" class="btn btn-outline-success d-block w-100">
                             Submit maintenance request <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     </div>
@@ -95,7 +99,7 @@
                 <div class="p-4 d-flex flex-column">
                     <p class="flex-grow-1">Email, call, or text us with any questions. We are happy to help!</p>
                     <div class="text-end mt-3">
-                        <a href="@Url.Action(nameof(HomeController.ContactUs), HomeController.Name)" class="btn btn-outline-success">
+                        <a href="@Url.Action(nameof(HomeController.ContactUs), HomeController.Name)" class="btn btn-outline-success d-block w-100">
                             Contact info <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     </div>

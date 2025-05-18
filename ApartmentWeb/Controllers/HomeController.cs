@@ -29,12 +29,20 @@ namespace ApartmentWeb.Controllers
         [HttpGet, Route("Apply")]
         public ActionResult Apply()
         {
+            // This action now routes to the loading page.
+            // The actual form will be loaded via AJAX by ApplyLoading.cshtml
+            return View("ApplyLoading"); 
+        }
+
+        [HttpGet, Route("ApplyForm")] // New action
+        public ActionResult ApplyForm()
+        {
             this.AddUSStatesToViewBag();
 #if DEBUG
-            //return View(Shared.TestApplication); // Uncomment to use prefilled form
-            return View(new Application());
+            //return PartialView("Apply", Shared.TestApplication); // Use PartialView for AJAX
+            return PartialView("Apply", new Application());
 #else
-            return View(new Application());
+            return PartialView("Apply", new Application()); // Use PartialView for AJAX
 #endif
         }
 

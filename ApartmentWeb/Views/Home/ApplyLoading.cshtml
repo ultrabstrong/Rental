@@ -1,0 +1,48 @@
+@model ApartmentWeb.Models.Application.Application
+@using ApartmentWeb.Controllers
+@{
+    ViewBag.Title = "Loading Application...";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="loadingIndicatorContainer" class="container mt-5 text-center d-flex flex-column justify-content-center flex-grow-1">
+    <div> <!-- Added a wrapper div for spinner and text to center them properly within the flex container -->
+        <div class="spinner-border spinner-border-lg text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h3 class="mt-3">Getting things set up...</h3>
+        <p class="text-muted">Please wait while we prepare the rental application form.</p>
+    </div>
+</div>
+
+<div id="applicationFormContainer" class="flex-grow-1 d-flex flex-column d-none">
+    <!-- The Apply.cshtml content will be loaded here -->
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Make an AJAX call to load the Apply.cshtml content
+            $.ajax({
+                url: '@Url.Action(nameof(HomeController.ApplyForm), HomeController.Name)',
+                type: 'GET',
+                success: function (response) {
+                    $('#applicationFormContainer').html(response);
+                    // Initialize any scripts that are part of Apply.cshtml
+                    if (typeof initializeApplyFormScripts === 'function') {
+                        initializeApplyFormScripts();
+                    }
+                    // Hide loading indicator and show form using Bootstrap classes
+                    $('#loadingIndicatorContainer').removeClass('d-flex').addClass('d-none'); 
+                    $('#applicationFormContainer').removeClass('d-none').addClass('d-flex'); 
+                    // Update title
+                    document.title = '@Shared.Configuration.CompanyShortName - Apply'; 
+                },
+                error: function (xhr, status, error) {
+                    $('#loadingIndicatorContainer').html('<div class="alert alert-danger">Could not load the application form. Please try again later.</div>'); // Use ID selector
+                    console.error("Error loading application form:", status, error);
+                }
+            });
+        });
+    </script>
+}
