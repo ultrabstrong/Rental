@@ -31,7 +31,7 @@ namespace ApartmentWeb.Controllers
         {
             // This action now routes to the loading page.
             // The actual form will be loaded via AJAX by ApplyLoading.cshtml
-            return View("ApplyLoading"); 
+            return View("ApplyLoading");
         }
 
         [HttpGet, Route("ApplyForm")] // New action
@@ -39,7 +39,7 @@ namespace ApartmentWeb.Controllers
         {
             this.AddUSStatesToViewBag();
 #if DEBUG
-            //return PartialView("Apply", Shared.TestApplication); // Use PartialView for AJAX
+            return PartialView("Apply", Shared.TestApplication); // Use PartialView for AJAX
             return PartialView("Apply", new Application());
 #else
             return PartialView("Apply", new Application()); // Use PartialView for AJAX

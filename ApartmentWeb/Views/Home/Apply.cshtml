@@ -448,17 +448,29 @@
     </div>
 </div>
 
+@Scripts.Render("~/bundles/validation-and-masking")
+@Scripts.Render("~/bundles/personalinfo")
+
 <script>
     function initializeApplyFormScripts() {
-        // Datepicker script for date editor
+        applySSNMasking();
+        applyPhoneMasking();
+
         $('input[type=datetime]').datepicker({
             dateFormat: "m/dd/yy",
             changeMonth: true,
             changeYear: true,
             yearRange: "-10:+1"
         });
-        // Add any other initializations from the original Apply.cshtml script here
-        // For example, SSN mask, phone mask, yesno_visible_toggle handlers if they are not event delegated
+
+        var form = $('#application-form');
+        if (form.length) {
+            // Remove existing validation data before re-parsing.
+            form.removeData('validator');
+            form.removeData('unobtrusiveValidation');
+            // Re-parse the form for jQuery Unobtrusive Validation.
+            $.validator.unobtrusive.parse(form);
+        }
 
         // Setup form submission
         $('#application-form').submit(async (e) => {
