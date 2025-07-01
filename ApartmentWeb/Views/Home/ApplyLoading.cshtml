@@ -19,30 +19,10 @@
     <!-- The Apply.cshtml content will be loaded here -->
 </div>
 
-@section scripts {
-    <script>
-        $(document).ready(function () {
-            // Make an AJAX call to load the Apply.cshtml content
-            $.ajax({
-                url: '@Url.Action(nameof(HomeController.ApplyForm), HomeController.Name)',
-                type: 'GET',
-                success: function (response) {
-                    $('#applicationFormContainer').html(response);
-                    // Initialize any scripts that are part of Apply.cshtml
-                    if (typeof initializeApplyFormScripts === 'function') {
-                        initializeApplyFormScripts();
-                    }
-                    // Hide loading indicator and show form using Bootstrap classes
-                    $('#loadingIndicatorContainer').removeClass('d-flex').addClass('d-none'); 
-                    $('#applicationFormContainer').removeClass('d-none').addClass('d-flex'); 
-                    // Update title
-                    document.title = '@Shared.Configuration.CompanyShortName - Apply'; 
-                },
-                error: function (xhr, status, error) {
-                    $('#loadingIndicatorContainer').html('<div class="alert alert-danger">Could not load the application form. Please try again later.</div>'); // Use ID selector
-                    console.error("Error loading application form:", status, error);
-                }
-            });
-        });
-    </script>
-}
+<!-- Store configuration data for JavaScript access -->
+<script>
+    $('body').data('apply-form-url', '@Url.Action(nameof(HomeController.ApplyForm), HomeController.Name)');
+    $('body').data('company-name', '@Shared.Configuration.CompanyShortName');
+</script>
+
+@Scripts.Render("~/bundles/apply-loading")

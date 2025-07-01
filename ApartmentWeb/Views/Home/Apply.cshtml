@@ -427,7 +427,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <p>I (we) certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
+                                    <p id="certification-text">I (we), <span id="applicant-name"></span>, certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
                                 </div>
                             </div>
                         </div>
@@ -448,82 +448,4 @@
     </div>
 </div>
 
-@Scripts.Render("~/bundles/validation-and-masking")
-@Scripts.Render("~/bundles/personalinfo")
-
-<script>
-    function initializeApplyFormScripts() {
-        applySSNMasking();
-        applyPhoneMasking();
-
-        $('input[type=datetime]').datepicker({
-            dateFormat: "m/dd/yy",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "-10:+1"
-        });
-
-        var form = $('#application-form');
-        if (form.length) {
-            // Remove existing validation data before re-parsing.
-            form.removeData('validator');
-            form.removeData('unobtrusiveValidation');
-            // Re-parse the form for jQuery Unobtrusive Validation.
-            $.validator.unobtrusive.parse(form);
-        }
-
-        // Setup form submission
-        $('#application-form').submit(async (e) => {
-            e.preventDefault();
-            if (!$(e.target).valid()) {
-                return;
-            }
-
-            // Restore real SSN values before form submission
-            const ssnInputs = document.querySelectorAll('input.ssn-mask');
-            ssnInputs.forEach(input => {
-                if (input.dataset.realSsn) {
-                    input.value = input.dataset.realSsn;
-                }
-            });
-
-            var formData = $(e.target).serialize();
-
-            await showStatusModal("Sending Application", "Sending your application for review...");
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action(nameof(HomeController.SubmitApplication), HomeController.Name)',
-                data: formData
-            }).done(async (response) => {
-                await hideStatusModal();
-                if (response.hasValidationErrors) { 
-                    // If validation errors, the server should re-render the form with errors.
-                    // This AJAX load pattern might need adjustment for server-side validation re-display.
-                    // A common way is for the server to return JSON indicating errors, and client-side updates the UI.
-                    // Or, if response.hasValidationErrors is true, you might need to re-render the form part with errors.
-                    // For now, let's assume client-side validation catches most things or a full page reload might occur on error.
-                    // This part needs careful handling if you want to update in place with server errors.
-                    // A simple approach if server returns the full HTML with errors:
-                    // if (response.htmlWithError) { $('#applicationFormContainer').html(response.htmlWithError); initializeApplyFormScripts(); return; }
-                    return; 
-                }
-                if (response.isSuccess) {
-                    showNotificationModal("Application sent", "Your application has been sent");
-                    $('#notificationModal').one('hidden.bs.modal', () => {
-                        // Clear form so data doesn't display when back button clicked
-                        $('#application-form')[0].reset();
-                        window.location.href = response.redirectUrl;
-                    });
-                }
-                else { showSubmitError(); }
-            }).fail(async () => {
-                await hideStatusModal();
-                showSubmitError();
-            });
-        });
-
-        function showSubmitError() {
-            showNotificationModal("Error sending application", "An error occurred while sending the application. Please use the 'Apply Offline' option on the homepage. We apologize for the inconvenience");
-        }
-    }
-</script>
+@Scripts.Render("~/bundles/apply")

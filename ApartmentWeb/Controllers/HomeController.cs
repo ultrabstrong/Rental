@@ -39,7 +39,7 @@ namespace ApartmentWeb.Controllers
         {
             this.AddUSStatesToViewBag();
 #if DEBUG
-            return PartialView("Apply", Shared.TestApplication); // Use PartialView for AJAX
+            //return PartialView("Apply", Shared.TestApplication); // Use PartialView for AJAX
             return PartialView("Apply", new Application());
 #else
             return PartialView("Apply", new Application()); // Use PartialView for AJAX

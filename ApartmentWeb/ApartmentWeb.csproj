@@ -250,6 +250,9 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\apply-form.js" />
+    <Content Include="Scripts\custom\apply-loading.js" />
+    <Content Include="Scripts\custom\maintenance-form.js" />
     <Content Include="Scripts\custom\modalmanager.js" />
     <Content Include="Scripts\custom\requireif.js" />
     <Content Include="Scripts\custom\validationErrorStyle.js" />

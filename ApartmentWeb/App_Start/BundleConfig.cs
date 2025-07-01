@@ -27,6 +27,15 @@ namespace ApartmentWeb
                         "~/Scripts/custom/ssn-masking.js", 
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/custom/datepicker-config.js")); 
+            // Apply Form SCRIPT
+            bundles.Add(new ScriptBundle("~/bundles/apply").Include(
+                        "~/Scripts/custom/apply-form.js"));
+            // Maintenance Form SCRIPT
+            bundles.Add(new ScriptBundle("~/bundles/maintenance").Include(
+                        "~/Scripts/custom/maintenance-form.js"));
+            // Apply Loading SCRIPT
+            bundles.Add(new ScriptBundle("~/bundles/apply-loading").Include(
+                        "~/Scripts/custom/apply-loading.js"));
             // Bootstrap SCRIPT
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/umd/popper.min.js",
