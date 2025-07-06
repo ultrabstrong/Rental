@@ -90,8 +90,8 @@ var MaintenanceForm = {
      * Show error message when form submission fails
      */
     showSubmitError: function() {
-        // Get the company email from the page data attribute
-        var companyEmail = $('body').data('company-email') || 'management@company.com';
+        // Get the company email from the container data attribute
+        var companyEmail = $('.container[data-company-email]').data('company-email') || 'management@company.com';
         
         showNotificationModal(
             "Error sending maintenance request", 

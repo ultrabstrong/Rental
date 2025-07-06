@@ -3,6 +3,13 @@
  */
 
 /* 
+ * Modal positioning - Move modals higher on screen
+ */
+.modal-dialog-top {
+    margin-top: 30vh;
+}
+
+/* 
  * PDF-specific style
  */
 .avoid-break {

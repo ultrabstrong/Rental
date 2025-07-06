@@ -37,8 +37,8 @@ var ApplyLoading = {
      * Get the Apply form URL from the current page
      */
     getApplyFormUrl: function() {
-        // Try to get the URL from a data attribute first, then fallback to hardcoded
-        var url = $('body').data('apply-form-url');
+        // Get the URL from data attribute
+        var url = $('#loadingIndicatorContainer').data('apply-form-url');
         if (!url) {
             // Fallback URL construction - adjust as needed based on your routing
             url = '/ApplyForm';
@@ -79,7 +79,7 @@ var ApplyLoading = {
      * Update the page title after successful load
      */
     updatePageTitle: function() {
-        var companyName = $('body').data('company-name') || 'Company';
+        var companyName = $('#loadingIndicatorContainer').data('company-name') || 'Company';
         document.title = companyName + ' - Apply';
     }
 };

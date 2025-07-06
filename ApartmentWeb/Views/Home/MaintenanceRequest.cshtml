@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container px-0 mt-4">
+<div class="container px-0 mt-4" data-company-email="@Shared.Configuration.EmailAddress">
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <!-- Maintenance Request Card -->
@@ -97,10 +97,5 @@
         </div>
     </div>
 </div>
-
-<!-- Store company email for JavaScript access -->
-<script>
-    $('body').data('company-email', '@Shared.Configuration.EmailAddress');
-</script>
 
 @Scripts.Render("~/bundles/maintenance")

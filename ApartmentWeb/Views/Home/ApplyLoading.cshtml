@@ -5,7 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="loadingIndicatorContainer" class="container mt-5 text-center d-flex flex-column justify-content-center flex-grow-1">
+<div id="loadingIndicatorContainer" class="container mt-5 text-center d-flex flex-column justify-content-center flex-grow-1" 
+     data-apply-form-url="@Url.Action(nameof(HomeController.ApplyForm), HomeController.Name)"
+     data-company-name="@Shared.Configuration.CompanyShortName">
     <div> <!-- Added a wrapper div for spinner and text to center them properly within the flex container -->
         <div class="spinner-border spinner-border-lg text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -18,11 +20,5 @@
 <div id="applicationFormContainer" class="flex-grow-1 d-flex flex-column d-none">
     <!-- The Apply.cshtml content will be loaded here -->
 </div>
-
-<!-- Store configuration data for JavaScript access -->
-<script>
-    $('body').data('apply-form-url', '@Url.Action(nameof(HomeController.ApplyForm), HomeController.Name)');
-    $('body').data('company-name', '@Shared.Configuration.CompanyShortName');
-</script>
 
 @Scripts.Render("~/bundles/apply-loading")
