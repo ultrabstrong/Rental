@@ -38,7 +38,7 @@
                         @Html.ActionLink("Tenant Info", nameof(HomeController.TenantInfo), HomeController.Name, null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Maintenance Request", nameof(HomeController.MaintenanceRequest), HomeController.Name, null, new { @class = "nav-link" })
+                        @Html.ActionLink("Maintenance Request", nameof(MaintenanceController.MaintenanceRequest), MaintenanceController.Name, null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Contact Us", nameof(HomeController.ContactUs), HomeController.Name, null, new { @class = "nav-link" })
@@ -85,7 +85,7 @@
                         </li>
                         <li class="mb-2">
                             <i class="bi bi-tools me-2"></i>
-                            @Html.ActionLink("Maintenance Request", nameof(HomeController.MaintenanceRequest), HomeController.Name, null, new { @class = "text-decoration-none text-white" })
+                            @Html.ActionLink("Maintenance Request", nameof(MaintenanceController.MaintenanceRequest), MaintenanceController.Name, null, new { @class = "text-decoration-none text-white" })
                         </li>
                         <li class="mb-2">
                             <i class="bi bi-chat-dots me-2"></i>

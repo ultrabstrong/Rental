@@ -166,6 +166,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ControllerWithPdfSubmissionBase.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Enums\HowOften.cs" />
     <Compile Include="Enums\WageType.cs" />
     <Compile Include="Enums\Yes.cs" />
@@ -514,12 +516,12 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\DownloadApplication.cshtml" />
-    <Content Include="Views\Home\MaintenanceRequest.cshtml" />
+    <Content Include="Views\Maintenance\MaintenanceRequest.cshtml" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
     <Content Include="Views\Shared\_StatusModal.cshtml" />
     <Content Include="Views\Home\ApplicationPdf.cshtml" />
-    <Content Include="Views\Home\MaintenanceRequestPdf.cshtml" />
+    <Content Include="Views\Maintenance\MaintenanceRequestPdf.cshtml" />
     <Content Include="Views\Home\ApplyLoading.cshtml" />
   </ItemGroup>
   <ItemGroup>

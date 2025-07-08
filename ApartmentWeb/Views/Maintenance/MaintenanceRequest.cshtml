@@ -22,7 +22,7 @@
                 
                 <!-- Maintenance Body -->
                 <div class="card-body p-4 p-lg-5">
-                    @using (Html.BeginForm(nameof(HomeController.SubmitMaintenanceRequest), HomeController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
+                    @using (Html.BeginForm(nameof(MaintenanceController.SubmitMaintenanceRequest), MaintenanceController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
                     {
                         @Html.AntiForgeryToken()
 
