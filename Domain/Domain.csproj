@@ -84,7 +84,7 @@
     <Compile Include="Models\EmailRequest.cs" />
     <Compile Include="Models\IEmailRequestBuilder.cs" />
     <Compile Include="Models\MailSettings.cs" />
-    <Compile Include="Core\HtmlConverter.cs" />
+    <Compile Include="Core\HtmlToPdfConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

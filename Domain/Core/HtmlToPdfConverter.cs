@@ -3,9 +3,9 @@ using System;
 
 namespace Domain.Core
 {
-    public static class HtmlConverter
+    public static class HtmlToPdfConverter
     {
-        public static byte[] ToPdf(string html, string author, string title, string subject)
+        public static byte[] GetPdfBytes(string html, string author, string title, string subject)
         {
             HtmlToPdf converter = new HtmlToPdf();
             converter.Options.PdfPageSize = PdfPageSize.A4;

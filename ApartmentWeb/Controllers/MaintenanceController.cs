@@ -9,10 +9,9 @@ using System.Web.Mvc;
 
 namespace ApartmentWeb.Controllers
 {
-    public class MaintenanceController : ControllerWithPdfSubmissionBase
+    public class MaintenanceController : ControllerWithPdfRenderingBase
     {
         public static readonly string Name = nameof(MaintenanceController).Replace(nameof(Controller), "");
-
 
         [HttpGet, Route("MaintenanceRequest")]
         public ActionResult MaintenanceRequest() => View(new MaintenanceRequest());
@@ -37,7 +36,7 @@ namespace ApartmentWeb.Controllers
                 var html = RenderRazorViewToString("~/Views/Maintenance/MaintenanceRequestPdf.cshtml", maintenanceRequest);
 
                 Log.Logger.Debug("Converting HTML to PDF");
-                var pdf = HtmlConverter.ToPdf(html,
+                var pdf = HtmlToPdfConverter.GetPdfBytes(html,
                     Shared.Configuration.CompanyName,
                     $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
                     $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");

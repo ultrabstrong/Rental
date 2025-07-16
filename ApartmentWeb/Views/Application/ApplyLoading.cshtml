@@ -6,7 +6,7 @@
 }
 
 <div id="loadingIndicatorContainer" class="container mt-5 text-center d-flex flex-column justify-content-center flex-grow-1" 
-     data-apply-form-url="@Url.Action(nameof(HomeController.ApplyForm), HomeController.Name)"
+     data-apply-form-url="@Url.Action(nameof(ApplicationController.ApplyForm), ApplicationController.Name)"
      data-company-name="@Shared.Configuration.CompanyShortName">
     <div> <!-- Added a wrapper div for spinner and text to center them properly within the flex container -->
         <div class="spinner-border spinner-border-lg text-primary" role="status">

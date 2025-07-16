@@ -33,9 +33,10 @@ namespace ApartmentWeb
             // Maintenance Form SCRIPT
             bundles.Add(new ScriptBundle("~/bundles/maintenance").Include(
                         "~/Scripts/custom/maintenance-form.js"));
-            // Apply Loading SCRIPT
+            // Apply Loading SCRIPT - now includes apply-form.js for AJAX loaded content
             bundles.Add(new ScriptBundle("~/bundles/apply-loading").Include(
-                        "~/Scripts/custom/apply-loading.js"));
+                        "~/Scripts/custom/apply-loading.js",
+                        "~/Scripts/custom/apply-form.js"));
             // Bootstrap SCRIPT
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/umd/popper.min.js",

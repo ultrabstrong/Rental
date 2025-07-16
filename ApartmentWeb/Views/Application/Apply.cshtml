@@ -18,7 +18,7 @@
 
                 <!-- Application Body -->
                 <div class="card-body p-4 p-lg-5">
-                    @using (Html.BeginForm(nameof(HomeController.SubmitApplication), HomeController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
+                    @using (Html.BeginForm(nameof(ApplicationController.SubmitApplication), ApplicationController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -447,5 +447,3 @@
         </div>
     </div>
 </div>
-
-@Scripts.Render("~/bundles/apply")
