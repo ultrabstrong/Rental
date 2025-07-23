@@ -1,0 +1,27 @@
+@model ApartmentWeb.Models.Application.Application
+@using ApartmentWeb.Controllers
+@{
+    ViewBag.Title = "Loading Application...";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/js/custom/apply-loading.js"></script>
+    <script src="~/js/custom/apply-form.js"></script>
+}
+
+<div id="loadingIndicatorContainer" class="container mt-5 text-center d-flex flex-column justify-content-center flex-grow-1" 
+     data-apply-form-url="@Url.Action(nameof(ApplicationController.ApplyForm), ApplicationController.Name)"
+     data-company-name="@Shared.Configuration.CompanyShortName">
+    <div> <!-- Added a wrapper div for spinner and text to center them properly within the flex container -->
+        <div class="spinner-border spinner-border-lg text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h3 class="mt-3">Getting things set up...</h3>
+        <p class="text-muted">Please wait while we prepare the rental application form.</p>
+    </div>
+</div>
+
+<div id="applicationFormContainer" class="flex-grow-1 d-flex flex-column d-none">
+    <!-- The Apply.cshtml content will be loaded here -->
+</div>

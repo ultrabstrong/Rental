@@ -1,0 +1,35 @@
+﻿/* 
+ * Custom CSS - Only includes styles that cannot be replaced with Bootstrap utilities
+ */
+
+/* 
+ * Modal positioning - Move modals higher on screen
+ */
+.modal-dialog-top {
+    margin-top: 30vh;
+}
+
+/* 
+ * PDF-specific style
+ */
+.avoid-break {
+    page-break-inside: avoid;
+}
+
+/* 
+ * Custom gradient background
+ */
+.hero-gradient {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%) !important;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: none; 
+}
+
+.navbar-toggler .navbar-toggler-icon .bi-list {
+    font-size: 1.5em;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}

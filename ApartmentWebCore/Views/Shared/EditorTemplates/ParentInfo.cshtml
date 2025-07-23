@@ -1,0 +1,79 @@
+@using ApartmentWeb.Enums;
+@using ApartmentWeb.Models.Application;
+@model ParentInfo
+<div class="parent-info-section">
+    <!-- Parents Pay Rent -->
+    <div class="row align-items-center mb-3">
+        @Html.LabelFor(model => model.ElectiveRequireValue, new { @class = "col-md-6 form-label fw-bold text-dark" })
+        <div class="col-md-6">
+            @Html.DropDownListFor(model => model.ElectiveRequireValue, Html.GetEnumSelectList<YesNo>(), "-", new { @visibletogglefor = nameof(ParentInfo), @class = "yesno_visible_toggle form-control form-control-lg" })
+            @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "text-danger mt-1" })
+        </div>
+    </div>
+    
+    <div id="@nameof(ParentInfo)" @(Model.ElectiveRequireValue == YesNo.Yes ? "" : "style=display:none;") class="parent-info-details">
+        <div class="row mb-4">
+            <!-- First Name -->
+            <div class="col-md-3 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.FirstName, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger mt-1" })
+            </div>
+
+            <!-- Middle Name -->
+            <div class="col-md-3 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.MiddleName, new { @class = "form-label fw-bold text-dark" })
+                <span class="text-muted ms-1">(optional)</span>
+                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger mt-1" })
+            </div>
+
+            <!-- Last Name -->
+            <div class="col-md-3 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger mt-1" })
+            </div>
+
+            <!-- Phone Num -->
+            <div class="col-md-3 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.PhoneNum, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.PhoneNum, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask" } })
+                @Html.ValidationMessageFor(model => model.PhoneNum, "", new { @class = "text-danger mt-1" })
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- Street -->
+            <div class="col-md-6 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.Street, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger mt-1" })
+            </div>
+
+            <!-- City -->
+            <div class="col-md-6 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.City, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger mt-1" })
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <!-- State -->
+            <div class="col-md-6 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.State, new { @class = "form-label fw-bold text-dark" })
+                @Html.DropDownListFor(model => model.State, (IEnumerable<SelectListItem>)ViewBag.USStates, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger mt-1" })
+            </div>
+
+            <!-- Zip -->
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.Zip, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger mt-1" })
+            </div>
+        </div>
+
+    </div>
+</div>

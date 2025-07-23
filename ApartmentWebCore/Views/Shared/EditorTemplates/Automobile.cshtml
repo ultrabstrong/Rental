@@ -1,0 +1,61 @@
+@using ApartmentWeb.Enums;
+@using ApartmentWeb.Models.Application;
+@model Automobile
+<div class="automobile-section">
+    <!-- Has An Automobile -->
+    <div class="row align-items-center mb-3 @(Model.AllowElectiveRequire ? "" : "d-none")">
+        @Html.LabelFor(model => model.ElectiveRequireValue, new { @class = "col-md-6 form-label fw-bold text-dark" })
+        <div class="col-md-6">
+            @Html.DropDownListFor(model => model.ElectiveRequireValue, Html.GetEnumSelectList<YesNo>(), "-", new { @visibletogglefor = nameof(Automobile), @class = "yesno_visible_toggle form-control form-control-lg" })
+            @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "text-danger mt-1" })
+        </div>
+    </div>
+    
+    <div id="@nameof(Automobile)" @(Model.ElectiveRequireValue == YesNo.Yes ? "" : "style=display:none;") class="automobile-details">
+        <div class="row mb-4">
+            <!-- Make -->
+            <div class="col-md-4 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.Make, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger mt-1" })
+            </div>
+            
+            <!-- Model -->
+            <div class="col-md-4 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.Model, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger mt-1" })
+            </div>
+            
+            <!-- Year -->
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Year, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control form-control-lg", maxlength = "4", type = "text", pattern = "[0-9]{4}", oninput = "this.value = this.value.replace(/[^0-9]/g, '').substring(0, 4)" } })
+                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger mt-1" })
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- State -->
+            <div class="col-md-4 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.State, new { @class = "form-label fw-bold text-dark" })
+                @Html.DropDownListFor(model => model.State, (IEnumerable<SelectListItem>)ViewBag.USStates, new { @class = "form-control form-control-lg" })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger mt-1" })
+            </div>
+            
+            <!-- License Num -->
+            <div class="col-md-4 mb-3 mb-md-0">
+                @Html.LabelFor(model => model.LicenseNum, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.LicenseNum, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.LicenseNum, "", new { @class = "text-danger mt-1" })
+            </div>
+            
+            <!-- Color -->
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Color, new { @class = "form-label fw-bold text-dark" })
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger mt-1" })
+            </div>
+        </div>
+    </div>
+</div>
