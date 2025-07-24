@@ -1,0 +1,197 @@
+﻿@using Rental.WebApp.Controllers
+@using Rental.WebApp
+@using Rental.WebApp.Models.Site
+@{
+    ViewBag.Title = "Tenant Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container px-0 mt-4">
+    <!-- Services Section -->
+    <section class="mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="border-bottom pb-2 mb-4 text-dark">Services</h3>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Electrical -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-info-subtle">
+                        <h5 class="card-title mb-0 text-dark">Electrical</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Northwestern Energy</h5>
+                        <p class="card-text">
+                            888-467-2669<br />
+                            <a href="https://www.northwesternenergy.com" class="card-link text-info" target="_blank">www.northwesternenergy.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phone / TV / Internet -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-info-subtle">
+                        <h5 class="card-title mb-0 text-dark">Phone / TV / Internet</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Charter Spectrum</h5>
+                        <p class="card-text">
+                            888-406-7063<br />
+                            <a href="https://www.spectrum.com" class="card-link text-info" target="_blank">www.spectrum.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post Office -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-info-subtle">
+                        <h5 class="card-title mb-0 text-dark">Post Office</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.Raw(Html.Encode(@Shared.Configuration.TenantInfoPostOfficeAddress).Replace("\n", "<br />"))<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gas -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-info-subtle">
+                        <h5 class="card-title mb-0 text-dark">Gas</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Northwestern Energy</h5>
+                        <p class="card-text">
+                            888-467-2669<br />
+                            <a href="https://www.northwesternenergy.com" class="card-link text-info" target="_blank">www.northwesternenergy.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Newspaper -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-info-subtle">
+                        <h5 class="card-title mb-0 text-dark">Newspaper</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Bozeman Chronicle</h5>
+                        <p class="card-text">
+                            406-587-4506<br />
+                            <a href="https://www.bozemandailychronicle.com" class="card-link text-info" target="_blank">www.bozemandailychronicle.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            @if (Shared.Configuration.TenantInfoShowTrash)
+            {
+                <!-- Trash -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-info-subtle">
+                            <h5 class="card-title mb-0 text-dark">Trash</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">Republic Services</h5>
+                            <p class="card-text">
+                                406-586-0606<br />
+                                <a href="https://www.republicservices.com/" class="card-link text-info" target="_blank">www.republicservices.com/</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+            <!-- City of Bozeman -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-info-subtle">
+                        <h5 class="card-title mb-0 text-dark">City of Bozeman</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            406-582-3200
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maintenance Section -->
+    <section class="mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="border-bottom pb-2 mb-4 text-dark">Maintenance</h3>
+            </div>
+        </div>
+
+        <div class="bg-light rounded-3 shadow">
+            <div class="row g-0">
+                <div class="col-lg-5 p-4 bg-success-subtle rounded-start">
+                    <div class="text-center mb-3">
+                        <i class="bi bi-tools fs-1 text-success"></i>
+                    </div>
+                    <h4 class="text-center mb-4 text-dark">Need something repaired?</h4>
+                    <div class="d-grid">
+                        <a href="@Url.Action(nameof(MaintenanceController.MaintenanceRequest), MaintenanceController.Name)" class="btn btn-success btn-lg">
+                            Submit maintenance request
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 p-4">
+                    <h4 class="mb-3 text-dark">Alternative ways to request maintenance:</h4>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex align-items-start mb-3">
+                            <i class="bi bi-envelope fs-4 me-3 text-success mt-1"></i>
+                            <div>
+                                <p class="mb-0 fw-bold">By Mail:</p>
+                                <p class="mb-0">Send written requests to @Shared.Configuration.Address</p>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-start">
+                            <i class="bi bi-telephone fs-4 me-3 text-success mt-1"></i>
+                            <div>
+                                <p class="mb-0 fw-bold">For Emergencies:</p>
+                                <p class="mb-0">Call @Shared.Configuration.PhoneNumber</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents Section -->
+    @if (Shared.Configuration.TenantInfoDocs != null && Shared.Configuration.TenantInfoDocs.Count > 0)
+    {
+        <section class="mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="border-bottom pb-2 mb-4 text-dark">Documents</h3>
+                </div>
+            </div>
+
+            <div class="list-group rounded-3 shadow-sm">
+                @foreach (TenantInfoDoc tid in Shared.Configuration.TenantInfoDocs)
+                {
+                    <a href="~/data/@tid.FileName" download="@tid.FileName" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <span>@tid.DisplayName</span>
+                        <span class="badge bg-success text-white rounded-pill">@tid.FileName</span>
+                    </a>
+                }
+            </div>
+        </section>
+    }
+</div>

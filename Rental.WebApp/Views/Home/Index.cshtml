@@ -1,0 +1,111 @@
+﻿@using Rental.WebApp.Controllers
+@using Rental.WebApp
+@{
+    ViewBag.Title = "Home";
+}
+
+@section BelowNavbar {
+    <img src="~/Images/header.jpg" alt="Apartment Building" />
+}
+
+<div class="container px-0 mt-4">
+    <!-- Main feature section -->
+    <div class="row g-0 rounded-3 shadow mb-5 overflow-hidden">
+        <div class="col-md-6 p-5 d-flex flex-column justify-content-center bg-light">
+            <h2 class="display-6 fw-bold mb-3 text-dark">Apply</h2>
+            <p class="lead mb-4">Fill our online application from your computer or mobile device</p>
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-lg-auto">
+                    <a href="@Url.Action(nameof(ApplicationController.Apply), ApplicationController.Name)" class="btn btn-lg btn-primary d-flex align-items-center justify-content-center d-block">
+                        Apply now
+                    </a>
+                </div>
+                @if (Shared.Configuration.ShowDownloadApplication)
+                {
+                    <div class="col-12 col-lg-auto">
+                        <a href="@Url.Action(nameof(ApplicationController.DownloadApplication), ApplicationController.Name)" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center d-block">
+                            Apply offline
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-6 p-5 text-white hero-gradient">
+            <h3 class="mb-4">Why choose us?</h3>
+            <ul class="list-unstyled">
+                <li class="mb-3 d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill me-3 fs-4 text-success"></i>
+                    <span>Quality housing in great locations</span>
+                </li>
+                <li class="mb-3 d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill me-3 fs-4 text-success"></i>
+                    <span>Responsive maintenance and support</span>
+                </li>
+                <li class="mb-3 d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill me-3 fs-4 text-success"></i>
+                    <span>Well-maintained properties</span>
+                </li>
+                <li class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill me-3 fs-4 text-success"></i>
+                    <span>Professional management</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <!-- Tenant Info -->
+        <div class="col-xl-4">
+            <div class="card h-100 border-0 shadow">
+                <div class="p-4 text-center bg-success-subtle">
+                    <i class="bi bi-info-circle-fill fs-1 mb-3 text-success"></i>
+                    <h3 class="card-title mb-0 text-dark">Tenant Info</h3>
+                </div>
+                <div class="p-4 d-flex flex-column">
+                    <p class="flex-grow-1">Find information about utilities, maintenance requests, and other services.</p>
+                    <div class="text-end mt-3">
+                        <a href="@Url.Action(nameof(HomeController.TenantInfo), HomeController.Name)" class="btn btn-outline-success d-block w-100">
+                            View tenant info <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Maintenance Request -->
+        <div class="col-xl-4">
+            <div class="card h-100 border-0 shadow">
+                <div class="p-4 text-center bg-success-subtle">
+                    <i class="bi bi-tools fs-1 mb-3 text-success"></i>
+                    <h3 class="card-title mb-0 text-dark">Maintenance Request</h3>
+                </div>
+                <div class="p-4 d-flex flex-column">
+                    <p class="flex-grow-1">Request repairs or maintenance for your apartment quickly and easily.</p>
+                    <div class="text-end mt-3">
+                        <a href="@Url.Action(nameof(MaintenanceController.MaintenanceRequest), MaintenanceController.Name)" class="btn btn-outline-success d-block w-100">
+                            Submit maintenance request <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Us -->
+        <div class="col-xl-4">
+            <div class="card h-100 border-0 shadow">
+                <div class="p-4 text-center bg-success-subtle">
+                    <i class="bi bi-chat-dots-fill fs-1 mb-3 text-success"></i>
+                    <h3 class="card-title mb-0 text-dark">Contact Us</h3>
+                </div>
+                <div class="p-4 d-flex flex-column">
+                    <p class="flex-grow-1">Email, call, or text us with any questions. We are happy to help!</p>
+                    <div class="text-end mt-3">
+                        <a href="@Url.Action(nameof(HomeController.ContactUs), HomeController.Name)" class="btn btn-outline-success d-block w-100">
+                            Contact info <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
