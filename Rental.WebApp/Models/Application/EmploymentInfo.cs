@@ -12,8 +12,8 @@ public class EmploymentInfo
 
     public string? ElectiveRequireDisplay { get; set; }
 
-    [Range(1, 2, ErrorMessage = "Please indicate if you have a job")]
-    public YesNo ElectiveRequireValue { get; set; }
+    [Required(ErrorMessage = "Please indicate if you have a job")]
+    public YesNo? ElectiveRequireValue { get; set; }
 
     [Display(Name = "Company")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the company name")]
@@ -36,7 +36,7 @@ public class EmploymentInfo
     public YesNo? IsPermenant { get; set; }
 
     [Display(Name = "Salary or hourly wage?")]
-    [RangeIfEnum("1", 0, "2", nameof(ElectiveRequireValue), YesNo.Yes, "Please select salary or hourly wage")]
+    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please select salary or hourly wage")]
     public WageType? WageType { get; set; }
 
     [Display(Name = "Wage earned")]

@@ -12,8 +12,8 @@ public class PersonalReference
 
     public string? ElectiveRequireDisplay { get; set; }
 
-    [Range(1, 2, ErrorMessage = "Please indicate if you want to add a personal reference")]
-    public YesNo ElectiveRequireValue { get; set; }
+    [Required(ErrorMessage = "Please indicate if you want to add a personal reference")]
+    public YesNo? ElectiveRequireValue { get; set; }
 
     [Display(Name = "Name")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's name")]

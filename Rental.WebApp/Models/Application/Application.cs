@@ -44,8 +44,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Is there another source of income you would like considered?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if you have other sources of income")]
-    public YesNo ConsiderOtherIncome { get; set; }
+    [Required(ErrorMessage = "Please indicate if you have other sources of income")]
+    public YesNo? ConsiderOtherIncome { get; set; }
 
     [Display(Name = "Please explain:")]
     [DataType(DataType.MultilineText)]
@@ -85,8 +85,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Does anyone applying for this apartment have a criminal record?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if anyone applying has a criminal record")]
-    public YesNo HasCriminalRecord { get; set; }
+    [Required(ErrorMessage = "Please indicate if anyone applying has a criminal record")]
+    public YesNo? HasCriminalRecord { get; set; }
 
     [Display(Name = "Please explain")]
     [DataType(DataType.MultilineText)]
@@ -95,8 +95,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Has anyone applying ever had their lease agreement terminated or been evicted?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if anyone applying has been evicted")]
-    public YesNo HasBeenEvicted { get; set; }
+    [Required(ErrorMessage = "Please indicate if anyone applying has been evicted")]
+    public YesNo? HasBeenEvicted { get; set; }
 
     [Display(Name = "Please explain")]
     [DataType(DataType.MultilineText)]
@@ -105,13 +105,13 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Do any applicants have or anticipate obtaining a Medical Marijuana Caregiver or Patient card designation?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if any applicants have or anticipate obtaining a Medical Marijuana card")]
-    public YesNo MarijuanaCard { get; set; }
+    [Required(ErrorMessage = "Please indicate if any applicants have or anticipate obtaining a Medical Marijuana card")]
+    public YesNo? MarijuanaCard { get; set; }
 
     [Display(Name = "Do any of the people that will be residing in this unit smoke anything?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if any residents smoke")]
-    public YesNo Smokers { get; set; }
+    [Required(ErrorMessage = "Please indicate if any residents smoke")]
+    public YesNo? Smokers { get; set; }
 
     [Display(Name = "How many individuals smoke?")]
     [RangeIfEnum("1", 0, "5", nameof(Smokers), YesNo.Yes, "Please enter the number of smokers")]
@@ -119,8 +119,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Do any of the people that will be residing in this unit drink alcohol?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if any residents drink alcohol")]
-    public YesNo Drinkers { get; set; }
+    [Required(ErrorMessage = "Please indicate if any residents drink alcohol")]
+    public YesNo? Drinkers { get; set; }
 
     [Display(Name = "How Often")]
     [RangeIfEnum("1", 0, "3", nameof(Drinkers), YesNo.Yes, "Please indicate how often residents drink")]
@@ -128,8 +128,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Will there be any pets living on or in the premesis?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if there will be any pets")]
-    public YesNo AnyPets { get; set; }
+    [Required(ErrorMessage = "Please indicate if there will be any pets")]
+    public YesNo? AnyPets { get; set; }
 
     [Display(Name = "List and describe each pet")]
     [DataType(DataType.MultilineText)]
@@ -138,8 +138,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Will there be any animals, birds, reptiles, insects, fish, or other non-human life forms living on or in the premises?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if there will be any non-human life forms")]
-    public YesNo AnyNonHuman { get; set; }
+    [Required(ErrorMessage = "Please indicate if there will be any non-human life forms")]
+    public YesNo? AnyNonHuman { get; set; }
 
     [Display(Name = "List and describe each of them")]
     [DataType(DataType.MultilineText)]
@@ -148,8 +148,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Do you currently attend college?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if you attend college")]
-    public YesNo AttendCollege { get; set; }
+    [Required(ErrorMessage = "Please indicate if you attend college")]
+    public YesNo? AttendCollege { get; set; }
 
     [Display(Name = "How many years have you attended?")]
     [RangeIfEnum("0.1", 1, "20.0", nameof(AttendCollege), YesNo.Yes, "Please enter how many years you've attended college")]
@@ -162,8 +162,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Is there a request for reasonable accommodation?")]
     [EnumDataType(typeof(YesNo))]
-    [Range(1, 2, ErrorMessage = "Please indicate if you need reasonable accommodation")]
-    public YesNo NeedReasonableAccommodation { get; set; }
+    [Required(ErrorMessage = "Please indicate if you need reasonable accommodation")]
+    public YesNo? NeedReasonableAccommodation { get; set; }
 
     [Display(Name = "Please explain")]
     [DataType(DataType.MultilineText)]
@@ -172,8 +172,8 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "Do you agree to the following?")]
     [EnumDataType(typeof(Yes))]
-    [Range(1, 1, ErrorMessage = "You must agree to the terms and conditions")]
-    public Yes CertificationAndAuthorization { get; set; }
+    [Required(ErrorMessage = "You must agree to the terms and conditions")]
+    public Yes? CertificationAndAuthorization { get; set; }
 
     [Display(Name = "Additional comments for property manager")]
     [DataType(DataType.MultilineText)]

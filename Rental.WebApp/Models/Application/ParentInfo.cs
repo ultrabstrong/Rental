@@ -9,8 +9,8 @@ public class ParentInfo
     public string? DisplayName { get; set; }
 
     [Display(Name = "Do your parents pay some or all of your rent?")]
-    [Range(1, 2, ErrorMessage = "Please indicate if your parents help pay your rent")]
-    public YesNo ElectiveRequireValue { get; set; }
+    [Required(ErrorMessage = "Please indicate if your parents help pay your rent")]
+    public YesNo? ElectiveRequireValue { get; set; }
 
     [Display(Name = "First name")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your parent's first name")]

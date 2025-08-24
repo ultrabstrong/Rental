@@ -11,8 +11,8 @@ public class Automobile
     public bool AllowElectiveRequire { get; set; }
 
     [Display(Name = "Do you have an automobile?")]
-    [Range(1, 2, ErrorMessage = "Please indicate if you have an automobile")]
-    public YesNo ElectiveRequireValue { get; set; }
+    [Required(ErrorMessage = "Please indicate if you have an automobile")]
+    public YesNo? ElectiveRequireValue { get; set; }
 
     [Display(Name = "Make")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the make of your vehicle")]
