@@ -16,25 +16,25 @@ public class Automobile
 
     [Display(Name = "Make")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the make of your vehicle")]
-    public string Make { get; set; } = string.Empty;
+    public string? Make { get; set; }
 
     [Display(Name = "Model")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the model of your vehicle")]
-    public string Model { get; set; } = string.Empty;
+    public string? Model { get; set; }
 
     [Display(Name = "Year")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the year of your vehicle")]
-    public string Year { get; set; } = string.Empty;
+    public string? Year { get; set; }
 
     [Display(Name = "State")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please select the registration state of your vehicle")]
-    public string State { get; set; } = string.Empty;
+    public string? State { get; set; }
 
     [Display(Name = "License Plate #")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the license plate number of your vehicle")]
-    public string LicenseNum { get; set; } = string.Empty;
+    public string? LicenseNum { get; set; }
 
     [Display(Name = "Color")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the color of your vehicle")]
-    public string Color { get; set; } = string.Empty;
+    public string? Color { get; set; }
 }

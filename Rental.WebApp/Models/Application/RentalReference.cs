@@ -17,27 +17,27 @@ public class RentalReference
 
     [Display(Name = "Street")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a street")]
-    public string Street { get; set; } = string.Empty;
+    public string? Street { get; set; }
 
     [Display(Name = "City")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a city")]
-    public string City { get; set; } = string.Empty;
+    public string? City { get; set; }
 
     [Display(Name = "State")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a state")]
-    public string State { get; set; } = string.Empty;
+    public string? State { get; set; }
 
     [Display(Name = "Zip")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a zip code")]
-    public string Zip { get; set; } = string.Empty;
+    public string? Zip { get; set; }
 
     [Display(Name = "Landlord name")]
     [RequireIfEnumEnabled(nameof(ElectiveRequireValue), YesNo.Yes, nameof(AllowElectiveRequire), "Please enter the landlord's name")]
-    public string LandlordName { get; set; } = string.Empty;
+    public string? LandlordName { get; set; }
 
     [Display(Name = "Landlord phone #")]
     [RequireIfEnumEnabled(nameof(ElectiveRequireValue), YesNo.Yes, nameof(AllowElectiveRequire), "Please enter the landlord's phone number")]
-    public string LandlordPhoneNum { get; set; } = string.Empty;
+    public string? LandlordPhoneNum { get; set; }
 
     [Display(Name = "From")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the start date")]
@@ -51,5 +51,5 @@ public class RentalReference
 
     [Display(Name = "Reason for moving")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your reason for moving")]
-    public string ReasonForMoving { get; set; } = string.Empty;
+    public string? ReasonForMoving { get; set; }
 }

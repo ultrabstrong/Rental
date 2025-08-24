@@ -56,10 +56,10 @@ public class RequireIfEnumEnabledAttribute : ValidationAttribute, IClientModelVa
         ArgumentNullException.ThrowIfNull(context);
 
         MergeAttribute(context.Attributes, "data-val", "true");
-        MergeAttribute(context.Attributes, "data-val-requireifenumenable", FormatErrorMessage(context.ModelMetadata.GetDisplayName()));
-        MergeAttribute(context.Attributes, "data-val-requireifenumenable-checkifname", CheckIfName);
-        MergeAttribute(context.Attributes, "data-val-requireifenumenable-checkifvalue", CheckIfValue.ToString());
-        MergeAttribute(context.Attributes, "data-val-requireifenumenable-ischeckenabled", IsCheckEnabled);
+        MergeAttribute(context.Attributes, "data-val-requireifenumenabled", FormatErrorMessage(context.ModelMetadata.GetDisplayName()));
+        MergeAttribute(context.Attributes, "data-val-requireifenumenabled-checkifname", CheckIfName);
+        MergeAttribute(context.Attributes, "data-val-requireifenumenabled-checkifvalue", CheckIfValue.ToString());
+        MergeAttribute(context.Attributes, "data-val-requireifenumenabled-ischeckenabled", IsCheckEnabled);
     }
 
     private static void MergeAttribute(IDictionary<string, string> attributes, string key, string value)

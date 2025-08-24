@@ -50,7 +50,7 @@ public class Application : IEmailRequestBuilder
     [Display(Name = "Please explain:")]
     [DataType(DataType.MultilineText)]
     [RequireIfEnum(nameof(ConsiderOtherIncome), YesNo.Yes, "Please explain your other sources of income")]
-    public string OtherIncomeExplain { get; set; } = string.Empty;
+    public string? OtherIncomeExplain { get; set; }
 
     public Automobile Automobile { get; set; } = new Automobile()
     {
@@ -91,7 +91,7 @@ public class Application : IEmailRequestBuilder
     [Display(Name = "Please explain")]
     [DataType(DataType.MultilineText)]
     [RequireIfEnum(nameof(HasCriminalRecord), YesNo.Yes, "Please explain the criminal record")]
-    public string ExplainCriminalRecord { get; set; } = string.Empty;
+    public string? ExplainCriminalRecord { get; set; }
 
     [Display(Name = "Has anyone applying ever had their lease agreement terminated or been evicted?")]
     [EnumDataType(typeof(YesNo))]
@@ -101,7 +101,7 @@ public class Application : IEmailRequestBuilder
     [Display(Name = "Please explain")]
     [DataType(DataType.MultilineText)]
     [RequireIfEnum(nameof(HasBeenEvicted), YesNo.Yes, "Please explain the eviction")]
-    public string ExplainBeenEvicted { get; set; } = string.Empty;
+    public string? ExplainBeenEvicted { get; set; }
 
     [Display(Name = "Do any applicants have or anticipate obtaining a Medical Marijuana Caregiver or Patient card designation?")]
     [EnumDataType(typeof(YesNo))]
@@ -115,7 +115,7 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "How many individuals smoke?")]
     [RangeIfEnum("1", 0, "5", nameof(Smokers), YesNo.Yes, "Please enter the number of smokers")]
-    public int SmokersCount { get; set; }
+    public int? SmokersCount { get; set; }
 
     [Display(Name = "Do any of the people that will be residing in this unit drink alcohol?")]
     [EnumDataType(typeof(YesNo))]
@@ -124,7 +124,7 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "How Often")]
     [RangeIfEnum("1", 0, "3", nameof(Drinkers), YesNo.Yes, "Please indicate how often residents drink")]
-    public HowOften HowOftenDrink { get; set; }
+    public HowOften? HowOftenDrink { get; set; }
 
     [Display(Name = "Will there be any pets living on or in the premesis?")]
     [EnumDataType(typeof(YesNo))]
@@ -134,7 +134,7 @@ public class Application : IEmailRequestBuilder
     [Display(Name = "List and describe each pet")]
     [DataType(DataType.MultilineText)]
     [RequireIfEnum(nameof(AnyPets), YesNo.Yes, "Please provide details about your pets")]
-    public string DescribePets { get; set; } = string.Empty;
+    public string? DescribePets { get; set; }
 
     [Display(Name = "Will there be any animals, birds, reptiles, insects, fish, or other non-human life forms living on or in the premises?")]
     [EnumDataType(typeof(YesNo))]
@@ -144,7 +144,7 @@ public class Application : IEmailRequestBuilder
     [Display(Name = "List and describe each of them")]
     [DataType(DataType.MultilineText)]
     [RequireIfEnum(nameof(AnyNonHuman), YesNo.Yes, "Please provide details about the non-human life forms")]
-    public string DescribeNonHuman { get; set; } = string.Empty;
+    public string? DescribeNonHuman { get; set; }
 
     [Display(Name = "Do you currently attend college?")]
     [EnumDataType(typeof(YesNo))]
@@ -153,12 +153,12 @@ public class Application : IEmailRequestBuilder
 
     [Display(Name = "How many years have you attended?")]
     [RangeIfEnum("0.1", 1, "20.0", nameof(AttendCollege), YesNo.Yes, "Please enter how many years you've attended college")]
-    public int CollegeYearsAttended { get; set; }
+    public int? CollegeYearsAttended { get; set; }
 
     [Display(Name = "When do you plan to graduate?")]
     [DataType(DataType.MultilineText)]
     [RequireIfEnum(nameof(AttendCollege), YesNo.Yes, "Please indicate when you plan to graduate")]
-    public string PlanToGraduate { get; set; } = string.Empty;
+    public string? PlanToGraduate { get; set; }
 
     [Display(Name = "Is there a request for reasonable accommodation?")]
     [EnumDataType(typeof(YesNo))]
@@ -168,7 +168,7 @@ public class Application : IEmailRequestBuilder
     [Display(Name = "Please explain")]
     [DataType(DataType.MultilineText)]
     [RequireIfEnum(nameof(NeedReasonableAccommodation), YesNo.Yes, "Please explain your accommodation needs")]
-    public string DescribeReasonableAccommodation { get; set; } = string.Empty;
+    public string? DescribeReasonableAccommodation { get; set; }
 
     [Display(Name = "Do you agree to the following?")]
     [EnumDataType(typeof(Yes))]
