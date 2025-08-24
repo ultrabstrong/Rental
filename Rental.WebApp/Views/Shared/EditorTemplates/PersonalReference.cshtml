@@ -4,7 +4,7 @@
 <div class="personal-reference-section">
     <!-- Optional Personal Reference Section -->
     <div class="row align-items-center mb-3 @(Model.AllowElectiveRequire ? "" : "d-none")">
-        @Html.LabelFor(model => model.ElectiveRequireDisplay, new { @class = "col-md-6 form-label fw-bold text-dark" })
+        @Html.LabelFor(m => m.ElectiveRequireValue, Model.ElectiveRequireDisplay, new { @class = "col-md-6 form-label fw-bold text-dark" })
         <div class="col-md-6">
             @Html.DropDownListFor(model => model.ElectiveRequireValue, Html.GetEnumSelectList<YesNo>(), "-", new { @visibletogglefor = nameof(PersonalReference), @class = "yesno_visible_toggle form-control form-control-lg" })
             @Html.ValidationMessageFor(model => model.ElectiveRequireValue, "", new { @class = "text-danger mt-1" })
