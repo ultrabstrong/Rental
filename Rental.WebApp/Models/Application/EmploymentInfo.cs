@@ -32,7 +32,7 @@ public class EmploymentInfo
     public string? EmploymentLength { get; set; }
 
     [Display(Name = "Is this a permanent position")]
-    [RangeIfEnum("1", 0, "2", nameof(ElectiveRequireValue), YesNo.Yes, "Please indicate if this is a permanent position")]
+    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please indicate if this is a permanent position")]
     public YesNo? IsPermenant { get; set; }
 
     [Display(Name = "Salary or hourly wage?")]

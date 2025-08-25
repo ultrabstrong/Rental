@@ -143,12 +143,17 @@
     
     <!-- Custom Scripts (these also require jQuery) -->
     <script src="~/js/custom/modalmanager.js"></script>
-    <script src="~/js/custom/requireif.js"></script>
     <script src="~/js/custom/visibletoggle.js"></script>
     <script src="~/js/custom/validationErrorStyle.js"></script>
     <script src="~/js/custom/phone-masking.js"></script>
     <script src="~/js/custom/ssn-masking.js"></script>
     <script src="~/js/custom/datepicker-config.js"></script>
+    <!-- Validation utilities must load before custom validators -->
+    <script src="~/js/custom/validation-utils.js"></script>
+    <!-- Custom unobtrusive validators -->
+    <script src="~/js/custom/requireifenum.js"></script>
+    <script src="~/js/custom/requireifenumenabled.js"></script>
+    <script src="~/js/custom/rangeifenum.js"></script>
     
     @RenderSection("scripts", required: false)
 </body>

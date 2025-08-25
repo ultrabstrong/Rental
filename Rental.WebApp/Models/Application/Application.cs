@@ -62,21 +62,21 @@ public class Application : IEmailRequestBuilder
     {
         DisplayName = "Previous Rental",
         AllowElectiveRequire = true,
-        ElectiveRequireDisplay = "Add rental history"
+        ElectiveRequireDisplay = "Add rental history?"
     };
 
     public PersonalReference PersonalReference1 { get; set; } = new PersonalReference()
     {
         DisplayName = "Personal reference #1",
         AllowElectiveRequire = true,
-        ElectiveRequireDisplay = "Add personal reference"
+        ElectiveRequireDisplay = "Add personal reference?"
     };
 
     public PersonalReference PersonalReference2 { get; set; } = new PersonalReference()
     {
         DisplayName = "Personal reference #2",
         AllowElectiveRequire = true,
-        ElectiveRequireDisplay = "Add personal reference"
+        ElectiveRequireDisplay = "Add personal reference?"
     };
 
     [Display(Name = "How long do you anticipate leasing this dwelling?")]
