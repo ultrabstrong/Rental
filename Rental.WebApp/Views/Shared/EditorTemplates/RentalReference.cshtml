@@ -3,6 +3,9 @@
 @model RentalReference
 
 <div class="rental-reference-section">
+    @* Hidden field so client-side requireifenumenabled rule can discover AllowElectiveRequire actual value *@
+    @Html.HiddenFor(m => m.AllowElectiveRequire)
+
     <!-- Optional Rental Reference Section -->
     <div class="row align-items-center mb-3 @(Model.AllowElectiveRequire ? "" : "d-none")">
         @Html.LabelFor(m => m.ElectiveRequireValue, Model.ElectiveRequireDisplay, new { @class = "col-md-6 form-label fw-bold text-dark" })

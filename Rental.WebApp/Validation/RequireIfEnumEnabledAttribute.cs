@@ -51,6 +51,16 @@ public class RequireIfEnumEnabledAttribute : ValidationAttribute, IClientModelVa
         return ValidationResult.Success;
     }
 
+    private bool GetIsCheckEnabled(object instance)
+    {
+        var enabledProperty = instance.GetType().GetProperty(IsCheckEnabled);
+        if (enabledProperty == null || enabledProperty.GetValue(instance) is not bool isEnabled)
+        {
+            return false;
+        }
+        return isEnabled;
+    }
+
     public void AddValidation(ClientModelValidationContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -69,15 +79,5 @@ public class RequireIfEnumEnabledAttribute : ValidationAttribute, IClientModelVa
             return;
         }
         attributes.Add(key, value);
-    }
-
-    private bool GetIsCheckEnabled(object instance)
-    {
-        var enabledProperty = instance.GetType().GetProperty(IsCheckEnabled);
-        if (enabledProperty == null || enabledProperty.GetValue(instance) is not bool isEnabled)
-        {
-            return false;
-        }
-        return isEnabled;
     }
 }

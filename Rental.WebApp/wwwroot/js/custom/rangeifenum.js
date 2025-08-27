@@ -5,31 +5,23 @@ $.validator.unobtrusive.adapters.add('rangeifenum', ['minvalue', 'maxvalue', 'ch
 });
 
 $.validator.addMethod('rangeifenum', function (value, element, parameters) {
-    var checkifvalue = (parameters.checkifvalue == null ? '' : parameters.checkifvalue).toString();
-    var underscoreIndex = element.id.indexOf('_');
-    var childinstancename = underscoreIndex >= 0 ? element.id.substring(0, underscoreIndex + 1) : '';
-    var actualvalue = $('#' + childinstancename + parameters.checkifname).val();
-    if (ValidationUtils.normalize(checkifvalue) === ValidationUtils.normalize(actualvalue)) {
-        if (value == null || String(value).trim() === '') {
-            return false; // empty not allowed when condition matches
-        }
-        var valdec = parseFloat(value);
-        if (isNaN(valdec)) {
-            return false;
-        }
-        if (parameters.minvalue) {
-            var mindec = parseFloat(parameters.minvalue);
-            if (!isNaN(mindec) && valdec < mindec) {
-                return false;
-            }
-        }
-        if (parameters.maxvalue) {
-            var maxdec = parseFloat(parameters.maxvalue);
-            if (!isNaN(maxdec) && valdec > maxdec) {
-                return false;
-            }
-        }
-        return true;
+    const expected = parameters.checkifvalue;
+    const idx = element.id.indexOf('_');
+    const prefix = idx >= 0 ? element.id.substring(0, idx + 1) : '';
+    const actual = $('#' + prefix + parameters.checkifname).val();
+    if (ValidationUtils.normalize(expected) !== ValidationUtils.normalize(actual)) return true;
+
+    if (value == null || String(value).trim() === '') return false;
+    const num = parseFloat(value);
+    if (Number.isNaN(num)) return false;
+
+    if (parameters.minvalue) {
+        const min = parseFloat(parameters.minvalue);
+        if (!Number.isNaN(min) && num < min) return false;
+    }
+    if (parameters.maxvalue) {
+        const max = parseFloat(parameters.maxvalue);
+        if (!Number.isNaN(max) && num > max) return false;
     }
     return true;
 });

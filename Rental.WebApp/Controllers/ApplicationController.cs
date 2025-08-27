@@ -27,8 +27,8 @@ public class ApplicationController : ControllerWithPdfRenderingBase
     {
         this.AddUSStatesToViewBag();
 #if DEBUG
-        return PartialView("Apply", Shared.TestApplication);
-        //return PartialView("Apply", new Application());
+        //return PartialView("Apply", Shared.TestApplication);
+        return PartialView("Apply", new Application());
 #else
         return PartialView("Apply", new Application()); // Use PartialView for AJAX
 #endif
