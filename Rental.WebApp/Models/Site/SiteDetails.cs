@@ -14,11 +14,7 @@ public class SiteDetails
 
     public string Address { get; set; } = string.Empty;
 
-    public bool ShowDownloadApplication { get; set; }
-
-    public bool TenantInfoShowTrash { get; set; }
-
-    public string TenantInfoPostOfficeAddress { get; set; } = string.Empty;
+    public Contact PostOffice { get; set; } = new Contact();
 
     public List<TenantInfoDoc> TenantInfoDocs { get; set; } = [];
 

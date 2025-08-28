@@ -1,72 +1,19 @@
-﻿using Rental.WebApp.Enums;
+﻿using Microsoft.Extensions.Options;
+using Rental.WebApp.Enums;
 using Rental.WebApp.Models.Application;
 using Rental.WebApp.Models.Site;
-using Serilog;
 using System.Diagnostics;
 using System.Reflection;
-using System.Xml.Serialization;
 
 namespace Rental.WebApp;
 
 public static class Shared
 {
-    // Use a more appropriate path for .NET 8 - we'll use the application's content root
-    private static readonly string _dataDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data");
-    private static readonly string _configFile = Path.Combine(_dataDir, "serviceconfig.xml");
-
-    private static object ConfigLock { get; set; } = new object();
-
-    static Shared()
-    {
-        if (!Directory.Exists(_dataDir))
-        {
-            Directory.CreateDirectory(_dataDir);
-        }
-
-        try
-        {
-            if (!File.Exists(_configFile))
-            {
-                Configuration = new SiteDetails()
-                {
-                    CompanyName = "CompanyName",
-                    CompanyShortName = "CompanyShortName",
-                    EmailAddress = "EmailAddress",
-                    PhoneNumber = "PhoneNumber",
-                    Address = "Address",
-                    MailSettings = new()
-                    {
-                        SMTPServer = "SMTPServer",
-                        SMTPUsername = "SMTPUsername",
-                        SMTPPw = "SMTPPw",
-                        SMTPPort = 0,
-                        SMTPTo = "SMTPTo"
-                    },
-                    ShowDownloadApplication = true,
-                    TenantInfoShowTrash = false,
-                    TenantInfoPostOfficeAddress = "PostOfficeAddress",
-                    TenantInfoDocs =
-                    [
-                        new() {DisplayName = "DisplayName", FileName = "FileName" }
-                    ]
-                };
-
-                SaveConfiguration();
-            }
-            else
-            {
-                LoadConfiguration();
-            }
-        }
-        catch (Exception ex)
-        {
-            Log.Logger?.Error(ex, "Failed to get service configuration");
-        }
-    }
-
-    public static SiteDetails Configuration { get; set; } = new SiteDetails();
+    internal static IOptionsMonitor<SiteDetails>? SiteDetailsMonitor { get; set; }
+    public static SiteDetails Configuration => SiteDetailsMonitor?.CurrentValue ?? new SiteDetails();
 
     public static string Version => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion ?? "Unknown";
+
 
     // Sample application with realistic test data for testing purposes
     public static Application TestApplication => new()
@@ -215,28 +162,4 @@ public static class Shared
         CertificationAndAuthorization = Yes.Yes,
         AdditionalComments = "I'm a registered nurse working the day shift at Portland City Hospital. I'm looking for a quiet apartment close to work and public transportation. I'm a responsible tenant with a stable income and excellent rental history."
     };
-
-    public static void LoadConfiguration()
-    {
-        lock (ConfigLock)
-        {
-            var xmlSerializer = new XmlSerializer(typeof(SiteDetails));
-            using (var fs = new FileStream(_configFile, FileMode.Open, FileAccess.Read))
-            {
-                Configuration = (SiteDetails?)xmlSerializer.Deserialize(fs) ?? new SiteDetails();
-            }
-        }
-    }
-
-    public static void SaveConfiguration()
-    {
-        lock (ConfigLock)
-        {
-            var xmlSerializer = new XmlSerializer(typeof(SiteDetails));
-            using (var fs = new FileStream(_configFile, FileMode.Create, FileAccess.Write))
-            {
-                xmlSerializer.Serialize(fs, Configuration);
-            }
-        }
-    }
 }

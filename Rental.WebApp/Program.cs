@@ -1,5 +1,7 @@
 using Rental.WebApp.Middleware;
 using Serilog;
+using Rental.WebApp.Models.Site;
+using Rental.WebApp; // add namespace for Shared
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,10 +25,19 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+// Ensure appsettings.json reload is enabled (CreateBuilder already does this, explicit for clarity)
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+// Bind SiteDetails with options pattern for live reload
+builder.Services.Configure<SiteDetails>(builder.Configuration.GetSection("SiteDetails"));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// bridge static Shared to options monitor
+Shared.SiteDetailsMonitor = app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptionsMonitor<SiteDetails>>();
 
 if (!app.Environment.IsDevelopment())
 {
@@ -34,17 +45,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// Add security headers middleware early in the pipeline
 app.UseMiddleware<SecurityHeadersMiddleware>();
-
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseAuthorization();
-
 app.MapDefaultControllerRoute();
-
 app.MapControllerRoute("Default", "{controller}/{action}/{id?}", new { controller = Rental.WebApp.Controllers.HomeController.Name });
 
 try

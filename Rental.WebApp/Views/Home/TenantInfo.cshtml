@@ -56,7 +56,9 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            @Html.Raw(Html.Encode(@Shared.Configuration.TenantInfoPostOfficeAddress).Replace("\n", "<br />"))<br />
+                            @Shared.Configuration.PostOffice.Address
+                            <br />
+                            <strong>Phone:</strong> @Shared.Configuration.PostOffice.Phone
                         </p>
                     </div>
                 </div>
@@ -94,24 +96,21 @@
                 </div>
             </div>
             
-            @if (Shared.Configuration.TenantInfoShowTrash)
-            {
-                <!-- Trash -->
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-header bg-info-subtle">
-                            <h5 class="card-title mb-0 text-dark">Trash</h5>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-dark">Republic Services</h5>
-                            <p class="card-text">
-                                406-586-0606<br />
-                                <a href="https://www.republicservices.com/" class="card-link text-info" target="_blank">www.republicservices.com/</a>
-                            </p>
-                        </div>
+            <!-- Trash -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-info-subtle">
+                        <h5 class="card-title mb-0 text-dark">Trash</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">Republic Services</h5>
+                        <p class="card-text">
+                            406-586-0606<br />
+                            <a href="https://www.republicservices.com/" class="card-link text-info" target="_blank">www.republicservices.com/</a>
+                        </p>
                     </div>
                 </div>
-            }
+            </div>
             
             <!-- City of Bozeman -->
             <div class="col">

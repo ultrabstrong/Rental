@@ -20,14 +20,11 @@
                         Apply now
                     </a>
                 </div>
-                @if (Shared.Configuration.ShowDownloadApplication)
-                {
-                    <div class="col-12 col-lg-auto">
-                        <a href="@Url.Action(nameof(ApplicationController.DownloadApplication), ApplicationController.Name)" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center d-block">
-                            Apply offline
-                        </a>
-                    </div>
-                }
+                <div class="col-12 col-lg-auto">
+                    <a href="@Url.Action(nameof(ApplicationController.DownloadApplication), ApplicationController.Name)" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center d-block">
+                        Apply offline
+                    </a>
+                </div>
             </div>
         </div>
         <div class="col-md-6 p-5 text-white hero-gradient">
