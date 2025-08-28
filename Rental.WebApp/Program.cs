@@ -14,7 +14,7 @@ Log.Logger = new LoggerConfiguration()
         Path.Combine(AppContext.BaseDirectory, "logs", "log-.txt"),
         rollingInterval: RollingInterval.Day,
         retainedFileTimeLimit: TimeSpan.FromDays(90))
-    .MinimumLevel.Information()
+    .MinimumLevel.Warning()
 #endif
     .CreateLogger();
 
