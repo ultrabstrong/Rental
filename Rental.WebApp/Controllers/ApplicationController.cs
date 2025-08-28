@@ -17,7 +17,6 @@ public class ApplicationController : ControllerWithPdfRenderingBase
     [HttpGet, Route("Apply")]
     public ActionResult Apply()
     {
-        // This action now routes to the loading page.
         // The actual form will be loaded via AJAX by ApplyLoading.cshtml
         return View("ApplyLoading");
     }
@@ -49,7 +48,11 @@ public class ApplicationController : ControllerWithPdfRenderingBase
 
                 Log.Logger.Information("Application validation errors: {@Errors}", errors);
                 this.AddUSStatesToViewBag();
-                return Json(new SubmitResponse { IsSuccess = false, HasValidationErrors = true });
+                ViewBag.Errors = true; // trigger validation summary display in partial
+
+                // Return the form partial with validation messages and a 400 status so client JS can swap it in
+                Response.StatusCode = StatusCodes.Status400BadRequest;
+                return PartialView("Apply", application);
             }
 
             Log.Logger.Debug("Creating PDF view HTML");
