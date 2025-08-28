@@ -1,5 +1,5 @@
 ﻿@using Rental.WebApp.Controllers
-@using Rental.WebApp
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<Rental.WebApp.Models.Site.SiteDetails> SiteDetails
 @{
     ViewBag.Title = "Download Application";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -46,8 +46,8 @@
                     <!-- Email submission section -->
                     <div class="text-center p-4 bg-light mt-4">
                         <h5 class="mb-2">Email application to</h5>
-                        <a href="mailto:@Shared.Configuration?.EmailAddress" class="text-decoration-none text-primary fs-5">
-                            <i class="bi bi-envelope me-2"></i>@Shared.Configuration.EmailAddress
+                        <a href="mailto:@SiteDetails.Value.EmailAddress" class="text-decoration-none text-primary fs-5">
+                            <i class="bi bi-envelope me-2"></i>@SiteDetails.Value.EmailAddress
                         </a>
                     </div>
                 </div>

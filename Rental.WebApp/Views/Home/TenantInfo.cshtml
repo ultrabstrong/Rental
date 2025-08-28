@@ -1,6 +1,5 @@
 ﻿@using Rental.WebApp.Controllers
-@using Rental.WebApp
-@using Rental.WebApp.Models.Site
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<Rental.WebApp.Models.Site.SiteDetails> SiteDetails
 @{
     ViewBag.Title = "Tenant Info";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -56,9 +55,9 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            @Shared.Configuration.PostOffice.Address
+                            @SiteDetails.Value.PostOffice.Address
                             <br />
-                            @Shared.Configuration.PostOffice.Phone
+                            @SiteDetails.Value.PostOffice.Phone
                         </p>
                     </div>
                 </div>
@@ -156,14 +155,14 @@
                             <i class="bi bi-envelope fs-4 me-3 text-success mt-1"></i>
                             <div>
                                 <p class="mb-0 fw-bold">By Mail:</p>
-                                <p class="mb-0">Send written requests to @Shared.Configuration.Address</p>
+                                <p class="mb-0">Send written requests to @SiteDetails.Value.Address</p>
                             </div>
                         </li>
                         <li class="d-flex align-items-start">
                             <i class="bi bi-telephone fs-4 me-3 text-success mt-1"></i>
                             <div>
                                 <p class="mb-0 fw-bold">For Emergencies:</p>
-                                <p class="mb-0">Call @Shared.Configuration.PhoneNumber</p>
+                                <p class="mb-0">Call @SiteDetails.Value.PhoneNumber</p>
                             </div>
                         </li>
                     </ul>
@@ -173,7 +172,7 @@
     </section>
 
     <!-- Documents Section -->
-    @if (Shared.Configuration.TenantInfoDocs != null && Shared.Configuration.TenantInfoDocs.Count > 0)
+    @if (SiteDetails.Value.TenantInfoDocs != null && SiteDetails.Value.TenantInfoDocs.Count > 0)
     {
         <section class="mb-5">
             <div class="row">
@@ -183,7 +182,7 @@
             </div>
 
             <div class="list-group rounded-3 shadow-sm">
-                @foreach (TenantInfoDoc tid in Shared.Configuration.TenantInfoDocs)
+                @foreach (var tid in SiteDetails.Value.TenantInfoDocs)
                 {
                     <a href="~/data/@tid.FileName" download="@tid.FileName" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <span>@tid.DisplayName</span>

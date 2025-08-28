@@ -1,5 +1,5 @@
 ﻿@using Rental.WebApp.Controllers
-@using Rental.WebApp
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<Rental.WebApp.Models.Site.SiteDetails> SiteDetails
 @{
     ViewBag.Title = "Contact Us";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,7 +23,7 @@
                             </div>
                             <div class="text-center text-md-start">
                                 <h5 class="fw-bold mb-1 text-dark">Call or text</h5>
-                                <a href="tel:@Shared.Configuration.PhoneNumber" class="fs-5 text-info text-decoration-none">@Shared.Configuration.PhoneNumber</a>
+                                <a href="tel:@SiteDetails.Value.PhoneNumber" class="fs-5 text-info text-decoration-none">@SiteDetails.Value.PhoneNumber</a>
                             </div>
                         </div>
                         
@@ -34,7 +34,7 @@
                             </div>
                             <div class="text-center text-md-start">
                                 <h5 class="fw-bold mb-1 text-dark">Email</h5>
-                                <a href="mailto:@Shared.Configuration?.EmailAddress" class="fs-5 text-info text-decoration-none">@Shared.Configuration.EmailAddress</a>
+                                <a href="mailto:@SiteDetails.Value.EmailAddress" class="fs-5 text-info text-decoration-none">@SiteDetails.Value.EmailAddress</a>
                             </div>
                         </div>
                         
@@ -45,7 +45,7 @@
                             </div>
                             <div class="text-center text-md-start">
                                 <h5 class="fw-bold mb-1 text-dark">Mailing address</h5>
-                                <p class="fs-5 mb-0">@Shared.Configuration.Address</p>
+                                <p class="fs-5 mb-0">@SiteDetails.Value.Address</p>
                             </div>
                         </div>
                     </div>

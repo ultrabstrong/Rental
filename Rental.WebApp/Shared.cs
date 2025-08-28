@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.Options;
-using Rental.WebApp.Enums;
+﻿using Rental.WebApp.Enums;
 using Rental.WebApp.Models.Application;
-using Rental.WebApp.Models.Site;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -9,9 +7,6 @@ namespace Rental.WebApp;
 
 public static class Shared
 {
-    internal static IOptionsMonitor<SiteDetails>? SiteDetailsMonitor { get; set; }
-    public static SiteDetails Configuration => SiteDetailsMonitor?.CurrentValue ?? new SiteDetails();
-
     public static string Version => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion ?? "Unknown";
 
 

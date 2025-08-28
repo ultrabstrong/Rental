@@ -1,7 +1,7 @@
 @model Application
 @using Rental.WebApp.Controllers
 @using Rental.WebApp.Models.Application
-@using Rental.WebApp
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<Rental.WebApp.Models.Site.SiteDetails> SiteDetails
 @{
     ViewBag.Title = "Loading Application...";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,7 +14,7 @@
 
 <div id="loadingIndicatorContainer" class="container mt-5 text-center d-flex flex-column justify-content-center flex-grow-1" 
      data-apply-form-url="@Url.Action(nameof(ApplicationController.ApplyForm), ApplicationController.Name)"
-     data-company-name="@Shared.Configuration.CompanyShortName">
+     data-company-name="@SiteDetails.Value.CompanyShortName">
     <div> <!-- Added a wrapper div for spinner and text to center them properly within the flex container -->
         <div class="spinner-border spinner-border-lg text-primary" role="status">
             <span class="visually-hidden">Loading...</span>

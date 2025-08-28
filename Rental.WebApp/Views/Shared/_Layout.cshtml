@@ -1,11 +1,12 @@
 @using Rental.WebApp.Controllers
-@using Rental.WebApp
+@using Rental.WebApp.Models.Site
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<SiteDetails> SiteDetails
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@Shared.Configuration.CompanyShortName - @ViewBag.Title</title>
+    <title>@SiteDetails.Value.CompanyShortName - @ViewBag.Title</title>
     <link rel="icon" type="image/x-icon" href="~/images/webicon.ico" />
     
     <!-- CSS Files -->
@@ -21,7 +22,7 @@
     <header class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             @Html.ActionLink(
-           Shared.Configuration.CompanyName,
+           SiteDetails.Value.CompanyName,
            nameof(HomeController.Index),
            HomeController.Name,
            new { area = "" }, new { @class = "navbar-brand" })
@@ -63,11 +64,11 @@
             <div class="row">
                 <!-- Company Info -->
                 <div class="col-md-4 mb-4">
-                    <h5 class="border-bottom border-secondary pb-2 mb-3">@Shared.Configuration.CompanyName</h5>
+                    <h5 class="border-bottom border-secondary pb-2 mb-3">@SiteDetails.Value.CompanyName</h5>
                     <address class="mb-3">
-                        <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> @Shared.Configuration.Address</p>
-                        <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i> @Shared.Configuration.PhoneNumber</p>
-                        <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:@Shared.Configuration.EmailAddress" class="text-decoration-none text-white">@Shared.Configuration.EmailAddress</a></p>
+                        <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> @SiteDetails.Value.Address</p>
+                        <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i> @SiteDetails.Value.PhoneNumber</p>
+                        <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:@SiteDetails.Value.EmailAddress" class="text-decoration-none text-white">@SiteDetails.Value.EmailAddress</a></p>
                     </address>
                 </div>
                 
@@ -118,7 +119,7 @@
             <!-- Copyright row -->
             <div class="row mt-3 pt-3 border-top border-secondary">
                 <div class="col-md-6 mb-2 mb-md-0">
-                    <p class="small mb-0">&copy; @DateTime.Now.Year @Shared.Configuration.CompanyName - All Rights Reserved</p>
+                    <p class="small mb-0">&copy; @DateTime.Now.Year @SiteDetails.Value.CompanyName - All Rights Reserved</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <p class="small mb-0">

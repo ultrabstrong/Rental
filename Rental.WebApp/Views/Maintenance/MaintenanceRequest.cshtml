@@ -1,6 +1,7 @@
 @using Rental.WebApp.Controllers
 @using Rental.WebApp.Models.Maintenance
 @using Rental.WebApp
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<Rental.WebApp.Models.Site.SiteDetails> SiteDetails
 @model MaintenanceRequest
 @{
     ViewBag.colsize = "sm";
@@ -12,7 +13,7 @@
     <script src="~/js/custom/maintenance-form.js"></script>
 }
 
-<div class="container px-0 mt-4" data-company-email="@Shared.Configuration.EmailAddress">
+<div class="container px-0 mt-4" data-company-email="@SiteDetails.Value.EmailAddress">
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <!-- Maintenance Request Card -->
@@ -95,7 +96,7 @@
 
                     <!-- Contact us note -->
                     <div class="text-center text-muted mt-4">
-                        <p class="mb-0 small">For emergency maintenance issues, please call us directly at <span class="fw-bold">@Shared.Configuration.PhoneNumber</span></p>
+                        <p class="mb-0 small">For emergency maintenance issues, please call us directly at <span class="fw-bold">@SiteDetails.Value.PhoneNumber</span></p>
                     </div>
                 </div>
             </div>

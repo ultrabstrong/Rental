@@ -3,12 +3,20 @@ using Rental.Domain.Core;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Maintenance;
 using Serilog;
+using Microsoft.Extensions.Options;
+using Rental.WebApp.Models.Site;
 
 namespace Rental.WebApp.Controllers;
 
 public class MaintenanceController : ControllerWithPdfRenderingBase
 {
     public static readonly string Name = nameof(MaintenanceController).Replace(nameof(Controller), "");
+    private readonly IOptionsSnapshot<SiteDetails> _siteDetails;
+
+    public MaintenanceController(IOptionsSnapshot<SiteDetails> siteDetails)
+    {
+        _siteDetails = siteDetails;
+    }
 
     [HttpGet, Route("MaintenanceRequest")]
     public ActionResult MaintenanceRequest() => View(new MaintenanceRequest());
@@ -34,13 +42,13 @@ public class MaintenanceController : ControllerWithPdfRenderingBase
 
             Log.Logger.Debug("Converting HTML to PDF");
             var pdf = HtmlToPdfConverter.GetPdfBytes(html,
-                Shared.Configuration.CompanyName,
+                _siteDetails.Value.CompanyName,
                 $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
                 $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
 
             Log.Logger.Debug("Sending maintenance email");
             using (var pdfStream = new MemoryStream(pdf))
-            using (var emailService = new EmailService(Shared.Configuration.MailSettings))
+            using (var emailService = new EmailService(_siteDetails.Value.MailSettings))
             {
                 emailService.SendEmail(maintenanceRequest, pdfStream);
             }

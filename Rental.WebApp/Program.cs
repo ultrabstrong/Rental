@@ -1,7 +1,6 @@
 using Rental.WebApp.Middleware;
 using Serilog;
 using Rental.WebApp.Models.Site;
-using Rental.WebApp; // add namespace for Shared
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,9 +34,6 @@ builder.Services.Configure<SiteDetails>(builder.Configuration.GetSection("SiteDe
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
-// bridge static Shared to options monitor
-Shared.SiteDetailsMonitor = app.Services.GetRequiredService<Microsoft.Extensions.Options.IOptionsMonitor<SiteDetails>>();
 
 if (!app.Environment.IsDevelopment())
 {
