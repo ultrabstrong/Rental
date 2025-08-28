@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Models.Application;
 
-public class Application : IEmailRequestBuilder
+public partial class Application : IEmailRequestBuilder
 {
     [Display(Name = "Rental Address")]
     [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the rental address")]

@@ -1,6 +1,7 @@
 @using Rental.WebApp.Controllers
 @using Rental.WebApp.Models.Site
 @inject Microsoft.Extensions.Options.IOptionsSnapshot<SiteDetails> SiteDetails
+@{ var appVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "Unknown"; }
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@SiteDetails.Value.CompanyShortName - @ViewBag.Title</title>
     <link rel="icon" type="image/x-icon" href="~/images/webicon.ico" />
-    
     <!-- CSS Files -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/bootstrap-icons.css" rel="stylesheet" />
     <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/css/custom.css" rel="stylesheet" />
-    
     @RenderSection("styles", required: false)
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -26,13 +25,11 @@
            nameof(HomeController.Index),
            HomeController.Name,
            new { area = "" }, new { @class = "navbar-brand" })
-            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <i class="bi bi-list"></i>
                 </span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -48,9 +45,7 @@
             </div>
         </div>
     </header>
-    
     @RenderSection("BelowNavbar", required: false)
-    
     <!-- Main -->
     <main role="main" class="container d-flex flex-column flex-grow-1">
         @RenderBody()
@@ -125,7 +120,7 @@
                     <p class="small mb-0">
                         @Html.ActionLink("Privacy Policy", nameof(HomeController.Privacy), HomeController.Name, null, new { @class = "text-decoration-none text-white" }) |
                         @Html.ActionLink("Terms of Use", nameof(HomeController.Terms), HomeController.Name, null, new { @class = "text-decoration-none text-white" }) |
-                        <span class="text-white">@Shared.Version</span>
+                        <span class="text-white">@appVersion</span>
                     </p>
                 </div>
             </div>

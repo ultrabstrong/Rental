@@ -1,15 +1,10 @@
-﻿using Rental.WebApp.Enums;
-using Rental.WebApp.Models.Application;
-using System.Diagnostics;
-using System.Reflection;
+#if DEBUG
+using Rental.WebApp.Enums;
 
-namespace Rental.WebApp;
+namespace Rental.WebApp.Models.Application;
 
-public static class Shared
+public partial class Application
 {
-    public static string Version => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion ?? "Unknown";
-
-
     // Sample application with realistic test data for testing purposes
     public static Application TestApplication => new()
     {
@@ -18,14 +13,13 @@ public static class Shared
         PersonalInfo = new PersonalInfo
         {
             FirstName = "Jane",
-            MiddleName = "", // Optional - can be empty
+            MiddleName = string.Empty,
             LastName = "Doe",
             DriverLicense = "OR12345678",
             DriverLicenseStateOfIssue = "OR",
             SSN = "123-45-6789",
             PhoneNum = "(503) 555-7890",
             Email = "janedoe@example.com"
-            // DisplayName and ElectiveRequireDisplay are UI properties - not needed in test data
         },
         PrimaryEmployment = new EmploymentInfo
         {
@@ -158,3 +152,4 @@ public static class Shared
         AdditionalComments = "I'm a registered nurse working the day shift at Portland City Hospital. I'm looking for a quiet apartment close to work and public transportation. I'm a responsible tenant with a stable income and excellent rental history."
     };
 }
+#endif

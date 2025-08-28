@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Rental.Domain.Core;
 using Rental.WebApp.Extensions;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Application;
-using Serilog;
-using Microsoft.Extensions.Options;
 using Rental.WebApp.Models.Site;
+using Serilog;
 
 namespace Rental.WebApp.Controllers;
 
@@ -23,17 +23,15 @@ public class ApplicationController : ControllerWithPdfRenderingBase
     public ActionResult DownloadApplication() => View();
 
     [HttpGet, Route("Apply")]
-    public ActionResult Apply()
-    {
-        return View("ApplyLoading");
-    }
+    public ActionResult Apply() => View("ApplyLoading");
 
     [HttpGet, Route("ApplyForm")]
     public ActionResult ApplyForm()
     {
         this.AddUSStatesToViewBag();
 #if DEBUG
-        return PartialView("Apply", new Application());
+        //return PartialView("Apply", new Application());
+        return PartialView("Apply", Application.TestApplication);
 #else
         return PartialView("Apply", new Application());
 #endif
