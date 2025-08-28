@@ -7,7 +7,7 @@ var MaintenanceForm = {
      * Initialize the Maintenance form functionality
      */
     init: function() {
-        if (!$('#application-form').length) {
+        if (!$('#maintenance-form').length) {
             return; // Exit if the maintenance form is not present
         }
         
@@ -30,7 +30,7 @@ var MaintenanceForm = {
      * Initialize form validation
      */
     initializeValidation: function() {
-        var form = $('#application-form');
+        var form = $('#maintenance-form');
         if (form.length) {
             // Remove existing validation data before re-parsing
             form.removeData('validator');
@@ -46,7 +46,7 @@ var MaintenanceForm = {
     initializeFormSubmission: function() {
         var self = this;
         
-        $('#application-form').submit(async function(e) {
+        $('#maintenance-form').submit(async function(e) {
             e.preventDefault();
             
             if (!$(e.target).valid()) {
@@ -59,28 +59,38 @@ var MaintenanceForm = {
             
             $.ajax({
                 type: 'POST',
-                url: $('#application-form').attr('action'),
+                url: $('#maintenance-form').attr('action'),
                 data: formData
             }).done(async function(response) {
                 await hideStatusModal();
-                
-                if (response.hasValidationErrors) { 
-                    // Handle validation errors
-                    return; 
-                }
                 
                 if (response.isSuccess) {
                     showNotificationModal("Maintenance request sent", "Your maintenance request has been sent");
                     $('#notificationModal').one('hidden.bs.modal', function() {
                         // Clear form so data doesn't display when back button clicked
-                        $('#application-form')[0].reset();
+                        $('#maintenance-form')[0].reset();
                         window.location.href = response.redirectUrl;
                     });
                 } else { 
                     self.showSubmitError(); 
                 }
-            }).fail(async function() {
+            }).fail(async function(xhr) {
                 await hideStatusModal();
+                
+                if (xhr.status === 400 && xhr.responseText) {
+                    // Replace the form HTML with the returned partial containing validation messages
+                    var container = $('#maintenanceFormContainer');
+                    container.html(xhr.responseText);
+                    // Re-run initialization on new markup
+                    MaintenanceForm.init();
+                    // Scroll to first validation error
+                    var firstError = container.find('.input-validation-error, .text-danger').filter(function(){ return $(this).text().trim().length > 0; }).first();
+                    if (firstError.length) {
+                        $('html, body').animate({ scrollTop: firstError.offset().top - 40 }, 400);
+                    }
+                    return;
+                }
+                
                 self.showSubmitError();
             });
         });
@@ -106,11 +116,3 @@ var MaintenanceForm = {
 $(document).ready(function() {
     MaintenanceForm.init();
 });
-
-/**
- * Global function for backward compatibility
- * This maintains compatibility with any existing code that calls initializeMaintenanceFormScripts()
- */
-function initializeMaintenanceFormScripts() {
-    MaintenanceForm.init();
-}

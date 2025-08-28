@@ -167,8 +167,8 @@ $(document).ready(function() {
 });
 
 /**
- * Global function for backward compatibility
- * This maintains compatibility with any existing code that calls initializeApplyFormScripts()
+ * Currently invoked by apply-loading.js after the Apply form partial is loaded via AJAX
+ * so that unobtrusive validation and event handlers are re-wired on the new DOM.
  */
 function initializeApplyFormScripts() {
     ApplyForm.init();

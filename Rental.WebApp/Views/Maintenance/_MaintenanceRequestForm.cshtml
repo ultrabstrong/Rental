@@ -1,0 +1,58 @@
+@using Rental.WebApp.Controllers
+@using Rental.WebApp.Models.Maintenance
+@model MaintenanceRequest
+@using (Html.BeginForm(nameof(MaintenanceController.SubmitMaintenanceRequest), MaintenanceController.Name, FormMethod.Post, new { @id = "maintenance-form", @class = "needs-validation" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (ViewBag.Errors == true)
+    {
+        <div class="alert alert-danger mb-4">
+            <h6 class="mb-2">Please resolve the following errors</h6>
+            @Html.ValidationSummary(false)
+        </div>
+        ViewBag.Errors = false;
+    }
+
+    <div class="mb-4">
+        @Html.LabelFor(model => model.RentalAddress, new { @class = "form-label fw-bold text-dark" })
+        @Html.EditorFor(model => model.RentalAddress, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+        @Html.ValidationMessageFor(model => model.RentalAddress, "", new { @class = "text-danger mt-1" })
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-md-0 mb-4">
+            @Html.LabelFor(model => model.FirstName, new { @class = "form-label fw-bold text-dark" })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger mt-1" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-bold text-dark" })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger mt-1" })
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-md-0 mb-4">
+            @Html.LabelFor(model => model.Email, new { @class = "form-label fw-bold text-dark" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger mt-1" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.Phone, new { @class = "form-label fw-bold text-dark" })
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control form-control-lg phone-mask" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger mt-1" })
+        </div>
+    </div>
+
+    <div class="mb-4">
+        @Html.LabelFor(model => model.Description, new { @class = "form-label fw-bold text-dark" })
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control form-control-lg", rows = "5" })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger mt-1" })
+    </div>
+
+    <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto mt-5">
+        <button type="submit" class="btn btn-success btn-lg py-3">Submit Request</button>
+    </div>
+}

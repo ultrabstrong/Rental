@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Rental.Domain.Core;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Maintenance;
-using Serilog;
-using Microsoft.Extensions.Options;
 using Rental.WebApp.Models.Site;
+using Serilog;
 
 namespace Rental.WebApp.Controllers;
 
@@ -32,9 +32,12 @@ public class MaintenanceController : ControllerWithPdfRenderingBase
             {
                 var errors = ModelState
                     .Where(m => m.Value != null && m.Value.Errors.Any())
-                    .Select(m => $"{m.Key} {string.Join(",", m.Value!.Errors.Select(e => e.ErrorMessage))}");
+                    .Select(m => $"{m.Key}: {string.Join(", ", m.Value!.Errors.Select(e => e.ErrorMessage))}")
+                    .ToList();
                 Log.Logger.Information("Maintenance request validation errors: {@Errors}", errors);
-                return Json(new SubmitResponse { IsSuccess = false, HasValidationErrors = true });
+                ViewBag.Errors = true;
+                Response.StatusCode = StatusCodes.Status400BadRequest;
+                return PartialView("_MaintenanceRequestForm", maintenanceRequest);
             }
 
             Log.Logger.Debug("Creating view HTML");
