@@ -10,12 +10,8 @@
     <LangVersion>10.0</LangVersion>
     <AssemblyTitle>Domain</AssemblyTitle>
     <Product>Domain</Product>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyFileVersion.cs">
-      <Link>Properties\CommonAssemblyFileVersion.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
