@@ -12,6 +12,14 @@
     <Content Remove="wwwroot\js\jquery.validate-vsdoc.js" />
   </ItemGroup>
 
+  <!-- Prevent the template settings file from being copied to build or publish output -->
+  <ItemGroup>
+    <Content Update="appsettings.template.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Serilog" Version="4.3.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
