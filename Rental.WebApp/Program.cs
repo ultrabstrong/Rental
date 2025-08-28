@@ -1,61 +1,56 @@
 using Rental.WebApp.Middleware;
-using Serilog;
 using Rental.WebApp.Models.Site;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Configure Serilog with the preferred configuration
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .Enrich.WithProperty("Application", "Rental.WebApp")
-    .Enrich.WithProperty("CorrelationId", Guid.NewGuid())
 #if DEBUG
     .MinimumLevel.Debug()
     .WriteTo.Console()
     .WriteTo.Seq("http://localhost:5341")
 #else
     .WriteTo.File(
-        Path.Combine(builder.Environment.ContentRootPath, "logs", "log-.txt"),
+        Path.Combine(AppContext.BaseDirectory, "logs", "log-.txt"),
         rollingInterval: RollingInterval.Day,
         retainedFileTimeLimit: TimeSpan.FromDays(90))
-    .MinimumLevel.Warning()
+    .MinimumLevel.Information()
 #endif
     .CreateLogger();
 
-builder.Host.UseSerilog();
-
-// Ensure appsettings.json reload is enabled (CreateBuilder already does this, explicit for clarity)
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-// Bind SiteDetails with options pattern for live reload
-builder.Services.Configure<SiteDetails>(builder.Configuration.GetSection("SiteDetails"));
-
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseMiddleware<SecurityHeadersMiddleware>();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthorization();
-app.MapDefaultControllerRoute();
-app.MapControllerRoute("Default", "{controller}/{action}/{id?}", new { controller = Rental.WebApp.Controllers.HomeController.Name });
-
 try
 {
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog();
+
+    builder.Services.Configure<SiteDetails>(builder.Configuration.GetSection("SiteDetails"));
+
+    builder.Services.AddControllersWithViews();
+
+    var app = builder.Build();
+
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseHsts();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseSerilogRequestLogging();
+    app.UseMiddleware<CorrelationIdMiddleware>();
+    app.UseMiddleware<SecurityHeadersMiddleware>();
+    app.UseStaticFiles();
+    app.UseRouting();
+    app.UseAuthorization();
+    app.MapDefaultControllerRoute();
+    app.MapControllerRoute("Default", "{controller}/{action}/{id?}", new { controller = Rental.WebApp.Controllers.HomeController.Name });
+
     Log.Information("Starting web application");
     app.Run();
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "Application terminated unexpectedly");
+    Log.Fatal(ex, "Application start-up failed");
 }
 finally
 {
