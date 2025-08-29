@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rental.ConsoleTest", "Renta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rental.WebApp", "Rental.WebApp\Rental.WebApp.csproj", "{243FE5D2-C1E6-8A4E-DB19-A17015D2C772}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rental.UnitTests", "Rental.UnitTests\Rental.UnitTests.csproj", "{79D8963B-7581-44C5-8B6D-45834B86A970}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{243FE5D2-C1E6-8A4E-DB19-A17015D2C772}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243FE5D2-C1E6-8A4E-DB19-A17015D2C772}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243FE5D2-C1E6-8A4E-DB19-A17015D2C772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D8963B-7581-44C5-8B6D-45834B86A970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D8963B-7581-44C5-8B6D-45834B86A970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D8963B-7581-44C5-8B6D-45834B86A970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D8963B-7581-44C5-8B6D-45834B86A970}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
