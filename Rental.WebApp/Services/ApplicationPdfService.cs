@@ -2,19 +2,19 @@ using Microsoft.Extensions.Options;
 using Rental.Domain.Applications.Models;
 using Rental.Domain.Applications.Services;
 using Rental.WebApp.Converters;
-using Rental.WebApp.Mappers;
 using Rental.WebApp.Models.Site;
 using Rental.WebApp.Rendering;
+using Rental.WebApp.Mappers;
 
 namespace Rental.WebApp.Services;
 
-public class RentalApplicationPdfService : IRentalApplicationPdfService
+public class ApplicationPdfService : IRentalApplicationPdfService
 {
     private readonly IRazorViewRenderer _viewRenderer;
     private readonly IOptionsSnapshot<SiteOptions> _siteOptions;
-    private readonly ILogger<RentalApplicationPdfService> _logger;
+    private readonly ILogger<ApplicationPdfService> _logger;
 
-    public RentalApplicationPdfService(IRazorViewRenderer viewRenderer, IOptionsSnapshot<SiteOptions> siteOptions, ILogger<RentalApplicationPdfService> logger)
+    public ApplicationPdfService(IRazorViewRenderer viewRenderer, IOptionsSnapshot<SiteOptions> siteOptions, ILogger<ApplicationPdfService> logger)
     {
         _viewRenderer = viewRenderer;
         _siteOptions = siteOptions;
@@ -35,7 +35,6 @@ public class RentalApplicationPdfService : IRentalApplicationPdfService
             _siteOptions.Value.CompanyName,
             $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
             $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
-
         return pdf;
     }
 }

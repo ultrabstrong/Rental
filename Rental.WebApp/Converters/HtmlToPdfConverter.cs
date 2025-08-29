@@ -1,7 +1,6 @@
 ﻿using SelectPdf;
-using System;
 
-namespace Rental.Domain.Core;
+namespace Rental.WebApp.Converters;
 
 public static class HtmlToPdfConverter
 {

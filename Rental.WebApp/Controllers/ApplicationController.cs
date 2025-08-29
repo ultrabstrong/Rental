@@ -29,7 +29,6 @@ public class ApplicationController : Controller
     {
         this.AddUSStatesToViewBag();
 #if DEBUG
-        //return PartialView("Apply", new Application());
         return PartialView("Apply", Application.TestApplication);
 #else
         return PartialView("Apply", new Application());
@@ -56,7 +55,12 @@ public class ApplicationController : Controller
                 return PartialView("Apply", application);
             }
 
-            await _applicationProcessor.ProcessAsync(application.ToDomainModel());
+            await _applicationProcessor.ProcessAsync(application.ToDomainModel(), cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            Log.Logger.Warning("Application submission cancelled");
+            return StatusCode(StatusCodes.Status499ClientClosedRequest);
         }
         catch (Exception ex)
         {

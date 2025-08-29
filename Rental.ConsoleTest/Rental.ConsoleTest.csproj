@@ -25,5 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rental.Domain\Rental.Domain.csproj" />
+    <ProjectReference Include="..\Rental.WebApp\Rental.WebApp.csproj" />
   </ItemGroup>
 </Project>

@@ -45,7 +45,12 @@ public class MaintenanceController : Controller
                 return PartialView("_MaintenanceRequestForm", maintenanceRequest);
             }
 
-            await _maintenanceRequestProcessor.HandleAsync(maintenanceRequest.ToDomainModel());
+            await _maintenanceRequestProcessor.HandleAsync(maintenanceRequest.ToDomainModel(), cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            Log.Logger.Warning("Maintenance request submission cancelled");
+            return StatusCode(StatusCodes.Status499ClientClosedRequest);
         }
         catch (Exception ex)
         {

@@ -1,5 +1,5 @@
-﻿using Rental.Domain.Core;
-using Rental.Domain.Email.Models;
+﻿using Rental.Domain.Email.Models;
+using Rental.WebApp.Converters;
 using System;
 using System.IO;
 using System.Net;
