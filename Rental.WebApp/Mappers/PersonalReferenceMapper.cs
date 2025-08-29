@@ -1,4 +1,4 @@
-using Rental.Domain.Applications;
+using Rental.Domain.Applications.Models;
 using Rental.Domain.Enums;
 using PersonalReferenceViewModel = Rental.WebApp.Models.Application.PersonalReference;
 using YesNoViewModel = Rental.WebApp.Enums.YesNo;

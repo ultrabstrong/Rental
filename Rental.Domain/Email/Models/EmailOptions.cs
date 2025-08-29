@@ -1,8 +1,10 @@
-﻿namespace Rental.Domain.Models;
+﻿namespace Rental.Domain.Email.Models;
 
 [Serializable]
-public class MailSettings
+public class EmailOptions
 {
+    public const string NAME = "EmailOptions";
+
     public string SMTPServer { get; set; } = string.Empty;
 
     public string SMTPUsername { get; set; } = string.Empty;

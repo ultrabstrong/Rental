@@ -1,4 +1,4 @@
-namespace Rental.Domain.MaintenanceRequest;
+namespace Rental.Domain.MaintenanceRequest.Models;
 
 public class MaintenanceRequest
 {

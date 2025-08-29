@@ -1,9 +1,6 @@
-﻿using Rental.Domain.Models;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Rental.Domain.Email.Models;
 
-namespace Rental.Domain.Core;
+namespace Rental.Domain.Email.Services;
 
 public interface IEmailService
 {

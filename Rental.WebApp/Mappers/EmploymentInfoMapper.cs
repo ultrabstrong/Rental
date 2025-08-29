@@ -1,4 +1,4 @@
-using Rental.Domain.Applications;
+using Rental.Domain.Applications.Models;
 using Rental.Domain.Enums;
 using EmploymentInfoViewModel = Rental.WebApp.Models.Application.EmploymentInfo;
 using WageTypeViewModel = Rental.WebApp.Enums.WageType;

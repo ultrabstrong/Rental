@@ -1,4 +1,4 @@
-using Rental.Domain.Applications;
+using Rental.Domain.Applications.Models;
 using Rental.Domain.Enums;
 using ApplicationViewModel = Rental.WebApp.Models.Application.Application;
 using HowOftenViewModel = Rental.WebApp.Enums.HowOften;

@@ -1,7 +1,7 @@
 using AutoFixture;
 using Rental.WebApp.Mappers;
 using ParentInfoViewModel = Rental.WebApp.Models.Application.ParentInfo;
-using DomainParentInfo = Rental.Domain.Applications.ParentInfo;
+using DomainParentInfo = Rental.Domain.Applications.Models.ParentInfo;
 
 namespace Rental.UnitTests.WebApp.Mappers;
 

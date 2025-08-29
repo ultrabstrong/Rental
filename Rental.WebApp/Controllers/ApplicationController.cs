@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Rental.Domain.Core;
+using Rental.Domain.Email.Services;
 using Rental.WebApp.Extensions;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Application;
@@ -12,10 +13,14 @@ namespace Rental.WebApp.Controllers;
 public class ApplicationController : ControllerWithPdfRenderingBase
 {
     public static readonly string Name = nameof(ApplicationController).Replace(nameof(Controller), "");
-    private readonly IOptionsSnapshot<SiteDetails> _siteDetails;
+    private readonly IEmailService _emailService;
+    private readonly IOptionsSnapshot<SiteOptions> _siteDetails;
 
-    public ApplicationController(IOptionsSnapshot<SiteDetails> siteDetails)
+    public ApplicationController(
+        IEmailService emailService,
+        IOptionsSnapshot<SiteOptions> siteDetails)
     {
+        _emailService = emailService;
         _siteDetails = siteDetails;
     }
 
@@ -68,10 +73,7 @@ public class ApplicationController : ControllerWithPdfRenderingBase
 
             Log.Logger.Debug("Sending email");
             using (MemoryStream pdfStream = new(pdf))
-            using (var emailService = new EmailService(_siteDetails.Value.MailSettings))
-            {
-                await emailService.SendEmailAsync(application, pdfStream, cancellationToken);
-            }
+                await _emailService.SendEmailAsync(application, pdfStream, cancellationToken);
             Log.Logger.Debug("Finished sending email");
         }
         catch (Exception ex)

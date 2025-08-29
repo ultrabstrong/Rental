@@ -1,9 +1,9 @@
-﻿using Rental.Domain.Models;
+﻿namespace Rental.WebApp.Models.Site;
 
-namespace Rental.WebApp.Models.Site;
-
-public class SiteDetails
+public class SiteOptions
 {
+    public const string NAME = "SiteOptions";
+
     public string CompanyName { get; set; } = string.Empty;
 
     public string CompanyShortName { get; set; } = string.Empty;
@@ -17,7 +17,4 @@ public class SiteDetails
     public Contact PostOffice { get; set; } = new Contact();
 
     public List<TenantInfoDoc> TenantInfoDocs { get; set; } = [];
-
-    public MailSettings MailSettings { get; set; } = new MailSettings();
-
 }

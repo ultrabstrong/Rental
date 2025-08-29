@@ -1,7 +1,7 @@
 using AutoFixture;
 using Rental.WebApp.Mappers;
 using MaintenanceRequestViewModel = Rental.WebApp.Models.Maintenance.MaintenanceRequest;
-using DomainMaintenanceRequest = Rental.Domain.MaintenanceRequest.MaintenanceRequest;
+using DomainMaintenanceRequest = Rental.Domain.MaintenanceRequest.Models.MaintenanceRequest;
 
 namespace Rental.UnitTests.WebApp.Mappers;
 

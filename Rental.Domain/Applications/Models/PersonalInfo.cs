@@ -1,4 +1,4 @@
-namespace Rental.Domain.Applications;
+namespace Rental.Domain.Applications.Models;
 
 public class PersonalInfo
 {

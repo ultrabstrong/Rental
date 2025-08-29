@@ -1,4 +1,4 @@
-using Rental.Domain.Applications;
+using Rental.Domain.Applications.Models;
 using Rental.Domain.Enums;
 using ParentInfoViewModel = Rental.WebApp.Models.Application.ParentInfo;
 using YesNoViewModel = Rental.WebApp.Enums.YesNo;

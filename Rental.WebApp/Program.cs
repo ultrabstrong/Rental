@@ -1,3 +1,4 @@
+using Rental.Domain;
 using Rental.WebApp.Middleware;
 using Rental.WebApp.Models.Site;
 using Serilog;
@@ -24,9 +25,11 @@ try
 
     builder.Host.UseSerilog();
 
-    builder.Services.Configure<SiteDetails>(builder.Configuration.GetSection("SiteDetails"));
+    builder.Services.Configure<SiteOptions>(builder.Configuration.GetSection(SiteOptions.NAME));
 
     builder.Services.AddControllersWithViews();
+
+    builder.Services.AddDomainServices(builder.Configuration);
 
     var app = builder.Build();
 

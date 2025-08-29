@@ -1,7 +1,7 @@
 using AutoFixture;
 using Rental.WebApp.Mappers;
 using EmploymentInfoViewModel = Rental.WebApp.Models.Application.EmploymentInfo;
-using DomainEmploymentInfo = Rental.Domain.Applications.EmploymentInfo;
+using DomainEmploymentInfo = Rental.Domain.Applications.Models.EmploymentInfo;
 
 namespace Rental.UnitTests.WebApp.Mappers;
 

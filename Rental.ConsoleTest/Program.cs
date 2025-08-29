@@ -1,5 +1,5 @@
 ﻿using Rental.Domain.Core;
-using Rental.Domain.Models;
+using Rental.Domain.Email.Models;
 using System;
 using System.IO;
 using System.Net;
@@ -55,7 +55,7 @@ partial class Program
 
     static void TestMail()
     {
-        MailSettings settings = new()
+        EmailOptions settings = new()
         {
             SMTPServer = "",
             SMTPUsername = "",

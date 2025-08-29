@@ -1,6 +1,6 @@
 @using Rental.WebApp.Controllers
 @using Rental.WebApp.Models.Site
-@inject Microsoft.Extensions.Options.IOptionsSnapshot<SiteDetails> SiteDetails
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<SiteOptions> SiteDetails
 @{ var appVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "Unknown"; }
 <!DOCTYPE html>
 <html>

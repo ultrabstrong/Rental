@@ -1,4 +1,4 @@
-﻿namespace Rental.Domain.Models;
+﻿namespace Rental.Domain.Email.Models;
 
 public class EmailRequest
 {

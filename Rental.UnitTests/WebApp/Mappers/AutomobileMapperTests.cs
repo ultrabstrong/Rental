@@ -1,7 +1,7 @@
 using AutoFixture;
 using Rental.WebApp.Mappers;
 using AutomobileViewModel = Rental.WebApp.Models.Application.Automobile;
-using DomainAutomobile = Rental.Domain.Applications.Automobile;
+using DomainAutomobile = Rental.Domain.Applications.Models.Automobile;
 
 namespace Rental.UnitTests.WebApp.Mappers;
 

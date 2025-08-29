@@ -1,7 +1,7 @@
 using AutoFixture;
 using Rental.WebApp.Mappers;
 using PersonalInfoViewModel = Rental.WebApp.Models.Application.PersonalInfo;
-using DomainPersonalInfo = Rental.Domain.Applications.PersonalInfo;
+using DomainPersonalInfo = Rental.Domain.Applications.Models.PersonalInfo;
 
 namespace Rental.UnitTests.WebApp.Mappers;
 

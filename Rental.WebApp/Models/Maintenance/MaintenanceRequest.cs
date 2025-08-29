@@ -1,4 +1,4 @@
-﻿using Rental.Domain.Models;
+﻿using Rental.Domain.Email.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 

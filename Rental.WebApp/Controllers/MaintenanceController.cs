@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Rental.Domain.Core;
+using Rental.Domain.Email.Services;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Maintenance;
 using Rental.WebApp.Models.Site;
@@ -11,10 +12,14 @@ namespace Rental.WebApp.Controllers;
 public class MaintenanceController : ControllerWithPdfRenderingBase
 {
     public static readonly string Name = nameof(MaintenanceController).Replace(nameof(Controller), "");
-    private readonly IOptionsSnapshot<SiteDetails> _siteDetails;
+    private readonly IEmailService _emailService;
+    private readonly IOptionsSnapshot<SiteOptions> _siteDetails;
 
-    public MaintenanceController(IOptionsSnapshot<SiteDetails> siteDetails)
+    public MaintenanceController(
+        IEmailService emailService,
+        IOptionsSnapshot<SiteOptions> siteDetails)
     {
+        _emailService = emailService;
         _siteDetails = siteDetails;
     }
 
@@ -51,10 +56,7 @@ public class MaintenanceController : ControllerWithPdfRenderingBase
 
             Log.Logger.Debug("Sending maintenance email");
             using (var pdfStream = new MemoryStream(pdf))
-            using (var emailService = new EmailService(_siteDetails.Value.MailSettings))
-            {
-                await emailService.SendEmailAsync(maintenanceRequest, pdfStream, cancellationToken);
-            }
+                await _emailService.SendEmailAsync(maintenanceRequest, pdfStream, cancellationToken);
             Log.Logger.Debug("Finished sending maintenance email");
         }
         catch (Exception ex)

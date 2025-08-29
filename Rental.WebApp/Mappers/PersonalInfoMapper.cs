@@ -1,4 +1,4 @@
-using Rental.Domain.Applications;
+using Rental.Domain.Applications.Models;
 using PersonalInfoViewModel = Rental.WebApp.Models.Application.PersonalInfo;
 
 namespace Rental.WebApp.Mappers;

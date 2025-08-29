@@ -1,4 +1,4 @@
-﻿using Rental.Domain.Models;
+﻿using Rental.Domain.Email.Models;
 using Rental.WebApp.Enums;
 using Rental.WebApp.Validation;
 using System.ComponentModel.DataAnnotations;

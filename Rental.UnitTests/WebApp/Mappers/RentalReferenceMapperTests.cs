@@ -1,7 +1,7 @@
 using AutoFixture;
 using Rental.WebApp.Mappers;
 using RentalReferenceViewModel = Rental.WebApp.Models.Application.RentalReference;
-using DomainRentalReference = Rental.Domain.Applications.RentalReference;
+using DomainRentalReference = Rental.Domain.Applications.Models.RentalReference;
 
 namespace Rental.UnitTests.WebApp.Mappers;
 

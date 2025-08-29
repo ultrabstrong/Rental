@@ -1,7 +1,7 @@
 using AutoFixture;
 using Rental.WebApp.Mappers;
 using PersonalReferenceViewModel = Rental.WebApp.Models.Application.PersonalReference;
-using DomainPersonalReference = Rental.Domain.Applications.PersonalReference;
+using DomainPersonalReference = Rental.Domain.Applications.Models.PersonalReference;
 
 namespace Rental.UnitTests.WebApp.Mappers;
 

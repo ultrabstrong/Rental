@@ -1,4 +1,4 @@
-using Rental.Domain.Applications;
+using Rental.Domain.Applications.Models;
 using Rental.Domain.Enums;
 using AutomobileViewModel = Rental.WebApp.Models.Application.Automobile;
 using YesNoViewModel = Rental.WebApp.Enums.YesNo;

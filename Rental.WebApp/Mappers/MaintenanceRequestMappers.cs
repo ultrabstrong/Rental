@@ -1,4 +1,4 @@
-using Rental.Domain.MaintenanceRequest;
+using Rental.Domain.MaintenanceRequest.Models;
 using MaintenanceRequestViewModel = Rental.WebApp.Models.Maintenance.MaintenanceRequest;
 
 namespace Rental.WebApp.Mappers;

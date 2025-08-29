@@ -1,6 +1,6 @@
 using Rental.Domain.Enums;
 using System;
-namespace Rental.Domain.Applications;
+namespace Rental.Domain.Applications.Models;
 
 public class RentalReference
 {
