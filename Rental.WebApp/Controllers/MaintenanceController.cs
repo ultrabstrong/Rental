@@ -9,7 +9,7 @@ using Serilog;
 
 namespace Rental.WebApp.Controllers;
 
-public class MaintenanceController : ControllerWithPdfRenderingBase
+public class MaintenanceController : Controller
 {
     public static readonly string Name = nameof(MaintenanceController).Replace(nameof(Controller), "");
     private readonly IMaintenanceRequestProcessor _maintenanceRequestProcessor;

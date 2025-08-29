@@ -8,7 +8,7 @@ using Serilog;
 
 namespace Rental.WebApp.Controllers;
 
-public class ApplicationController : ControllerWithPdfRenderingBase
+public class ApplicationController : Controller
 {
     public static readonly string Name = nameof(ApplicationController).Replace(nameof(Controller), "");
     private readonly IRentalApplicationProcessor _applicationProcessor;
