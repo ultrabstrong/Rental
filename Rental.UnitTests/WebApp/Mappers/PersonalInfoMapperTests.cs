@@ -25,4 +25,21 @@ public class PersonalInfoMapperTests
         Assert.Equal(vm.DriverLicenseStateOfIssue, domain.DriverLicenseStateOfIssue);
         Assert.Equal(vm.Email, domain.Email);
     }
+
+    [Fact]
+    public void ToViewModel_MapsAllProperties()
+    {
+        var domain = _fixture.Create<DomainPersonalInfo>();
+
+        PersonalInfoViewModel vm = domain.ToViewModel();
+
+        Assert.Equal(domain.FirstName, vm.FirstName);
+        Assert.Equal(domain.MiddleName, vm.MiddleName);
+        Assert.Equal(domain.LastName, vm.LastName);
+        Assert.Equal(domain.PhoneNum, vm.PhoneNum);
+        Assert.Equal(domain.SSN, vm.SSN);
+        Assert.Equal(domain.DriverLicense, vm.DriverLicense);
+        Assert.Equal(domain.DriverLicenseStateOfIssue, vm.DriverLicenseStateOfIssue);
+        Assert.Equal(domain.Email, vm.Email);
+    }
 }

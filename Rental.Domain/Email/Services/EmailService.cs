@@ -24,12 +24,11 @@ internal partial class EmailService : IEmailService, IDisposable
         };
     }
 
-    public async Task SendEmailAsync(IEmailRequestBuilder emailRequestBuilder, Stream toAttach, CancellationToken cancellationToken = default)
+    async Task IEmailService.SendEmailAsync(IEmailRequestBuilder emailRequestBuilder, Stream toAttach, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         using var message = BuildMailMessage(emailRequestBuilder, toAttach);
-        // SmtpClient does not support CancellationToken directly
-        await _smtpClient.SendMailAsync(message);
+        await _smtpClient.SendMailAsync(message, cancellationToken);
     }
 
     private MailMessage BuildMailMessage(IEmailRequestBuilder emailRequestBuilder, Stream toAttach)

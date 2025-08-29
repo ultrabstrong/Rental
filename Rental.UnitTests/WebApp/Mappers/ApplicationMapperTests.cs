@@ -33,4 +33,30 @@ public class ApplicationMapperTests
         Assert.Equal((int?)vm.HowOftenDrink, (int?)domain.HowOftenDrink);
         Assert.Equal((int?)vm.CertificationAndAuthorization, (int?)domain.CertificationAndAuthorization);
     }
+
+    [Fact]
+    public void ToViewModel_MapsTopLevelAndNested()
+    {
+        DomainApplication domain = ApplicationViewModel.TestApplication.ToDomainModel();
+
+        ApplicationViewModel vm = domain.ToViewModel();
+
+        Assert.Equal(domain.RentalAddress, vm.RentalAddress);
+        Assert.Equal(domain.OtherApplicants, vm.OtherApplicants);
+        Assert.Equal(domain.PersonalInfo.FirstName, vm.PersonalInfo.FirstName);
+        Assert.Equal(domain.PrimaryEmployment.Company, vm.PrimaryEmployment.Company);
+        Assert.Equal((int?)domain.PrimaryEmployment.ElectiveRequireValue, (int?)vm.PrimaryEmployment.ElectiveRequireValue);
+        Assert.Equal(domain.Automobile.Make, vm.Automobile.Make);
+        Assert.Equal(domain.CurrentRental.Street, vm.CurrentRental.Street);
+        Assert.Equal(domain.PriorRentRef1.Street, vm.PriorRentRef1.Street);
+        Assert.Equal(domain.PersonalReference1.Name, vm.PersonalReference1.Name);
+        Assert.Equal(domain.PersonalReference2.Name, vm.PersonalReference2.Name);
+        Assert.Equal(domain.AnticipatedDuration, vm.AnticipatedDuration);
+        Assert.Equal((int?)domain.HasCriminalRecord, (int?)vm.HasCriminalRecord);
+        Assert.Equal(domain.ExplainCriminalRecord, vm.ExplainCriminalRecord);
+        Assert.Equal((int?)domain.Smokers, (int?)vm.Smokers);
+        Assert.Equal(domain.SmokersCount, vm.SmokersCount);
+        Assert.Equal((int?)domain.HowOftenDrink, (int?)vm.HowOftenDrink);
+        Assert.Equal((int?)domain.CertificationAndAuthorization, (int?)vm.CertificationAndAuthorization);
+    }
 }

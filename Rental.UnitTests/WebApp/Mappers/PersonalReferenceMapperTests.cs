@@ -23,4 +23,19 @@ public class PersonalReferenceMapperTests
         Assert.Equal(vm.Relationship, domain.Relationship);
         Assert.Equal(vm.PhoneNum, domain.PhoneNum);
     }
+
+    [Fact]
+    public void ToViewModel_MapsAllProperties()
+    {
+        var domain = _fixture.Create<DomainPersonalReference>();
+
+        PersonalReferenceViewModel vm = domain.ToViewModel();
+
+        Assert.Equal(domain.AllowElectiveRequire, vm.AllowElectiveRequire);
+        Assert.Equal(domain.ElectiveRequireDisplay, vm.ElectiveRequireDisplay);
+        Assert.Equal((int?)domain.ElectiveRequireValue, (int?)vm.ElectiveRequireValue);
+        Assert.Equal(domain.Name, vm.Name);
+        Assert.Equal(domain.Relationship, vm.Relationship);
+        Assert.Equal(domain.PhoneNum, vm.PhoneNum);
+    }
 }

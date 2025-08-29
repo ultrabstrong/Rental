@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Rental.Domain.Core;
-using Rental.Domain.Email.Services;
+using Rental.Domain.Maintenance.Services;
+using Rental.WebApp.Mappers;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Maintenance;
 using Rental.WebApp.Models.Site;
@@ -12,14 +12,14 @@ namespace Rental.WebApp.Controllers;
 public class MaintenanceController : ControllerWithPdfRenderingBase
 {
     public static readonly string Name = nameof(MaintenanceController).Replace(nameof(Controller), "");
-    private readonly IEmailService _emailService;
+    private readonly IMaintenanceRequestProcessor _maintenanceRequestProcessor;
     private readonly IOptionsSnapshot<SiteOptions> _siteDetails;
 
     public MaintenanceController(
-        IEmailService emailService,
+        IMaintenanceRequestProcessor maintenanceRequestProcessor,
         IOptionsSnapshot<SiteOptions> siteDetails)
     {
-        _emailService = emailService;
+        _maintenanceRequestProcessor = maintenanceRequestProcessor;
         _siteDetails = siteDetails;
     }
 
@@ -45,19 +45,7 @@ public class MaintenanceController : ControllerWithPdfRenderingBase
                 return PartialView("_MaintenanceRequestForm", maintenanceRequest);
             }
 
-            Log.Logger.Debug("Creating view HTML");
-            var html = await RenderRazorViewToStringAsync("MaintenanceRequestPdf", maintenanceRequest);
-
-            Log.Logger.Debug("Converting HTML to PDF");
-            var pdf = HtmlToPdfConverter.GetPdfBytes(html,
-                _siteDetails.Value.CompanyName,
-                $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
-                $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
-
-            Log.Logger.Debug("Sending maintenance email");
-            using (var pdfStream = new MemoryStream(pdf))
-                await _emailService.SendEmailAsync(maintenanceRequest, pdfStream, cancellationToken);
-            Log.Logger.Debug("Finished sending maintenance email");
+            await _maintenanceRequestProcessor.HandleAsync(maintenanceRequest.ToDomainModel());
         }
         catch (Exception ex)
         {

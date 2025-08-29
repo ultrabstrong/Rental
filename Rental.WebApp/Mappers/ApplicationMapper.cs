@@ -46,4 +46,42 @@ public static class ApplicationMapper
         CertificationAndAuthorization = src.CertificationAndAuthorization.MapEnum<YesViewModel, Yes>(),
         AdditionalComments = src.AdditionalComments
     };
+
+    public static ApplicationViewModel ToViewModel(this RentalApplication src) => new()
+    {
+        RentalAddress = src.RentalAddress,
+        OtherApplicants = src.OtherApplicants,
+        PersonalInfo = src.PersonalInfo.ToViewModel(),
+        CurrentRental = src.CurrentRental.ToViewModel(),
+        PrimaryEmployment = src.PrimaryEmployment.ToViewModel(),
+        SecondaryEmployment = src.SecondaryEmployment.ToViewModel(),
+        ParentInfo = src.ParentInfo.ToViewModel(),
+        ConsiderOtherIncome = src.ConsiderOtherIncome.MapEnum<YesNo, YesNoViewModel>(),
+        OtherIncomeExplain = src.OtherIncomeExplain,
+        Automobile = src.Automobile.ToViewModel(),
+        PriorRentRef1 = src.PriorRentRef1.ToViewModel(),
+        PersonalReference1 = src.PersonalReference1.ToViewModel(),
+        PersonalReference2 = src.PersonalReference2.ToViewModel(),
+        AnticipatedDuration = src.AnticipatedDuration,
+        HasCriminalRecord = src.HasCriminalRecord.MapEnum<YesNo, YesNoViewModel>(),
+        ExplainCriminalRecord = src.ExplainCriminalRecord,
+        HasBeenEvicted = src.HasBeenEvicted.MapEnum<YesNo, YesNoViewModel>(),
+        ExplainBeenEvicted = src.ExplainBeenEvicted,
+        MarijuanaCard = src.MarijuanaCard.MapEnum<YesNo, YesNoViewModel>(),
+        Smokers = src.Smokers.MapEnum<YesNo, YesNoViewModel>(),
+        SmokersCount = src.SmokersCount,
+        Drinkers = src.Drinkers.MapEnum<YesNo, YesNoViewModel>(),
+        HowOftenDrink = src.HowOftenDrink.MapEnum<HowOften, HowOftenViewModel>(),
+        AnyPets = src.AnyPets.MapEnum<YesNo, YesNoViewModel>(),
+        DescribePets = src.DescribePets,
+        AnyNonHuman = src.AnyNonHuman.MapEnum<YesNo, YesNoViewModel>(),
+        DescribeNonHuman = src.DescribeNonHuman,
+        AttendCollege = src.AttendCollege.MapEnum<YesNo, YesNoViewModel>(),
+        CollegeYearsAttended = src.CollegeYearsAttended,
+        PlanToGraduate = src.PlanToGraduate,
+        NeedReasonableAccommodation = src.NeedReasonableAccommodation.MapEnum<YesNo, YesNoViewModel>(),
+        DescribeReasonableAccommodation = src.DescribeReasonableAccommodation,
+        CertificationAndAuthorization = src.CertificationAndAuthorization.MapEnum<Yes, YesViewModel>(),
+        AdditionalComments = src.AdditionalComments
+    };
 }

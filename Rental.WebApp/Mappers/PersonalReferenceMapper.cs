@@ -16,4 +16,14 @@ public static class PersonalReferenceMapper
         Relationship = src.Relationship,
         PhoneNum = src.PhoneNum
     };
+
+    public static PersonalReferenceViewModel ToViewModel(this PersonalReference src) => new()
+    {
+        AllowElectiveRequire = src.AllowElectiveRequire,
+        ElectiveRequireDisplay = src.ElectiveRequireDisplay,
+        ElectiveRequireValue = src.ElectiveRequireValue.MapEnum<YesNo, YesNoViewModel>(),
+        Name = src.Name,
+        Relationship = src.Relationship,
+        PhoneNum = src.PhoneNum
+    };
 }

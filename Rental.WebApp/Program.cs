@@ -1,6 +1,9 @@
 using Rental.Domain;
+using Rental.Domain.Maintenance.Services;
 using Rental.WebApp.Middleware;
 using Rental.WebApp.Models.Site;
+using Rental.WebApp.Rendering;
+using Rental.WebApp.Services;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -29,6 +32,8 @@ try
 
     builder.Services.AddControllersWithViews();
 
+    builder.Services.AddScoped<IRazorViewRenderer, RazorViewRenderer>();
+    builder.Services.AddScoped<IMaintenanceRequestPdfService, MaintenanceRequestPdfService>();
     builder.Services.AddDomainServices(builder.Configuration);
 
     var app = builder.Build();

@@ -29,4 +29,25 @@ public class RentalReferenceMapperTests
         Assert.Equal(vm.End, domain.End);
         Assert.Equal(vm.ReasonForMoving, domain.ReasonForMoving);
     }
+
+    [Fact]
+    public void ToViewModel_MapsAllProperties()
+    {
+        var domain = _fixture.Create<DomainRentalReference>();
+
+        RentalReferenceViewModel vm = domain.ToViewModel();
+
+        Assert.Equal(domain.AllowElectiveRequire, vm.AllowElectiveRequire);
+        Assert.Equal(domain.ElectiveRequireDisplay, vm.ElectiveRequireDisplay);
+        Assert.Equal((int?)domain.ElectiveRequireValue, (int?)vm.ElectiveRequireValue);
+        Assert.Equal(domain.Street, vm.Street);
+        Assert.Equal(domain.City, vm.City);
+        Assert.Equal(domain.State, vm.State);
+        Assert.Equal(domain.Zip, vm.Zip);
+        Assert.Equal(domain.LandlordName, vm.LandlordName);
+        Assert.Equal(domain.LandlordPhoneNum, vm.LandlordPhoneNum);
+        Assert.Equal(domain.Start, vm.Start);
+        Assert.Equal(domain.End, vm.End);
+        Assert.Equal(domain.ReasonForMoving, vm.ReasonForMoving);
+    }
 }

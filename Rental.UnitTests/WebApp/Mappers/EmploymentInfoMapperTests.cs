@@ -27,4 +27,24 @@ public class EmploymentInfoMapperTests
         Assert.Equal(vm.Wage, domain.Wage);
         Assert.Equal(vm.HoursPerWeek, domain.HoursPerWeek);
     }
+
+    [Fact]
+    public void ToViewModel_MapsAllProperties()
+    {
+        var domain = _fixture.Create<DomainEmploymentInfo>();
+
+        EmploymentInfoViewModel vm = domain.ToViewModel();
+
+        Assert.Equal(domain.AllowElectiveRequire, vm.AllowElectiveRequire);
+        Assert.Equal(domain.ElectiveRequireDisplay, vm.ElectiveRequireDisplay);
+        Assert.Equal((int?)domain.ElectiveRequireValue, (int?)vm.ElectiveRequireValue);
+        Assert.Equal(domain.Company, vm.Company);
+        Assert.Equal(domain.ContactName, vm.ContactName);
+        Assert.Equal(domain.ContactPhone, vm.ContactPhone);
+        Assert.Equal(domain.EmploymentLength, vm.EmploymentLength);
+        Assert.Equal((int?)domain.IsPermenant, (int?)vm.IsPermenant);
+        Assert.Equal((int?)domain.WageType, (int?)vm.WageType);
+        Assert.Equal(domain.Wage, vm.Wage);
+        Assert.Equal(domain.HoursPerWeek, vm.HoursPerWeek);
+    }
 }

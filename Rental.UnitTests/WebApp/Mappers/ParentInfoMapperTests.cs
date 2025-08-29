@@ -26,4 +26,22 @@ public class ParentInfoMapperTests
         Assert.Equal(vm.State, domain.State);
         Assert.Equal(vm.Zip, domain.Zip);
     }
+
+    [Fact]
+    public void ToViewModel_MapsAllProperties()
+    {
+        var domain = _fixture.Create<DomainParentInfo>();
+
+        ParentInfoViewModel vm = domain.ToViewModel();
+
+        Assert.Equal((int?)domain.ElectiveRequireValue, (int?)vm.ElectiveRequireValue);
+        Assert.Equal(domain.FirstName, vm.FirstName);
+        Assert.Equal(domain.MiddleName, vm.MiddleName);
+        Assert.Equal(domain.LastName, vm.LastName);
+        Assert.Equal(domain.PhoneNum, vm.PhoneNum);
+        Assert.Equal(domain.Street, vm.Street);
+        Assert.Equal(domain.City, vm.City);
+        Assert.Equal(domain.State, vm.State);
+        Assert.Equal(domain.Zip, vm.Zip);
+    }
 }

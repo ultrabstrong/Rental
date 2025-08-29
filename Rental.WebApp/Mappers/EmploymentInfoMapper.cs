@@ -22,4 +22,19 @@ public static class EmploymentInfoMapper
         Wage = src.Wage,
         HoursPerWeek = src.HoursPerWeek
     };
+
+    public static EmploymentInfoViewModel ToViewModel(this EmploymentInfo src) => new()
+    {
+        AllowElectiveRequire = src.AllowElectiveRequire,
+        ElectiveRequireDisplay = src.ElectiveRequireDisplay,
+        ElectiveRequireValue = src.ElectiveRequireValue.MapEnum<YesNo, YesNoViewModel>(),
+        Company = src.Company,
+        ContactName = src.ContactName,
+        ContactPhone = src.ContactPhone,
+        EmploymentLength = src.EmploymentLength,
+        IsPermenant = src.IsPermenant.MapEnum<YesNo, YesNoViewModel>(),
+        WageType = src.WageType.MapEnum<WageType, WageTypeViewModel>(),
+        Wage = src.Wage,
+        HoursPerWeek = src.HoursPerWeek
+    };
 }
