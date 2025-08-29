@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Rental.Domain.Core;
-using Rental.Domain.Email.Services;
+using Rental.Domain.Applications.Services;
 using Rental.WebApp.Extensions;
+using Rental.WebApp.Mappers;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Application;
-using Rental.WebApp.Models.Site;
 using Serilog;
 
 namespace Rental.WebApp.Controllers;
@@ -13,15 +11,11 @@ namespace Rental.WebApp.Controllers;
 public class ApplicationController : ControllerWithPdfRenderingBase
 {
     public static readonly string Name = nameof(ApplicationController).Replace(nameof(Controller), "");
-    private readonly IEmailService _emailService;
-    private readonly IOptionsSnapshot<SiteOptions> _siteDetails;
+    private readonly IRentalApplicationProcessor _applicationProcessor;
 
-    public ApplicationController(
-        IEmailService emailService,
-        IOptionsSnapshot<SiteOptions> siteDetails)
+    public ApplicationController(IRentalApplicationProcessor applicationProcessor)
     {
-        _emailService = emailService;
-        _siteDetails = siteDetails;
+        _applicationProcessor = applicationProcessor;
     }
 
     [HttpGet, Route("DownloadApplication")]
@@ -62,19 +56,7 @@ public class ApplicationController : ControllerWithPdfRenderingBase
                 return PartialView("Apply", application);
             }
 
-            Log.Logger.Debug("Creating PDF view HTML");
-            var html = await RenderRazorViewToStringAsync("ApplicationPdf", application);
-
-            Log.Logger.Debug("Converting HTML to PDF");
-            var pdf = HtmlToPdfConverter.GetPdfBytes(html,
-                _siteDetails.Value.CompanyName,
-                $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
-                $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
-
-            Log.Logger.Debug("Sending email");
-            using (MemoryStream pdfStream = new(pdf))
-                await _emailService.SendEmailAsync(application, pdfStream, cancellationToken);
-            Log.Logger.Debug("Finished sending email");
+            await _applicationProcessor.ProcessAsync(application.ToDomainModel());
         }
         catch (Exception ex)
         {

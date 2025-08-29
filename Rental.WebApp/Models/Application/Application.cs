@@ -1,11 +1,10 @@
-﻿using Rental.Domain.Email.Models;
-using Rental.WebApp.Enums;
+﻿using Rental.WebApp.Enums;
 using Rental.WebApp.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Models.Application;
 
-public partial class Application : IEmailRequestBuilder
+public partial class Application
 {
     [Display(Name = "Rental Address")]
     [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the rental address")]
@@ -178,15 +177,4 @@ public partial class Application : IEmailRequestBuilder
     [Display(Name = "Additional comments for property manager")]
     [DataType(DataType.MultilineText)]
     public string? AdditionalComments { get; set; }
-
-    public EmailRequest BuildEmailRequest()
-    {
-        return new EmailRequest()
-        {
-            Subject = $"Application for {RentalAddress} from {PersonalInfo.FirstName} {PersonalInfo.LastName}; Co-Applicants: {OtherApplicants}",
-            Body = $"Attached is the application for {RentalAddress} from {PersonalInfo.FirstName} {PersonalInfo.LastName}",
-            AttachmentName = $"{PersonalInfo.FirstName} {PersonalInfo.LastName} Application.pdf",
-            PreferredReplyTo = PersonalInfo.Email
-        };
-    }
 }

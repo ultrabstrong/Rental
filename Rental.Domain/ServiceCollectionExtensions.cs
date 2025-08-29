@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Rental.Domain.Email.Models;
 using Rental.Domain.Email.Services;
 using Rental.Domain.Maintenance.Services;
+using Rental.Domain.Applications.Services;
 
 namespace Rental.Domain;
 
@@ -13,6 +14,7 @@ public static class DomainServiceCollectionExtensions
         services.Configure<EmailOptions>(configuration.GetSection(EmailOptions.NAME));
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IMaintenanceRequestProcessor, MaintenanceRequestProcessor>();
+        services.AddScoped<IRentalApplicationProcessor, RentalApplicationProcessor>();
         return services;
     }
 }

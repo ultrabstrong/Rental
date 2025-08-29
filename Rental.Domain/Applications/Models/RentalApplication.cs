@@ -1,8 +1,9 @@
+using Rental.Domain.Email.Models;
 using Rental.Domain.Enums;
 
 namespace Rental.Domain.Applications.Models;
 
-public class RentalApplication
+public class RentalApplication : IEmailRequestBuilder
 {
     public string RentalAddress { get; set; } = string.Empty;
     public string? OtherApplicants { get; set; }
@@ -38,4 +39,15 @@ public class RentalApplication
     public string? DescribeReasonableAccommodation { get; set; }
     public Yes? CertificationAndAuthorization { get; set; }
     public string? AdditionalComments { get; set; }
+
+    public EmailRequest BuildEmailRequest()
+    {
+        return new EmailRequest()
+        {
+            Subject = $"Application for {RentalAddress} from {PersonalInfo.FirstName} {PersonalInfo.LastName}; Co-Applicants: {OtherApplicants}",
+            Body = $"Attached is the application for {RentalAddress} from {PersonalInfo.FirstName} {PersonalInfo.LastName}",
+            AttachmentName = $"{PersonalInfo.FirstName} {PersonalInfo.LastName} Application.pdf",
+            PreferredReplyTo = PersonalInfo.Email
+        };
+    }
 }

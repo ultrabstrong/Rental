@@ -1,4 +1,5 @@
 using Rental.Domain;
+using Rental.Domain.Applications.Services;
 using Rental.Domain.Maintenance.Services;
 using Rental.WebApp.Middleware;
 using Rental.WebApp.Models.Site;
@@ -34,6 +35,7 @@ try
 
     builder.Services.AddScoped<IRazorViewRenderer, RazorViewRenderer>();
     builder.Services.AddScoped<IMaintenanceRequestPdfService, MaintenanceRequestPdfService>();
+    builder.Services.AddScoped<IRentalApplicationPdfService, RentalApplicationPdfService>();
     builder.Services.AddDomainServices(builder.Configuration);
 
     var app = builder.Build();
