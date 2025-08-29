@@ -39,7 +39,7 @@ public class ApplicationController : ControllerWithPdfRenderingBase
 
     [HttpPost, Route("SubmitApplication")]
     [ValidateAntiForgeryToken]
-    public ActionResult SubmitApplication(Application application)
+    public async Task<ActionResult> SubmitApplication(Application application, CancellationToken cancellationToken)
     {
         try
         {
@@ -58,7 +58,7 @@ public class ApplicationController : ControllerWithPdfRenderingBase
             }
 
             Log.Logger.Debug("Creating PDF view HTML");
-            var html = RenderRazorViewToString("ApplicationPdf", application);
+            var html = await RenderRazorViewToStringAsync("ApplicationPdf", application);
 
             Log.Logger.Debug("Converting HTML to PDF");
             var pdf = HtmlToPdfConverter.GetPdfBytes(html,
@@ -70,7 +70,7 @@ public class ApplicationController : ControllerWithPdfRenderingBase
             using (MemoryStream pdfStream = new(pdf))
             using (var emailService = new EmailService(_siteDetails.Value.MailSettings))
             {
-                emailService.SendEmail(application, pdfStream);
+                await emailService.SendEmailAsync(application, pdfStream, cancellationToken);
             }
             Log.Logger.Debug("Finished sending email");
         }

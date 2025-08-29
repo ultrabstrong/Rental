@@ -24,7 +24,7 @@ public class MaintenanceController : ControllerWithPdfRenderingBase
 
     [HttpPost, Route("SubmitMaintenanceRequest")]
     [ValidateAntiForgeryToken]
-    public ActionResult SubmitMaintenanceRequest(MaintenanceRequest maintenanceRequest)
+    public async Task<ActionResult> SubmitMaintenanceRequest(MaintenanceRequest maintenanceRequest, CancellationToken cancellationToken)
     {
         try
         {
@@ -41,7 +41,7 @@ public class MaintenanceController : ControllerWithPdfRenderingBase
             }
 
             Log.Logger.Debug("Creating view HTML");
-            var html = RenderRazorViewToString("MaintenanceRequestPdf", maintenanceRequest);
+            var html = await RenderRazorViewToStringAsync("MaintenanceRequestPdf", maintenanceRequest);
 
             Log.Logger.Debug("Converting HTML to PDF");
             var pdf = HtmlToPdfConverter.GetPdfBytes(html,
@@ -53,7 +53,7 @@ public class MaintenanceController : ControllerWithPdfRenderingBase
             using (var pdfStream = new MemoryStream(pdf))
             using (var emailService = new EmailService(_siteDetails.Value.MailSettings))
             {
-                emailService.SendEmail(maintenanceRequest, pdfStream);
+                await emailService.SendEmailAsync(maintenanceRequest, pdfStream, cancellationToken);
             }
             Log.Logger.Debug("Finished sending maintenance email");
         }

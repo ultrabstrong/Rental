@@ -4,6 +4,8 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Rental.Domain.Core;
 
@@ -25,30 +27,36 @@ public class EmailService : IEmailService, IDisposable
         };
     }
 
-    public void SendEmail(IEmailRequestBuilder emailRequestBuilder, Stream toAttach)
+    public async Task SendEmailAsync(IEmailRequestBuilder emailRequestBuilder, Stream toAttach, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        using var message = BuildMailMessage(emailRequestBuilder, toAttach);
+        // SmtpClient does not support CancellationToken directly
+        await _smtpClient.SendMailAsync(message);
+    }
+
+    private MailMessage BuildMailMessage(IEmailRequestBuilder emailRequestBuilder, Stream toAttach)
     {
         var emailRequest = emailRequestBuilder.BuildEmailRequest();
         var attachment = new Attachment(toAttach, emailRequest.AttachmentName);
 
-        using (var message = new MailMessage()
+        var message = new MailMessage()
         {
             Subject = emailRequest.Subject,
             From = new MailAddress(_settings.SMTPUsername),
             Body = emailRequest.Body,
-            IsBodyHtml = false,
-            Attachments = { attachment },
-            To = { _settings.SMTPTo }
-        })
+            IsBodyHtml = false
+        };
+        message.Attachments.Add(attachment);
+        message.To.Add(_settings.SMTPTo);
+
+        if (_emailRegex.IsMatch(emailRequest.PreferredReplyTo))
         {
-
-            if (_emailRegex.IsMatch(emailRequest.PreferredReplyTo))
-            {
-                message.ReplyToList.Clear();
-                message.ReplyToList.Add(emailRequest.PreferredReplyTo);
-            }
-
-            _smtpClient.Send(message);
+            message.ReplyToList.Clear();
+            message.ReplyToList.Add(emailRequest.PreferredReplyTo);
         }
+
+        return message;
     }
 
     public void Dispose()

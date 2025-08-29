@@ -37,10 +37,4 @@ public abstract class ControllerWithPdfRenderingBase : Controller
         await viewResult.View.RenderAsync(viewContext);
         return sw.ToString();
     }
-
-    // Synchronous version for backward compatibility, but async is preferred
-    protected string RenderRazorViewToString(string viewName, object model)
-    {
-        return RenderRazorViewToStringAsync(viewName, model).GetAwaiter().GetResult();
-    }
 }
