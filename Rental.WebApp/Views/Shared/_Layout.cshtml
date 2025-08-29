@@ -1,7 +1,15 @@
 @using Rental.WebApp.Controllers
 @using Rental.WebApp.Models.Site
+@using System.Reflection
 @inject Microsoft.Extensions.Options.IOptionsSnapshot<SiteOptions> SiteDetails
-@{ var appVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "Unknown"; }
+@{
+    // Show the product/package version (strip any +metadata such as commit hash)
+    var fullVersion = 
+        Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
+        ?? System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly()!.Location).ProductVersion
+        ?? "Unknown";
+    var appVersion = fullVersion?.Split('+')[0] ?? "Unknown"; 
+}
 <!DOCTYPE html>
 <html>
 <head>
