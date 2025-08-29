@@ -1,8 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Rental.Domain.Applications.Models;
+using Rental.Domain.Email.Models;
 using Rental.Domain.Email.Services;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Rental.Domain.Applications.Services;
 
@@ -24,6 +23,15 @@ internal class RentalApplicationProcessor(
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Sending rental application email");
         using var pdfStream = new MemoryStream(pdf);
-        await _emailService.SendEmailAsync(rentalApplication, pdfStream, cancellationToken);
+        var emailRequest = BuildEmailRequest(rentalApplication);
+        await _emailService.SendEmailAsync(emailRequest, pdfStream, cancellationToken);
     }
+
+    private static EmailRequest BuildEmailRequest(RentalApplication app) => new()
+    {
+        Subject = $"Application for {app.RentalAddress} from {app.PersonalInfo.FirstName} {app.PersonalInfo.LastName}; Co-Applicants: {app.OtherApplicants}",
+        Body = $"Attached is the application for {app.RentalAddress} from {app.PersonalInfo.FirstName} {app.PersonalInfo.LastName}",
+        AttachmentName = $"{app.PersonalInfo.FirstName} {app.PersonalInfo.LastName} Application.pdf",
+        PreferredReplyTo = app.PersonalInfo.Email
+    };
 }

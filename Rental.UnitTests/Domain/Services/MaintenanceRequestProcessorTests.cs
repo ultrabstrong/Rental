@@ -1,6 +1,7 @@
 using AutoFixture;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Rental.Domain.Email.Models;
 using Rental.Domain.Email.Services;
 using Rental.Domain.Maintenance.Models;
 using Rental.Domain.Maintenance.Services;
@@ -32,7 +33,43 @@ public class MaintenanceRequestProcessorTests
         await processor.InvokeHandleAsync(maintenanceRequest, CancellationToken.None);
 
         _pdfService.Verify(p => p.GenerateAsync(maintenanceRequest, It.IsAny<CancellationToken>()), Times.Once);
-        _emailService.Verify(e => e.SendEmailAsync(maintenanceRequest, It.IsAny<Stream>(), It.IsAny<CancellationToken>()), Times.Once);
+        _emailService.Verify(e => e.SendEmailAsync(It.IsAny<EmailRequest>(), It.IsAny<Stream>(), It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task HandleAsync_BuildsExpectedEmailRequest()
+    {
+        // Arrange explicit values for predictable assertions
+        var maintenanceRequest = new MaintenanceRequest
+        {
+            RentalAddress = "123 Test St",
+            FirstName = "Jane",
+            LastName = "Doe",
+            Email = "jane.doe@example.com",
+            Phone = "555-1111",
+            Description = "Sink is leaking"
+        };
+        var pdfBytes = new byte[] {1,2,3};
+        _pdfService.Setup(p => p.GenerateAsync(It.IsAny<MaintenanceRequest>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(pdfBytes);
+        EmailRequest? captured = null;
+        _emailService.Setup(e => e.SendEmailAsync(It.IsAny<EmailRequest>(), It.IsAny<Stream>(), It.IsAny<CancellationToken>()))
+            .Callback<EmailRequest,Stream,CancellationToken>((req,_,_) => captured = req)
+            .Returns(Task.CompletedTask);
+
+        var processor = new TestProcessor(_pdfService.Object, _emailService.Object, _logger.Object);
+
+        // Act
+        await processor.InvokeHandleAsync(maintenanceRequest, CancellationToken.None);
+
+        // Assert
+        Assert.NotNull(captured);
+        Assert.Equal("Maintenance request for 123 Test St from Jane Doe", captured!.Subject);
+        Assert.Equal("Jane Doe Maintenance Request.pdf", captured.AttachmentName);
+        Assert.Equal("jane.doe@example.com", captured.PreferredReplyTo);
+        Assert.Contains("Sink is leaking", captured.Body);
+        Assert.Contains("Email:", captured.Body);
+        Assert.Contains("Phone:", captured.Body);
     }
 
     [Fact]
@@ -46,6 +83,6 @@ public class MaintenanceRequestProcessorTests
 
         await Assert.ThrowsAsync<OperationCanceledException>(() => processor.InvokeHandleAsync(maintenanceRequest, cts.Token));
         _pdfService.Verify(p => p.GenerateAsync(It.IsAny<MaintenanceRequest>(), It.IsAny<CancellationToken>()), Times.Never);
-        _emailService.Verify(e => e.SendEmailAsync(It.IsAny<MaintenanceRequest>(), It.IsAny<Stream>(), It.IsAny<CancellationToken>()), Times.Never);
+        _emailService.Verify(e => e.SendEmailAsync(It.IsAny<EmailRequest>(), It.IsAny<Stream>(), It.IsAny<CancellationToken>()), Times.Never);
     }
 }

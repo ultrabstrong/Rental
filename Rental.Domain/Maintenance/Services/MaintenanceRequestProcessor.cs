@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using Rental.Domain.Email.Models;
 using Rental.Domain.Email.Services;
 using Rental.Domain.Maintenance.Models;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace Rental.Domain.Maintenance.Services;
 internal class MaintenanceRequestProcessor(
@@ -24,6 +24,24 @@ internal class MaintenanceRequestProcessor(
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Sending maintenance email");
         using var pdfStream = new MemoryStream(pdf);
-        await _emailService.SendEmailAsync(maintenanceRequest, pdfStream, cancellationToken);
+        var emailRequest = BuildEmailRequest(maintenanceRequest);
+        await _emailService.SendEmailAsync(emailRequest, pdfStream, cancellationToken);
+    }
+
+    private static EmailRequest BuildEmailRequest(MaintenanceRequest src)
+    {
+        var bodyBuilder = new StringBuilder();
+        bodyBuilder.AppendLine($"Attached is the maintenance request from {src.FirstName} {src.LastName} for {src.RentalAddress}");
+        bodyBuilder.AppendLine($"Email: {(string.IsNullOrWhiteSpace(src.Email) ? "Not provided" : src.Email)}");
+        bodyBuilder.AppendLine($"Phone: {(string.IsNullOrWhiteSpace(src.Phone) ? "Not provided" : src.Phone)}");
+        bodyBuilder.AppendLine();
+        bodyBuilder.AppendLine(src.Description);
+        return new EmailRequest
+        {
+            Subject = $"Maintenance request for {src.RentalAddress} from {src.FirstName} {src.LastName}",
+            Body = bodyBuilder.ToString(),
+            AttachmentName = $"{src.FirstName} {src.LastName} Maintenance Request.pdf",
+            PreferredReplyTo = src.Email
+        };
     }
 }

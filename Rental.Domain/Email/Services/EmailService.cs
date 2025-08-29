@@ -24,16 +24,15 @@ internal partial class EmailService : IEmailService, IDisposable
         };
     }
 
-    async Task IEmailService.SendEmailAsync(IEmailRequestBuilder emailRequestBuilder, Stream toAttach, CancellationToken cancellationToken)
+    async Task IEmailService.SendEmailAsync(EmailRequest emailRequest, Stream attachmentStream, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        using var message = BuildMailMessage(emailRequestBuilder, toAttach);
+        using var message = BuildMailMessage(emailRequest, attachmentStream);
         await _smtpClient.SendMailAsync(message, cancellationToken);
     }
 
-    private MailMessage BuildMailMessage(IEmailRequestBuilder emailRequestBuilder, Stream toAttach)
+    private MailMessage BuildMailMessage(EmailRequest emailRequest, Stream toAttach)
     {
-        var emailRequest = emailRequestBuilder.BuildEmailRequest();
         var attachment = new Attachment(toAttach, emailRequest.AttachmentName);
 
         var message = new MailMessage()
@@ -46,7 +45,7 @@ internal partial class EmailService : IEmailService, IDisposable
         message.Attachments.Add(attachment);
         message.To.Add(_emailOptions.SMTPTo);
 
-        if (_emailRegex.IsMatch(emailRequest.PreferredReplyTo))
+        if (!string.IsNullOrWhiteSpace(emailRequest.PreferredReplyTo) && _emailRegex.IsMatch(emailRequest.PreferredReplyTo))
         {
             message.ReplyToList.Clear();
             message.ReplyToList.Add(emailRequest.PreferredReplyTo);
