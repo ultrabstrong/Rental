@@ -36,6 +36,6 @@ public class RentalApplication
     public string? PlanToGraduate { get; set; }
     public YesNo? NeedReasonableAccommodation { get; set; }
     public string? DescribeReasonableAccommodation { get; set; }
-    public Yes? CertificationAndAuthorization { get; set; }
+    public bool AcceptedTerms { get; set; }
     public string? AdditionalComments { get; set; }
 }

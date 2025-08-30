@@ -148,7 +148,7 @@ public partial class Application
         PlanToGraduate = "Graduated last year with a BSN in Nursing",
         NeedReasonableAccommodation = YesNo.Yes,
         DescribeReasonableAccommodation = "I have occasional migraines and would prefer a unit away from high-traffic or noisy areas if possible.",
-        CertificationAndAuthorization = Yes.Yes,
+        AcceptedTerms = true,
         AdditionalComments = "I'm a registered nurse working the day shift at Portland City Hospital. I'm looking for a quiet apartment close to work and public transportation. I'm a responsible tenant with a stable income and excellent rental history."
     };
 }

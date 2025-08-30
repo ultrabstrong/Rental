@@ -418,14 +418,14 @@
                                 <h5 class="mb-0 text-center">Certification And Authorization</h5>
                             </div>
                             <div class="card-body pt-4">
-                                <div class="row mb-4 align-items-center">
-                                    @Html.LabelFor(model => model.CertificationAndAuthorization, new { @class = "col-md-6 form-label fw-bold text-dark" })
-                                    <div class="col-md-6">
-                                        @Html.DropDownListFor(model => model.CertificationAndAuthorization, Html.GetEnumSelectList<Yes>(), "-", new { @class = "form-control form-control-lg" })
-                                        @Html.ValidationMessageFor(model => model.CertificationAndAuthorization, "", new { @class = "text-danger mt-1" })
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <!-- Correct unobtrusive attributes for custom MustBeTrue validator -->
+                                        <input type="checkbox" id="AcceptedTerms" name="AcceptedTerms" value="true" class="form-check-input" @(Model.AcceptedTerms ? "checked" : "") data-val="true" data-val-mustbetrue="You must agree to the terms and conditions" />
+                                        @Html.LabelFor(m => m.AcceptedTerms, new { @class = "form-check-label fw-bold" })
                                     </div>
+                                    @Html.ValidationMessageFor(m => m.AcceptedTerms, "", new { @class = "text-danger mt-1 d-block" })
                                 </div>
-
                                 <div class="mb-3">
                                     <p id="certification-text">I (we), <span id="applicant-name"></span>, certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
                                 </div>

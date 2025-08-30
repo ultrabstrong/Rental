@@ -3,7 +3,6 @@ using Rental.Domain.Enums;
 using ApplicationViewModel = Rental.WebApp.Models.Application.Application;
 using HowOftenViewModel = Rental.WebApp.Enums.HowOften;
 using YesNoViewModel = Rental.WebApp.Enums.YesNo;
-using YesViewModel = Rental.WebApp.Enums.Yes;
 
 namespace Rental.WebApp.Mappers;
 
@@ -43,7 +42,7 @@ public static class ApplicationMapper
         PlanToGraduate = src.PlanToGraduate,
         NeedReasonableAccommodation = src.NeedReasonableAccommodation.MapEnum<YesNoViewModel, YesNo>(),
         DescribeReasonableAccommodation = src.DescribeReasonableAccommodation,
-        CertificationAndAuthorization = src.CertificationAndAuthorization.MapEnum<YesViewModel, Yes>(),
+        AcceptedTerms = src.AcceptedTerms,
         AdditionalComments = src.AdditionalComments
     };
 
@@ -66,7 +65,6 @@ public static class ApplicationMapper
         HasCriminalRecord = src.HasCriminalRecord.MapEnum<YesNo, YesNoViewModel>(),
         ExplainCriminalRecord = src.ExplainCriminalRecord,
         HasBeenEvicted = src.HasBeenEvicted.MapEnum<YesNo, YesNoViewModel>(),
-        ExplainBeenEvicted = src.ExplainBeenEvicted,
         MarijuanaCard = src.MarijuanaCard.MapEnum<YesNo, YesNoViewModel>(),
         Smokers = src.Smokers.MapEnum<YesNo, YesNoViewModel>(),
         SmokersCount = src.SmokersCount,
@@ -81,7 +79,7 @@ public static class ApplicationMapper
         PlanToGraduate = src.PlanToGraduate,
         NeedReasonableAccommodation = src.NeedReasonableAccommodation.MapEnum<YesNo, YesNoViewModel>(),
         DescribeReasonableAccommodation = src.DescribeReasonableAccommodation,
-        CertificationAndAuthorization = src.CertificationAndAuthorization.MapEnum<Yes, YesViewModel>(),
+        AcceptedTerms = src.AcceptedTerms,
         AdditionalComments = src.AdditionalComments
     };
 }

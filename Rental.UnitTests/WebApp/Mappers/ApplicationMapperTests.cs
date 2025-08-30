@@ -31,7 +31,7 @@ public class ApplicationMapperTests
         Assert.Equal((int?)vm.Smokers, (int?)domain.Smokers);
         Assert.Equal(vm.SmokersCount, domain.SmokersCount);
         Assert.Equal((int?)vm.HowOftenDrink, (int?)domain.HowOftenDrink);
-        Assert.Equal((int?)vm.CertificationAndAuthorization, (int?)domain.CertificationAndAuthorization);
+        Assert.Equal(vm.AcceptedTerms, domain.AcceptedTerms);
     }
 
     [Fact]
@@ -57,6 +57,6 @@ public class ApplicationMapperTests
         Assert.Equal((int?)domain.Smokers, (int?)vm.Smokers);
         Assert.Equal(domain.SmokersCount, vm.SmokersCount);
         Assert.Equal((int?)domain.HowOftenDrink, (int?)vm.HowOftenDrink);
-        Assert.Equal((int?)domain.CertificationAndAuthorization, (int?)vm.CertificationAndAuthorization);
+        Assert.Equal(domain.AcceptedTerms, vm.AcceptedTerms);
     }
 }

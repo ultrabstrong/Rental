@@ -169,10 +169,9 @@ public partial class Application
     [RequireIfEnum(nameof(NeedReasonableAccommodation), YesNo.Yes, "Please explain your accommodation needs")]
     public string? DescribeReasonableAccommodation { get; set; }
 
-    [Display(Name = "Do you agree to the following?")]
-    [EnumDataType(typeof(Yes))]
-    [Required(ErrorMessage = "You must agree to the terms and conditions")]
-    public Yes? CertificationAndAuthorization { get; set; }
+    [Display(Name = "I have read and agree to these terms and conditions")]
+    [MustBeTrue(ErrorMessage = "You must agree to the terms and conditions")]
+    public bool AcceptedTerms { get; set; }
 
     [Display(Name = "Additional comments for property manager")]
     [DataType(DataType.MultilineText)]

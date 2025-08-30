@@ -418,8 +418,13 @@
         </div>
         <div class="row">
             <div class="col-12">
+
+                <p>
+                    @(Model.AcceptedTerms
+                        ? $"{Model.PersonalInfo.FirstName} {Model.PersonalInfo.LastName} has read and agrees to these terms and conditions"
+                        : $"{Model.PersonalInfo.FirstName} {Model.PersonalInfo.LastName} does not agree to these terms and conditions")
+                </p>
                 <p>I (we), @Model.PersonalInfo.FirstName @Model.PersonalInfo.LastName, certify that the statements contained herein are true and correct. Misrepresentations contained herein shall constitute grounds for lease revocation. I hereby verify that I am old enough to legally sign and be fully responsible for the terms of the Lease Agreement. Each applicant hereby authorizes the Landlord or rental agent and their representative to contact any persons, corporations, employers, agencies, offices, groups or organizations to obtain any information and material which is deemed necessary to verify the information in this application. In the event the application is approved and I/We desire to lease the premises, each applicant agrees to fill out, sign, and abide by the rental/lease agreement. Each applicant understands and agrees that all adults whom reside on the premises shall be jointly-severally liable for all rent and damage incurred during the term of the Lease Agreement.</p>
-                <p>@Html.DisplayNameFor(m => m.CertificationAndAuthorization) <span class="answer-box">@Model.CertificationAndAuthorization</span></p>
             </div>
         </div>
     </div>
