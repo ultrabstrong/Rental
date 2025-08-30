@@ -3,7 +3,6 @@
 @using System.Reflection
 @inject Microsoft.Extensions.Options.IOptionsSnapshot<SiteOptions> SiteDetails
 @{
-    // Show the product/package version (strip any +metadata such as commit hash)
     var fullVersion = 
         Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
         ?? System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly()!.Location).ProductVersion
@@ -70,7 +69,7 @@
                     <h5 class="border-bottom border-secondary pb-2 mb-3">@SiteDetails.Value.CompanyName</h5>
                     <address class="mb-3">
                         <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> @SiteDetails.Value.Address</p>
-                        <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i> @SiteDetails.Value.PhoneNumber</p>
+                        <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i> <a href="tel:@SiteDetails.Value.PhoneNumber" class="text-decoration-none text-white">@SiteDetails.Value.PhoneNumber</a></p>
                         <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:@SiteDetails.Value.EmailAddress" class="text-decoration-none text-white">@SiteDetails.Value.EmailAddress</a></p>
                     </address>
                 </div>

@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-dark">Northwestern Energy</h5>
                         <p class="card-text">
-                            888-467-2669<br />
+                            <a href="tel:8884672669" class="text-decoration-none text-black">(888) 467-2669</a><br />
                             <a href="https://www.northwesternenergy.com" class="card-link text-info" target="_blank">www.northwesternenergy.com</a>
                         </p>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-dark">Charter Spectrum</h5>
                         <p class="card-text">
-                            888-406-7063<br />
+                            <a href="tel:8884067063" class="text-decoration-none text-black">(888) 406-7063</a><br />
                             <a href="https://www.spectrum.com" class="card-link text-info" target="_blank">www.spectrum.com</a>
                         </p>
                     </div>
@@ -55,9 +55,8 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            @SiteDetails.Value.PostOffice.Address
-                            <br />
-                            @SiteDetails.Value.PostOffice.Phone
+                            @SiteDetails.Value.PostOffice.Address<br />
+                            <a href="tel:@SiteDetails.Value.PostOffice.Phone" class="text-decoration-none text-black">@SiteDetails.Value.PostOffice.Phone</a>
                         </p>
                     </div>
                 </div>
@@ -72,7 +71,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-dark">Northwestern Energy</h5>
                         <p class="card-text">
-                            888-467-2669<br />
+                            <a href="tel:8884672669" class="text-decoration-none text-black">(888) 467-2669</a><br />
                             <a href="https://www.northwesternenergy.com" class="card-link text-info" target="_blank">www.northwesternenergy.com</a>
                         </p>
                     </div>
@@ -88,7 +87,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-dark">Bozeman Chronicle</h5>
                         <p class="card-text">
-                            406-587-4506<br />
+                            <a href="tel:4065874506" class="text-decoration-none text-black">(406) 587-4506</a><br />
                             <a href="https://www.bozemandailychronicle.com" class="card-link text-info" target="_blank">www.bozemandailychronicle.com</a>
                         </p>
                     </div>
@@ -104,7 +103,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-dark">Republic Services</h5>
                         <p class="card-text">
-                            406-586-0606<br />
+                            <a href="tel:4065860606" class="text-decoration-none text-black">(406) 586-0606</a><br />
                             <a href="https://www.republicservices.com/" class="card-link text-info" target="_blank">www.republicservices.com/</a>
                         </p>
                     </div>
@@ -119,7 +118,7 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            406-582-3200
+                            <a href="tel:4065823200" class="text-decoration-none text-black">(406) 582-3200</a>
                         </p>
                     </div>
                 </div>
@@ -162,7 +161,7 @@
                             <i class="bi bi-telephone fs-4 me-3 text-success mt-1"></i>
                             <div>
                                 <p class="mb-0 fw-bold">For Emergencies:</p>
-                                <p class="mb-0">Call @SiteDetails.Value.PhoneNumber</p>
+                                <p class="mb-0">Call <a href="tel:@SiteDetails.Value.PhoneNumber" class="text-decoration-none text-black">@SiteDetails.Value.PhoneNumber</a></p>
                             </div>
                         </li>
                     </ul>
