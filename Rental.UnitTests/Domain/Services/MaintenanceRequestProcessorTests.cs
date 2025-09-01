@@ -40,15 +40,13 @@ public class MaintenanceRequestProcessorTests
     public async Task HandleAsync_BuildsExpectedEmailRequest()
     {
         // Arrange explicit values for predictable assertions
-        var maintenanceRequest = new MaintenanceRequest
-        {
-            RentalAddress = "123 Test St",
-            FirstName = "Jane",
-            LastName = "Doe",
-            Email = "jane.doe@example.com",
-            Phone = "555-1111",
-            Description = "Sink is leaking"
-        };
+        var maintenanceRequest = new MaintenanceRequest(
+            RentalAddress: "123 Test St",
+            FirstName: "Jane",
+            LastName: "Doe",
+            Email: "jane.doe@example.com",
+            Phone: "555-1111",
+            Description: "Sink is leaking");
         var pdfBytes = new byte[] {1,2,3};
         _pdfService.Setup(p => p.GenerateAsync(It.IsAny<MaintenanceRequest>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(pdfBytes);
