@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Validation;
 
-public class RequireIfEnumAttribute : ValidationAttribute, IClientModelValidator
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+internal sealed class RequireIfEnumAttribute : ValidationAttribute, IClientModelValidator
 {
     private string CheckIfName { get; set; }
 

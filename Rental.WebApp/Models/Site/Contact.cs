@@ -1,7 +1,7 @@
 namespace Rental.WebApp.Models.Site;
 
-public class Contact
+public record Contact
 {
-    public string Address { get; set; } = string.Empty;
-    public string Phone { get; set; } = string.Empty;
+    public string Address { get; init; } = string.Empty;
+    public string Phone { get; init; } = string.Empty;
 }

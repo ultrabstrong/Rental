@@ -6,6 +6,8 @@ using Rental.WebApp.Models.Site;
 using Rental.WebApp.Rendering;
 using Rental.WebApp.Services;
 using Serilog;
+using Rental.WebApp.Validation;
+using Microsoft.Extensions.Options;
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
@@ -29,7 +31,9 @@ try
 
     builder.Host.UseSerilog();
 
-    builder.Services.Configure<SiteOptions>(builder.Configuration.GetSection(SiteOptions.NAME));
+    builder.Services.AddSingleton<IValidateOptions<SiteOptions>, SiteOptionsValidator>();
+    builder.Services.AddOptionsWithValidateOnStart<SiteOptions>()
+        .Bind(builder.Configuration.GetSection(SiteOptions.NAME));
 
     builder.Services.AddControllersWithViews();
 

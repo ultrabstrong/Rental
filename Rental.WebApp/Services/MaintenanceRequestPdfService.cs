@@ -9,7 +9,7 @@ using Rental.WebApp.Rendering;
 
 namespace Rental.WebApp.Services;
 
-public class MaintenanceRequestPdfService : IMaintenanceRequestPdfService
+internal class MaintenanceRequestPdfService : IMaintenanceRequestPdfService
 {
     private readonly IRazorViewRenderer _viewRenderer;
     private readonly IOptionsSnapshot<SiteOptions> _siteOptions;

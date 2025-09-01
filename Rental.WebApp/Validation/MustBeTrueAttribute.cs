@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Rental.WebApp.Validation;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-public sealed class MustBeTrueAttribute : ValidationAttribute, IClientModelValidator
+internal sealed class MustBeTrueAttribute : ValidationAttribute, IClientModelValidator
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {

@@ -2,14 +2,8 @@
 
 namespace Rental.WebApp.Models;
 
-public class SubmitResponse
-{
-    [JsonPropertyName("isSuccess")]
-    public bool IsSuccess { get; set; }
-
-    [JsonPropertyName("redirectUrl")]
-    public string RedirectUrl { get; set; } = string.Empty;
-
-    [JsonPropertyName("hasValidationErrors")]
-    public bool HasValidationErrors { get; set; }
-}
+public record SubmitResponse(
+    [property: JsonPropertyName("isSuccess")] bool IsSuccess,
+    [property: JsonPropertyName("redirectUrl")] string RedirectUrl = "",
+    [property: JsonPropertyName("hasValidationErrors")] bool HasValidationErrors = false
+);

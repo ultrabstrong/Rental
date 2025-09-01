@@ -1,8 +1,7 @@
 ﻿namespace Rental.WebApp.Models.Site;
 
-[Serializable]
-public class TenantInfoDoc
+public record TenantInfoDoc
 {
-    public string DisplayName { get; set; } = string.Empty;
-    public string FileName { get; set; } = string.Empty;
+    public string DisplayName { get; init; } = string.Empty;
+    public string FileName { get; init; } = string.Empty;
 }

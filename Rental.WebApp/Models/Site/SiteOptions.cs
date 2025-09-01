@@ -1,20 +1,20 @@
 ﻿namespace Rental.WebApp.Models.Site;
 
-public class SiteOptions
+public record SiteOptions
 {
     public const string NAME = "SiteOptions";
 
-    public string CompanyName { get; set; } = string.Empty;
+    public string CompanyName { get; init; } = string.Empty;
 
-    public string CompanyShortName { get; set; } = string.Empty;
+    public string CompanyShortName { get; init; } = string.Empty;
 
-    public string EmailAddress { get; set; } = string.Empty;
+    public string EmailAddress { get; init; } = string.Empty;
 
-    public string PhoneNumber { get; set; } = string.Empty;
+    public string PhoneNumber { get; init; } = string.Empty;
 
-    public string Address { get; set; } = string.Empty;
+    public string Address { get; init; } = string.Empty;
 
-    public Contact PostOffice { get; set; } = new Contact();
+    public Contact PostOffice { get; init; } = new Contact();
 
-    public List<TenantInfoDoc> TenantInfoDocs { get; set; } = [];
+    public List<TenantInfoDoc> TenantInfoDocs { get; init; } = [];
 }

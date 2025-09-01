@@ -9,7 +9,7 @@ using Rental.WebApp.Rendering;
 
 namespace Rental.WebApp.Services;
 
-public class RentalApplicationPdfService : IRentalApplicationPdfService
+internal class RentalApplicationPdfService : IRentalApplicationPdfService
 {
     private readonly IRazorViewRenderer _viewRenderer;
     private readonly IOptionsSnapshot<SiteOptions> _siteOptions;

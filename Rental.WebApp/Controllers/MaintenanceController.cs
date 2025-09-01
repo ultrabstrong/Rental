@@ -55,13 +55,13 @@ public class MaintenanceController : Controller
         catch (Exception ex)
         {
             Log.Logger.Error(ex, "Failed to submit maintenance request");
-            return Json(new SubmitResponse() { IsSuccess = false });
+            return Json(new SubmitResponse(IsSuccess: false));
         }
 
         return Json(new SubmitResponse
-        {
-            IsSuccess = true,
-            RedirectUrl = Url.Action(nameof(HomeController.Index), HomeController.Name)!
-        });
+        (
+            IsSuccess: true,
+            RedirectUrl: Url.Action(nameof(HomeController.Index), HomeController.Name)!
+        ));
     }
 }
