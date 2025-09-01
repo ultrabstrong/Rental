@@ -5,6 +5,7 @@ using Rental.Domain.Applications.Models;
 using Rental.Domain.Applications.Services;
 using Rental.Domain.Email.Models;
 using Rental.Domain.Email.Services;
+using Rental.Domain.Enums;
 
 namespace Rental.UnitTests.Domain.Services;
 
@@ -21,10 +22,54 @@ public class RentalApplicationProcessorTests
         public Task InvokeProcessAsync(RentalApplication app, CancellationToken ct) => ProcessAsync(app, ct);
     }
 
+    private static RentalApplication CreateMinimalApplication() => new(
+        RentalAddress: string.Empty,
+        OtherApplicants: null,
+        PersonalInfo: new(
+            FirstName: string.Empty,
+            MiddleName: null,
+            LastName: string.Empty,
+            PhoneNum: string.Empty,
+            SSN: string.Empty,
+            DriverLicense: string.Empty,
+            DriverLicenseStateOfIssue: string.Empty,
+            Email: string.Empty),
+        CurrentRental: new(false, null, null, null, null, null, null, null, null, null, null, null),
+        PrimaryEmployment: new(true, null, null, null, null, null, null, null, null, null, null),
+        SecondaryEmployment: new(true, null, null, null, null, null, null, null, null, null, null),
+        ParentInfo: new(null, null, null, null, null, null, null, null, null),
+        ConsiderOtherIncome: null,
+        OtherIncomeExplain: null,
+        Automobile: new(true, null, null, null, null, null, null, null),
+        PriorRentRef1: new(true, null, null, null, null, null, null, null, null, null, null, null),
+        PersonalReference1: new(true, null, null, null, null, null),
+        PersonalReference2: new(true, null, null, null, null, null),
+        AnticipatedDuration: string.Empty,
+        HasCriminalRecord: null,
+        ExplainCriminalRecord: null,
+        HasBeenEvicted: null,
+        ExplainBeenEvicted: null,
+        MarijuanaCard: null,
+        Smokers: null,
+        SmokersCount: null,
+        Drinkers: null,
+        HowOftenDrink: null,
+        AnyPets: null,
+        DescribePets: null,
+        AnyNonHuman: null,
+        DescribeNonHuman: null,
+        AttendCollege: null,
+        CollegeYearsAttended: null,
+        PlanToGraduate: null,
+        NeedReasonableAccommodation: null,
+        DescribeReasonableAccommodation: null,
+        AcceptedTerms: false,
+        AdditionalComments: null);
+
     [Fact]
     public async Task ProcessAsync_GeneratesPdfAndSendsEmail()
     {
-        var application = _fixture.Create<RentalApplication>();
+        var application = CreateMinimalApplication();
         var pdfBytes = _fixture.Create<byte[]>();
         _pdfService.Setup(p => p.GenerateAsync(application, It.IsAny<CancellationToken>()))
             .ReturnsAsync(pdfBytes);
@@ -39,12 +84,49 @@ public class RentalApplicationProcessorTests
     [Fact]
     public async Task ProcessAsync_BuildsExpectedEmailRequest()
     {
-        var application = new RentalApplication
-        {
-            RentalAddress = "456 Example Ave",
-            OtherApplicants = "John Smith",
-            PersonalInfo = new PersonalInfo { FirstName = "Alice", LastName = "Johnson", Email = "alice@example.com" }
-        };
+        var application = new RentalApplication(
+            RentalAddress: "456 Example Ave",
+            OtherApplicants: "John Smith",
+            PersonalInfo: new(
+                FirstName: "Alice",
+                MiddleName: null,
+                LastName: "Johnson",
+                PhoneNum: "555-2222",
+                SSN: "123-45-6789",
+                DriverLicense: "D1234567",
+                DriverLicenseStateOfIssue: "MT",
+                Email: "alice@example.com"),
+            CurrentRental: new(false, null, null, null, null, null, null, null, null, null, null, null),
+            PrimaryEmployment: new(true, null, null, null, null, null, null, null, null, null, null),
+            SecondaryEmployment: new(true, null, null, null, null, null, null, null, null, null, null),
+            ParentInfo: new(null, null, null, null, null, null, null, null, null),
+            ConsiderOtherIncome: null,
+            OtherIncomeExplain: null,
+            Automobile: new(true, null, null, null, null, null, null, null),
+            PriorRentRef1: new(true, null, null, null, null, null, null, null, null, null, null, null),
+            PersonalReference1: new(true, null, null, null, null, null),
+            PersonalReference2: new(true, null, null, null, null, null),
+            AnticipatedDuration: string.Empty,
+            HasCriminalRecord: null,
+            ExplainCriminalRecord: null,
+            HasBeenEvicted: null,
+            ExplainBeenEvicted: null,
+            MarijuanaCard: null,
+            Smokers: null,
+            SmokersCount: null,
+            Drinkers: null,
+            HowOftenDrink: null,
+            AnyPets: null,
+            DescribePets: null,
+            AnyNonHuman: null,
+            DescribeNonHuman: null,
+            AttendCollege: null,
+            CollegeYearsAttended: null,
+            PlanToGraduate: null,
+            NeedReasonableAccommodation: null,
+            DescribeReasonableAccommodation: null,
+            AcceptedTerms: false,
+            AdditionalComments: null);
         var pdfBytes = new byte[] {4,5,6};
         _pdfService.Setup(p => p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(pdfBytes);
@@ -67,7 +149,7 @@ public class RentalApplicationProcessorTests
     [Fact]
     public async Task ProcessAsync_CancellationRequested_Throws()
     {
-        var application = _fixture.Create<RentalApplication>();
+        var application = CreateMinimalApplication();
         using var cts = new CancellationTokenSource();
         cts.Cancel();
 

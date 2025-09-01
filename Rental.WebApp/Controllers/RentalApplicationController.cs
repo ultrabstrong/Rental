@@ -29,7 +29,8 @@ public class RentalApplicationController : Controller
     {
         this.AddUSStatesToViewBag();
 #if DEBUG
-        return PartialView("Apply", RentalApplication.TestApplication);
+        return PartialView("Apply", new RentalApplication());
+        //return PartialView("Apply", RentalApplication.TestApplication);
 #else
         return PartialView("Apply", new RentalApplication());
 #endif
