@@ -36,12 +36,11 @@ internal class MaintenanceRequestProcessor(
         bodyBuilder.AppendLine($"Phone: {(string.IsNullOrWhiteSpace(src.Phone) ? "Not provided" : src.Phone)}");
         bodyBuilder.AppendLine();
         bodyBuilder.AppendLine(src.Description);
-        return new EmailRequest
-        {
-            Subject = $"Maintenance request for {src.RentalAddress} from {src.FirstName} {src.LastName}",
-            Body = bodyBuilder.ToString(),
-            AttachmentName = $"{src.FirstName} {src.LastName} Maintenance Request.pdf",
-            PreferredReplyTo = src.Email
-        };
+        return new EmailRequest(
+            Subject: $"Maintenance request for {src.RentalAddress} from {src.FirstName} {src.LastName}",
+            Body: bodyBuilder.ToString(),
+            AttachmentName: $"{src.FirstName} {src.LastName} Maintenance Request.pdf",
+            PreferredReplyTo: src.Email
+        );
     }
 }

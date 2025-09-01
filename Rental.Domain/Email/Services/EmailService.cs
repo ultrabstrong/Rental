@@ -2,23 +2,22 @@
 using Rental.Domain.Email.Models;
 using System.Net;
 using System.Net.Mail;
-using System.Text.RegularExpressions;
+using Rental.Domain.Validation;
 
 namespace Rental.Domain.Email.Services;
 
-internal partial class EmailService : IEmailService, IDisposable
+internal class EmailService : IEmailService, IDisposable
 {
-    private readonly Regex _emailRegex = EmailRegex();
     private readonly EmailOptions _emailOptions;
     private readonly SmtpClient _smtpClient;
 
     public EmailService(IOptions<EmailOptions> emailOptions)
     {
         _emailOptions = emailOptions.Value;
-        _smtpClient = new SmtpClient(_emailOptions.SMTPServer)
+        _smtpClient = new SmtpClient(_emailOptions.SmtpServer)
         {
-            Port = _emailOptions.SMTPPort,
-            Credentials = new NetworkCredential(_emailOptions.SMTPUsername, _emailOptions.SMTPPw),
+            Port = _emailOptions.SmtpPort,
+            Credentials = new NetworkCredential(_emailOptions.SmtpUsername, _emailOptions.SmtpPw),
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network
         };
@@ -38,14 +37,14 @@ internal partial class EmailService : IEmailService, IDisposable
         var message = new MailMessage()
         {
             Subject = emailRequest.Subject,
-            From = new MailAddress(_emailOptions.SMTPUsername),
+            From = new MailAddress(_emailOptions.SmtpUsername),
             Body = emailRequest.Body,
             IsBodyHtml = false
         };
         message.Attachments.Add(attachment);
-        message.To.Add(_emailOptions.SMTPTo);
+        message.To.Add(_emailOptions.SmtpTo);
 
-        if (!string.IsNullOrWhiteSpace(emailRequest.PreferredReplyTo) && _emailRegex.IsMatch(emailRequest.PreferredReplyTo))
+        if (EmailValidation.IsValid(emailRequest.PreferredReplyTo))
         {
             message.ReplyToList.Clear();
             message.ReplyToList.Add(emailRequest.PreferredReplyTo);
@@ -59,7 +58,4 @@ internal partial class EmailService : IEmailService, IDisposable
         _smtpClient?.Dispose();
         GC.SuppressFinalize(this);
     }
-
-    [GeneratedRegex(@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")]
-    public static partial Regex EmailRegex();
 }

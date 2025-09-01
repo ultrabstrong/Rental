@@ -27,11 +27,10 @@ internal class RentalApplicationProcessor(
         await _emailService.SendEmailAsync(emailRequest, pdfStream, cancellationToken);
     }
 
-    private static EmailRequest BuildEmailRequest(RentalApplication app) => new()
-    {
-        Subject = $"Application for {app.RentalAddress} from {app.PersonalInfo.FirstName} {app.PersonalInfo.LastName}; Co-Applicants: {app.OtherApplicants}",
-        Body = $"Attached is the application for {app.RentalAddress} from {app.PersonalInfo.FirstName} {app.PersonalInfo.LastName}",
-        AttachmentName = $"{app.PersonalInfo.FirstName} {app.PersonalInfo.LastName} Application.pdf",
-        PreferredReplyTo = app.PersonalInfo.Email
-    };
+    private static EmailRequest BuildEmailRequest(RentalApplication app) => new(
+        Subject: $"Application for {app.RentalAddress} from {app.PersonalInfo.FirstName} {app.PersonalInfo.LastName}; Co-Applicants: {app.OtherApplicants}",
+        Body: $"Attached is the application for {app.RentalAddress} from {app.PersonalInfo.FirstName} {app.PersonalInfo.LastName}",
+        AttachmentName: $"{app.PersonalInfo.FirstName} {app.PersonalInfo.LastName} Application.pdf",
+        PreferredReplyTo: app.PersonalInfo.Email
+    );
 }

@@ -57,17 +57,17 @@ partial class Program
     {
         EmailOptions settings = new()
         {
-            SMTPServer = "",
-            SMTPUsername = "",
-            SMTPPw = "",
-            SMTPPort = 587,
-            SMTPTo = ""
+            SmtpServer = "",
+            SmtpUsername = "",
+            SmtpPw = "",
+            SmtpPort = 587,
+            SmtpTo = ""
         };
 
-        using (var smtpClient = new SmtpClient(settings.SMTPServer)
+        using (var smtpClient = new SmtpClient(settings.SmtpServer)
         {
-            Port = settings.SMTPPort,
-            Credentials = new NetworkCredential(settings.SMTPUsername, settings.SMTPPw),
+            Port = settings.SmtpPort,
+            Credentials = new NetworkCredential(settings.SmtpUsername, settings.SmtpPw),
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network
         })
@@ -75,10 +75,10 @@ partial class Program
             MailMessage message = new()
             {
                 Subject = $"test subject",
-                From = new MailAddress(settings.SMTPUsername),
+                From = new MailAddress(settings.SmtpUsername),
                 Body = $"test body",
                 IsBodyHtml = false,
-                To = { settings.SMTPTo }
+                To = { settings.SmtpTo }
             };
 
             smtpClient.Send(message);
