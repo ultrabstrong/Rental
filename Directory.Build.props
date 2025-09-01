@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <!-- Central version for all projects -->
-    <Version>6.2.2.1</Version>
+    <Version>6.2.2.2</Version>
     <!-- Keep AssemblyVersion stable unless breaking public contracts; can omit to use Version -->
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
   </PropertyGroup>

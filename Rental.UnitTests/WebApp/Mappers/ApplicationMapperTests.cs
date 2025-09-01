@@ -11,7 +11,7 @@ public class ApplicationMapperTests
     [Fact]
     public void ToDomainModel_MapsTopLevelAndNested()
     {
-        ApplicationViewModel vm = ApplicationViewModel.TestApplication; // use existing test sample for realistic data
+        ApplicationViewModel vm = ApplicationViewModel.FullTestApplication; // use existing test sample for realistic data
 
         DomainApplication domain = vm.ToDomainModel();
 
@@ -37,7 +37,7 @@ public class ApplicationMapperTests
     [Fact]
     public void ToViewModel_MapsTopLevelAndNested()
     {
-        DomainApplication domain = ApplicationViewModel.TestApplication.ToDomainModel();
+        DomainApplication domain = ApplicationViewModel.FullTestApplication.ToDomainModel();
 
         ApplicationViewModel vm = domain.ToViewModel();
 

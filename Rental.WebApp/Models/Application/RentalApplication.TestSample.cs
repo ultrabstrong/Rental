@@ -6,7 +6,7 @@ namespace Rental.WebApp.Models.Application;
 public partial class RentalApplication
 {
     // Sample application with realistic test data for testing purposes
-    public static RentalApplication TestApplication => new()
+    public static RentalApplication FullTestApplication => new()
     {
         RentalAddress = "1234 Apartment Way, Apt #301, Portland, OR 97201",
         OtherApplicants = "Sarah Johnson, Michael Williams",
@@ -150,6 +150,95 @@ public partial class RentalApplication
         DescribeReasonableAccommodation = "I have occasional migraines and would prefer a unit away from high-traffic or noisy areas if possible.",
         AcceptedTerms = true,
         AdditionalComments = "I'm a registered nurse working the day shift at Portland City Hospital. I'm looking for a quiet apartment close to work and public transportation. I'm a responsible tenant with a stable income and excellent rental history."
+    };
+
+    public static RentalApplication MinimalTestApplication => new()
+    {
+        RentalAddress = "1234 Apartment Way, Apt #301, Portland, OR 97201",
+        PersonalInfo = new PersonalInfo
+        {
+            FirstName = "Jane",
+            MiddleName = string.Empty,
+            LastName = "Doe",
+            DriverLicense = "OR12345678",
+            DriverLicenseStateOfIssue = "OR",
+            SSN = "123-45-6789",
+            PhoneNum = "(503) 555-7890",
+            Email = "janedoe@example.com"
+        },
+        CurrentRental = new RentalReference
+        {
+            DisplayName = "Current Rental",
+            AllowElectiveRequire = false,
+            ElectiveRequireValue = YesNo.Yes,
+            Street = "789 Previous St",
+            City = "Portland",
+            State = "OR",
+            Zip = "97214",
+            Start = new DateTime(2021, 5, 1),
+            End = DateTime.Now,
+            LandlordName = "Green Property Management",
+            LandlordPhoneNum = "(503) 555-4321",
+            ReasonForMoving = "Seeking a larger apartment with more amenities and closer to work."
+        },
+        PriorRentRef1 = new RentalReference
+        {
+            DisplayName = "Previous Rental",
+            AllowElectiveRequire = true,
+            ElectiveRequireDisplay = "Add rental history",
+            ElectiveRequireValue = YesNo.No,
+        },
+        ParentInfo = new ParentInfo
+        {
+            DisplayName = "Parent Information",
+            ElectiveRequireValue = YesNo.No,
+        },
+        Automobile = new Automobile
+        {
+            DisplayName = "What kind of vehicle do you own?",
+            AllowElectiveRequire = true,
+            ElectiveRequireValue = YesNo.No,
+        },
+        PersonalReference1 = new PersonalReference
+        {
+            DisplayName = "Personal reference #1",
+            AllowElectiveRequire = true,
+            ElectiveRequireDisplay = "Add personal reference",
+            ElectiveRequireValue = YesNo.No,
+        },
+        PersonalReference2 = new PersonalReference
+        {
+            DisplayName = "Personal reference #2",
+            AllowElectiveRequire = true,
+            ElectiveRequireDisplay = "Add personal reference",
+            ElectiveRequireValue = YesNo.No,
+        },
+        PrimaryEmployment = new EmploymentInfo
+        {
+            DisplayName = "Tell us about your job",
+            AllowElectiveRequire = true,
+            ElectiveRequireDisplay = "Do you have a job?",
+            ElectiveRequireValue = YesNo.No,
+        },
+        SecondaryEmployment = new EmploymentInfo
+        {
+            DisplayName = "Tell us about your second job",
+            AllowElectiveRequire = true,
+            ElectiveRequireDisplay = "Do you have a second job?",
+            ElectiveRequireValue = YesNo.No,
+        },
+        AnticipatedDuration = "At least 1 year",
+        ConsiderOtherIncome = YesNo.No,
+        HasCriminalRecord = YesNo.No,
+        HasBeenEvicted = YesNo.No,
+        MarijuanaCard = YesNo.No,
+        Smokers = YesNo.No,
+        Drinkers = YesNo.No,
+        AnyPets = YesNo.No,
+        AnyNonHuman = YesNo.No,
+        AttendCollege = YesNo.No,
+        NeedReasonableAccommodation = YesNo.No,
+        AcceptedTerms = true
     };
 }
 #endif
