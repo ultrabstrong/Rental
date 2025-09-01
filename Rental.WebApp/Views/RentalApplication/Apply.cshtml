@@ -1,7 +1,7 @@
 ﻿@using Rental.WebApp.Controllers
 @using Rental.WebApp.Enums;
 @using Rental.WebApp.Models.Application
-@model Application
+@model RentalApplication
 
 <div class="container px-0 mt-4">
     <div class="row justify-content-center">
@@ -18,7 +18,7 @@
 
                 <!-- Application Body -->
                 <div class="card-body p-4 p-lg-5">
-                    @using (Html.BeginForm(nameof(ApplicationController.SubmitApplication), ApplicationController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
+                    @using (Html.BeginForm(nameof(RentalApplicationController.SubmitApplication), RentalApplicationController.Name, FormMethod.Post, new { @id = "application-form", @class = "needs-validation" }))
                     {
                         @Html.AntiForgeryToken()
 

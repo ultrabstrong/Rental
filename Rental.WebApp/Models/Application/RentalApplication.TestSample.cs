@@ -3,10 +3,10 @@ using Rental.WebApp.Enums;
 
 namespace Rental.WebApp.Models.Application;
 
-public partial class Application
+public partial class RentalApplication
 {
     // Sample application with realistic test data for testing purposes
-    public static Application TestApplication => new()
+    public static RentalApplication TestApplication => new()
     {
         RentalAddress = "1234 Apartment Way, Apt #301, Portland, OR 97201",
         OtherApplicants = "Sarah Johnson, Michael Williams",

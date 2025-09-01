@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using Rental.Domain.Applications.Models;
 using Rental.Domain.Applications.Services;
+using Rental.WebApp.Controllers;
 using Rental.WebApp.Converters;
 using Rental.WebApp.Mappers;
 using Rental.WebApp.Models.Site;
@@ -26,7 +27,7 @@ public class RentalApplicationPdfService : IRentalApplicationPdfService
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Rendering application PDF view");
         var vm = application.ToViewModel();
-        var html = await _viewRenderer.RenderAsync("~/Views/Application/ApplicationPdf.cshtml", vm);
+        var html = await _viewRenderer.RenderAsync($"~/Views/{RentalApplicationController.Name}/ApplicationPdf.cshtml", vm);
 
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Converting application HTML to PDF");

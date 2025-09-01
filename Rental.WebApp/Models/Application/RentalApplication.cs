@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Models.Application;
 
-public partial class Application
+public partial class RentalApplication
 {
     [Display(Name = "Rental Address")]
     [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the rental address")]

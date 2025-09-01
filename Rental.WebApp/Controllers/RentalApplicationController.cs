@@ -8,12 +8,12 @@ using Serilog;
 
 namespace Rental.WebApp.Controllers;
 
-public class ApplicationController : Controller
+public class RentalApplicationController : Controller
 {
-    public static readonly string Name = nameof(ApplicationController).Replace(nameof(Controller), "");
+    public static readonly string Name = nameof(RentalApplicationController).Replace(nameof(Controller), "");
     private readonly IRentalApplicationProcessor _applicationProcessor;
 
-    public ApplicationController(IRentalApplicationProcessor applicationProcessor)
+    public RentalApplicationController(IRentalApplicationProcessor applicationProcessor)
     {
         _applicationProcessor = applicationProcessor;
     }
@@ -29,15 +29,15 @@ public class ApplicationController : Controller
     {
         this.AddUSStatesToViewBag();
 #if DEBUG
-        return PartialView("Apply", Application.TestApplication);
+        return PartialView("Apply", RentalApplication.TestApplication);
 #else
-        return PartialView("Apply", new Application());
+        return PartialView("Apply", new RentalApplication());
 #endif
     }
 
     [HttpPost, Route("SubmitApplication")]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> SubmitApplication(Application application, CancellationToken cancellationToken)
+    public async Task<ActionResult> SubmitApplication(RentalApplication application, CancellationToken cancellationToken)
     {
         try
         {

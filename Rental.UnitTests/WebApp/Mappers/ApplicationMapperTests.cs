@@ -1,5 +1,5 @@
 using Rental.WebApp.Mappers;
-using ApplicationViewModel = Rental.WebApp.Models.Application.Application;
+using ApplicationViewModel = Rental.WebApp.Models.Application.RentalApplication;
 using DomainApplication = Rental.Domain.Applications.Models.RentalApplication;
 
 namespace Rental.UnitTests.WebApp.Mappers;

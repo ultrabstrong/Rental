@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using Rental.Domain.Maintenance.Models;
 using Rental.Domain.Maintenance.Services;
+using Rental.WebApp.Controllers;
 using Rental.WebApp.Converters;
 using Rental.WebApp.Mappers;
 using Rental.WebApp.Models.Site;
@@ -29,7 +30,7 @@ public class MaintenanceRequestPdfService : IMaintenanceRequestPdfService
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Rendering maintenance request PDF view");
         var vm = maintenanceRequest.ToViewModel();
-        var html = await _viewRenderer.RenderAsync("~/Views/Maintenance/MaintenanceRequestPdf.cshtml", vm);
+        var html = await _viewRenderer.RenderAsync($"~/Views/{MaintenanceController.Name}/MaintenanceRequestPdf.cshtml", vm);
 
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Converting maintenance request HTML to PDF");

@@ -1,4 +1,4 @@
-@model Application
+@model RentalApplication
 @using Rental.WebApp.Controllers
 @using Rental.WebApp.Models.Application
 @inject Microsoft.Extensions.Options.IOptionsSnapshot<Rental.WebApp.Models.Site.SiteOptions> SiteDetails
@@ -13,7 +13,7 @@
 }
 
 <div id="loadingIndicatorContainer" class="container mt-5 text-center d-flex flex-column justify-content-center flex-grow-1" 
-     data-apply-form-url="@Url.Action(nameof(ApplicationController.ApplyForm), ApplicationController.Name)"
+     data-apply-form-url="@Url.Action(nameof(RentalApplicationController.ApplyForm), RentalApplicationController.Name)"
      data-company-name="@SiteDetails.Value.CompanyShortName">
     <div> <!-- Added a wrapper div for spinner and text to center them properly within the flex container -->
         <div class="spinner-border spinner-border-lg text-primary" role="status">
