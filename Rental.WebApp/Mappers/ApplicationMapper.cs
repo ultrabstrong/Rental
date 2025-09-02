@@ -6,7 +6,7 @@ using YesNoViewModel = Rental.WebApp.Enums.YesNo;
 
 namespace Rental.WebApp.Mappers;
 
-public static class ApplicationMapper
+internal static class ApplicationMapper
 {
     public static RentalApplication ToDomainModel(this ApplicationViewModel src) => new(
         RentalAddress: src.RentalAddress,

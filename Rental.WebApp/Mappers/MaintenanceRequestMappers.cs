@@ -3,7 +3,7 @@ using MaintenanceRequestViewModel = Rental.WebApp.Models.Maintenance.Maintenance
 
 namespace Rental.WebApp.Mappers;
 
-public static class MaintenanceRequestMappers
+internal static class MaintenanceRequestMappers
 {
     public static MaintenanceRequest ToDomainModel(this MaintenanceRequestViewModel src) => new(
         src.RentalAddress,

@@ -5,7 +5,7 @@ using YesNoViewModel = Rental.WebApp.Enums.YesNo;
 
 namespace Rental.WebApp.Mappers;
 
-public static class RentalReferenceMapper
+internal static class RentalReferenceMapper
 {
     public static RentalReference ToDomainModel(this RentalReferenceViewModel src) => new(
         AllowElectiveRequire: src.AllowElectiveRequire,

@@ -5,7 +5,7 @@ using YesNoViewModel = Rental.WebApp.Enums.YesNo;
 
 namespace Rental.WebApp.Mappers;
 
-public static class AutomobileMapper
+internal static class AutomobileMapper
 {
     public static Automobile ToDomainModel(this AutomobileViewModel src) => new(
         AllowElectiveRequire: src.AllowElectiveRequire,

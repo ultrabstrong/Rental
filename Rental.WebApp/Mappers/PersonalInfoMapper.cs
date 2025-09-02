@@ -3,7 +3,7 @@ using PersonalInfoViewModel = Rental.WebApp.Models.Application.PersonalInfo;
 
 namespace Rental.WebApp.Mappers;
 
-public static class PersonalInfoMapper
+internal static class PersonalInfoMapper
 {
     public static PersonalInfo ToDomainModel(this PersonalInfoViewModel src) => new(
         FirstName: src.FirstName,

@@ -5,7 +5,7 @@ using YesNoViewModel = Rental.WebApp.Enums.YesNo;
 
 namespace Rental.WebApp.Mappers;
 
-public static class ParentInfoMapper
+internal static class ParentInfoMapper
 {
     public static ParentInfo ToDomainModel(this ParentInfoViewModel src) => new(
         ElectiveRequireValue: src.ElectiveRequireValue.MapEnum<YesNoViewModel, YesNo>(),

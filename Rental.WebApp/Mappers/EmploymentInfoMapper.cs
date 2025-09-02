@@ -6,7 +6,7 @@ using YesNoViewModel = Rental.WebApp.Enums.YesNo;
 
 namespace Rental.WebApp.Mappers;
 
-public static class EmploymentInfoMapper
+internal static class EmploymentInfoMapper
 {
     public static EmploymentInfo ToDomainModel(this EmploymentInfoViewModel src) => new(
         AllowElectiveRequire: src.AllowElectiveRequire,
