@@ -11,14 +11,24 @@ namespace Rental.Domain;
 
 public static class DomainServiceCollectionExtensions
 {
-    public static IServiceCollection AddDomainServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDomainServices(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        Func<IServiceProvider, IRentalApplicationPdfService> rentalApplicationPdfFactory,
+        Func<IServiceProvider, IMaintenanceRequestPdfService> maintenanceRequestPdfFactory)
     {
         services.AddSingleton<IValidateOptions<EmailOptions>, EmailOptionsValidator>();
         services.AddOptionsWithValidateOnStart<EmailOptions>()
                 .Bind(configuration.GetSection(EmailOptions.NAME));
+
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IMaintenanceRequestProcessor, MaintenanceRequestProcessor>();
         services.AddScoped<IRentalApplicationProcessor, RentalApplicationProcessor>();
+
+        // Per-scope creation using provided factories
+        services.AddScoped(rentalApplicationPdfFactory);
+        services.AddScoped(maintenanceRequestPdfFactory);
+
         return services;
     }
 }

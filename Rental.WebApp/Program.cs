@@ -38,9 +38,18 @@ try
     builder.Services.AddControllersWithViews();
 
     builder.Services.AddScoped<IRazorViewRenderer, RazorViewRenderer>();
-    builder.Services.AddScoped<IMaintenanceRequestPdfService, MaintenanceRequestPdfService>();
-    builder.Services.AddScoped<IRentalApplicationPdfService, RentalApplicationPdfService>();
-    builder.Services.AddDomainServices(builder.Configuration);
+
+    builder.Services.AddDomainServices(
+        builder.Configuration,
+        rentalApplicationPdfFactory: sp => new RentalApplicationPdfService(
+            sp.GetRequiredService<IRazorViewRenderer>(),
+            sp.GetRequiredService<IOptionsSnapshot<SiteOptions>>(),
+            sp.GetRequiredService<ILogger<RentalApplicationPdfService>>()),
+        maintenanceRequestPdfFactory: sp => new MaintenanceRequestPdfService(
+            sp.GetRequiredService<IRazorViewRenderer>(),
+            sp.GetRequiredService<IOptionsSnapshot<SiteOptions>>(),
+            sp.GetRequiredService<ILogger<MaintenanceRequestPdfService>>())
+    );
 
     var app = builder.Build();
 
