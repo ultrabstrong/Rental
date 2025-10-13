@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow non-user-facing or POST-only endpoints
+Disallow: /ApplyForm
+Disallow: /SubmitApplication
+Disallow: /SubmitMaintenanceRequest
+
+Sitemap: https://apexpropertiesmt.com/sitemap.xml
