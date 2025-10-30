@@ -16,7 +16,8 @@ internal sealed class RazorViewRenderer : IRazorViewRenderer
     public RazorViewRenderer(
         ICompositeViewEngine viewEngine,
         ITempDataProvider tempDataProvider,
-        IServiceProvider serviceProvider)
+        IServiceProvider serviceProvider
+    )
     {
         _viewEngine = viewEngine;
         _tempDataProvider = tempDataProvider;
@@ -31,7 +32,11 @@ internal sealed class RazorViewRenderer : IRazorViewRenderer
         using var sw = new StringWriter();
 
         // Try absolute/relative path first
-        var viewResult = _viewEngine.GetView(executingFilePath: null, viewPath: viewPathOrName, isMainPage: true);
+        var viewResult = _viewEngine.GetView(
+            executingFilePath: null,
+            viewPath: viewPathOrName,
+            isMainPage: true
+        );
         if (!viewResult.Success)
         {
             // Fallback to name-based lookup
@@ -42,9 +47,12 @@ internal sealed class RazorViewRenderer : IRazorViewRenderer
             throw new ArgumentNullException($"Unable to find view '{viewPathOrName}'");
         }
 
-        var viewDictionary = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
+        var viewDictionary = new ViewDataDictionary(
+            new EmptyModelMetadataProvider(),
+            new ModelStateDictionary()
+        )
         {
-            Model = model
+            Model = model,
         };
 
         var tempData = new TempDataDictionary(httpContext, _tempDataProvider);
@@ -55,7 +63,8 @@ internal sealed class RazorViewRenderer : IRazorViewRenderer
             viewDictionary,
             tempData,
             sw,
-            new HtmlHelperOptions());
+            new HtmlHelperOptions()
+        );
 
         await viewResult.View.RenderAsync(viewContext);
         return sw.ToString();

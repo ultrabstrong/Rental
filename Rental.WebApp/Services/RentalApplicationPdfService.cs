@@ -15,19 +15,29 @@ internal class RentalApplicationPdfService : IRentalApplicationPdfService
     private readonly IOptionsSnapshot<SiteOptions> _siteOptions;
     private readonly ILogger<RentalApplicationPdfService> _logger;
 
-    public RentalApplicationPdfService(IRazorViewRenderer viewRenderer, IOptionsSnapshot<SiteOptions> siteOptions, ILogger<RentalApplicationPdfService> logger)
+    public RentalApplicationPdfService(
+        IRazorViewRenderer viewRenderer,
+        IOptionsSnapshot<SiteOptions> siteOptions,
+        ILogger<RentalApplicationPdfService> logger
+    )
     {
         _viewRenderer = viewRenderer;
         _siteOptions = siteOptions;
         _logger = logger;
     }
 
-    public async Task<byte[]> GenerateAsync(RentalApplication application, CancellationToken cancellationToken = default)
+    public async Task<byte[]> GenerateAsync(
+        RentalApplication application,
+        CancellationToken cancellationToken = default
+    )
     {
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Rendering application PDF view");
         var vm = application.ToViewModel();
-        var html = await _viewRenderer.RenderAsync($"~/Views/{RentalApplicationController.Name}/ApplicationPdf.cshtml", vm);
+        var html = await _viewRenderer.RenderAsync(
+            $"~/Views/{RentalApplicationController.Name}/ApplicationPdf.cshtml",
+            vm
+        );
 
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Converting application HTML to PDF");
@@ -35,7 +45,8 @@ internal class RentalApplicationPdfService : IRentalApplicationPdfService
             html,
             _siteOptions.Value.CompanyName,
             $"{application.PersonalInfo.FirstName} {application.PersonalInfo.LastName} Application",
-            $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}");
+            $"Application for {application.RentalAddress} from {application.PersonalInfo.FirstName} {application.PersonalInfo.LastName}; Co-Applicants : {application.OtherApplicants}"
+        );
 
         return pdf;
     }

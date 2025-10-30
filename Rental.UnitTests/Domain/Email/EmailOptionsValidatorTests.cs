@@ -9,7 +9,8 @@ public class EmailOptionsValidatorTests
 {
     private readonly EmailOptionsValidator _validator = new();
 
-    private ValidateOptionsResult Validate(EmailOptions opts) => _validator.Validate(Options.DefaultName, opts);
+    private ValidateOptionsResult Validate(EmailOptions opts) =>
+        _validator.Validate(Options.DefaultName, opts);
 
     [Fact]
     public void Validate_ValidOptions_Succeeds()
@@ -20,7 +21,7 @@ public class EmailOptionsValidatorTests
             SmtpUsername = "user@example.com",
             SmtpPw = "secret",
             SmtpPort = 587,
-            SmtpTo = "dest@example.com"
+            SmtpTo = "dest@example.com",
         };
 
         var result = Validate(opts);
@@ -37,7 +38,7 @@ public class EmailOptionsValidatorTests
             SmtpUsername = "", // invalid / missing
             SmtpPw = "", // missing
             SmtpPort = 0, // invalid
-            SmtpTo = "" // invalid / missing
+            SmtpTo = "", // invalid / missing
         };
 
         var result = Validate(opts);
@@ -64,7 +65,7 @@ public class EmailOptionsValidatorTests
             SmtpUsername = badEmail ?? string.Empty,
             SmtpPw = "pw",
             SmtpPort = 25,
-            SmtpTo = "dest@example.com"
+            SmtpTo = "dest@example.com",
         };
 
         var result = Validate(opts);
@@ -86,7 +87,7 @@ public class EmailOptionsValidatorTests
             SmtpUsername = "user@example.com",
             SmtpPw = "pw",
             SmtpPort = port,
-            SmtpTo = "dest@example.com"
+            SmtpTo = "dest@example.com",
         };
 
         var result = Validate(opts);
@@ -109,7 +110,7 @@ public class EmailOptionsValidatorTests
             SmtpUsername = "user@example.com",
             SmtpPw = "pw",
             SmtpPort = 587,
-            SmtpTo = badEmail ?? string.Empty
+            SmtpTo = badEmail ?? string.Empty,
         };
 
         var result = Validate(opts);

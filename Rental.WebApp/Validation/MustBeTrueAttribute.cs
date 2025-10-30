@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Rental.WebApp.Validation;
 
@@ -10,7 +10,9 @@ internal sealed class MustBeTrueAttribute : ValidationAttribute, IClientModelVal
     {
         if (value is bool b && b)
             return ValidationResult.Success;
-        return new ValidationResult(ErrorMessage ?? $"{validationContext.DisplayName} must be accepted");
+        return new ValidationResult(
+            ErrorMessage ?? $"{validationContext.DisplayName} must be accepted"
+        );
     }
 
     public void AddValidation(ClientModelValidationContext context)
@@ -20,6 +22,8 @@ internal sealed class MustBeTrueAttribute : ValidationAttribute, IClientModelVal
         {
             context.Attributes.Add("data-val", "true");
         }
-        context.Attributes["data-val-mustbetrue"] = FormatErrorMessage(context.ModelMetadata.GetDisplayName());
+        context.Attributes["data-val-mustbetrue"] = FormatErrorMessage(
+            context.ModelMetadata.GetDisplayName()
+        );
     }
 }

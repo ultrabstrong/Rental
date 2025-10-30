@@ -1,6 +1,6 @@
-﻿using Rental.WebApp.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using Rental.WebApp.Enums;
 using Rental.WebApp.Validation;
-using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Models.Application;
 
@@ -32,11 +32,21 @@ public class RentalReference
     public string? Zip { get; set; }
 
     [Display(Name = "Landlord name")]
-    [RequireIfEnumEnabled(nameof(ElectiveRequireValue), YesNo.Yes, nameof(AllowElectiveRequire), "Please enter the landlord's name")]
+    [RequireIfEnumEnabled(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        nameof(AllowElectiveRequire),
+        "Please enter the landlord's name"
+    )]
     public string? LandlordName { get; set; }
 
     [Display(Name = "Landlord phone #")]
-    [RequireIfEnumEnabled(nameof(ElectiveRequireValue), YesNo.Yes, nameof(AllowElectiveRequire), "Please enter the landlord's phone number")]
+    [RequireIfEnumEnabled(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        nameof(AllowElectiveRequire),
+        "Please enter the landlord's phone number"
+    )]
     public string? LandlordPhoneNum { get; set; }
 
     [Display(Name = "From")]

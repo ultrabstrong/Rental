@@ -4,5 +4,9 @@ namespace Rental.Domain.Email.Services;
 
 public interface IEmailService
 {
-    Task SendEmailAsync(EmailRequest emailRequest, Stream attachmentStream, CancellationToken cancellationToken = default);
+    Task SendEmailAsync(
+        EmailRequest emailRequest,
+        Stream attachmentStream,
+        CancellationToken cancellationToken = default
+    );
 }

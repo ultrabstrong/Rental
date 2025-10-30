@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Rental.WebApp.Controllers;
 
@@ -16,13 +16,13 @@ public class SitemapController : Controller
 
         var urls = new (string path, string changefreq, double priority)[]
         {
-            ("/",                   "daily",   1.0),
-            ("/TenantInfo",         "monthly", 0.6),
-            ("/ContactUs",          "yearly",  0.3),
-            ("/Privacy",            "yearly",  0.1),
-            ("/Terms",              "yearly",  0.1),
-            ("/DownloadApplication","monthly", 0.5),
-            ("/Apply",              "monthly", 0.7),
+            ("/", "daily", 1.0),
+            ("/TenantInfo", "monthly", 0.6),
+            ("/ContactUs", "yearly", 0.3),
+            ("/Privacy", "yearly", 0.1),
+            ("/Terms", "yearly", 0.1),
+            ("/DownloadApplication", "monthly", 0.5),
+            ("/Apply", "monthly", 0.7),
             ("/MaintenanceRequest", "monthly", 0.5),
         };
 
@@ -31,18 +31,24 @@ public class SitemapController : Controller
 
         var doc = new XDocument(
             new XDeclaration("1.0", "utf-8", null),
-            new XElement(ns + "urlset",
-                urls.Select(u =>
-                    new XElement(ns + "url",
-                        new XElement(ns + "loc", baseUrl + u.path),
-                        new XElement(ns + "lastmod", today),
-                        new XElement(ns + "changefreq", u.changefreq),
-                        new XElement(ns + "priority", u.priority.ToString("0.0", CultureInfo.InvariantCulture))
+            new XElement(
+                ns + "urlset",
+                urls.Select(u => new XElement(
+                    ns + "url",
+                    new XElement(ns + "loc", baseUrl + u.path),
+                    new XElement(ns + "lastmod", today),
+                    new XElement(ns + "changefreq", u.changefreq),
+                    new XElement(
+                        ns + "priority",
+                        u.priority.ToString("0.0", CultureInfo.InvariantCulture)
                     )
-                )
+                ))
             )
         );
 
-        return Content(doc.ToString(SaveOptions.DisableFormatting), "application/xml; charset=utf-8");
+        return Content(
+            doc.ToString(SaveOptions.DisableFormatting),
+            "application/xml; charset=utf-8"
+        );
     }
 }

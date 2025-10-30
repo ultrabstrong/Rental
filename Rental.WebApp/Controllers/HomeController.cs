@@ -19,5 +19,4 @@ public class HomeController : Controller
 
     [HttpGet, Route("Terms")]
     public ActionResult Terms() => View();
-
 }

@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Options;
-using Rental.Domain.Email.Models;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
+using Microsoft.Extensions.Options;
+using Rental.Domain.Email.Models;
 using Rental.Domain.Validation;
 
 namespace Rental.Domain.Email.Services;
@@ -19,11 +19,15 @@ internal class EmailService : IEmailService, IDisposable
             Port = _emailOptions.SmtpPort,
             Credentials = new NetworkCredential(_emailOptions.SmtpUsername, _emailOptions.SmtpPw),
             EnableSsl = true,
-            DeliveryMethod = SmtpDeliveryMethod.Network
+            DeliveryMethod = SmtpDeliveryMethod.Network,
         };
     }
 
-    async Task IEmailService.SendEmailAsync(EmailRequest emailRequest, Stream attachmentStream, CancellationToken cancellationToken)
+    async Task IEmailService.SendEmailAsync(
+        EmailRequest emailRequest,
+        Stream attachmentStream,
+        CancellationToken cancellationToken
+    )
     {
         cancellationToken.ThrowIfCancellationRequested();
         using var message = BuildMailMessage(emailRequest, attachmentStream);
@@ -39,7 +43,7 @@ internal class EmailService : IEmailService, IDisposable
             Subject = emailRequest.Subject,
             From = new MailAddress(_emailOptions.SmtpUsername),
             Body = emailRequest.Body,
-            IsBodyHtml = false
+            IsBodyHtml = false,
         };
         message.Attachments.Add(attachment);
         message.To.Add(_emailOptions.SmtpTo);

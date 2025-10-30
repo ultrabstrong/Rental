@@ -24,7 +24,9 @@ public class MaintenanceRequest
 
     [Display(Name = "Please provide a brief summary of the maintenance needed")]
     [DataType(DataType.MultilineText)]
-    [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide a description of the maintenance needed")]
+    [Required(
+        AllowEmptyStrings = false,
+        ErrorMessage = "Please provide a description of the maintenance needed"
+    )]
     public string Description { get; set; } = string.Empty;
-
 }

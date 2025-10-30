@@ -1,6 +1,6 @@
-﻿using Rental.WebApp.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using Rental.WebApp.Enums;
 using Rental.WebApp.Validation;
-using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Models.Application;
 
@@ -20,10 +20,18 @@ public class PersonalReference
     public string? Name { get; set; }
 
     [Display(Name = "Relationship")]
-    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your relationship to this reference")]
+    [RequireIfEnum(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter your relationship to this reference"
+    )]
     public string? Relationship { get; set; }
 
     [Display(Name = "Phone #")]
-    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the reference's phone number")]
+    [RequireIfEnum(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter the reference's phone number"
+    )]
     public string? PhoneNum { get; set; }
 }

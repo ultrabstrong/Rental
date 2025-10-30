@@ -1,6 +1,6 @@
-﻿using Rental.WebApp.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using Rental.WebApp.Enums;
 using Rental.WebApp.Validation;
-using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Models.Application;
 
@@ -24,15 +24,27 @@ public class EmploymentInfo
     public string? ContactName { get; set; }
 
     [Display(Name = "Contact Phone #")]
-    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter the contact phone number")]
+    [RequireIfEnum(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter the contact phone number"
+    )]
     public string? ContactPhone { get; set; }
 
     [Display(Name = "Length of employment")]
-    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your length of employment")]
+    [RequireIfEnum(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter your length of employment"
+    )]
     public string? EmploymentLength { get; set; }
 
     [Display(Name = "Is this a permanent position")]
-    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please indicate if this is a permanent position")]
+    [RequireIfEnum(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please indicate if this is a permanent position"
+    )]
     public YesNo? IsPermenant { get; set; }
 
     [Display(Name = "Salary or hourly wage?")]
@@ -40,12 +52,24 @@ public class EmploymentInfo
     public WageType? WageType { get; set; }
 
     [Display(Name = "Wage earned")]
-    [RangeIfEnum("0.01", 2, nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a wage greater than 0")]
+    [RangeIfEnum(
+        "0.01",
+        2,
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter a wage greater than 0"
+    )]
     [DataType(DataType.Currency)]
     public decimal? Wage { get; set; }
 
     [Display(Name = "How many hours do you work each week?")]
     [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your hours per week")]
-    [RangeIfEnum("1", 0, nameof(ElectiveRequireValue), YesNo.Yes, "Please enter a number of hours greater than 0")]
+    [RangeIfEnum(
+        "1",
+        0,
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter a number of hours greater than 0"
+    )]
     public int? HoursPerWeek { get; set; }
 }

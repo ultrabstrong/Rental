@@ -5,4 +5,9 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "test applications will have unused memebers", Scope = "module")]
+[assembly: SuppressMessage(
+    "CodeQuality",
+    "IDE0051:Remove unused private members",
+    Justification = "test applications will have unused memebers",
+    Scope = "module"
+)]

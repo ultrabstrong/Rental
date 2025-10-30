@@ -60,7 +60,7 @@ internal static class ControllerExtensions
             new() { Text = "West Virginia (WV)", Value = "WV" },
             new() { Text = "Wisconsin (WI)", Value = "WI" },
             new() { Text = "Wyoming (WY)", Value = "WY" },
-            new() { Text = "District of Columbia (DC)", Value = "DC" }
+            new() { Text = "District of Columbia (DC)", Value = "DC" },
         };
     }
 }

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Rental.WebApp.Validation;
 
@@ -16,13 +16,22 @@ internal sealed class RequireIfEnumEnabledAttribute : ValidationAttribute, IClie
 
     private readonly RequiredAttribute _innerAttribute;
 
-    public RequireIfEnumEnabledAttribute(string checkIfName, object checkIfValue, string isCheckEnabled, string errorMessage)
+    public RequireIfEnumEnabledAttribute(
+        string checkIfName,
+        object checkIfValue,
+        string isCheckEnabled,
+        string errorMessage
+    )
         : this(checkIfName, checkIfValue, isCheckEnabled)
     {
         ErrorMessage = errorMessage;
     }
 
-    public RequireIfEnumEnabledAttribute(string checkIfName, object checkIfValue, string enabledPropertyName)
+    public RequireIfEnumEnabledAttribute(
+        string checkIfName,
+        object checkIfValue,
+        string enabledPropertyName
+    )
     {
         CheckIfName = checkIfName;
         EnumType = checkIfValue.GetType();
@@ -40,13 +49,22 @@ internal sealed class RequireIfEnumEnabledAttribute : ValidationAttribute, IClie
             return ValidationResult.Success;
         }
 
-        var dependentValue = context.ObjectInstance.GetType().GetProperty(CheckIfName)?.GetValue(context.ObjectInstance, null);
+        var dependentValue = context
+            .ObjectInstance.GetType()
+            .GetProperty(CheckIfName)
+            ?.GetValue(context.ObjectInstance, null);
 
-        if (dependentValue != null && dependentValue.ToString() == ((Enum)Enum.ToObject(EnumType, CheckIfValue)).ToString())
+        if (
+            dependentValue != null
+            && dependentValue.ToString() == ((Enum)Enum.ToObject(EnumType, CheckIfValue)).ToString()
+        )
         {
             if (!_innerAttribute.IsValid(value))
             {
-                return new ValidationResult(FormatErrorMessage(context.DisplayName), [context.MemberName]);
+                return new ValidationResult(
+                    FormatErrorMessage(context.DisplayName),
+                    [context.MemberName]
+                );
             }
         }
         return ValidationResult.Success;
@@ -67,13 +85,33 @@ internal sealed class RequireIfEnumEnabledAttribute : ValidationAttribute, IClie
         ArgumentNullException.ThrowIfNull(context);
 
         MergeAttribute(context.Attributes, "data-val", "true");
-        MergeAttribute(context.Attributes, "data-val-requireifenumenabled", FormatErrorMessage(context.ModelMetadata.GetDisplayName()));
-        MergeAttribute(context.Attributes, "data-val-requireifenumenabled-checkifname", CheckIfName);
-        MergeAttribute(context.Attributes, "data-val-requireifenumenabled-checkifvalue", CheckIfValue.ToString());
-        MergeAttribute(context.Attributes, "data-val-requireifenumenabled-ischeckenabled", IsCheckEnabled);
+        MergeAttribute(
+            context.Attributes,
+            "data-val-requireifenumenabled",
+            FormatErrorMessage(context.ModelMetadata.GetDisplayName())
+        );
+        MergeAttribute(
+            context.Attributes,
+            "data-val-requireifenumenabled-checkifname",
+            CheckIfName
+        );
+        MergeAttribute(
+            context.Attributes,
+            "data-val-requireifenumenabled-checkifvalue",
+            CheckIfValue.ToString()
+        );
+        MergeAttribute(
+            context.Attributes,
+            "data-val-requireifenumenabled-ischeckenabled",
+            IsCheckEnabled
+        );
     }
 
-    private static void MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+    private static void MergeAttribute(
+        IDictionary<string, string> attributes,
+        string key,
+        string value
+    )
     {
         if (attributes.ContainsKey(key))
         {

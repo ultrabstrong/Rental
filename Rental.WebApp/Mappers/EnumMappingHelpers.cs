@@ -8,7 +8,8 @@ public static class EnumMappingHelpers
         where TSource : struct, Enum
         where TTarget : struct, Enum
     {
-        if (!value.HasValue) return null;
+        if (!value.HasValue)
+            return null;
         return (TTarget)Enum.ToObject(typeof(TTarget), Convert.ToInt32(value.Value));
     }
 }

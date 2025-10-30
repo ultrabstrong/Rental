@@ -6,6 +6,7 @@ public enum YesNo
 {
     [Display(Name = "No")]
     No = 1,
+
     [Display(Name = "Yes")]
-    Yes = 2
+    Yes = 2,
 }

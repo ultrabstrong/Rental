@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Rental.WebApp.Validation;
 
@@ -32,13 +32,22 @@ internal sealed class RequireIfEnumAttribute : ValidationAttribute, IClientModel
     {
         ArgumentNullException.ThrowIfNull(context?.MemberName);
 
-        var dependentValue = context.ObjectInstance.GetType().GetProperty(CheckIfName)?.GetValue(context.ObjectInstance, null);
+        var dependentValue = context
+            .ObjectInstance.GetType()
+            .GetProperty(CheckIfName)
+            ?.GetValue(context.ObjectInstance, null);
 
-        if (dependentValue != null && dependentValue.ToString() == ((Enum)Enum.ToObject(EnumType, CheckIfValue)).ToString())
+        if (
+            dependentValue != null
+            && dependentValue.ToString() == ((Enum)Enum.ToObject(EnumType, CheckIfValue)).ToString()
+        )
         {
             if (!_innerAttribute.IsValid(value))
             {
-                return new ValidationResult(FormatErrorMessage(context.DisplayName), [context.MemberName]);
+                return new ValidationResult(
+                    FormatErrorMessage(context.DisplayName),
+                    [context.MemberName]
+                );
             }
         }
         return ValidationResult.Success;
@@ -49,12 +58,24 @@ internal sealed class RequireIfEnumAttribute : ValidationAttribute, IClientModel
         ArgumentNullException.ThrowIfNull(context);
 
         MergeAttribute(context.Attributes, "data-val", "true");
-        MergeAttribute(context.Attributes, "data-val-requireifenum", FormatErrorMessage(context.ModelMetadata.GetDisplayName()));
+        MergeAttribute(
+            context.Attributes,
+            "data-val-requireifenum",
+            FormatErrorMessage(context.ModelMetadata.GetDisplayName())
+        );
         MergeAttribute(context.Attributes, "data-val-requireifenum-checkifname", CheckIfName);
-        MergeAttribute(context.Attributes, "data-val-requireifenum-checkifvalue", CheckIfValue.ToString());
+        MergeAttribute(
+            context.Attributes,
+            "data-val-requireifenum-checkifvalue",
+            CheckIfValue.ToString()
+        );
     }
 
-    private static void MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+    private static void MergeAttribute(
+        IDictionary<string, string> attributes,
+        string key,
+        string value
+    )
     {
         if (attributes.ContainsKey(key))
         {

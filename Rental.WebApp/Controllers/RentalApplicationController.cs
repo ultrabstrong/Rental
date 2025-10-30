@@ -10,7 +10,8 @@ namespace Rental.WebApp.Controllers;
 
 public class RentalApplicationController : Controller
 {
-    public static readonly string Name = nameof(RentalApplicationController).Replace(nameof(Controller), "");
+    public static readonly string Name = nameof(RentalApplicationController)
+        .Replace(nameof(Controller), "");
     private readonly IRentalApplicationProcessor _applicationProcessor;
 
     public RentalApplicationController(IRentalApplicationProcessor applicationProcessor)
@@ -39,7 +40,10 @@ public class RentalApplicationController : Controller
 
     [HttpPost, Route("SubmitApplication")]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> SubmitApplication(RentalApplication application, CancellationToken cancellationToken)
+    public async Task<ActionResult> SubmitApplication(
+        RentalApplication application,
+        CancellationToken cancellationToken
+    )
     {
         try
         {
@@ -47,7 +51,9 @@ public class RentalApplicationController : Controller
             {
                 var errors = ModelState
                     .Where(m => m.Value != null && m.Value.Errors.Any())
-                    .Select(m => $"{m.Key}: {string.Join(", ", m.Value!.Errors.Select(e => e.ErrorMessage))}")
+                    .Select(m =>
+                        $"{m.Key}: {string.Join(", ", m.Value!.Errors.Select(e => e.ErrorMessage))}"
+                    )
                     .ToList();
 
                 Log.Logger.Information("Application validation errors: {@Errors}", errors);
@@ -57,7 +63,10 @@ public class RentalApplicationController : Controller
                 return PartialView("Apply", application);
             }
 
-            await _applicationProcessor.ProcessAsync(application.ToDomainModel(), cancellationToken);
+            await _applicationProcessor.ProcessAsync(
+                application.ToDomainModel(),
+                cancellationToken
+            );
         }
         catch (OperationCanceledException)
         {
@@ -70,10 +79,11 @@ public class RentalApplicationController : Controller
             return Json(new SubmitResponse(IsSuccess: false));
         }
 
-        return Json(new SubmitResponse
-        (
-            IsSuccess: true,
-            RedirectUrl: Url.Action(nameof(HomeController.Index), HomeController.Name)!
-        ));
+        return Json(
+            new SubmitResponse(
+                IsSuccess: true,
+                RedirectUrl: Url.Action(nameof(HomeController.Index), HomeController.Name)!
+            )
+        );
     }
 }

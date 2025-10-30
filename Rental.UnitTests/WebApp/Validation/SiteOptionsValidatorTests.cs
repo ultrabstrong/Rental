@@ -8,7 +8,8 @@ public class SiteOptionsValidatorTests
 {
     private readonly SiteOptionsValidator _validator = new();
 
-    private ValidateOptionsResult Validate(SiteOptions opts) => _validator.Validate(Options.DefaultName, opts);
+    private ValidateOptionsResult Validate(SiteOptions opts) =>
+        _validator.Validate(Options.DefaultName, opts);
 
     [Fact]
     public void Validate_AllValid_Succeeds()
@@ -21,7 +22,10 @@ public class SiteOptionsValidatorTests
             PhoneNumber = "555-1234",
             Address = "1 Main St",
             PostOffice = new Contact { Address = "PO Box 42", Phone = "555-5678" },
-            TenantInfoDocs = [new TenantInfoDoc { DisplayName = "Sample Doc", FileName = "sample.pdf" }]
+            TenantInfoDocs =
+            [
+                new TenantInfoDoc { DisplayName = "Sample Doc", FileName = "sample.pdf" },
+            ],
         };
 
         var result = Validate(options);
@@ -38,7 +42,7 @@ public class SiteOptionsValidatorTests
             EmailAddress = " ", // invalid
             PhoneNumber = "", // invalid
             Address = null!, // invalid
-            PostOffice = new Contact { Address = "", Phone = "" } // invalid fields
+            PostOffice = new Contact { Address = "", Phone = "" }, // invalid fields
         };
 
         var result = Validate(options);
@@ -64,7 +68,7 @@ public class SiteOptionsValidatorTests
             EmailAddress = "info@acme.test",
             PhoneNumber = "555-1234",
             Address = "1 Main St",
-            PostOffice = null! // invalid
+            PostOffice = null!, // invalid
         };
 
         var result = Validate(options);
@@ -84,7 +88,7 @@ public class SiteOptionsValidatorTests
             PhoneNumber = "555-1234",
             Address = "1 Main St",
             PostOffice = new Contact { Address = "PO Box 42", Phone = "555-5678" },
-            TenantInfoDocs = [null!]
+            TenantInfoDocs = [null!],
         };
 
         var result = Validate(options);
@@ -104,10 +108,11 @@ public class SiteOptionsValidatorTests
             PhoneNumber = "555-1234",
             Address = "1 Main St",
             PostOffice = new Contact { Address = "PO Box 42", Phone = "555-5678" },
-            TenantInfoDocs = [
+            TenantInfoDocs =
+            [
                 new TenantInfoDoc { DisplayName = "", FileName = "doc.pdf" },
-                new TenantInfoDoc { DisplayName = "Doc", FileName = "" }
-            ]
+                new TenantInfoDoc { DisplayName = "Doc", FileName = "" },
+            ],
         };
 
         var result = Validate(options);

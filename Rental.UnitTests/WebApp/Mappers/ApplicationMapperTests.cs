@@ -19,7 +19,10 @@ public class ApplicationMapperTests
         Assert.Equal(vm.OtherApplicants, domain.OtherApplicants);
         Assert.Equal(vm.PersonalInfo.FirstName, domain.PersonalInfo.FirstName);
         Assert.Equal(vm.PrimaryEmployment.Company, domain.PrimaryEmployment.Company);
-        Assert.Equal((int?)vm.PrimaryEmployment.ElectiveRequireValue, (int?)domain.PrimaryEmployment.ElectiveRequireValue);
+        Assert.Equal(
+            (int?)vm.PrimaryEmployment.ElectiveRequireValue,
+            (int?)domain.PrimaryEmployment.ElectiveRequireValue
+        );
         Assert.Equal(vm.Automobile.Make, domain.Automobile.Make);
         Assert.Equal(vm.CurrentRental.Street, domain.CurrentRental.Street);
         Assert.Equal(vm.PriorRentRef1.Street, domain.PriorRentRef1.Street);
@@ -45,7 +48,10 @@ public class ApplicationMapperTests
         Assert.Equal(domain.OtherApplicants, vm.OtherApplicants);
         Assert.Equal(domain.PersonalInfo.FirstName, vm.PersonalInfo.FirstName);
         Assert.Equal(domain.PrimaryEmployment.Company, vm.PrimaryEmployment.Company);
-        Assert.Equal((int?)domain.PrimaryEmployment.ElectiveRequireValue, (int?)vm.PrimaryEmployment.ElectiveRequireValue);
+        Assert.Equal(
+            (int?)domain.PrimaryEmployment.ElectiveRequireValue,
+            (int?)vm.PrimaryEmployment.ElectiveRequireValue
+        );
         Assert.Equal(domain.Automobile.Make, vm.Automobile.Make);
         Assert.Equal(domain.CurrentRental.Street, vm.CurrentRental.Street);
         Assert.Equal(domain.PriorRentRef1.Street, vm.PriorRentRef1.Street);

@@ -9,9 +9,10 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>ConsoleTest</AssemblyTitle>
     <Product>ConsoleTest</Product>
-    <Copyright>Copyright ©  2021</Copyright>
+    <Copyright>Copyright ©2021</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <RunCSharpierOnBuild>true</RunCSharpierOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.7" />
@@ -22,6 +23,7 @@
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
     <PackageReference Include="System.Text.Encodings.Web" Version="9.0.7" />
     <PackageReference Include="System.Text.Json" Version="9.0.7" />
+    <PackageReference Include="CSharpier.MsBuild" Version="0.30.0" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rental.Domain\Rental.Domain.csproj" />

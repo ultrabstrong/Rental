@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Options;
 using Rental.Domain;
 using Rental.Domain.Applications.Services;
 using Rental.Domain.Maintenance.Services;
@@ -5,9 +6,8 @@ using Rental.WebApp.Middleware;
 using Rental.WebApp.Models.Site;
 using Rental.WebApp.Rendering;
 using Rental.WebApp.Services;
-using Serilog;
 using Rental.WebApp.Validation;
-using Microsoft.Extensions.Options;
+using Serilog;
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
@@ -20,7 +20,8 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File(
         Path.Combine(AppContext.BaseDirectory, "logs", "log-.txt"),
         rollingInterval: RollingInterval.Day,
-        retainedFileTimeLimit: TimeSpan.FromDays(90))
+        retainedFileTimeLimit: TimeSpan.FromDays(90)
+    )
     .MinimumLevel.Warning()
 #endif
     .CreateLogger();
@@ -32,7 +33,8 @@ try
     builder.Host.UseSerilog();
 
     builder.Services.AddSingleton<IValidateOptions<SiteOptions>, SiteOptionsValidator>();
-    builder.Services.AddOptionsWithValidateOnStart<SiteOptions>()
+    builder
+        .Services.AddOptionsWithValidateOnStart<SiteOptions>()
         .Bind(builder.Configuration.GetSection(SiteOptions.NAME));
 
     builder.Services.AddControllersWithViews();
@@ -44,11 +46,13 @@ try
         rentalApplicationPdfFactory: sp => new RentalApplicationPdfService(
             sp.GetRequiredService<IRazorViewRenderer>(),
             sp.GetRequiredService<IOptionsSnapshot<SiteOptions>>(),
-            sp.GetRequiredService<ILogger<RentalApplicationPdfService>>()),
+            sp.GetRequiredService<ILogger<RentalApplicationPdfService>>()
+        ),
         maintenanceRequestPdfFactory: sp => new MaintenanceRequestPdfService(
             sp.GetRequiredService<IRazorViewRenderer>(),
             sp.GetRequiredService<IOptionsSnapshot<SiteOptions>>(),
-            sp.GetRequiredService<ILogger<MaintenanceRequestPdfService>>())
+            sp.GetRequiredService<ILogger<MaintenanceRequestPdfService>>()
+        )
     );
 
     var app = builder.Build();
@@ -66,7 +70,11 @@ try
     app.UseRouting();
     app.UseAuthorization();
     app.MapDefaultControllerRoute();
-    app.MapControllerRoute("Default", "{controller}/{action}/{id?}", new { controller = Rental.WebApp.Controllers.HomeController.Name });
+    app.MapControllerRoute(
+        "Default",
+        "{controller}/{action}/{id?}",
+        new { controller = Rental.WebApp.Controllers.HomeController.Name }
+    );
 
     Log.Information("Starting web application");
     app.Run();

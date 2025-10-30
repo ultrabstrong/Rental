@@ -26,8 +26,16 @@ internal sealed class SiteOptionsValidator : IValidateOptions<SiteOptions>
         }
         else
         {
-            Require(options.PostOffice.Address, $"{nameof(options.PostOffice)}.{nameof(options.PostOffice.Address)}", failures);
-            Require(options.PostOffice.Phone, $"{nameof(options.PostOffice)}.{nameof(options.PostOffice.Phone)}", failures);
+            Require(
+                options.PostOffice.Address,
+                $"{nameof(options.PostOffice)}.{nameof(options.PostOffice.Address)}",
+                failures
+            );
+            Require(
+                options.PostOffice.Phone,
+                $"{nameof(options.PostOffice)}.{nameof(options.PostOffice.Phone)}",
+                failures
+            );
         }
 
         // TenantInfoDocs optional, but if present validate each
@@ -41,7 +49,11 @@ internal sealed class SiteOptionsValidator : IValidateOptions<SiteOptions>
                     failures.Add($"TenantInfoDocs[{i}] must not be null");
                     continue;
                 }
-                Require(doc.DisplayName, $"TenantInfoDocs[{i}].{nameof(doc.DisplayName)}", failures);
+                Require(
+                    doc.DisplayName,
+                    $"TenantInfoDocs[{i}].{nameof(doc.DisplayName)}",
+                    failures
+                );
                 Require(doc.FileName, $"TenantInfoDocs[{i}].{nameof(doc.FileName)}", failures);
             }
         }

@@ -1,6 +1,6 @@
-﻿using Rental.WebApp.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using Rental.WebApp.Enums;
 using Rental.WebApp.Validation;
-using System.ComponentModel.DataAnnotations;
 
 namespace Rental.WebApp.Models.Application;
 
@@ -13,7 +13,11 @@ public class ParentInfo
     public YesNo? ElectiveRequireValue { get; set; }
 
     [Display(Name = "First name")]
-    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your parent's first name")]
+    [RequireIfEnum(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter your parent's first name"
+    )]
     public string? FirstName { get; set; }
 
     [Display(Name = "Middle name")]
@@ -24,7 +28,11 @@ public class ParentInfo
     public string? LastName { get; set; }
 
     [Display(Name = "Phone #")]
-    [RequireIfEnum(nameof(ElectiveRequireValue), YesNo.Yes, "Please enter your parent's phone number")]
+    [RequireIfEnum(
+        nameof(ElectiveRequireValue),
+        YesNo.Yes,
+        "Please enter your parent's phone number"
+    )]
     public string? PhoneNum { get; set; }
 
     [Display(Name = "Street")]

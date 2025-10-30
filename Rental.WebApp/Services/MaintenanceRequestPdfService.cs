@@ -18,19 +18,26 @@ internal class MaintenanceRequestPdfService : IMaintenanceRequestPdfService
     public MaintenanceRequestPdfService(
         IRazorViewRenderer viewRenderer,
         IOptionsSnapshot<SiteOptions> siteOptions,
-        ILogger<MaintenanceRequestPdfService> logger)
+        ILogger<MaintenanceRequestPdfService> logger
+    )
     {
         _viewRenderer = viewRenderer;
         _siteOptions = siteOptions;
         _logger = logger;
     }
 
-    public async Task<byte[]> GenerateAsync(MaintenanceRequest maintenanceRequest, CancellationToken cancellationToken = default)
+    public async Task<byte[]> GenerateAsync(
+        MaintenanceRequest maintenanceRequest,
+        CancellationToken cancellationToken = default
+    )
     {
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Rendering maintenance request PDF view");
         var vm = maintenanceRequest.ToViewModel();
-        var html = await _viewRenderer.RenderAsync($"~/Views/{MaintenanceController.Name}/MaintenanceRequestPdf.cshtml", vm);
+        var html = await _viewRenderer.RenderAsync(
+            $"~/Views/{MaintenanceController.Name}/MaintenanceRequestPdf.cshtml",
+            vm
+        );
 
         cancellationToken.ThrowIfCancellationRequested();
         _logger.LogDebug("Converting maintenance request HTML to PDF");
@@ -38,7 +45,8 @@ internal class MaintenanceRequestPdfService : IMaintenanceRequestPdfService
             html,
             _siteOptions.Value.CompanyName,
             $"{maintenanceRequest.FirstName} {maintenanceRequest.LastName} Maintenance Request",
-            $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}");
+            $"Maintenance request for {maintenanceRequest.RentalAddress} from {maintenanceRequest.FirstName} {maintenanceRequest.LastName}"
+        );
 
         return pdf;
     }

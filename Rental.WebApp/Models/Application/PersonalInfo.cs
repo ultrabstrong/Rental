@@ -34,7 +34,10 @@ public class PersonalInfo
     public string DriverLicense { get; set; } = string.Empty;
 
     [Display(Name = "State of issue")]
-    [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the state that issued your driver license")]
+    [Required(
+        AllowEmptyStrings = false,
+        ErrorMessage = "Please enter the state that issued your driver license"
+    )]
     public string DriverLicenseStateOfIssue { get; set; } = string.Empty;
 
     [Display(Name = "Email")]

@@ -1,5 +1,5 @@
-using Rental.Domain.Validation;
 using System.Text.RegularExpressions;
+using Rental.Domain.Validation;
 
 namespace Rental.UnitTests.Domain.Validation;
 
