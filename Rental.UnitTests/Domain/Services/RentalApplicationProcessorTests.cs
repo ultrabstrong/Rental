@@ -301,6 +301,39 @@ public class RentalApplicationProcessorTests
     }
 
     [Fact]
+    public async Task ProcessAsync_CallsDefanger_AndUsesResult()
+    {
+        var app = CreateMinimalApplication();
+        var safe = app with { RentalAddress = "SAFE" };
+        var defangerMock = new Mock<IRentalApplicationDefanger>();
+        defangerMock.Setup(d => d.Defang(app)).Returns(safe);
+        var pdfBytes = _fixture.Create<byte[]>();
+        _pdfService
+            .Setup(p =>
+                p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>())
+            )
+            .ReturnsAsync(pdfBytes);
+
+        var processor = new TestProcessor(
+            _pdfService.Object,
+            _emailService.Object,
+            _logger.Object,
+            defangerMock.Object
+        );
+        await processor.InvokeProcessAsync(app, CancellationToken.None);
+
+        defangerMock.Verify(d => d.Defang(app), Times.Once);
+        _pdfService.Verify(
+            p =>
+                p.GenerateAsync(
+                    It.Is<RentalApplication>(a => a.RentalAddress == "SAFE"),
+                    It.IsAny<CancellationToken>()
+                ),
+            Times.Once
+        );
+    }
+
+    [Fact]
     public async Task ProcessAsync_CancellationRequested_Throws()
     {
         var application = CreateMinimalApplication();
@@ -330,147 +363,5 @@ public class RentalApplicationProcessorTests
                 ),
             Times.Never
         );
-    }
-
-    [Fact]
-    public async Task ProcessAsync_Defangs_Strings_BeforePdfAndEmail()
-    {
-        var dirty = new RentalApplication(
-            RentalAddress: "<b>123</b> www.example.com",
-            OtherApplicants: "joe@exAMPLE.com and http://bad.example.org",
-            PersonalInfo: new(
-                FirstName: " Jane\u200B ",
-                MiddleName: null,
-                LastName: " Doe ",
-                PhoneNum: "555-1111 javascript:alert(1)",
-                SSN: "123-45-6789",
-                DriverLicense: "<i>XYZ</i>123",
-                DriverLicenseStateOfIssue: "CA",
-                Email: "user@example.com"
-            ),
-            CurrentRental: new(
-                false,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-            ),
-            PrimaryEmployment: new(
-                true,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-            ),
-            SecondaryEmployment: new(
-                true,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-            ),
-            ParentInfo: new(null, "<i>A</i>my", null, "<b>Smith</b>", null, null, null, null, null),
-            ConsiderOtherIncome: null,
-            OtherIncomeExplain: "http://foo.bar",
-            Automobile: new(true, null, "HoNda", "Civic", "2020", "CA", "7ABC123", null),
-            PriorRentRef1: new(
-                true,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-            ),
-            PersonalReference1: new(true, null, null, null, null, null),
-            PersonalReference2: new(true, null, null, null, null, null),
-            AnticipatedDuration: "12 months",
-            HasCriminalRecord: null,
-            ExplainCriminalRecord: null,
-            HasBeenEvicted: null,
-            ExplainBeenEvicted: null,
-            MarijuanaCard: null,
-            Smokers: null,
-            SmokersCount: null,
-            Drinkers: null,
-            HowOftenDrink: null,
-            AnyPets: null,
-            DescribePets: null,
-            AnyNonHuman: null,
-            DescribeNonHuman: null,
-            AttendCollege: null,
-            CollegeYearsAttended: null,
-            PlanToGraduate: null,
-            NeedReasonableAccommodation: null,
-            DescribeReasonableAccommodation: null,
-            AcceptedTerms: false,
-            AdditionalComments: "visit https://evil.example.com"
-        );
-        byte[] pdfBytes = [1, 2, 3];
-        _pdfService
-            .Setup(p =>
-                p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>())
-            )
-            .ReturnsAsync(pdfBytes);
-        RentalApplication? pdfArg = null;
-        _pdfService
-            .Setup(p =>
-                p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>())
-            )
-            .Callback<RentalApplication, CancellationToken>((a, _) => pdfArg = a)
-            .ReturnsAsync(pdfBytes);
-        EmailRequest? emailReq = null;
-        _emailService
-            .Setup(e =>
-                e.SendEmailAsync(
-                    It.IsAny<EmailRequest>(),
-                    It.IsAny<Stream>(),
-                    It.IsAny<CancellationToken>()
-                )
-            )
-            .Callback<EmailRequest, Stream, CancellationToken>((req, _, _) => emailReq = req)
-            .Returns(Task.CompletedTask);
-
-        var processor = new TestProcessor(
-            _pdfService.Object,
-            _emailService.Object,
-            _logger.Object,
-            _defanger
-        );
-        await processor.InvokeProcessAsync(dirty, CancellationToken.None);
-
-        Assert.NotNull(pdfArg);
-        Assert.DoesNotContain("<b>", pdfArg!.RentalAddress);
-        Assert.Contains("[dot]", pdfArg.OtherApplicants);
-        Assert.DoesNotContain(
-            "javascript:",
-            pdfArg.PersonalInfo.PhoneNum,
-            StringComparison.OrdinalIgnoreCase
-        );
-        Assert.DoesNotContain("http://", emailReq!.Body, StringComparison.OrdinalIgnoreCase);
     }
 }
