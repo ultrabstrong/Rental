@@ -28,11 +28,6 @@ internal sealed class TurnstileVerifier : IHumanVerifier
     )
     {
         var secret = _options.Value.SecretKey;
-        if (string.IsNullOrWhiteSpace(secret))
-        {
-            _logger.LogWarning("Turnstile secret key not configured; skipping verification");
-            return true; // treat as pass when not configured to avoid blocking in dev
-        }
 
         var form = new FormUrlEncodedContent(
             new Dictionary<string, string>

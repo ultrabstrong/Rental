@@ -31,6 +31,7 @@ public static class DomainServiceCollectionExtensions
         // Defanging
         services.AddSingleton<IDefanger, WebInputDefanger>();
         services.AddScoped<IMaintenanceRequestDefanger, MaintenanceRequestDefanger>();
+        services.AddScoped<IRentalApplicationDefanger, RentalApplicationDefanger>();
 
         // Per-scope creation using provided factories
         services.AddScoped(rentalApplicationPdfFactory);

@@ -25,7 +25,7 @@ internal class MaintenanceRequestProcessor(
     )
     {
         cancellationToken.ThrowIfCancellationRequested();
-        // Defang first
+
         var safe = _defanger.Defang(maintenanceRequest);
 
         _logger.LogDebug("Creating PDF for maintenance request");

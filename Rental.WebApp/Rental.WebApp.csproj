@@ -12,6 +12,9 @@
   </ItemGroup>
   <!-- Prevent the template settings file from being copied to build or publish output -->
   <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="appsettings.template.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>

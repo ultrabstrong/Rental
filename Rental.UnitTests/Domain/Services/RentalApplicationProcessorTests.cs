@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Rental.Domain.Applications.Models;
 using Rental.Domain.Applications.Services;
+using Rental.Domain.Defang;
 using Rental.Domain.Email.Models;
 using Rental.Domain.Email.Services;
 using Rental.Domain.Enums;
@@ -15,15 +16,19 @@ public class RentalApplicationProcessorTests
     private readonly Mock<IRentalApplicationPdfService> _pdfService = new();
     private readonly Mock<IEmailService> _emailService = new();
     private readonly Mock<ILogger<RentalApplicationProcessor>> _logger = new();
+    private readonly IRentalApplicationDefanger _defanger = new RentalApplicationDefanger(
+        new WebInputDefanger()
+    );
 
     private class TestProcessor : RentalApplicationProcessor
     {
         public TestProcessor(
             IRentalApplicationPdfService p,
             IEmailService e,
-            ILogger<RentalApplicationProcessor> l
+            ILogger<RentalApplicationProcessor> l,
+            IRentalApplicationDefanger d
         )
-            : base(p, e, l) { }
+            : base(p, e, l, d) { }
 
         public Task InvokeProcessAsync(RentalApplication app, CancellationToken ct) =>
             ProcessAsync(app, ct);
@@ -132,14 +137,21 @@ public class RentalApplicationProcessorTests
         var application = CreateMinimalApplication();
         var pdfBytes = _fixture.Create<byte[]>();
         _pdfService
-            .Setup(p => p.GenerateAsync(application, It.IsAny<CancellationToken>()))
+            .Setup(p =>
+                p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>())
+            )
             .ReturnsAsync(pdfBytes);
 
-        var processor = new TestProcessor(_pdfService.Object, _emailService.Object, _logger.Object);
+        var processor = new TestProcessor(
+            _pdfService.Object,
+            _emailService.Object,
+            _logger.Object,
+            _defanger
+        );
         await processor.InvokeProcessAsync(application, CancellationToken.None);
 
         _pdfService.Verify(
-            p => p.GenerateAsync(application, It.IsAny<CancellationToken>()),
+            p => p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>()),
             Times.Once
         );
         _emailService.Verify(
@@ -269,7 +281,12 @@ public class RentalApplicationProcessorTests
             .Callback<EmailRequest, Stream, CancellationToken>((req, _, _) => captured = req)
             .Returns(Task.CompletedTask);
 
-        var processor = new TestProcessor(_pdfService.Object, _emailService.Object, _logger.Object);
+        var processor = new TestProcessor(
+            _pdfService.Object,
+            _emailService.Object,
+            _logger.Object,
+            _defanger
+        );
         await processor.InvokeProcessAsync(application, CancellationToken.None);
 
         Assert.NotNull(captured);
@@ -290,7 +307,12 @@ public class RentalApplicationProcessorTests
         using var cts = new CancellationTokenSource();
         cts.Cancel();
 
-        var processor = new TestProcessor(_pdfService.Object, _emailService.Object, _logger.Object);
+        var processor = new TestProcessor(
+            _pdfService.Object,
+            _emailService.Object,
+            _logger.Object,
+            _defanger
+        );
 
         await Assert.ThrowsAsync<OperationCanceledException>(() =>
             processor.InvokeProcessAsync(application, cts.Token)
@@ -308,5 +330,147 @@ public class RentalApplicationProcessorTests
                 ),
             Times.Never
         );
+    }
+
+    [Fact]
+    public async Task ProcessAsync_Defangs_Strings_BeforePdfAndEmail()
+    {
+        var dirty = new RentalApplication(
+            RentalAddress: "<b>123</b> www.example.com",
+            OtherApplicants: "joe@exAMPLE.com and http://bad.example.org",
+            PersonalInfo: new(
+                FirstName: " Jane\u200B ",
+                MiddleName: null,
+                LastName: " Doe ",
+                PhoneNum: "555-1111 javascript:alert(1)",
+                SSN: "123-45-6789",
+                DriverLicense: "<i>XYZ</i>123",
+                DriverLicenseStateOfIssue: "CA",
+                Email: "user@example.com"
+            ),
+            CurrentRental: new(
+                false,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ),
+            PrimaryEmployment: new(
+                true,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ),
+            SecondaryEmployment: new(
+                true,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ),
+            ParentInfo: new(null, "<i>A</i>my", null, "<b>Smith</b>", null, null, null, null, null),
+            ConsiderOtherIncome: null,
+            OtherIncomeExplain: "http://foo.bar",
+            Automobile: new(true, null, "HoNda", "Civic", "2020", "CA", "7ABC123", null),
+            PriorRentRef1: new(
+                true,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ),
+            PersonalReference1: new(true, null, null, null, null, null),
+            PersonalReference2: new(true, null, null, null, null, null),
+            AnticipatedDuration: "12 months",
+            HasCriminalRecord: null,
+            ExplainCriminalRecord: null,
+            HasBeenEvicted: null,
+            ExplainBeenEvicted: null,
+            MarijuanaCard: null,
+            Smokers: null,
+            SmokersCount: null,
+            Drinkers: null,
+            HowOftenDrink: null,
+            AnyPets: null,
+            DescribePets: null,
+            AnyNonHuman: null,
+            DescribeNonHuman: null,
+            AttendCollege: null,
+            CollegeYearsAttended: null,
+            PlanToGraduate: null,
+            NeedReasonableAccommodation: null,
+            DescribeReasonableAccommodation: null,
+            AcceptedTerms: false,
+            AdditionalComments: "visit https://evil.example.com"
+        );
+        byte[] pdfBytes = [1, 2, 3];
+        _pdfService
+            .Setup(p =>
+                p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>())
+            )
+            .ReturnsAsync(pdfBytes);
+        RentalApplication? pdfArg = null;
+        _pdfService
+            .Setup(p =>
+                p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>())
+            )
+            .Callback<RentalApplication, CancellationToken>((a, _) => pdfArg = a)
+            .ReturnsAsync(pdfBytes);
+        EmailRequest? emailReq = null;
+        _emailService
+            .Setup(e =>
+                e.SendEmailAsync(
+                    It.IsAny<EmailRequest>(),
+                    It.IsAny<Stream>(),
+                    It.IsAny<CancellationToken>()
+                )
+            )
+            .Callback<EmailRequest, Stream, CancellationToken>((req, _, _) => emailReq = req)
+            .Returns(Task.CompletedTask);
+
+        var processor = new TestProcessor(
+            _pdfService.Object,
+            _emailService.Object,
+            _logger.Object,
+            _defanger
+        );
+        await processor.InvokeProcessAsync(dirty, CancellationToken.None);
+
+        Assert.NotNull(pdfArg);
+        Assert.DoesNotContain("<b>", pdfArg!.RentalAddress);
+        Assert.Contains("[dot]", pdfArg.OtherApplicants);
+        Assert.DoesNotContain(
+            "javascript:",
+            pdfArg.PersonalInfo.PhoneNum,
+            StringComparison.OrdinalIgnoreCase
+        );
+        Assert.DoesNotContain("http://", emailReq!.Body, StringComparison.OrdinalIgnoreCase);
     }
 }
