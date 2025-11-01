@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rental.Domain.Maintenance.Services;
+using Rental.WebApp.Filters;
 using Rental.WebApp.Mappers;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Maintenance;
@@ -12,16 +13,16 @@ public class MaintenanceController : Controller
 {
     public static readonly string Name = nameof(MaintenanceController)
         .Replace(nameof(Controller), "");
-    private readonly IMaintenanceRequestProcessor _maintenanceRequestProcessor;
     private readonly IHumanVerifier _humanVerifier;
+    private readonly IMaintenanceRequestProcessor _maintenanceRequestProcessor;
 
     public MaintenanceController(
-        IMaintenanceRequestProcessor maintenanceRequestProcessor,
-        IHumanVerifier humanVerifier
+        IHumanVerifier humanVerifier,
+        IMaintenanceRequestProcessor maintenanceRequestProcessor
     )
     {
-        _maintenanceRequestProcessor = maintenanceRequestProcessor;
         _humanVerifier = humanVerifier;
+        _maintenanceRequestProcessor = maintenanceRequestProcessor;
     }
 
     [HttpGet, Route("MaintenanceRequest")]
@@ -29,6 +30,7 @@ public class MaintenanceController : Controller
 
     [HttpPost, Route("SubmitMaintenanceRequest")]
     [ValidateAntiForgeryToken]
+    [ValidateTurnstile("_MaintenanceRequestForm")]
     public async Task<ActionResult> SubmitMaintenanceRequest(
         MaintenanceRequest maintenanceRequest,
         CancellationToken cancellationToken
@@ -36,22 +38,6 @@ public class MaintenanceController : Controller
     {
         try
         {
-            // Verify Turnstile token first when configured
-            var token = Request.Form["cf-turnstile-response"].ToString();
-            var remoteIp = HttpContext.Connection.RemoteIpAddress?.ToString();
-            var captchaOk = await _humanVerifier.VerifyAsync(token, remoteIp, cancellationToken);
-            if (!captchaOk)
-            {
-                Log.Logger.Information("Submti maintenance request CAPTCHA failed");
-                ModelState.AddModelError(
-                    string.Empty,
-                    "CAPTCHA validation failed. Please try again."
-                );
-                ViewBag.Errors = true;
-                Response.StatusCode = StatusCodes.Status400BadRequest;
-                return PartialView("_MaintenanceRequestForm", maintenanceRequest);
-            }
-
             if (!ModelState.IsValid)
             {
                 var errors = ModelState

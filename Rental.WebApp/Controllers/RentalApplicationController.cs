@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rental.Domain.Applications.Services;
 using Rental.WebApp.Extensions;
+using Rental.WebApp.Filters;
 using Rental.WebApp.Mappers;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Application;
@@ -46,6 +47,7 @@ public class RentalApplicationController : Controller
 
     [HttpPost, Route("SubmitApplication")]
     [ValidateAntiForgeryToken]
+    [ValidateTurnstile("Apply")]
     public async Task<ActionResult> SubmitApplication(
         RentalApplication application,
         CancellationToken cancellationToken
@@ -53,22 +55,6 @@ public class RentalApplicationController : Controller
     {
         try
         {
-            // Verify Turnstile token first when configured
-            var token = Request.Form["cf-turnstile-response"].ToString();
-            var remoteIp = HttpContext.Connection.RemoteIpAddress?.ToString();
-            var captchaOk = await _humanVerifier.VerifyAsync(token, remoteIp, cancellationToken);
-            if (!captchaOk)
-            {
-                Log.Logger.Information("Submit rental application CAPTCHA failed");
-                ModelState.AddModelError(
-                    string.Empty,
-                    "CAPTCHA validation failed. Please try again."
-                );
-                ViewBag.Errors = true;
-                Response.StatusCode = StatusCodes.Status400BadRequest;
-                return PartialView("Apply", application);
-            }
-
             if (!ModelState.IsValid)
             {
                 var errors = ModelState
