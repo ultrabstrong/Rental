@@ -77,17 +77,12 @@ var MaintenanceForm = {
             }).fail(async function(xhr) {
                 await hideStatusModal();
                 
-                if (xhr.status === 400 && xhr.responseText) {
+                if (xhr.status ===400 && xhr.responseText) {
                     // Replace the form HTML with the returned partial containing validation messages
                     var container = $('#maintenanceFormContainer');
                     container.html(xhr.responseText);
                     // Re-run initialization on new markup
                     MaintenanceForm.init();
-                    // Scroll to first validation error
-                    var firstError = container.find('.input-validation-error, .text-danger').filter(function(){ return $(this).text().trim().length > 0; }).first();
-                    if (firstError.length) {
-                        $('html, body').animate({ scrollTop: firstError.offset().top - 40 }, 400);
-                    }
                     return;
                 }
                 

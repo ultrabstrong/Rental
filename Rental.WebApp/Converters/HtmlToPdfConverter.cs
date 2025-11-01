@@ -17,6 +17,9 @@ public static class HtmlToPdfConverter
         converter.Options.PdfDocumentInformation.Title = title;
         converter.Options.PdfDocumentInformation.Subject = subject;
         converter.Options.PdfDocumentInformation.CreationDate = DateTime.Now;
+        converter.Options.ExternalLinksEnabled = false;
+        converter.Options.InternalLinksEnabled = false;
+
         PdfDocument doc = converter.ConvertHtmlString(html);
         byte[] pdfBytes = doc.Save();
         return pdfBytes;

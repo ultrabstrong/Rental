@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-12">
                 <h3>@Html.DisplayNameFor(m => m.RentalAddress)</h3>
-                <span class="answer-box">@Model.RentalAddress</span>
+                <span class="answer-box">@Html.Encode(Model.RentalAddress)</span>
             </div>
         </div>
     </div>
@@ -28,21 +28,21 @@
         <div class="row">
             <div class="col-6">
                 <p>@Html.DisplayNameFor(m => m.FirstName)</p>
-                <span class="answer-box">@Model.FirstName</span>
+                <span class="answer-box">@Html.Encode(Model.FirstName)</span>
             </div>
             <div class="col-6">
                 <p>@Html.DisplayNameFor(m => m.LastName)</p>
-                <span class="answer-box">@Model.LastName</span>
+                <span class="answer-box">@Html.Encode(Model.LastName)</span>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
                 <p>@Html.DisplayNameFor(m => m.Email)</p>
-                <span class="answer-box">@(string.IsNullOrEmpty(Model.Email) ? "Not provided" : Model.Email)</span>
+                <span class="answer-box">@(string.IsNullOrEmpty(Model.Email) ? "Not provided" : Html.Encode(Model.Email))</span>
             </div>
             <div class="col-6">
                 <p>@Html.DisplayNameFor(m => m.Phone)</p>
-                <span class="answer-box">@(string.IsNullOrEmpty(Model.Phone) ? "Not provided" : Model.Phone)</span>
+                <span class="answer-box">@(string.IsNullOrEmpty(Model.Phone) ? "Not provided" : Html.Encode(Model.Phone))</span>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-12">
                 <p>@Html.DisplayNameFor(m => m.Description)</p>
-                <div class="answer-box">@Model.Description</div>
+                <div class="answer-box">@Html.Encode(Model.Description)</div>
             </div>
         </div>
     </div>
@@ -115,5 +115,6 @@
         padding: 4px 8px;
         margin: 4px 0 10px 0;
         min-height: 24px;
+        word-break: break-word;
     }
 </style>

@@ -1,18 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RunCSharpierOnBuild>true</RunCSharpierOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Remove="wwwroot\js\index.d.ts" />
     <Content Remove="wwwroot\js\jquery-3.7.1.intellisense.js" />
     <Content Remove="wwwroot\js\jquery.validate-vsdoc.js" />
   </ItemGroup>
-
   <!-- Prevent the template settings file from being copied to build or publish output -->
   <ItemGroup>
     <Content Update="appsettings.template.json">
@@ -20,23 +17,20 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="Corely.Common" Version="1.1.1" />
     <PackageReference Include="Select.HtmlToPdf.NetCore" Version="25.2.0" />
     <PackageReference Include="Serilog" Version="4.3.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
-    <PackageReference Include="CSharpier.MsBuild" Version="0.30.0" PrivateAssets="all" />
+    <PackageReference Include="CSharpier.MsBuild" Version="1.1.2" PrivateAssets="all" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="wwwroot\css\fonts\" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Rental.Domain\Rental.Domain.csproj" />
   </ItemGroup>
-
 </Project>

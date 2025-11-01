@@ -292,8 +292,8 @@ public class RentalApplicationProcessorTests
 
         var processor = new TestProcessor(_pdfService.Object, _emailService.Object, _logger.Object);
 
-        await Assert.ThrowsAsync<OperationCanceledException>(
-            () => processor.InvokeProcessAsync(application, cts.Token)
+        await Assert.ThrowsAsync<OperationCanceledException>(() =>
+            processor.InvokeProcessAsync(application, cts.Token)
         );
         _pdfService.Verify(
             p => p.GenerateAsync(It.IsAny<RentalApplication>(), It.IsAny<CancellationToken>()),

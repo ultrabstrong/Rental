@@ -1,5 +1,7 @@
 @using Rental.WebApp.Controllers
 @using Rental.WebApp.Models.Maintenance
+@using Rental.WebApp.Services.HumanVerification;
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<TurnstileOptions> Turnstile
 @model MaintenanceRequest
 @using (Html.BeginForm(nameof(MaintenanceController.SubmitMaintenanceRequest), MaintenanceController.Name, FormMethod.Post, new { @id = "maintenance-form", @class = "needs-validation" }))
 {
@@ -52,7 +54,15 @@
         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger mt-1" })
     </div>
 
-    <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto mt-5">
+    <div class="my-2 text-center">
+        <div class="cf-turnstile" data-sitekey="@Turnstile.Value.SiteKey" data-theme="light" data-size="flexible"></div>
+    </div>
+
+    <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto my-5">
         <button type="submit" class="btn btn-success btn-lg py-3">Submit Request</button>
     </div>
+}
+
+@section scripts {
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 }

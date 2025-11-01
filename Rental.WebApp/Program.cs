@@ -1,21 +1,25 @@
+﻿using Corely.Common.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Rental.Domain;
-using Rental.Domain.Applications.Services;
-using Rental.Domain.Maintenance.Services;
 using Rental.WebApp.Middleware;
 using Rental.WebApp.Models.Site;
 using Rental.WebApp.Rendering;
 using Rental.WebApp.Services;
+using Rental.WebApp.Services.HumanVerification;
 using Rental.WebApp.Validation;
 using Serilog;
+using Serilog.Events;
 
 Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
+    .MinimumLevel.Verbose()
     .Enrich.WithProperty("Application", "Rental.WebApp")
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .MinimumLevel.Override("System", LogEventLevel.Warning)
+    .Enrich.FromLogContext() // include context info from log scopes as properties
 #if DEBUG
-    .MinimumLevel.Debug()
-    .WriteTo.Console()
-    .WriteTo.Seq("http://localhost:5341")
+    .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Debug)
+    .WriteTo.Seq("http://localhost:5341", LogEventLevel.Verbose)
 #else
     .WriteTo.File(
         Path.Combine(AppContext.BaseDirectory, "logs", "log-.txt"),
@@ -54,6 +58,18 @@ try
             sp.GetRequiredService<ILogger<MaintenanceRequestPdfService>>()
         )
     );
+
+    // Turnstile
+    builder.Services.TryAddTransient<HttpErrorLoggingHandler>();
+    builder.Services.TryAddTransient<HttpRequestResponseLoggingHandler>();
+    builder.Services.Configure<TurnstileOptions>(
+        builder.Configuration.GetSection(TurnstileOptions.NAME)
+    );
+    builder
+        .Services.AddHttpClient<TurnstileVerifier>(TurnstileOptions.NAME)
+        .AddHttpMessageHandler<HttpErrorLoggingHandler>()
+        .AddHttpMessageHandler<HttpRequestResponseLoggingHandler>();
+    builder.Services.AddScoped<IHumanVerifier, TurnstileVerifier>();
 
     var app = builder.Build();
 

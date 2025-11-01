@@ -109,7 +109,7 @@ public class MaintenanceRequestProcessorTests
 
         // Assert
         Assert.NotNull(captured);
-        Assert.Equal("Maintenance request for123 Test St from Jane Doe", captured!.Subject);
+        Assert.Equal("Maintenance request for 123 Test St from Jane Doe", captured!.Subject);
         Assert.Equal("Jane Doe Maintenance Request.pdf", captured.AttachmentName);
         Assert.Equal("jane.doe@example.com", captured.PreferredReplyTo);
         Assert.Contains("Sink is leaking", captured.Body);
@@ -131,8 +131,8 @@ public class MaintenanceRequestProcessorTests
             _defanger
         );
 
-        await Assert.ThrowsAsync<OperationCanceledException>(
-            () => processor.InvokeHandleAsync(maintenanceRequest, cts.Token)
+        await Assert.ThrowsAsync<OperationCanceledException>(() =>
+            processor.InvokeHandleAsync(maintenanceRequest, cts.Token)
         );
         _pdfService.Verify(
             p => p.GenerateAsync(It.IsAny<MaintenanceRequest>(), It.IsAny<CancellationToken>()),

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace Rental.WebApp.Middleware;
 
 public class SecurityHeadersMiddleware
@@ -27,11 +29,12 @@ public class SecurityHeadersMiddleware
             response.Headers.Append("Expires", "-1");
         }
 
-        // Security headers - Updated CSP for better icon and font support
+        // Security headers - Updated CSP for better icon and font support and Turnstile
         response.Headers.Append(
             "Content-Security-Policy",
             "default-src 'self'; "
-                + "script-src 'self' 'unsafe-inline'; "
+                + "base-uri 'self'; "
+                + "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; "
                 + // Still needed for small config scripts
                 "style-src 'self' 'unsafe-inline'; "
                 + // Still needed for conditional display styles
@@ -39,7 +42,8 @@ public class SecurityHeadersMiddleware
                 + // Added data: for inline SVGs and base64 images
                 "font-src 'self' data:; "
                 + // Added data: for embedded fonts in CSS
-                "connect-src 'self'; "
+                "connect-src 'self' https://challenges.cloudflare.com; "
+                + "frame-src 'self' https://challenges.cloudflare.com; "
                 + "form-action 'self'; "
                 + "frame-ancestors 'none'; "
                 + "object-src 'none'; "
