@@ -13,6 +13,7 @@ var MaintenanceForm = {
         
         this.initializeMasking();
         this.initializeValidation();
+        this.ensureTurnstileRendered();
         this.initializeFormSubmission();
     },
 
@@ -41,6 +42,52 @@ var MaintenanceForm = {
     },
 
     /**
+     * Render Cloudflare Turnstile widget when present (supports dynamically injected/replaced forms)
+     */
+    ensureTurnstileRendered: function() {
+        try {
+            if (window.turnstile) {
+                document.querySelectorAll('.cf-turnstile').forEach(function(el) {
+                    if (!el.dataset.turnstileWidgetId) {
+                        var id = window.turnstile.render(el, {
+                            callback: function(token) {
+                                el.dataset.turnstileTokenReady = 'true';
+                            },
+                            'expired-callback': function() {
+                                el.dataset.turnstileTokenReady = '';
+                            },
+                            'error-callback': function() {
+                                el.dataset.turnstileTokenReady = '';
+                            }
+                        });
+                        el.dataset.turnstileWidgetId = id;
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn('Turnstile render failed (maintenance):', e);
+        }
+    },
+
+    /**
+     * Get the current Turnstile token, if available
+     */
+    getTurnstileToken: function() {
+        try {
+            var el = document.querySelector('.cf-turnstile');
+            if (!el) return '';
+            var id = el.dataset.turnstileWidgetId;
+            if (window.turnstile && id) {
+                return window.turnstile.getResponse(id) || '';
+            }
+            var hidden = el.querySelector('input[name="cf-turnstile-response"]') || document.querySelector('input[name="cf-turnstile-response"]');
+            return hidden && hidden.value ? hidden.value : '';
+        } catch (e) {
+            return '';
+        }
+    },
+
+    /**
      * Initialize form submission handling
      */
     initializeFormSubmission: function() {
@@ -50,6 +97,13 @@ var MaintenanceForm = {
             e.preventDefault();
             
             if (!$(e.target).valid()) {
+                return;
+            }
+
+            // Ensure Turnstile produced a token before sending
+            var token = self.getTurnstileToken();
+            if (!token) {
+                showNotificationModal("Complete verification", "Please complete the verification challenge, then submit again.");
                 return;
             }
 
@@ -83,6 +137,8 @@ var MaintenanceForm = {
                     container.html(xhr.responseText);
                     // Re-run initialization on new markup
                     MaintenanceForm.init();
+                    // Ensure Turnstile widget is rendered on the refreshed form
+                    MaintenanceForm.ensureTurnstileRendered();
                     return;
                 }
                 

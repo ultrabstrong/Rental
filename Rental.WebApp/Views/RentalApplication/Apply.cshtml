@@ -1,6 +1,8 @@
 ﻿@using Rental.WebApp.Controllers
 @using Rental.WebApp.Enums;
 @using Rental.WebApp.Models.Application
+@using Rental.WebApp.Services.HumanVerification
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<TurnstileOptions> Turnstile
 @model RentalApplication
 
 <div class="container px-0 mt-4">
@@ -413,7 +415,7 @@
                         </div>
 
                         <!-- Certification And Authorization -->
-                        <div class="card mb-5">
+                        <div class="card mb-4">
                             <div class="card-header bg-light py-3">
                                 <h5 class="mb-0 text-center">Certification And Authorization</h5>
                             </div>
@@ -432,8 +434,13 @@
                             </div>
                         </div>
 
+                        <!-- Turnstile widget -->
+                        <div class="text-center">
+                            <div class="cf-turnstile" data-sitekey="@Turnstile.Value.SiteKey" data-theme="light" data-size="flexible"></div>
+                        </div>
+
                         <!-- Submit button -->
-                        <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto">
+                        <div class="d-grid gap-2 col-md-6 col-lg-4 mx-auto my-5">
                             <button type="submit" class="btn btn-primary btn-lg py-3">Submit Application</button>
                         </div>
                     }

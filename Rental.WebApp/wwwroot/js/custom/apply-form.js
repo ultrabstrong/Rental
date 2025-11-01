@@ -15,6 +15,7 @@ var ApplyForm = {
         this.initializeDatePickers();
         this.initializeValidation();
         this.initializeCertificationNameUpdates();
+        this.ensureTurnstileRendered();
         this.initializeFormSubmission();
     },
 
@@ -60,6 +61,52 @@ var ApplyForm = {
     },
 
     /**
+     * Render Cloudflare Turnstile widget when present (supports dynamically injected forms)
+     */
+    ensureTurnstileRendered: function() {
+        try {
+            if (window.turnstile) {
+                document.querySelectorAll('.cf-turnstile').forEach(function(el) {
+                    if (!el.dataset.turnstileWidgetId) {
+                        var id = window.turnstile.render(el, {
+                            callback: function(token) {
+                                el.dataset.turnstileTokenReady = 'true';
+                            },
+                            'expired-callback': function() {
+                                el.dataset.turnstileTokenReady = '';
+                            },
+                            'error-callback': function() {
+                                el.dataset.turnstileTokenReady = '';
+                            }
+                        });
+                        el.dataset.turnstileWidgetId = id;
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn('Turnstile render failed:', e);
+        }
+    },
+
+    /**
+     * Get the current Turnstile token, if available
+     */
+    getTurnstileToken: function() {
+        try {
+            var el = document.querySelector('.cf-turnstile');
+            if (!el) return '';
+            var id = el.dataset.turnstileWidgetId;
+            if (window.turnstile && id) {
+                return window.turnstile.getResponse(id) || '';
+            }
+            var hidden = el.querySelector('input[name="cf-turnstile-response"]') || document.querySelector('input[name="cf-turnstile-response"]');
+            return hidden && hidden.value ? hidden.value : '';
+        } catch (e) {
+            return '';
+        }
+    },
+
+    /**
      * Initialize dynamic name updates in certification text
      */
     initializeCertificationNameUpdates: function() {
@@ -96,6 +143,13 @@ var ApplyForm = {
             e.preventDefault();
             
             if (!$(e.target).valid()) {
+                return;
+            }
+
+            // Ensure Turnstile produced a token before sending
+            var token = self.getTurnstileToken();
+            if (!token) {
+                showNotificationModal("Complete verification", "Please complete the verification challenge, then submit again.");
                 return;
             }
 
@@ -136,6 +190,8 @@ var ApplyForm = {
                     container.html(xhr.responseText);
                     // Re-run initialization on new markup
                     ApplyForm.init();
+                    // Ensure the Turnstile widget is rendered on the refreshed form
+                    ApplyForm.ensureTurnstileRendered();
                     // Scroll to first validation error
                     var firstError = container.find('.input-validation-error, .text-danger').filter(function(){ return $(this).text().trim().length > 0; }).first();
                     if (firstError.length) {

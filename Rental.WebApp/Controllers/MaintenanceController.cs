@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Rental.Domain.Maintenance.Services;
 using Rental.WebApp.Mappers;
 using Rental.WebApp.Models;
 using Rental.WebApp.Models.Maintenance;
-using Rental.WebApp.Models.Site;
 using Rental.WebApp.Services.HumanVerification;
 using Serilog;
 
@@ -15,18 +13,15 @@ public class MaintenanceController : Controller
     public static readonly string Name = nameof(MaintenanceController)
         .Replace(nameof(Controller), "");
     private readonly IMaintenanceRequestProcessor _maintenanceRequestProcessor;
-    private readonly IOptionsSnapshot<SiteOptions> _siteDetails;
-    private readonly IHumanVerifier _captchaVerifier;
+    private readonly IHumanVerifier _humanVerifier;
 
     public MaintenanceController(
         IMaintenanceRequestProcessor maintenanceRequestProcessor,
-        IOptionsSnapshot<SiteOptions> siteDetails,
-        IHumanVerifier captchaVerifier
+        IHumanVerifier humanVerifier
     )
     {
         _maintenanceRequestProcessor = maintenanceRequestProcessor;
-        _siteDetails = siteDetails;
-        _captchaVerifier = captchaVerifier;
+        _humanVerifier = humanVerifier;
     }
 
     [HttpGet, Route("MaintenanceRequest")]
@@ -44,10 +39,10 @@ public class MaintenanceController : Controller
             // Verify Turnstile token first when configured
             var token = Request.Form["cf-turnstile-response"].ToString();
             var remoteIp = HttpContext.Connection.RemoteIpAddress?.ToString();
-            var captchaOk = await _captchaVerifier.VerifyAsync(token, remoteIp, cancellationToken);
+            var captchaOk = await _humanVerifier.VerifyAsync(token, remoteIp, cancellationToken);
             if (!captchaOk)
             {
-                Log.Logger.Information("Maintenance request CAPTCHA failed");
+                Log.Logger.Information("Submti maintenance request CAPTCHA failed");
                 ModelState.AddModelError(
                     string.Empty,
                     "CAPTCHA validation failed. Please try again."

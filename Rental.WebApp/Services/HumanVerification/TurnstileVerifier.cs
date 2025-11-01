@@ -38,7 +38,6 @@ internal sealed class TurnstileVerifier : IHumanVerifier
             }
         );
 
-        // Build an HttpRequestMessage so middleware can attach logging extensions
         using var request = new HttpRequestMessage(
             HttpMethod.Post,
             "https://challenges.cloudflare.com/turnstile/v0/siteverify"
@@ -47,7 +46,6 @@ internal sealed class TurnstileVerifier : IHumanVerifier
             Content = form,
         };
         request.Headers.Accept.ParseAdd("application/json");
-
         request.EnableRequestResponseDetailLogging();
 
         using var resp = await _http.SendAsync(request, ct);

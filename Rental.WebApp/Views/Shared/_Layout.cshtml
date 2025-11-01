@@ -157,6 +157,9 @@
     <script src="~/js/custom/requireifenumenabled.js"></script>
     <script src="~/js/custom/rangeifenum.js"></script>
     <script src="~/js/custom/mustbetrue.js"></script>
+
+    <!-- Cloudflare Turnstile - explicit render mode to avoid double-init -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
     
     @RenderSection("scripts", required: false)
 </body>
